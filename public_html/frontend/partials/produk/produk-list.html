@@ -1,0 +1,128 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first page-header page-header-form no-padding has-bg-color"></div>
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="panel panel-default panel-app">
+            <div class="panel-heading">
+                <div class="row hor-mod">
+                    <div class="col-md-3 col-first text-center">
+                        <h1>
+                            Daftar Produk
+                            <span class="dropdown" uib-dropdown on-toggle="toggled(open)">
+                                <a uib-dropdown-toggle class="btn btn-link btn-sm">
+                                    <span class="ion ion-ios-arrow-down"></span>
+                                    <span class="caret-dropdown"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
+                                    <li>
+                                        <a ui-sref="produk.kategori">
+                                            Produk - Kategori
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="produk.lokasi">
+                                            Produk - Lokasi
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="produk.scoring">
+                                            Produk - Scoring
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </h1>
+                    </div>
+                    <div class="col-md-9">
+                        <ul class="thead thead-action list-inline">
+                            <li>
+                                <label class="small">Jenis Produk</label>
+                                <select class="form-control" ng-model="fdPL.MS_JENIS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PRODUK_ID">
+                                    <option></option>
+                                </select>
+                            </li>
+                            <li>
+                                <label class="small">Nama Produk</label>
+                                <input type="text" class="form-control"/>
+                            </li>
+                            <li>
+                                <label class="small">Inisial Produk</label>
+                                <input type="text" class="form-control"/>
+                            </li>
+                            <li>
+                                <label class="small">Status</label>
+                                <select class="form-control" ng-model="fdPL.MS_STATUS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_STATUS_PRODUK_ID">
+                                    <option></option>
+                                </select>
+                            </li>
+                            <li>
+                                <button class="btn btn-default btn-sm">Search</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="panel-heading">
+                <ul class="thead thead-action list-inline">
+                    <li>
+                        <a class="btn btn-sm btn-success" ng-click="modalCP(); $root.fdPRD={};">Tambah</a>
+                    </li>
+                    <li>
+                        <input type="text" placeholder="Cari"/>
+                    </li>
+                    <li>
+                        <select>
+                            <option></option>
+                        </select>
+                    </li>
+                    <li>
+                        Page: {{fdPL.PAGE}} / {{fdPL.NUM_PAGES}}
+                    </li>
+<!--                    <li>
+                        Page: {{fdPL.PAGE}}
+                    </li>-->
+                    <li class="right">
+                        <ul uib-pagination total-items="fdPL.TOTAL_ITEMS"
+                            ng-model="fdPL.PAGE"
+                            ng-change="pageChanged(fdPL.PAGE)"
+                            max-size="fdPL.MAX_SIZE" 
+                            class="pagination-sm" 
+                            boundary-links="true" 
+                            num-pages="fdPL.NUM_PAGES"
+                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                        ></ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <table wt-responsive-table class="table table-bordered table-hidden-overflow small">
+                    <tr>
+                        <th>Jenis Produk</th>
+                        <th>Nama Produk</th>
+                        <th>Inisial Produk</th>
+                        <th>Tgl Mulai</th>
+                        <th>Tgl Akhir</th>
+                        <th>Versi</th>
+                        <th>Status</th>
+                        <th>#</th>
+                    </tr>
+                    <tr ng-repeat="x in listProduk | limitTo:(fdPL.LIMIT):((fdPL.PAGE*fdPL.LIMIT)-fdPL.LIMIT)">
+                        <td>{{x.MP_JENIS_PRODUK_ID}}</td>
+                        <td>{{x.MP_NAMA_PRODUK}}</td>
+                        <td>{{x.MP_INISIAL_PODUK}}</td>
+                        <td>{{x.MP_TANGGAL_AWAL}}</td>
+                        <td>{{x.MP_TANGGAL_AKHIR}}</td>
+                        <td>{{x.MP_VERSI}}</td>
+                        <td>{{x.MP_STATUS_ID}}</td>
+                        <td>
+                            <a ng-click="editPRD(x.MP_PRODUK_ID); $root.fdPRD={};">Edit</a>
+                            <a ng-click="deletePRD(x)">Delete</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        </table>
+    </div>
+</div>

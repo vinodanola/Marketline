@@ -1,0 +1,219 @@
+<div class="col-md-6 col-has-border-right" ng-hide="PROSPEK_SUBMITED == 2" menu-alias="M-19">
+    <div class="col-md-8 col-md-offset-2" >
+        <form name="formAplikasiInformasiUsaha" >
+            <div class="row hide">
+                <label>ID</label>
+                <span class="text-success">New</span>
+            </div>
+            <div class="form-group">
+                <label>Jenis Usaha *</label>
+                <select class="form-control" ng-model="formDataAplikasiInformasiUsaha.MS_JENIS_USAHA_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+                    <option></option>
+                    <!--<option ng-repeat="x in $root.jns_usaha" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>-->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nama usaha *</label>
+                <input type="text" class="form-control" placeholder="" ng-model="formDataAplikasiInformasiUsaha.PR_NAMA_USAHA"/>
+            </div>
+            <div class="form-group">
+                <label>Omset per hari *</label>
+                <div class="input-group">
+                    <span class="input-group-addon">Rp</span>
+                    <input type="text" class="form-control" placeholder=""  ui-number-mask="0" ng-model="formDataAplikasiInformasiUsaha.PR_OMSET_HARIAN"/>
+                </div>
+            </div>
+<!--            <div class="form-group col-md-6 col-no-padding-left">
+                <label>Lama Usaha (bulan) *</label>
+                <input type="number" class="form-control" placeholder="" string-to-number ng-model="formDataAplikasiInformasiUsaha.PR_LAMA_USAHA"/>
+            </div>-->
+            <div class="form-group">
+                <label>Lama Usaha * <b class="label label-primary">total {{formDataAplikasiInformasiUsaha.PR_LAMA_USAHA}} bulan</b></label>
+                <div class="input-group hide">
+                        <input type="number" class="form-control" string-to-number ng-model="formDataAplikasiInformasiUsaha.PR_LAMA_USAHA" />
+                        <span class="input-group-addon">Bulan</span>
+                </div>
+                <div class="row">
+                        <div class="col-md-6">
+                                <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="formDataAplikasiInformasiUsaha.PR_LAMA_USAHA_TAHUN" restrict="reject" mask="999" ng-value="0" />
+                                        <span class="input-group-addon">Tahun</span>
+                                </div>
+                        </div>
+                        <div class="col-md-6">
+                                <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="formDataAplikasiInformasiUsaha.PR_LAMA_USAHA_BULAN" restrict="reject" mask="999" ng-value="0" />
+                                        <span class="input-group-addon">Bulan</span>
+                                </div>
+                        </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Jumlah karyawan *</label>
+                <input type="number" class="form-control" placeholder="" string-to-number ng-model="formDataAplikasiInformasiUsaha.PR_JUMLAH_KARYAWAN"/>
+            </div>
+            
+            <div class="form-group">
+                <label>Alamat Usaha *</label>
+                <textarea class="form-control" placeholder="" ng-model="formDataAplikasiInformasiUsaha.PR_ALAMAT"></textarea>
+            </div>
+            <div class="form-group col-md-6 col-no-padding-left">
+                <label >RT *</label>
+                <input type="text" class="form-control" placeholder="RT" ng-model="formDataAplikasiInformasiUsaha.PR_RT" restrict="reject" mask="999" />
+            </div>
+            <div class="form-group col-md-6 col-no-padding-right">
+                <label >RW</label>
+                <input type="text" class="form-control" placeholder="RW" ng-model="formDataAplikasiInformasiUsaha.PR_RW" restrict="reject" mask="999"/>
+            </div>
+            <div class="form-group">
+                <label>Provinsi *</label>
+                <select class="form-control" ng-model="formDataAplikasiInformasiUsaha.MS_PROVINSI_ID"  ng-options="x.MS_KODE_PROVINSI as (x.MS_PROVINSI) for x in $root.provinsi" ng-change="kb(formDataAplikasiInformasiUsaha.MS_PROVINSI_ID)">
+                    <!--<option ng-repeat="x in $root.provinsi" value="{{x.MS_KODE_PROVINSI}}">{{x.MS_PROVINSI}}</option>-->
+                </select>
+            </div>
+            <div class="form-group" ng-show="formDataAplikasiInformasiUsaha.MS_PROVINSI_ID">
+                <label>Kabupaten / Kota *</label>
+                <select class="form-control" ng-model="formDataAplikasiInformasiUsaha.MS_KABKOT_ID" ng-options="x.MS_KODE_KABKOT as (x.MS_KABKOT) for x in $root.kabkot"  ng-change="kc(formDataAplikasiInformasiUsaha.MS_KABKOT_ID)">
+                    <!--<option ng-repeat="x in $root.kabkot" value="{{x.MS_KODE_KABKOT}}">{{x.MS_KABKOT}}</option>-->
+                </select>
+            </div>
+            <div class="form-group" ng-show="formDataAplikasiInformasiUsaha.MS_KABKOT_ID">
+                <label>Kecamatan *</label>
+                <select class="form-control" ng-model="formDataAplikasiInformasiUsaha.MS_KECAMATAN_ID" ng-options="x.MS_KODE_KECAMATAN as (x.MS_KECAMATAN) for x in $root.kec" ng-change="kl(formDataAplikasiInformasiUsaha.MS_KECAMATAN_ID)">
+                    <!--<option ng-repeat="x in $root.kec" value="{{x.MS_KODE_KECAMATAN}}">{{x.MS_KECAMATAN}}</option>-->
+                </select>
+            </div>
+            <div class="form-group" ng-show="formDataAplikasiInformasiUsaha.MS_KECAMATAN_ID">
+                <label>Kelurahan *</label>
+                <select class="form-control" ng-model="formDataAplikasiInformasiUsaha.MS_KELDES_ID" ng-options="x.MS_KODE_KELDES as (x.MS_KELDES) for x in $root.keldes">
+                    <!--<option ng-repeat="x in $root.keldes" value="{{x.MS_KODE_KELDES}}">{{x.MS_KELDES}}</option>-->
+                </select>
+            </div>
+            <div class="form-group col-md-6 col-no-padding-left">
+                <label>Kode Pos *</label>
+                <input type="number" class="form-control" placeholder="" ng-model="formDataAplikasiInformasiUsaha.MS_KODE_POS_ID" kode-pos/>
+            </div>
+            <div class="form-group col-md-6 col-no-padding-right">
+                <label>Telepon/Handphone *</label>
+                <input type="text" class="form-control" placeholder="" ng-model="formDataAplikasiInformasiUsaha.PR_NO_TELP_USAHA" restrict="reject" mask="9999999999999"/>
+            </div>
+            <!--div class="form-group">
+                <label>Lama Menempati (bulan) *</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" ng-model="formDataAplikasiInformasiUsaha.PR_LAMA_MENEMPATI" />
+                    <span class="input-group-addon">Bulan</span>
+                </div>
+            </div-->
+			
+			<div class="form-group">
+				<label>Lama Menempati * <b class="label label-primary">total {{formDataAplikasiInformasiUsaha.PR_LAMA_MENEMPATI}} bulan</b></label>
+				<div class="input-group hide">
+					<input type="number" class="form-control" string-to-number ng-model="formDataAplikasiInformasiUsaha.PR_LAMA_MENEMPATI" />
+					<span class="input-group-addon">Bulan</span>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="input-group">
+							<input type="text" class="form-control" ng-model="formDataAplikasiInformasiUsaha.PR_LAMA_MENEMPATI_TAHUN" restrict="reject" mask="999" ng-value="0" />
+							<span class="input-group-addon">Tahun</span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group">
+							<input type="text" class="form-control" ng-model="formDataAplikasiInformasiUsaha.PR_LAMA_MENEMPATI_BULAN" restrict="reject" mask="999" ng-value="0" />
+							<span class="input-group-addon">Bulan</span>
+						</div>
+					</div>
+				</div>
+			</div>									
+            <div class="form-group">
+                <label>Status Tempat *</label>
+                <select class="form-control"  ng-model="formDataAplikasiInformasiUsaha.MS_STATUS_TEMPAT_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.stat_tempat">
+                    <option></option>
+                    <!--<option ng-repeat="x in $root.stat_tempat" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>-->
+                </select>
+            </div>
+			<div class="form-group">
+				<label>Jarak dari Unit</label>
+					<div class="input-group">
+						<input class="form-control ng-untouched ng-not-empty ng-dirty ng-invalid ng-invalid-mask ng-valid-parse" ng-model="formDataAplikasiInformasiUsaha.PR_JARAK_ALAMAT" restrict="reject" mask="999" ng-value="0" value="0" aria-invalid="true" type="text">
+						<span class="input-group-addon">KM</span>
+					</div>
+			</div>			
+			
+			
+			
+			
+            <div class="form-group text-right" menu-alias="M-9">
+                <a class="btn btn-success btn-sm" ng-click="processFormAplikasiInformasiUsaha()">
+                    Simpan
+                </a>
+                <a class="btn btn-warning btn-sm" ng-click="resetFormAplikasiInformasiUsaha()">
+                    Reset
+                </a>
+            </div>
+            <div class="form-group form-group-btn-step">
+                <a ui-sref="prospek.aplikasi.datapembiayaan" class="btn btn-primary btn-prev">
+                    <span class="ion ion-ios-arrow-left"></span>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="col-no-padding-right" ng-class="PROSPEK_SUBMITED!=2 ? 'col-md-6' : 'col-md-12'">
+    <table wt-responsive-table class="table table-hidden-overflow small">
+<!--        <ul class="thead thead-action list-inline">
+            <li>
+                <input type="text" placeholder="Cari"/>
+            </li>
+            <li>
+                <select>
+                    <option></option>
+                </select>
+            </li>
+            <li>
+                Page: {{currentPage}} / {{numPages}}
+            </li>
+            <li class="right">
+                <ul uib-pagination total-items="totalItems"
+                    ng-model="currentPage"
+                    ng-change="pageChanged(currentPage)"
+                    max-size="maxSize" 
+                    class="pagination-sm" 
+                    boundary-links="true" 
+                    num-pages="numPages"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                ></ul>
+            </li>
+        </ul>-->
+        <tr class="thead">
+			<th>Priority</th>
+            <th>Detail</th>
+            <th>#</th>
+        </tr>
+        <tr class="" ng-repeat="x in aplikasiInformasiUsahaList">
+			<td class="text-center" ng-show="PROSPEK_LOCK != 'YES'">
+				<input type="radio" name="radiojnsusahautama" value="1" ng-model="x.PR_PRIORITY_USAHA" ng-click="postUsahaPriority(x.PR_INDIVIDU_USAHA_ID)" />
+			</td>
+            <td>
+                <h4>{{x.PR_NAMA_USAHA}}</h4>
+                <dl class="dl-horizontal">
+                    <dt>Jenis Usaha :</dt><dd>{{x.MS_JENIS_USAHA}}</dd>
+                    <dt>Jumlah Karyawan :</dt><dd>{{x.PR_JUMLAH_KARYAWAN}}</dd>
+                    <dt>Lama Usaha :</dt><dd>{{x.PR_LAMA_USAHA}} Bulan</dd>
+                    <dt>No Telepon Usaha :</dt><dd>{{x.PR_NO_TELP_USAHA}}</dd>
+                    <dt>Omset Harian :</dt><dd>Rp {{x.PR_OMSET_HARIAN | number:2}}</dd>
+                </dl>
+            </td>
+            <td>
+                <a ng-click="viewInformasiUsaha(x.PR_INDIVIDU_USAHA_ID)">View</a>
+                <ng-if ng-hide="PROSPEK_SUBMITED == 2">
+                    <a ng-click="editInformasiUsaha(x.PR_INDIVIDU_USAHA_ID)" menu-alias="M-19">Edit</a>
+                    <a ng-show="x.PR_PRIORITY_USAHA != 1" ng-click="deleteInformasiUsaha(x)" menu-alias="M-25">Delete</a>
+                </ng-if>
+            </td>
+        </tr>
+
+    </table>
+</div>

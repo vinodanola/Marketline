@@ -1,0 +1,56 @@
+<div class="panel-heading text-center">
+    <div class="row hor-mod">
+        <h4 class="text-center">{{title}}</h4>
+    </div>
+</div>
+<div class="panel-body no-padding">
+    <ul class="thead thead-action list-inline">
+        <li>
+            <input type="text" class="form-control" placeholder="cari" ng-model="SEARCH.MS_DESKRIPSI"/>
+        </li>
+        <li>
+            <a class="btn btn-success btn-sm" ng-click="modalRequestDocument()" ng-show="REVIEW_SUBMITED == 1" menu-alias="M-119">
+                Request
+            </a>
+        </li>
+    </ul>
+    <table wt-responsive-table class="table table-hidden-overflow small no-margin">
+        <tr class="thead">
+            <td>Jenis Dokumen</td>
+            <td class="text-center" colspan="3">Reviewer</td>
+        </tr>
+        <tr ng-repeat="x in listDCK | filter:SEARCH">
+            <td>{{x.MS_DESKRIPSI}}</td>
+            <td style="background-color: #f5f5f5">
+                <table wt-responsive-table class="table table-hidden-overflow" ng-show="x.DOKUMEN.length > 0">
+                    <tr>
+                        <td></td>
+                        <td>Cabang</td>
+                        <td class="hide">PPU 1</td>
+                        <td class="hide">MRG</td>
+                    </tr>
+                    <tr ng-repeat="y in x.DOKUMEN">
+                        <td>
+                            {{$index+1}}.
+                            <a href="{{$root.FILE_BASE}}{{y.PR_PATH_DOKUMEN}}" target="_blank">View</a> &middot;
+                            <a href="{{$root.FILE_BASE}}{{y.PR_PATH_DOKUMEN}}" download>Download</a><br>
+                        </td>
+                        <td>
+                            <input type="checkbox" ng-true-value="{{y.PR_INDIVIDU_DOKUMEN_ID}}" ng-false-value="" ng-model="fdDCK.CHECKDATA_CABANG[y.PR_INDIVIDU_DOKUMEN_ID]" ng-init="fdDCK.CHECKDATA_CABANG[y.PR_INDIVIDU_DOKUMEN_ID] = y.CHECKDATA_CABANG[y.PR_INDIVIDU_DOKUMEN_ID]"/> 
+                        </td>
+                        <td class="hide">
+                            <input type="checkbox" ng-true-value="{{y.PR_INDIVIDU_DOKUMEN_ID}}"  ng-false-value="" ng-model="fdDCK.CHECKDATA_PPU1[y.PR_INDIVIDU_DOKUMEN_ID]" ng-init="fdDCK.CHECKDATA_PPU1[y.PR_INDIVIDU_DOKUMEN_ID] = y.CHECKDATA_PPU1[y.PR_INDIVIDU_DOKUMEN_ID]"/>
+                        </td>
+                        <td class="hide">
+                            <input type="checkbox" ng-true-value="{{y.PR_INDIVIDU_DOKUMEN_ID}}"  ng-false-value="" ng-model="fdDCK.CHECKDATA_MRG[y.PR_INDIVIDU_DOKUMEN_ID]" ng-init="fdDCK.CHECKDATA_MRG[y.PR_INDIVIDU_DOKUMEN_ID] = y.CHECKDATA_MRG[y.PR_INDIVIDU_DOKUMEN_ID]"/>
+                        </td>
+                    </tr>
+                </table>
+                <p ng-show="x.DOKUMEN.length <= 0">Tidak ada dokumen</p>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="panel-footer text-center" ng-if="REVIEW_SUBMITED == 1">
+    <button ng-click="postDCK()" class="btn btn-primary btn-sm" menu-alias="M-95">Simpan</button>
+</div>

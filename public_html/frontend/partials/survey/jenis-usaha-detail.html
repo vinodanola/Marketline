@@ -1,0 +1,146 @@
+<div class="col-md-6 col-has-border-right col-padding-110">
+    <div class="form-group">
+        <label>Kegiatan ditempat usaha *</label>
+        <select class="form-control" ng-model="fdJUS.MS_KEGIATAN_USAHA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_KEGIATAN_USAHA_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Kondisi Tempat Usaha *</label>
+        <select class="form-control" ng-model="fdJUS.MS_KONDISI_TEMPAT_USAHA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_KONDISI_TEMPAT_USAHA_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Akses Kendaraan *</label>
+        <select class="form-control" ng-model="fdJUS.MS_AKSES_KENDARAAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_AKSES_KENDARAAN_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Memiliki Surat Keterangan Usaha / Bekerja *</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="xSSKU" value="1" ng-model="fdJUS.SV_SURAT_KETERANGAN_USAHA_ID"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" name="xSSKU" value="0" ng-model="fdJUS.SV_SURAT_KETERANGAN_USAHA_ID"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+<!--    <div class="form-group">
+        <label>Jumlah Tenaga Kerja yang menjalankan usaha / perusahaan (termasuk pemilik)</label>
+        <input type="number" class="form-control"/>
+    </div>-->
+<!--    <div class="form-group">
+        <label>Jarak lokasi usaha dengan kantor ULaMM (KM)</label>
+        <input type="text" class="form-control"/>
+    </div>-->
+<!--    <div class="form-group">
+        <label>Memiliki Surat Keterangan Usaha / Bekerja</label>
+        <select class="form-control">
+            <option></option>
+        </select>
+    </div>-->
+    <div class="form-group">
+        <label>Ketersediaan Bahan Baku *</label>
+        <select class="form-control" ng-model="fdJUS.MS_KETERSEDIAAN_BAHAN_BAKU_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_KETERSEDIAAN_BAHAN_BAKU_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Jumlah Pemasok Barang *</label>
+        <select class="form-control" ng-model="fdJUS.MS_JML_PEMASOK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JML_PEMASOK_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Persaingan Usaha *</label>
+        <select class="form-control" ng-model="fdJUS.MS_PERSAINGAN_USAHA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PERSAINGAN_USAHA_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Daftar Negatif List Industri *</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="xSDN" value="1" ng-model="fdJUS.SV_DAFTAR_NEGATIF"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" name="xSDN" value="0" ng-model="fdJUS.SV_DAFTAR_NEGATIF"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+        <div class="form-group" ng-show="fdJUS.SV_DAFTAR_NEGATIF==1">
+            <label>Sebutkan *</label>
+            <input type="text" class="form-control" ng-model="fdJUS.SV_DAFTAR_NEGATIF_DESKRIPSI"/>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">    
+    <div class="form-group">
+        <label>Gambaran kondisi sektor usaha calon debitur saat ini di wilayah tersebut *</label>
+        <select class="form-control" ng-model="fdJUS.MS_KONDISI_SEKTOR_USAHA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_KONDISI_SEKTOR_USAHA_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Pangsa Pasar</label>
+        <input type="text" class="form-control" ng-model="fdJUS.SV_PANGSA_PASAR"/>
+    </div>
+<!--    <div class="form-group">
+        <label>Pengelolaan Keuangan</label>
+        <select class="form-control">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Pengelolaan Keuangan</label>
+        <input type="text" class="form-control"/>
+    </div>-->
+<!--    <div class="form-group">
+        <label>Lokasi Usaha</label>
+        <input type="text" class="form-control"/>
+    </div>-->
+    <div class="form-group">
+        <label>Lokasi Usaha</label>
+        <select class="form-control" ng-model="fdJUS.MS_LOKASI_USAHA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_LOKASI_USAHA_ID">
+            <option></option>
+        </select>
+    </div>
+<!--    <div class="form-group">
+        <label>Pengelolaan Usaha</label>
+        <input type="text" class="form-control"/>
+    </div>-->
+<!--    <div class="form-group">
+        <label>Aspek Pemasaran</label>
+        <textarea class="form-control"></textarea>
+    </div>-->
+    <div class="form-group">
+        <label>Periode Penjualan *</label>
+        <select class="form-control" ng-model="fdJUS.MS_PERIODE_PENJUALAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PERIODE_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Pola Pembayaran Costumer *</label>
+        <select class="form-control" ng-model="fdJUS.MS_POLA_PEMBAYARAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PEMBAYARAN_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Pola Pembelian Bahan Baku *</label>
+        <select class="form-control" ng-model="fdJUS.MS_POLA_PEMBELIAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PERIODE_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Pola Pembayaran Pada Supplier *</label>
+        <select class="form-control" ng-model="fdJUS.MS_POLA_PEMBAYARAN_SUPPLIER_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PEMBAYARAN_ID">
+            <option></option>
+        </select>
+    </div>
+</div>

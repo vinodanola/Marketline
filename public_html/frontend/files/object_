@@ -1,0 +1,386 @@
+[{
+	informasi_survei => 
+		[{
+			index =>	
+				[{
+					rencana_produk_id => 1,
+					rencana_plafond => 100000000,
+					jangka_waktu => 12,
+					kemampuan_angsuran => 5000000,
+					rencana_tujuan_pembiayaan_id => 1
+				}],
+			alamat =>	
+				[{
+					[{
+						MS_JENIS_ALAMAT_ID => 1,
+						PR_ALAMAT => 'setiabudi 5 gang 3',
+						PR_RT => 002,
+						PR_RW => 004,
+						MS_PROVINSI_ID => 31,
+						MS_KABKOT_ID => 3172,
+						MS_KECAMATAN_ID => 317203,
+						MS_KELDES_ID => 3172032001,
+						MS_KODE_POS_ID => 12910,
+						PR_LAMA_MENEMPATI => 2,
+						MS_STATUS_TEMPAT_ID => 1
+					}]
+				}],
+			kunjungan_usaha =>	
+				[{
+					[{
+						SV_TGL_SURVEY => 2017-04-21,
+						MS_LOKASI_KUNJUNGAN_ID => 1,
+						SV_NAMA_DITEMUI => 'hasan',
+						MS_HUBUNGAN_PEMOHON_ID => 1,
+						SV_KETERANGAN => 'apa aja lah'
+					}]
+				}],
+			AOM =>	
+				[{
+					AOM_id => 411,
+					lama_bekerja => 20
+				}]
+		}],
+		
+	profil_&_karakter =>	
+		[{
+			informasi_pribadi =>
+				[{
+					usia => 25,
+					kewarganegaraan_id => 1,
+					pendidikan_terakhir_id => 1,
+					status_kawin_id => 2,
+					kerjasama_dari_pemohon_id => 1,
+					track_rec_pinjaman_id => 1 ,
+					bagaimana_calon_debitur_mengenal_ulam_id => [{
+																	1,
+																	2,
+																	3
+																}],
+					reputasi_pemohon_id => 	[{
+												1,
+												2,
+												3
+											}]
+				}],
+			sumber_info_reputasi =>
+				[{
+					[{
+						SV_NAMA => Vino,
+						MS_HUBUNGAN_PEMOHON_ID => 5,
+						SV_HUBUNGAN_LAIN => 'Sepupu',
+						SV_NO_HP => '08235253262',
+						MS_REPUTASI_ID => 1,
+						SV_KETERANGAN => 'apa aja lah'
+					}]
+				}],
+			dokumen_pembiayaan =>
+				[{
+					[{
+						MS_JENIS_DOKUMEN_ID => 1,
+						PR_NOMOR_DOKUMEN => '2359/LK/2q35rq23',
+						PR_PATH_DOKUMEN => 'individu/08325265_KTP_21435.jpg'
+					}]
+				}],
+			executive_summary_critical => 'bebaaaaaaaaaaas',
+		}],
+		
+	kapasitas_usaha =>	
+		[{
+			index =>
+				[{
+					pekerjaan_id => 1,
+					harta_benda_yang_dimiliki =>	[{
+														1,
+														3,
+														5
+													}],
+					lama_bekerja => 20,
+					jenis_rekening_id => 1,
+					tahun_rekening => 2013
+				}],
+			aktivitas_rekening_bank =>
+				[{
+					[{
+						SV_BULAN_KE => 3,
+						MS_BULAN_ID => 4,
+						SV_KREDIT_RIBUAN => 5000000,
+						SV_FREQ_KREDIT => 6,
+						SV_DEBIT_RIBUAN => 4000000,
+						SV_FREQ_DEBIT => 4
+					}]
+				}]
+		}],
+	
+	usaha =>
+		[{
+			header_usaha =>
+				[{
+					PR_PRIORITY_USAHA => 1,
+					MS_JENIS_USAHA_ID => 1,
+					PR_LAMA_USAHA => 32,
+					PR_INDIVIDU_ALAMAT_ID => 4,
+					PR_NO_TELP_USAHA => '021-924722',
+					PR_OMSET_HARIAN => 100000000,
+					PR_NAMA_USAHA => 'AK Kerajinan',
+					PR_JUMLAH_KARYAWAN => 5
+				}],
+			detail_usaha =>
+				[{
+					MS_BENTUK_USAHA_ID => 1,
+					MS_JENIS_BADAN_USAHA_ID => 1,
+					MS_STATUS_TEMPAT_ID => 2,
+					MS_KEGIATAN_USAHA_ID => 2,
+					MS_KONDISI_TEMPAT_USAHA_ID => 2,
+					MS_AKSES_KENDARAAN_ID => 2,
+					MS_PRODUK_DITAWARKAN_ID => 5,
+					SV_KETERANGAN_PRODUK => 'cake',
+					SV_JARAK_USAHA_DENGAN_ULAMM => 30,
+					SV_SURAT_KETERANGAN_USAHA => 1,
+					MS_KETERSEDIAAN_BAHAN_BAKU_ID => 2,
+					MS_JML_PEMASOK_ID => 3,
+					MS_PERSAINGAN_USAHA_ID => 2,
+					MS_KONDISI_SEKTOR_USAHA_ID => 5,
+					SV_PANGSA_PASAR => 'pelajar dan ibu rumah tangga',
+					MS_LOKASI_USAHA_ID => 3,
+					MS_PERIODE_PENJUALAN_ID => 5,
+					MS_POLA_PEMBAYARAN_ID => 2,
+					MS_POLA_PEMBELIAN_ID => 6,
+					MS_POLA_PEMBAYARAN_SUPPLIER_ID => 4,
+					MS_PENGELOLAAN_KEUANGAN_ID => 7
+				}],
+			alamat_usaha =>
+				[{
+					MS_JENIS_ALAMAT_ID => 4,
+					PR_ALAMAT => 'setiabudi gang 3',
+					PR_RT => '002',
+					PR_RW => '004',
+					MS_PROVINSI_ID => 31,
+					MS_KABKOT_ID => 3172,
+					MS_KECAMATAN_ID => 317203,
+					MS_KELDES_ID => '3172032002',
+					MS_KODE_POS_ID => 12910,
+					PR_LAMA_MENEMPATI => 24,
+					MS_STATUS_TEMPAT_ID => 3
+				}]
+		}],
+		
+	keuangan =>
+		[{	
+			index =>
+				[{
+					omset_per_bulan => 10000000,
+					harga_pokok_penjualan_per_produksi => 140000,
+					biaya_tenaga_kerja_per_bulan => 2000000,
+					biaya_sewa_tempat_per_bulan => 500000,
+					biaya_sewa_lainnya_per_bulan => ,
+					biaya_listrik_air_telp_per_bulan => 100000,
+					biaya_lainnya_per_bulan => ,
+					usaha_lainnya => 1,
+					nama_usaha_lainnya => 'aldini',
+					penghasilan_bersih_usaha_lain1_per_bulan => 2000000,
+					penghasilan_bersih_usaha_lain2_per_bulan => ,
+					penghasilan_lain => ,
+					gaji_per_bulan => 4000000,
+					gaji_pasangan_per_bulan => 4000000,
+					biaya_rumah_tangga_pasangan_per_orang_per_bulan => 1500000,
+					biaya_rumah_tangga_anak_per_orang_per_bulan => 1000000,
+					biaya_rumah_tangga_tanggungan_per_orang_per_bulan => 
+				}],
+			data_pinjaman =>
+				[{
+					produk_id => 1,
+					tenor => 24,
+					plafond => 32000000,
+					program_id => 5,
+					bunga_%_per_bulan => 6,
+					angsuran_rata_rata_per_bulan => 1000000,
+					tujuan_pembiayaan_id => 3
+				}],
+			rincian_pinjaman =>
+				[{
+					[{
+						nama_bank_id => 3,
+						plafond => 32000000,
+						baki_debet => 3000000,
+						angsuran => 1200000,
+						keterangan_id => 24,
+						jatuh_tempo => '2019-02-24',
+						kolektibilitas_id => 35
+					}]
+				}]
+		}],
+		
+	kebutuhan_modal_kerja =>
+		[{
+			index => 
+				[{
+					posisi_bulan_terakhir => 2017-02-24,
+					persediaan_dagang => 4000000,
+					persediaan_lainnya => 2000000,
+					piutang_dagang => 1000000,
+					piutang_lainnya => 200000,
+					utang_dagang => 2000000,
+					utang_lainnya => 10000,
+					modal_kerja => 7000000,
+					investasi => 19000000,
+					perputaran_persediaan_barang => 5,
+					perputaran_piutang_dagang => 3,
+					perputaran_dagang => 7,
+					perputaran_modal_kerja => 8,
+					tren_keuagan => 5000000,
+					omzet_pendapatan_tahun_lalu => 50000000,
+					laba_rugi_penghasilan_bersih_tahun_lalu => 4000000,
+					total_utang => 2000000,
+					executive_summary_omzet => 'sangat bebas sekali'
+				}],
+			aset =>
+				[{
+					[{
+						MS_JENIS_ASSET_ID => 1,
+						SV_NILAI_ASSET => 100000000
+					}]
+				}],
+			rab =>
+				[{
+					[{
+						MS_TUJUAN_PEMBIAYAAN_ID => 34,
+						SV_JML_RAB => 5000000,
+						SV_KETERANGAN => 'bebaaaaaaaaaaas'
+					}]
+				}],
+			doc_rab =>
+				[{
+					[{
+						MS_JENIS_DOKUMEN_ID => 2,
+						PR_NOMOR_DOKUMEN => '0039/RK/42222',
+						PR_PATH_DOKUMEN => 'individu/08325265_KTP_21435.jpg'
+					}]
+				}]
+		}],
+	
+	keluarga =>
+		[{
+			index =>
+				[{
+					jumlah_tanggungan_istri => 1,
+					jumlah_tanggungan_anak => 2,
+					jumlah_tanggungan_lainnya => 0,
+					jumlah_tanggungan => 0,
+					pasangan_bekerja => 0,
+					anak_bekerja => 0,
+					orang_tua_bekerja => 0
+				}],
+			detail_keluarga =>
+				[{
+					[{
+						MS_STATUS_HUBUNGAN_KELUARGA_ID => 2,
+						PR_NAMA_LENGKAP => 'muzib',
+						MS_JENIS_IDENTITAS_ID => 1,
+						PR_NO_IDENTITAS => '3211020294024',
+						PR_MASA_BERLAKU_IDENTITAS => '9999-12-31',
+						MS_JENIS_KELAMIN_ID => 1,
+						PR_TANGGAL_LAHIR => '1990-11-22',
+						PR_TEMPAT_LAHIR => 'jakarta',
+						MS_PEKERJAAN_ID => 2,
+						PR_NO_TELP => '021-2424252',
+						PR_NO_HP => '08624292763'
+					}]
+				}]
+		}],
+		
+	agunan =>
+		[{
+			index =>
+				[{
+					DB_NO_LPJ => '7363/ss/353',
+					MS_JENIS_AGUNAN_ID => 1,
+					MS_STATUS_KEPEMILIKAN_ID => 2,
+					MS_HUBUNGAN_PEMOHON_ID => 23,
+					DB_NAMA_PEMILIK => 'hasan',
+					MS_BUKTI_KEPEMILIKAN_AGUNAN_ID => 3,
+					DB_NOMOR_SURAT_TANAH => '215123515/kkk/we32525',
+					DB_LOKASI_KELUAR_SURAT_TANAH => 'jakarta',
+					DB_TGL_KELUAR_SURAT_TANAH => '1999-12-24',
+					DB_NO_IMB => '2395252',
+					DB_TGL_IMB => '2000-01-02',
+					DB_NAMA_IMB => 'hasan',
+					DB_PERUNTUKAN_IMB => 'jalan jalana',
+					DB_NO_AJB => '24325235',
+					DB_TGL_AJB => '2000-02-24,
+					DB_AJB_DIKELUARKAN => 'pemerintah jakarta'
+				}],
+			alamat_agunan =>
+				[{
+					DB_ALAMAT => 'setiabudi',
+					DB_RT => 002,
+					DB_RW => 002,
+					MS_PROVINSI_ID => 31,
+					MS_KABKOT_ID => 3172,
+					MS_KECAMATAN_ID => 317203,
+					MS_KELDES_ID => 3172032003,
+					MS_KODE_POS_ID => 12920,
+					MS_LOKASI_ID => 24,
+					MS_JALAN_DILALUI_ID => 22
+				}],
+			detail_agunan =>
+				[{
+					MS_BENTUK_TANAH_ID => 23,
+					DB_LUAS_TANAH => 112,
+					MS_KONDISI_PERMUKAAN_ID => 24,
+					MS_PENGGUNAAN_TANAH_ID => 22,
+					DB_BANJIR => 0,
+					MS_BATAS_UTARA_ID => 31,
+					MS_BATAS_SELATAN_ID => 22,
+					MS_BATAS_BARAT_ID => 34,
+					MS_BATAS_TIMUR_ID => 23,
+					MS_STATUS_TANAH_ID => 3,
+					DB_PENGHUNI => 'saya sendiri',
+					DB_DASAR_PENGHUNIAN => 'rumah sendiri',
+					DB_WAKTU_SEWA => '21',
+					DB_BIAYA_SEWA => 2000000,
+					DB_LISTRIK => 1300,
+					DB_TELEPON => '021-2993830',
+					MS_AIR_ID => 53,
+					DB_ANGKUTAN_UMUM => 1,
+					DB_SEKOLAH => 1,
+					DB_RUMAH_SAKIT => 1,
+					DB_TAHUN_BANGUNAN => 2000,
+					DB_TAHUN_RENOVASI => 2010,
+					DB_LUAS_BANGUNAN => 78,
+					DB_LEBAR_JALAN => 12,
+					MS_PONDASI_ID => 52,
+					MS_LANTAI_ID => 24,
+					MS_DINDING_ID => 46,
+					MS_PLAFON_ID => 41,
+					MS_KUSEN_ID => 47,
+					MS_ATAP_ID => 68,
+					MS_PINTU_ID => 57,
+					MS_JENDELA_ID => 75,
+					DB_LANTAI_1 => 'ruang tamu, dapur',
+					DB_LANTAI_2 => 'kamar 1, kamar 2',
+					DB_LANTAI_3 => 
+				}],
+			penilaian =>
+				[{
+					MS_STATUS_PENILAIAN_ID => 24,
+					DB_TGL_PENILAIAN => '2017-02-22',
+					DB_NAMA_PENILAI => 'hendra',
+					MS_JABATAN_ID => 21,
+					DB_NILAI_PASAR_1 => 2000000,
+					DB_NILAI_PASAR_2 => ,
+					DB_NILAI_PASAR_3 => ,
+					DB_NILAI_PASAR => 150000000,
+					DB_PERSENTASE_LIKUIDASI => 30,
+					DB_NILAI_LIKUIDASI => 2000000
+				}]
+		}]
+	
+	note =>
+		[{
+			SV_PEMBERI_NOTE => 'andika',
+			MS_JENIS_CATATAN_ID => 362,
+			SV_NOTE => 'jual lah'
+		}]
+
+}]

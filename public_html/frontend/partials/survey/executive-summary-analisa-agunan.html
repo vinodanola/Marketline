@@ -1,0 +1,9 @@
+<div class="col-md-12">
+    <div class="form-group">
+        <label>Executive Summary Critical Agunan</label>
+        <text-angular ta-disabled="(SURVEY_LOCK != 'YES') ? false : true" ng-model="fdEA.MS_EXSUM_AGUNAN"></text-angular>
+    </div>
+    <div class="form-group" menu-alias="M-74" ng-if="SURVEY_LOCK != 'YES'">
+        <a class="btn btn-success btn-sm" ng-click="postEA()">Simpan</a>
+    </div>
+</div>

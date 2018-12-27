@@ -1,0 +1,50 @@
+<div class="form-group">
+    <label>Jenis Dokumen *</label>
+    <select class="form-control" ng-model="formDataDokumen.MS_JENIS_DOKUMEN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_dokumen">	
+        <option></option>
+    </select>
+</div>
+
+<div class="form-group" ng-show="formDataDokumen.MS_JENIS_DOKUMEN_ID==104">
+    <label>Jenis KTP *</label>
+	<select class="form-control" ng-model="formDataDokumen.MS_JENIS_KTP_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_ktp">	
+        <option></option>       
+    </select>
+</div>
+
+
+<div class="form-group">
+    <label>Kategori Dokumen *</label>
+    <select class="form-control" ng-model="formDataDokumen.DB_HEADER">	
+        <option></option>
+        <option value="PEMBIAYAAN">PEMBIAYAAN</option>
+        <option value="RAB">RAB</option>
+        <option value="FOTO">FOTO</option>
+        <option value="LAINNYA">LAINNYA</option>
+    </select>
+</div>
+<div class="form-group">
+    <label>Nomor Dokumen *</label>
+    <input type="text" class="form-control" placeholder="" ng-model="formDataDokumen.PR_NOMOR_DOKUMEN"/>
+</div>
+<div class="form-group">
+    <label>Upload File ( .pdf, .png, .gif, .jpeg )*</label>
+    <a ng-show="formDataDokumen.PR_PATH_DOKUMEN" href="{{$root.FILE_BASE}}{{formDataDokumen.PR_PATH_DOKUMEN}}" class="pull-right" target="_blank" uib-tooltip="{{$root.FILE_BASE}}{{formDataDokumen.PR_PATH_DOKUMEN}}">View</a>
+    <!--<input type="file" class="form-control" fileread="formDataDokumen.PR_DOKUMEN" placeholder="Upload file"/>-->
+    <input type="file" class="form-control" file-model="formDataDokumen.PR_DOKUMEN" placeholder="Upload file"/>
+</div>
+<div class="form-group" ng-if="$root.DATA_STATUS_FOR_SUBMIT < 1" menu-alias="M-11">
+    <button ng-click="processFormDokumen()" class="btn btn-success btn-sm">
+        Simpan
+    </button>
+    <a ng-click="resetFormDataDokumen()" class="btn btn-warning btn-sm">
+        Reset
+    </a>
+</div>
+<!--
+<div class="form-group form-group-btn-step">
+    <button class="btn btn-primary btn-next">
+        <span class="ion ion-ios-paperplane-outline"></span>
+    </button>
+</div>
+-->

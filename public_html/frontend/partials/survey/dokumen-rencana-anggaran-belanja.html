@@ -1,0 +1,72 @@
+<div class="col-md-6 col-padding-110 col-has-border-right" ng-if="SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES'" menu-alias="M-62">
+<!--    <div class="form-group hide">
+        <input type="text" class="form-control" ng-model="fdDRAB.DB_HEADER" />
+        <input type="text" class="form-control" ng-model="fdDRAB.DB_HEADER_ID" />
+    </div>-->
+    <div class="form-group">
+        <label>Jenis Dokumen *</label>
+        <select class="form-control" ng-model="fdDRAB.MS_JENIS_DOKUMEN_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_dokumen">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>File (PDF / Image) *</label>
+        <a ng-show="fdDRAB.PR_PATH_DOKUMEN" href="{{$root.FILE_BASE}}{{fdDRAB.PR_PATH_DOKUMEN}}" class="pull-right" target="_blank" uib-tooltip="{{$root.FILE_BASE}}{{fdDRAB.PR_PATH_DOKUMEN}}">View</a>
+        <input type="file" class="form-control" file-model="fdDRAB.PR_DOKUMEN" />
+    </div>
+	<div  class="form-group" ng-hide="true">
+		<label>Nomor Dokumen *</label>
+		<input type="text" class="form-control" ng-model="fdDRAB.PR_NOMOR_DOKUMEN" ng-init="fdDRAB.PR_NOMOR_DOKUMEN ='-'"/>
+	</div>	
+    <div class="form-group text-right" menu-alias="M-61">
+        <a class="btn btn-success btn-sm" ng-click="postDRAB()">Simpan</a>
+        <a class="btn btn-warning btn-sm" ng-click="resetfdDRAB();">Reset</a>
+    </div>
+</div>
+<div class="" ng-class="(SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES') ? 'col-md-6' : 'col-md-12'">
+    <table wt-responsive-table class="table table-hidden-overflow small">
+<!--        <ul class="thead thead-action list-inline">
+            <li>
+                <input type="text" placeholder="Cari"/>
+            </li>
+            <li>
+                <select>
+                    <option></option>
+                </select>
+            </li>
+            <li>
+                Page: {{currentPage}} / {{numPages}}
+            </li>
+            <li class="right">
+                <ul uib-pagination total-items="totalItems"
+                    ng-model="currentPage"
+                    ng-change="pageChanged(currentPage)"
+                    max-size="maxSize" 
+                    class="pagination-sm" 
+                    boundary-links="true" 
+                    num-pages="numPages"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                ></ul>
+            </li>
+        </ul>-->
+        <tr class="thead">
+            <th>Detail</th>
+            <th>#</th>
+        </tr>
+        <tr ng-repeat="x in listDRAB">
+            <td>
+                <h4>{{x.MS_JENIS_DOKUMEN_DESKRIPSI}}</h4>
+<!--                <p>
+                    {{x.PR_NOMOR_DOKUMEN}}
+                </p>-->
+            </td>
+            <td>
+                <a ng-click="viewDRAB(x.PR_INDIVIDU_DOKUMEN_ID)">View</a>
+                <ng-if ng-if="SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES'">
+                    <a ng-click="editDRAB(x.PR_INDIVIDU_DOKUMEN_ID)" menu-alias="M-62">Edit</a>
+                    <a ng-click="deleteDRAB(x)" menu-alias="M-63">Delete</a>
+                </ng-if>
+            </td>
+        </tr>
+    </table>
+</div>

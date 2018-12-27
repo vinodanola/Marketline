@@ -1,0 +1,95 @@
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <div class="form-group">
+        <label>Bentuk Usaha *</label>
+        <select class="form-control" ng-model="fdJUS.MS_BENTUK_USAHA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_BENTUK_USAHA_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Jenis Badan Usaha * (kalau bentuk usaha : badan usaha)</label>
+        <select class="form-control" ng-model="fdJUS.MS_JENIS_BADAN_USAHA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_BADAN_USAHA_ID" ng-disabled="fdJUS.MS_BENTUK_USAHA_ID == 163">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Jenis Usaha *</label>
+        <select class="form-control" ng-model="fdJUS.MS_JENIS_USAHA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Nama Usaha *</label>
+        <input type="text" class="form-control" ng-model="fdJUS.PR_NAMA_USAHA"/>
+    </div>
+    <div class="form-group">
+        <label>Jumlah Karyawan *</label>
+        <input type="text" class="form-control" ng-model="fdJUS.PR_JUMLAH_KARYAWAN" restrict="reject" mask="9999999999999"/>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">
+    
+    <div class="form-group">
+        <label>Jenis product yang ditawarkan *</label>
+        <select class="form-control" ng-model="fdJUS.MS_PRODUK_DITAWARKAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PRODUK_DITAWARKAN_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Keterangan Produk</label>
+        <textarea class="form-control" ng-model="fdJUS.SV_KETERANGAN_PRODUK"></textarea>
+    </div>
+<!--    <div class="form-group ">
+        <label>Lama Usaha*</label>
+    </div>
+    <div class="form-group col-md-6 col-no-padding-left">
+        <label>Tahun</label>
+        <input type="text" class="form-control" ng-model="fdJUS.PR_LAMA_USAHA_TAHUN"/>
+    </div>
+    <div class="form-group">
+        <label>Bulan</label>
+        <input type="text" class="form-control" ng-model="fdJUS.PR_LAMA_USAHA_BULAN"/>
+    </div>-->
+    <!--div class="form-group">
+        <label>Lama Usaha *</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdJUS.PR_LAMA_USAHA" ui-number-mask="0"/>
+            <span class="input-group-addon">Bulan</span>
+        </div>
+    </div-->
+	
+	<div class="form-group">
+		<label>Lama Usaha * <b class="label label-primary">total {{fdJUS.PR_LAMA_USAHA}} bulan</b></label>
+		<div class="input-group hide">
+			<input type="number" class="form-control" string-to-number ng-model="fdJUS.PR_LAMA_USAHA" />
+			<span class="input-group-addon">Bulan</span>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="input-group">
+					<input type="text" class="form-control" ng-model="fdJUS.PR_LAMA_USAHA_TAHUN" restrict="reject" mask="999" ng-value="0" />
+					<span class="input-group-addon">Tahun</span>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="input-group">
+					<input type="text" class="form-control" ng-model="fdJUS.PR_LAMA_USAHA_BULAN" restrict="reject" mask="999" ng-value="0" />
+					<span class="input-group-addon">Bulan</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+    <div class="form-group">
+        <label>Omset Perhari*</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdJUS.PR_OMSET_HARIAN" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Telepon</label>
+        <input type="text" class="form-control" ng-model="fdJUS.PR_NO_TELP_USAHA" restrict="reject" mask="9999999999999"/>
+    </div>
+</div>
+

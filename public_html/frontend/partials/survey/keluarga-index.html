@@ -1,0 +1,59 @@
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <div class="form-group">
+        <label>Jml Tanggungan (suami/istri) *</label>
+        <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKLGS.MS_JML_TANGGUNGAN_ISTRI" mask="99" ui-number-mask="0"/>
+    </div>
+    <div class="form-group">
+        <label>Jml Tanggungan (anak) *</label>
+        <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKLGS.MS_JML_TANGGUNGAN_ANAK" mask="99" ui-number-mask="0"/>
+    </div>
+    <div class="form-group">
+        <label>Jml Tanggungan Lainnya *</label>
+        <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKLGS.MS_JML_TANGGUNGAN_LAINNYA" mask="999" ui-number-mask="0"/>
+    </div>
+    <div class="form-group">
+        <label>Jml Tanggungan</label>
+        <input type="text" class="form-control" ng-model="fdKLGS.MS_JML_TANGGUNGAN" ui-number-mask="0" disabled/>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group has-min-height">
+        <label>Apakah Pasangan Bekerja *</label>
+        <ul class="list-inline">
+            <li>
+                <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="radio" name="apbradio" value="YA" ng-model="fdKLGS.MS_PASANGAN_BEKERJA"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="radio" name="apbradio" value="TIDAK" ng-model="fdKLGS.MS_PASANGAN_BEKERJA"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Apakah Ada Anak Yang Sudah Bekerja *</label>
+        <ul class="list-inline">
+            <li>
+                <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="radio" name="aaaysbradio" value="YA" ng-model="fdKLGS.MS_ANAK_BEKERJA"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="radio" name="aaaysbradio" value="TIDAK" ng-model="fdKLGS.MS_ANAK_BEKERJA"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Apakah Orang Tua Bekerja *</label>
+        <ul class="list-inline">
+            <li>
+                <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="radio" name="aotbradio" value="YA" ng-model="fdKLGS.MS_ORANG_TUA_BEKERJA"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="radio" name="aotbradio" value="TIDAK" ng-model="fdKLGS.MS_ORANG_TUA_BEKERJA"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+</div>

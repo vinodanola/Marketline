@@ -1,0 +1,76 @@
+
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <div class="form-group">
+        <label>Nilai Biaya</label>
+        <input type="text" class="form-control" ng-model="fdFDE.BIAYA_NILAI_BIAYA" disabled="disabled"/>
+<!--        <select class="form-control" disabled="disabled">
+            <option></option>
+        </select>-->
+    </div>
+    <div class="form-group">
+        <label>Provisi</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ui-number-mask="2" ng-model="fdFDE.BIAYA_PROVISI_PERCEN" disabled="disabled"/>
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Provisi</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ui-number-mask="0" ng-model="fdFDE.BIAYA_PROVISI_RP" disabled="disabled"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Administrasi</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ui-number-mask="2" ng-model="fdFDE.BIAYA_ADMINISTRASI_PERCEN" disabled="disabled"/>
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Administrasi</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ui-number-mask="0" ng-model="fdFDE.BIAYA_ADMINISTRASI_RP" disabled="disabled"/>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>DCA</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ui-number-mask="0" ng-model="fdFDE.BIAYA_DCA" disabled="disabled"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Nama Notaris</label>
+        <select class="form-control" ng-model="fdFDE.FDE_BIAYA_NAMA_NOTARIS" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Notariel</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ui-number-mask="0" ng-model="fdFDE.FDE_BIAYA_NOTARIEL"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Total Premi</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ui-number-mask="0" ng-model="fdFDE.BIAYA_TOTAL_PREMI" disabled="disabled"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Total Net Pencairan</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ui-number-mask="0" ng-model="fdFDE.BIAYA_TOTAL_NET_PENCAIRAN" disabled="disabled"/>
+        </div>
+    </div>
+</div>
+

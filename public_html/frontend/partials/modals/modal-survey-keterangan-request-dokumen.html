@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h5>Keterangan Request Dokumen</h5>
+</div>
+<hr class="awesome no-margin"/>
+<div class="modal-body">
+    <table wt-responsive-table class="table table-striped small">
+        <tr>
+            <th>#</th>
+            <th>Keterangan</th>
+        </tr>
+        <tr ng-repeat="x in listKRD">
+            <td>{{$index+1}}</td>
+            <td>{{x.KETERANGAN}}</td>
+        </tr>
+    </table>
+</div>
+<div class="modal-footer text-center">
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalKRD()">Tutup</a>
+</div>

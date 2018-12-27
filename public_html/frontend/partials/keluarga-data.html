@@ -1,0 +1,31 @@
+<form ng-submit="processDataKeluarga()">
+    <div class="panel-body" >         
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group">
+                <label>Nomor Kartu Keluarga *</label>
+                <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="formDataKeluarga.PR_NO_KK"  restrict="reject" mask="9999999999999999"/>
+            </div>
+<!--            <div class="form-group">
+                <label class="small text-muted">Upload Kartu Keluarga (.pdf,.jpg,.jpeg)</label>
+                <a ng-show="formDataKeluarga.PR_PATH_DOKUMEN" href="{{$root.FILE_BASE}}{{formDataKeluarga.PR_PATH_DOKUMEN}}" class="pull-right" target="_blank" uib-tooltip="{{$root.FILE_BASE}}{{formDataKeluarga.PR_PATH_DOKUMEN}}">View</a>
+                <input type="file" class="form-control" file-model="formDataKeluarga.PR_DOKUMEN" placeholder="Upload file"/>
+            </div>-->
+            <div class="form-group">
+                <label>Jumlah Anak *</label>
+                <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="formDataKeluarga.PR_JML_ANAK" restrict="reject" mask="999"/>
+            </div>
+            <!--
+            <div class="form-group form-group-btn-step">
+                <a ui-sref="keluarga.detail" class="btn btn-primary btn-next">
+                    <span class="ion ion-ios-arrow-right"></span>
+                </a>
+            </div>
+            -->
+        </div>
+    </div>
+    <div class="panel-footer text-center" ng-if="$root.DATA_STATUS_FOR_SUBMIT < 1" menu-alias="M-6">
+        <button type="submit" class="btn btn-primary">
+            Submit
+        </button>
+    </div>
+</form>

@@ -1,0 +1,62 @@
+<div class="col-md-4 col-md-offset-4">
+    <div class="form-group">
+        <label>Jenis Pembiayaan</label>
+        <select class="form-control" ng-model="formDataAplikasi.MS_JENIS_PEMBIAYAAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_pembiayaan" disabled>
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Rencana Product *</label>
+<!--        <select class="form-control" ng-model="formDataAplikasi.MS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.produk">
+            <option></option>
+        </select>-->
+        <!--<select ng-disabled="(PROSPEK_SUBMITED!=2) ? false : true" class="form-control" ng-model="formDataAplikasi.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list" ng-change="getDetailProduk(formDataAplikasi.MS_PRODUK_ID)" convert-to-number>-->
+        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataAplikasi.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list" ng-change="getCalculateProdukProgram({'id_produk' : formDataAplikasi.MS_PRODUK_ID, 'id_pembiayaan' : formDataAplikasi.MS_JENIS_PEMBIAYAAN_ID })" convert-to-number>    
+            <option></option>
+        </select>
+        
+    </div>
+    <div class="form-group">
+        <label>Rencana Plafond *</label>
+        <span class="pull-right">
+            <small class="label label-info">Min {{formDataAplikasi.MS_PLAFOND_MIN | number}}</small> 
+            <small class="label label-info">Max {{formDataAplikasi.MS_PLAFOND_MAX | number}}</small>
+        </span>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ui-number-mask="0" placeholder="" ng-model="formDataAplikasi.PR_RENCANA_PLAFOND" ng-blur="checkPlafondMinMax();"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Jangka Waktu (bulan) *</label>
+        <span class="pull-right">
+            <small class="label label-info">Min {{formDataAplikasi.MS_TENOR_MIN}}</small> 
+            <small class="label label-info">Max {{formDataAplikasi.MS_TENOR_MAX}}</small>
+        </span>
+        <div class="input-group">
+            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="number" class="form-control" string-to-number placeholder="" ng-model="formDataAplikasi.PR_JANGKA_WAKTU" ng-blur="checkTenorMinMax();"/>
+            <span class="input-group-addon">Bulan</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Kemampuan Angsuran (per bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ui-number-mask="0" placeholder="" ng-model="formDataAplikasi.PR_KEMAMPUAN_ANGSURAN"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Tujuan Pembiayaan *</label>
+        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataAplikasi.MS_TUJUAN_PEMBIAYAAN_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.tuj_pembiayaan">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group form-group-btn-step">
+        <a ui-sref="prospek.aplikasi.informasipembiayaan" class="btn btn-primary btn-prev">
+            <span class="ion ion-ios-arrow-left"></span>
+        </a>
+        <a ui-sref="prospek.aplikasi.informasiusaha" class="btn btn-primary btn-next">
+            <span class="ion ion-ios-arrow-right"></span>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <fieldset>
+        <legend>Pencarian Produk</legend>
+        <div class="form-group">
+            <label>Jenis Produk *</label>
+            <select class="form-control" ng-model="fdPRDL.MS_JENIS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PRODUK_ID">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Nama Produk *</label>
+            <select class="form-control" ng-model="fdPRDL.MP_PRODUK_ID" ng-options="x.MP_PRODUK_ID as (x.MP_NAMA_PRODUK) for x in $root.listProduk">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Versi</label>
+            <input type="text" class="form-control" ng-model="fdPRDL.MP_VERSI" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Lokasi</label>
+            <select class="form-control" ng-model="fdPRDL.MP_LOKASI_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_LOKASI_PRODUK_ID" disabled>
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success btn-sm">Search</button>
+            <button class="btn btn-warning btn-sm">Clear</button>
+        </div>
+    </fieldset>
+</div>
+<div class="col-md-6 col-padding-110">    
+    <fieldset>
+        <legend>Pencarian Lokasi</legend>
+        <div class="form-group">
+            <label>Nama Produk *</label>
+            <select class="form-control" ng-model="fdPRDL.MP_PRODUK_ID" ng-options="x.MP_PRODUK_ID as (x.MP_NAMA_PRODUK) for x in $root.listProduk" disabled>
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="small">Wilayah</label>
+            <select placeholder="Wilayah" class="form-control" ng-model="fdPRDL.MS_WILAYAH_ID" ng-options="x.MS_WILAYAH_ID as (x.MS_WILAYAH) for x in $root.wilayah" ng-change="cb(fdPRDL.MS_WILAYAH_ID); fdPRDL.MS_CABANG_KODE=''; fdPRDL.MS_UNIT_KODE='';">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group" ng-show="fdPRDL.MS_WILAYAH_ID">
+            <label class="small">Cabang</label>
+            <select placeholder="Cabang" class="form-control" ng-model="fdPRDL.MS_CABANG_KODE" ng-options="x.MS_CABANG_KODE as (x.MS_CABANG_DESKRIPSI) for x in $root.cabang" ng-change="un(fdPRDL.MS_CABANG_KODE); fdPRDL.MS_UNIT_KODE='';">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group" ng-show="fdPRDL.MS_CABANG_KODE">
+            <label class="small">Unit</label>
+            <select placeholder="Unit" class="form-control"  ng-model="fdPRDL.MS_UNIT_KODE" ng-options="x.MS_UNIT_KODE as (x.MS_UNIT_DESKRIPSI) for x in $root.unit">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success btn-sm">Search</button>
+            <button class="btn btn-warning btn-sm">Clear</button>
+        </div>
+    </fieldset>
+</div>
+<div class="col-md-12 col-no-padding">
+    <hr>
+    <div class="col-md-6 col-padding-110">
+        <fieldset>
+            <legend>Lokasi yang sudah dipilih</legend>
+            <table wt-responsive-table class="table table-hidden-overflow small">
+                <tr class="thead">
+                    <th></th>
+                    <th>Wilayah</th>
+                    <th>Cabang</th>
+                    <th>Unit</th>
+                    <th class="text-right">
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-sm" ng-click="moveItem('ALL',LS_SELECTED,LS,LB)">&raquo;</a>
+                            <a class="btn btn-default btn-sm" ng-click="moveItem('ITEM',LS_SELECTED,LS,LB)">&rsaquo;</a>
+                        </div>
+                    </th>
+                </tr>
+                <tr ng-repeat="xs in LS">
+                    <td><input type="checkbox" ng-model="xs.checked" ng-change="SELECTLS()"/></td>
+                    <td>{{xs.wilayah}}</td>
+                    <td>{{xs.cabang}}</td>
+                    <td>{{xs.unit}}</td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <div class="col-md-6 col-padding-110">
+        <fieldset>
+            <legend>Lokasi yang belum dipilih</legend>
+            <table wt-responsive-table class="table table-hidden-overflow small">
+                <tr class="thead">
+                    <th>
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-sm" ng-click="moveItem('ITEM',LB_SELECTED,LB,LS)">&lsaquo;</a>
+                            <a class="btn btn-default btn-sm" ng-click="moveItem('ALL',LB_SELECTED,LB,LS)">&laquo;</a>
+                        </div>
+                    </th>
+                    <th>Wilayah</th>
+                    <th>Cabang</th>
+                    <th>Unit</th>
+                </tr>
+                <tr ng-repeat="xb in LB">
+                    <td><input type="checkbox" ng-model="xb.checked" ng-change="SELECTLB()"/></td>
+                    <td>{{xb.wilayah}}</td>
+                    <td>{{xb.cabang}}</td>
+                    <td>{{xb.unit}}</td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+</div>
+<div class="col-md-12 col-no-padding">
+    <hr>
+    <div class="form-group text-center">
+        <button class="btn btn-primary btn-sm">Simpan</button>
+    </div>
+</div>
+

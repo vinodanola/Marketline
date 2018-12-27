@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h3 class="no-margin text-center">Lacak Persetujuan</h3>        
+</div>
+
+<div class="modal-body">    
+    <table wt-responsive-table class="table table-hidden-overflow small">
+    <tr class="thead">
+        <th>Inisial</th>
+        <th>Nama</th>
+        <th>Rekomendasi Plafond</th>
+        <th>Rekomendasi Suku Bunga</th>
+        <th>Rekomendasi Tenor</th>
+        <th>Catatan</th>
+        <th>Status</th>
+        <th>Tanggal</th>
+    </tr>
+    <tr ng-repeat="x in listTrackingProposal">
+        <td>{{x.INISIAL}}</td>
+        <td>{{x.NAMA}}</td>
+        <td class="text-right">{{x.REKOMENDASI_PLAFOND | number:2}}</td>
+        <td class="text-right">{{x.REKOMENDASI_SUKU_BUNGA}}</td>
+        <td class="text-right">{{x.REKOMENDASI_TENOR}}</td>            
+        <td><a ng-click="modalLPC(x.NOTE);">View</a></td>
+        <td>{{x.STATUS}}</td>
+        <td>{{x.TANGGAL}}</td>
+    </tr>
+</table>
+</div>
+<div class="modal-footer">    
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalTracking()">Tutup</a>
+</div>

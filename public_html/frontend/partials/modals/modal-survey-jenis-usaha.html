@@ -1,0 +1,24 @@
+<div class="modal-header no-padding">
+    <div class="col-md-12 col-no-padding">
+        <ng-include src="'partials/survey/jenis-usaha-tab.html'"></ng-include>
+        <hr class="awesome no-margin">
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row" ng-show="tab==1">
+        <ng-include src="'partials/survey/jenis-usaha-index.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==2">
+        <ng-include src="'partials/survey/jenis-usaha-alamat.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==3">
+        <ng-include src="'partials/survey/jenis-usaha-detail.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==4">
+        <ng-include src="'partials/survey/pengelolaan-keuangan.html'"></ng-include>
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-primary btn-sm" ng-click="postJUS()">Submit</a>
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalJUS()">Tutup</a>
+</div>

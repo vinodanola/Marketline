@@ -1,0 +1,192 @@
+<nav class="navbar navbar-fixed-top ap-navbar">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li class="brand">
+                <a href="#">
+                    <img src="images/logopnm.png" /> <small>v1.0.0</small>
+                </a>
+            </li>
+<!--            <li>
+                <a>
+                    <small>{{$root.DateToday}}</small>
+                </a>
+            </li>-->
+        </ul>
+<!--        <div class="col-md-6">
+            <form class="navbar-form navbar-form-search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="q" ng-model="$root.navbarSearch">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+                <div class="navbar-search-result animated" ng-show="$root.navbarSearch">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a ui-sref="calondebiturprofile.prospek({id:9})">nama</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>-->
+
+        <ul class="nav navbar-nav navbar-right navbar-dsp">
+<!--            <li class="dropdown" uib-dropdown on-toggle="toggled(open)" is-open="isopen" auto-close="outsideClick" ng-controller="menuCtrl">
+                <a uib-dropdown-toggle>
+                    <span class="glyphicon glyphicon-globe"></span>
+                    <span class="caret-menu"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-navbar-ap" uib-dropdown-menu aria-labelledby="simple-dropdown" >
+                    <li class="list">
+                        <div class="media">
+                            <div class="media-left">
+                                <span class="ion ion-ios-arrow-right"></span>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Notif subject</h4>
+                                <p>notif value</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>-->
+            <li class="text-danger small">
+                <a>
+                    <span class="text-danger small" ng-show="{{$storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING == 1}}">AOM Close Landing </span>
+                    <span class="text-danger small" ng-show="{{$storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT == 1}}">&middot; Unit Close Landing</span>
+                </a>
+            </li>
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)" is-open="isopen" auto-close="outsideClick" ng-controller="menuCtrl">
+                <a uib-dropdown-toggle>
+                    Menu <span class="ion ion-ios-arrow-down"></span>
+                    <span class="caret-menu"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-navbar-ap" uib-dropdown-menu aria-labelledby="simple-dropdown" >
+                    <ng-show ng-show="menuShow == 'primary'">
+                        <li class="list">
+                            <a ng-click="menuShow = 'manajemenuser'" menu-alias="M-97">Manajemen Pengguna</a>
+                        </li>
+                        <li class="list">
+                            <a ng-click="menuShow = 'prospek'" menu-alias="M-99">Prospek</a>
+                        </li>
+                        <li class="list">
+                            <a ng-click="menuShow = 'survey'" menu-alias="M-102">Survey</a>
+                        </li>
+                        <li class="list">
+                            <a ng-click="menuShow = 'review'" menu-alias="M-104">Review</a>
+                        </li>
+                        <li class="list">
+                            <a ng-click="menuShow = 'fde'" menu-alias="M-106">Sync to MMS</a> <!-- diganti oleh TYW dari FDE ke Sync to MMS-->
+                        </li>
+<!--                        <li class="list">
+                            <a ng-click="menuShow = 'manajemenproduk'">Manajemen Produk</a>
+                        </li>-->
+                        <li class="list">
+                            <a ng-click="menuShow = 'proposal'" menu-alias="M-111">Proposal</a>
+                        </li>
+                        <li class="list">
+                            <a ng-click="menuShow = 'report'" menu-alias="M-108">Report</a>
+                        </li>
+						<li class="list">
+                            <a ng-click="menuShow = 'portofolio'" menu-alias="M-222">Portofolio</a>
+                        </li>
+                        
+                    </ng-show>
+                    <ng-show ng-show="menuShow == 'manajemenuser'">
+                        <li class="list tit">
+                            <a ng-click="menuShow = 'primary'"><span class="ion ion-ios-arrow-back"></span> Back <p class="text-center">Manajemen Pengguna</p></a>
+                        </li>
+                        <li class="list">
+                            <a ui-sref="usermanagement.group.setting" menu-alias="M-98">Setting</a>
+                        </li>
+                    </ng-show>
+                    <ng-show ng-show="menuShow == 'prospek'">
+                        <li class="list tit">
+                            <a ng-click="menuShow = 'primary'"><span class="ion ion-ios-arrow-back"></span> Back <p class="text-center">Prospek</p></a>
+                        </li>
+                        <li class="list">
+                            <a ui-sref="prospekcreate.1" menu-alias="M-100">Buat baru</a>
+                        </li>
+                        <li class="list">
+                            <a ui-sref="prospeklist" menu-alias="M-101">Daftar</a>
+                        </li>
+                    </ng-show>
+                    <ng-show ng-show="menuShow == 'survey'">
+                        <li class="list tit">
+                            <a ng-click="menuShow = 'primary'"><span class="ion ion-ios-arrow-back"></span> Back <p class="text-center">Survey</p></a>
+                        </li>
+                        <li class="list">
+                            <a ui-sref="surveylist" menu-alias="M-103">Daftar</a>
+                        </li>
+                    </ng-show>
+                    <ng-show ng-show="menuShow == 'review'">
+                        <li class="list tit">
+                            <a ng-click="menuShow = 'primary'"><span class="ion ion-ios-arrow-back"></span> Back <p class="text-center">Review</p></a>
+                        </li>
+                        <li class="list">
+                            <a ui-sref="reviewlist" menu-alias="M-105">Daftar</a>
+                        </li>
+                    </ng-show>
+                    <ng-show ng-show="menuShow == 'fde'">
+                        <li class="list tit">
+                            <a ng-click="menuShow = 'primary'"><span class="ion ion-ios-arrow-back"></span> Back <p class="text-center">Sync to MMS</p></a> <!-- diganti oleh TYW dari FDE ke Sync to MMS-->
+                        </li>
+                        <li class="list">
+                            <a ui-sref="fdelist" menu-alias="M-107">Daftar</a>
+                        </li>
+                    </ng-show>
+                    <ng-show ng-show="menuShow == 'manajemenproduk'">
+                        <li class="list tit">
+                            <a ng-click="menuShow = 'primary'"><span class="ion ion-ios-arrow-back"></span> Back <p class="text-center">Manajemen Produk</p></a>
+                        </li>
+                        <li class="list">
+                            <a ui-sref="produklist">Daftar</a>
+                        </li>
+                        <li class="list">
+                            <a ui-sref="produk.kategori">Produk - Kategori</a>
+                        </li>
+                        <li class="list">
+                            <a ui-sref="produk.lokasi">Produk - Lokasi</a>
+                        </li>
+                        <li class="list">
+                            <a ui-sref="produk.scoring">Produk - Scoring</a>
+                        </li>
+                    </ng-show>
+                    <ng-show ng-show="menuShow == 'proposal'">
+                        <li class="list tit">
+                            <a ng-click="menuShow = 'primary'"><span class="ion ion-ios-arrow-back"></span> Back <p class="text-center">Proposal</p></a>
+                        </li>
+                        <li class="list">
+                            <a ui-sref="proposal.list">Daftar</a>
+                        </li>
+                    </ng-show>
+                    <ng-show ng-show="menuShow == 'report'">
+                        <li class="list tit">
+                            <a ng-click="menuShow = 'primary'"><span class="ion ion-ios-arrow-back"></span> Back <p class="text-center">Report</p></a>
+                        </li>
+                        <li class="list">
+                            <a ui-sref="reportnasabah" menu-alias="M-109">Daftar</a>
+                        </li>
+						<li class="list">
+                            <a ui-sref="reportsalesactivity" menu-alias="M-118">Sales Activity</a>
+                        </li>
+                    </ng-show>
+					 <ng-show ng-show="menuShow == 'portofolio'">
+                        <li class="list tit">
+                            <a ng-click="menuShow = 'primary'"><span class="ion ion-ios-arrow-back"></span> Back <p class="text-center">Portofolio</p></a>
+                        </li>
+                        <li class="list">
+                            <a ui-sref="portofolio" menu-alias="M-109">Daftar</a>
+                        </li>
+                    </ng-show>
+                </ul>
+            </li>
+            <li class="hide-on-mobile">
+                <a>{{$storage.SESSION_LOGIN.NAMA}} - {{$storage.SESSION_LOGIN.POSISI_NAMA}}</a>
+            </li>
+            <li>
+                <a ui-sref="login" ng-click="$root.logout();">Sign out</a>
+            </li>
+        </ul>
+    </div>
+</nav>

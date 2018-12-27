@@ -1,0 +1,211 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-fit container-hm2 container-first">
+    
+<!--    <div >
+        <div style="height: 305px ;">
+          <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" style="background : #fff;">
+            <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+              <img ng-src="{{slide.image}}" style="margin:auto;">
+              <div class="carousel-caption">
+                <h4>{{slide.text}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>-->
+    
+	<div style="text-align: center; margin-top : 0;" >
+            <img src="images/header.png" width="100%" class="">
+	</div>
+
+	
+<!--    <div class="col-md-5 col-no-padding col-hm2lg">
+        <div class="panel panel-default panel-app panel-hm2lg">
+            <div class="panel-body">
+                <h3>{{$storage.SESSION_LOGIN.NAMA}}</h3>
+                <h4>{{$storage.SESSION_LOGIN.POSISI_NAMA}}</h4>
+            </div>
+        </div>
+    </div>-->
+    <!--<div class="col-md-7">-->
+<!--        <div class="form-group form-group-search-hm2">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Cari" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default">
+                        <span class="ion ion-ios-search"></span>
+                    </button>
+                </span>
+            </div>
+        </div>-->
+<!--    
+        <ul class="list-group list-group-hm2">
+            <li class="list-group-item" ui-sref="prospekcreate.1">
+                <span class="sprite"></span>
+                Create Prospek
+            </li>
+            <li class="list-group-item" ui-sref="prospeklist">
+                <span class="sprite"></span>
+                List Prospek
+            </li>
+        </ul>
+-->
+<!--        <uib-tabset active="activeJustified" justified="true" class="bx-nav-tabs-hm2">
+            <uib-tab class="li-hm2" index="0" heading="Prospek">
+                <ul class="list-group list-group-hm2">
+                    <li class="list-group-item" ui-sref="prospekcreate.1">
+                        <span class="sprite"></span>
+                        Buat Baru
+                    </li>
+                    <li class="list-group-item" ui-sref="prospeklist">
+                        <span class="sprite"></span>
+                        Daftar Prospek
+                    </li>
+                </ul>
+            </uib-tab>
+            <uib-tab class="li-hm2" index="1" heading="Survey">
+                <ul class="list-group list-group-hm2">
+                    <li class="list-group-item" ui-sref="surveylist">
+                        <span class="sprite"></span>
+                        Daftar Survey
+                    </li>
+                </ul>
+            </uib-tab>
+            <uib-tab class="li-hm2" index="2" heading="FDE">
+                <ul class="list-group list-group-hm2">
+                    <li class="list-group-item" ui-sref="fdelist">
+                        <span class="sprite"></span>
+                        Daftar FDE
+                    </li>
+                </ul>
+            </uib-tab>
+            <uib-tab class="li-hm2" index="3" heading="Review">
+                <ul class="list-group list-group-hm2">
+                    <li class="list-group-item" ui-sref="reviewlist">
+                        <span class="sprite"></span>
+                        Daftar Review
+                    </li>
+                </ul>
+            </uib-tab>
+            <uib-tab class="li-hm2" index="4" heading="Manajemen Produk">
+                <ul class="list-group list-group-hm2">
+                    <li class="list-group-item" ui-sref="produklist">
+                        <span class="sprite"></span>
+                        Daftar Produk
+                    </li>
+                    <li class="list-group-item" ui-sref="produk.kategori">
+                        <span class="sprite"></span>
+                        Produk - Kategori
+                    </li>
+                    <li class="list-group-item" ui-sref="produk.lokasi">
+                        <span class="sprite"></span>
+                        Produk - Lokasi
+                    </li>
+                    <li class="list-group-item" ui-sref="produk.scoring">
+                        <span class="sprite"></span>
+                        Produk - Scoring
+                    </li>
+                </ul>
+            </uib-tab>
+        </uib-tabset>
+        <div class="panel panel-default panel-app">
+            <div class="panel-body text-center">
+                <a ui-sref="login" ng-click="$root.logout();">Sign out</a>
+            </div>
+        </div>-->
+<!--        <div class="footer-hm2 text-center">
+            <span>PT Permodalan Nasional Madani (Persero)</span>
+            <br/>
+            <span>&copy; 2017</span>
+        </div>-->
+    <div class="panel panel-default panel-ds-tp">
+        <div class="panel-heading">
+            <ul class="thead thead-action list-inline">
+                <li>
+                    <!--<input type="text" placeholder="Cari" ng-model="SEARCH_PROSPEK"/>-->
+                    <input type="text" placeholder="Cari" ng-model="fdPL.SEARCH"/>
+                </li>
+                <li>
+                    <select class="form-control" ng-model="fdPL.LIMIT" ng-options="x as (x) for x in $root.tableItemPerPage">
+                        <option></option>
+                    </select>
+                </li>
+                <li>
+                    Page : {{fdPL.PAGE}} / {{fdPL.NUM_PAGES}}
+                </li>
+                <li>
+                    Total : {{fdPL.TOTAL_ITEMS}} record(s)
+                </li>
+                <li class="right">
+                    <ul uib-pagination 
+                        total-items="fdPL.TOTAL_ITEMS" 
+                        items-per-page= "fdPL.LIMIT"
+                        ng-model="fdPL.PAGE" 
+                        max-size="fdPL.MAX_SIZE"
+                        num-pages="fdPL.NUM_PAGES"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                        boundary-links="true" 
+                        class="pagination-sm"
+                        ng-change="pageChanged(fdPL.PAGE)"
+                    ></ul>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-body no-padding">
+            <table wt-responsive-table class="table table-striped small" ng-init="getDashboardTotalProspek()">
+                <tr>
+                    <th>No</th>
+                    <th>TANGGAL LIVE</th>
+                    <!--<th>KODE CABANG</th>-->
+                    <th>CABANG</th>
+                    <!--<th>KODE UNIT</th>-->
+                    <th>UNIT</th>
+                    <th>TOTAL PROPOSAL</th>
+                    <th ><span uib-tooltip="On Prospek">C1</span></th>
+                    <th ><span uib-tooltip="Prospek oleh AOM">C2</span></th>
+                    <th ><span uib-tooltip="">C3</span></th>
+                    <th ><span uib-tooltip="">C4</span></th>
+                    <th ><span uib-tooltip="">C5</span></th>
+                    <th ><span uib-tooltip="">C6</span></th>
+                    <th ><span uib-tooltip="">C7</span></th>
+                    <th ><span uib-tooltip="">C8</span></th>
+                    <th ><span uib-tooltip="">C9</span></th>
+                    <th ><span uib-tooltip="">C10</span></th>
+                    <th ><span uib-tooltip="">C11</span></th>
+                    <th ><span uib-tooltip="">C12</span></th>
+                    <th ><span uib-tooltip="">C13</span></th>
+                    <th ><span uib-tooltip="">C14</span></th>
+                    <th ><span uib-tooltip="">C15</span></th>
+                    <th ><span uib-tooltip="">C16</span></th>
+                </tr>
+                <!--<tr ng-repeat="x in listDATP">-->
+                <tr ng-repeat="x in listDATP | limitTo:(fdPL.LIMIT):((fdPL.PAGE*fdPL.LIMIT)-fdPL.LIMIT)">
+                    <td>{{(fdPL.PAGE - 1) * fdPL.LIMIT + ($index+1)}}</td>
+                    <td>{{x.TANGGAL_LIVE}}</td>
+                    <!--<td>{{x.KODE_CABANG}}</td>-->
+                    <td>{{x.CABANG}}</td>
+                    <!--<td>{{x.KODE_UNIT}}</td>-->
+                    <td>{{x.UNIT}}</td>
+                    <td>{{x.TOTAL_PROSPEK}}</td>
+                    <td>{{x.CREATE_PROSPEK}}</td>
+                    <td>{{x.SUBMIT_PROSPEK_OLEH_AOM}}</td>
+                    <td>{{x.REJECT_PROSPEK}}</td>
+                    <td>{{x.PROSPEK_APPROVED}}</td>
+                    <td>{{x.SUBMIT_SURVEY_OLEH_AOM}}</td>
+                    <td>{{x.REJECT_SURVEY}}</td>
+                    <td>{{x.PROSES_SCORING}}</td>
+                    <td>{{x.SURVEY_APPROVED}}</td>
+                    <td>{{x.SELESAI_SCORING}}</td>
+                    <td>{{x.PROPOSAL_DITERUSKAN_KE_REVIEWER}}</td>
+                    <td>{{x.SELESAI_REVIEWER}}</td>
+                    <td>{{x.SELESAI_SIMAPAN}}</td>
+                    <td>{{x.SELESAI_SYNC_TO_MMS}}</td>
+                    <td>{{x.JENIS_PEMBIAYAAN_BARU}}</td>
+                    <td>{{x.JENIS_PEMBIAYAAN_TOP_UP}}</td>
+                    <td>{{x.JENIS_PEMBIAYAAN_3R}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+                
+</div>

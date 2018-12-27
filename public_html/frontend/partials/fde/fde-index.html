@@ -1,0 +1,27 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<ng-include src=" 'partials/fde/subnav-fde.html' "></ng-include>
+<div class="container container-fluid container-first container-first-two-nav page-header page-header-form no-padding">
+<!--    <div class="col-md-12 col-no-padding">
+        <div class="bx-ph">
+            <h1>{{title}}</h1>
+        </div>
+    </div>
+    <div class="col-md-12 col-no-padding">
+        <ng-include src="'partials/fde/fde-step.html'"></ng-include>
+        <hr class="awesome no-margin">
+    </div>-->
+</div>
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="panel panel-default panel-app">
+            <div class="panel-heading">
+                <h4 class="text-center">{{title}}</h4>
+            </div>
+            <div class="panel-body" ui-view></div>
+            <div class="panel-footer text-center">
+                <a class="btn btn-primary btn-sm" ng-click="postFDE()">Simpan</a>
+            </div>
+        </div>
+    </div>
+    
+</div>

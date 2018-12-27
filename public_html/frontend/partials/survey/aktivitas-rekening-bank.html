@@ -1,0 +1,90 @@
+<div class="col-md-6 col-padding-110 col-has-border-right" ng-if="SURVEY_LOCK != 'YES'" menu-alias="M-45">
+    <div class="form-group">
+        <label>Bulan ke</label>
+        <select class="form-control" ng-model="fdKUARB.SV_BULAN_KE" ng-options="x as x for x in $root.AKTIFITAS_REKENING_BANK_BULAN_KE">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Bulan</label>
+<!--        <select class="form-control" ng-model="fdKUARB.MS_BULAN_ID" ng-options="key as value for (value , key) in $root.bulan">
+            <option></option>
+        </select>-->
+        <select class="form-control" ng-model="fdKUARB.MS_BULAN_ID" ng-options="value as key for (value , key) in $root.bulan" convert-to-number>
+            <option></option>
+        </select>
+<!--        <div class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup="M" ng-model="fdKUARB.MS_BULAN_ID" is-open="popup1.opened" datepicker-options="{minMode: 'month'}" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="popup1.opened = true"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>-->
+    </div>
+    <div class="col-md-6 col-no-padding-left">
+        <div class="form-group">
+            <label>Kredit Ribuan</label>
+            <div class="input-group">
+                <span class="input-group-addon">Rp</span>
+                <input type="text" class="form-control" ng-model="fdKUARB.SV_KREDIT_RIBUAN" ui-number-mask="0"/>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-no-padding-right">
+        <div class="form-group">
+            <label>Freq</label>
+            <input type="text" class="form-control" ng-model="fdKUARB.SV_FREQ_KREDIT"/>
+        </div>
+    </div>
+    <div class="col-md-6 col-no-padding-left">
+        <div class="form-group">
+            <label>Debit Ribuan</label>
+            <div class="input-group">
+                <span class="input-group-addon">Rp</span>
+                <input type="text" class="form-control" ng-model="fdKUARB.SV_DEBIT_RIBUAN" ui-number-mask="0"/>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-no-padding-right">
+        <div class="form-group">
+            <label>Freq</label>
+            <input type="text" class="form-control" ng-model="fdKUARB.SV_FREQ_DEBIT"/>
+        </div>
+    </div>
+    <div class="form-group" menu-alias="M-44">
+        <a class="btn btn-success btn-sm" ng-click="postKUARB()">Tambah</a>
+        <a class="btn btn-warning btn-sm" ng-click="fdKUARB = {}">Reset</a>
+    </div>
+</div>
+
+<div class="col-no-padding-right" ng-class="SURVEY_LOCK != 'YES' ? 'col-md-6' : 'col-md-12'">
+    <table wt-responsive-table class="table table-hidden-overflow small">
+        <tr class="thead">
+            <th></th>
+            <th>Kredit Ribuan</th>
+            <th>Debit Ribuan</th>
+            <th>#</th>
+        </tr>
+        <tr ng-repeat="x in listKUARB">
+            <td>
+                <b>Bulan ke {{x.SV_BULAN_KE}}</b>
+                <p>{{$root.bulan[x.MS_BULAN_ID]}}</p>
+            </td>
+            <td>
+                Rp {{x.SV_KREDIT_RIBUAN | number:2}}
+                <br>
+                <b>Freq : </b> {{x.SV_FREQ_KREDIT}}
+            </td>
+            <td>
+                Rp {{x.SV_DEBIT_RIBUAN | number:2}}
+                <br>
+                <b>Freq : </b> {{x.SV_FREQ_DEBIT}}
+            </td>
+            <td>
+                <a ng-click="viewKUARB(x.SV_INDIVIDU_AKTIVITAS_REK_ID)">View</a>
+                <a ng-if="SURVEY_LOCK != 'YES'" ng-click="editKUARB(x.SV_INDIVIDU_AKTIVITAS_REK_ID)" menu-alias="M-45">Edit</a>
+                <a ng-if="SURVEY_LOCK != 'YES'" ng-click="deleteKUARB(x)" menu-alias="M-46">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+

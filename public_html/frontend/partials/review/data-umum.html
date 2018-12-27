@@ -1,0 +1,56 @@
+<div class="panel-heading">
+    <h4 class="text-center">{{title}}</h4>
+</div>
+<div class="panel-body">
+    <div class="col-md-6 col-padding-110">
+        <dl class="dl-horizontal">
+            <dt>No MPPM </dt>
+            <dd>{{fdRDU.NO_MPPM}}</dd>
+            <dt>Tanggal MPPM</dt>
+            <dd>{{fdRDU.TGL_MPPM}}</dd>
+            <dt>Produk</dt>
+            <dd>{{fdRDU.PRODUK}}</dd>
+            <dt>Program</dt>
+            <dd>{{fdRDU.PROGRAM}}</dd>
+            <dt>Status Pengajuan</dt>
+            <dd>{{fdRDU.STATUS_PENGAJUAN}}</dd>
+            <dt>Scoring</dt>
+            <dd>{{fdRDU.SCORING}}</dd>	
+            <dt>Inisial BWMP</dt>		
+            <dd>{{fdRDU.BWMP}} <a ng-if="REVIEW_SUBMITED == 1" ng-show="fdRDU" ng-click="getBWMP({ unit : fdRDU.UNIT, tipe_pembiayaan : fdRDU.TIPE_PEMBIAYAAN, id_program : fdRDU.ID_PROGRAM });" class="small"><span class="glyphicon glyphicon-edit"></span> Edit</a></dd>
+            <dt>Nama BWMP</dt>
+            <dd>{{fdRDU.NAMA_BWMP}}</dd>
+            <dt>SK Berlaku BWMP</dt>
+            <dd>{{fdRDU.SK_BERLAKU_BWMP | date : format : 'fullDate'}}</dd>
+            <dt>SK Berakhir BWMP</dt>
+            <dd>{{fdRDU.SK_BERAKHIR_BWMP | date : format : 'fullDate'}}</dd>
+            <dt>Maks. Plafond BWMP</dt>
+            <dd>{{fdRDU.MAX_PLAFOND_BWMP | number:2}}</dd>
+            <!--<dd><input type="text" class="form-control" value="{{fdRDU.BWMP}}" ng-model="fdRDU.BWMP" /></dd>-->	
+            <dt>AOM</dt>
+            <dd>{{fdRDU.AOM}}</dd>
+        </dl>
+    </div>
+    <div class="col-md-6 col-padding-110">
+        <dl class="dl-horizontal">
+            <dt>Nama</dt>
+            <dd>{{fdRDU.NAMA}}</dd>
+            <dt>Alamat</dt>
+            <dd>{{fdRDU.ALAMAT}}</dd>
+			<dt>Jumlah Restruktur(3R)</dt>
+            <dd>{{fdRDU.DB_COUNT_RESTRUKTUR}}</dd>
+			<dt>Last BWMP (3R)</dt>
+            <dd>{{fdRDU.DB_BWMP_RESTRUKTUR}}</dd>
+<!--            <dt>Unit</dt>
+            <dd>{{fdRDU.UNIT}}</dd>
+            <dt>Cabang</dt>
+            <dd>{{fdRDU.CABANG}}</dd>
+            <dt>O/S Unit</dt>
+            <dd>{{fdRDU.OS_UNIT}}</dd>
+            <dt>PAR</dt>
+            <dd>{{fdRDU.PAR}}</dd>-->
+        </dl>
+    </div>
+</div>
+
+

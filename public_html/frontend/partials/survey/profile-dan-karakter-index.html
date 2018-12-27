@@ -1,0 +1,79 @@
+<div class="col-md-6 col-has-border-right col-padding-110">
+    <div class="form-group">
+        <label>Usia</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdPDK.MS_USIA" disabled/>
+            <span class="input-group-addon">Tahun</span>
+        </div>
+    </div>
+<!--    <div class="form-group">
+        <label>Kewarganegaraan</label>
+        <input type="text" class="form-control" ng-model="fdPDK.MS_KEWARGANEGARAAN_ID"/>
+    </div>-->
+    <div class="form-group has-min-height">
+        <label>Kewarganegaraan</label>
+        <ul class="list-inline">
+            <li ng-repeat="x in $root.kewarganegaraan">
+                <input ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" type="radio" name="kewarganegaraan" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-model="fdPDK.MS_KEWARGANEGARAAN_ID" />
+                <label>{{x.MS_DESKRIPSI}}</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Pendidikan Terakhir *</label>
+        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdPDK.MS_PENDIDIKAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.pendidikan"  >
+            <option></option>
+            <!--<option ng-repeat="(k, v) in $root.dataMaster.pendidikan_terakhir" value="{{k}}">{{v}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Status Perkawinan *</label>
+        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdPDK.MS_STATUS_PERKAWINAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_STATUS_PERKAWINAN_ID" >
+            <option></option>
+            <!--<option ng-repeat="(k, v) in $root.dataMaster.status_perkawinan" value="{{k}}">{{v}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Kerja sama dari pemohon *</label>
+        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdPDK.MS_KERJASAMA_PEMOHON_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_KERJASAMA_PEMOHON_ID">
+            <option></option>
+            <!--<option ng-repeat="(k, v) in $root.dataMaster.kerja_sama_dari_pemohon" value="{{k}}">{{v}}</option>-->
+        </select>
+    </div>
+     <div class="form-group">
+        <label>Track Record Pinjaman *</label>
+        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdPDK.MS_TRACK_RECORD_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_TRACK_RECORD_ID">
+            <option></option>
+            <!--<option ng-repeat="(k, v) in $root.dataMaster.track_record_pinjaman" value="{{k}}">{{v}}</option>-->
+        </select>
+    </div>
+</div>
+
+<div class="col-md-6">
+<!--    
+    <div class="form-group">
+        <label>Nama Organisasi</label>
+        <input type="text" class="form-control"/>
+    </div>
+-->
+   
+    <div class="form-group">
+        <label>Bagaimana calon debitur mengenal ULAMM *</label>
+        <ul class="list-unstyled small">
+            <li ng-repeat="x in $root.MS_MENGENAL_ULAMM_ID" class="text-lowercase">
+                <input ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" type="checkbox" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-true-value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-false-value="" ng-model="fdPDK.MS_MENGENAL_ULAMM_ID[$index]"/>
+                <label>{{x.MS_DESKRIPSI}}</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Reputasi Pemohon *</label>
+        <ul class="list-unstyled small">
+            <li ng-repeat="x in $root.MS_REPUTASI_ID" class="text-lowercase">
+                <input ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" type="checkbox" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-true-value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-false-value="" ng-model="fdPDK.MS_REPUTASI_ID[$index]"/>
+                <label>{{x.MS_DESKRIPSI}}</label>
+            </li>
+        </ul>
+    </div>
+</div>
+

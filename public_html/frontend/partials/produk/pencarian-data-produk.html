@@ -1,0 +1,256 @@
+<div class="col-md-6 col-has-border-right col-padding-110">
+    <div class="form-group">
+        <label>Produk Pilihan *</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="ppr" ng-model="fdPRD.MP_PRODUK_PILIHAN" value="0"/>
+                <label>Copy</label>
+            </li>
+            <li>
+                <input type="radio" name="ppr" ng-model="fdPRD.MP_PRODUK_PILIHAN" value="1"/>
+                <label>Baru</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Nama Produk yang Sudah Ada *</label>
+        <select class="form-control" ng-model="fdPRD.MP_NAMA_PRODUK_SUDAH_ADA_ID" ng-model="nama_produk" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MP_NAMA_PRODUK_SUDAH_ADA_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Jenis Produk *</label>
+        <select class="form-control" ng-model="fdPRD.MP_JENIS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PRODUK_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Nama Produk</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_NAMA_PRODUK"/>
+    </div>
+    <div class="form-group">
+        <label>Innisial Produk</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_INISIAL_PODUK"/>
+    </div>
+    <div class="form-group">
+        <label>Keterangan</label>
+        <textarea class="form-control" ng-model="fdPRD.MP_KETERANGAN"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Plafond Minimal</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_PLAFON_MIN"/>
+    </div>
+    <div class="form-group">
+        <label>Plafond Default</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_PLAFON_DEFAULT"/>
+    </div>
+    <div class="form-group">
+        <label>Plafond Maximal</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_PLAFON_MAX"/>
+    </div>
+    <div class="form-group">
+        <label>Tenor</label>
+        <div class="form-group row">
+            <div class="col-md-4">
+                Min <input type="text" class="form-control" ng-model="fdPRD.MP_TENOR_MIN"/>
+            </div>
+            <div class="col-md-4">
+                Default <input type="text" class="form-control" ng-model="fdPRD.MP_TENOR_DEFAULT" />
+            </div>
+            <div class="col-md-4">
+                Maks <input type="text" class="form-control" ng-model="fdPRD.MP_TENOR_MAX"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>DCA *</label>
+        <select class="form-control" ng-model="fdPRD.MP_DCA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_DCA_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Pola Pencairan *</label>
+        <select class="form-control" ng-model="fdPRD.MP_POLA_PENCAIRAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_POLA_PENCAIRAN_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Termin Pencairan *</label>
+        <div class="form-group row">
+            <div class="col-md-4">
+                Min <input type="text" class="form-control" ng-model="fdPRD.MP_TERMIN_PENCAIRAN_MIN"/>
+            </div>
+            <div class="col-md-4">
+                Default <input type="text" class="form-control" ng-model="fdPRD.MP_TERMIN_PENCAIRAN_DEFAULT"/>
+            </div>
+            <div class="col-md-4">
+                Maks <input type="text" class="form-control" ng-model="fdPRD.MP_TERMIN_PENCAIRAN_MAX"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Nilai Pencairan *</label>
+        <select class="form-control" ng-model="fdPRD.MP_NILAI_PENCAIRAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_NILAI_PENCAIRAN_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Nilai Pencairan (%) *</label>
+        <div class="form-group row">
+            <div class="col-md-4">
+                Min <input type="text" class="form-control" ng-model="fdPRD.MP_NILAI_PENCAIRAN_PERCEN_MIN"/>
+            </div>
+            <div class="col-md-4">
+                Default <input type="text" class="form-control" ng-model="fdPRD.MP_NILAI_PENCAIRAN_PERCEN_DEFAULT"/>
+            </div>
+            <div class="col-md-4">
+                Maks <input type="text" class="form-control" ng-model="fdPRD.MP_NILAI_PENCAIRAN_PERCEN_MAX"/>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">
+    
+    <div class="form-group">
+        <label>Nilai Pencairan Min (Rp) *</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_NILAI_PENCAIRAN_RP_MIN"/>
+    </div>
+    <div class="form-group">
+        <label>Nilai Pencairan Default (Rp) *</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_NILAI_PENCAIRAN_RP_DEFAULT"/>
+    </div>
+    <div class="form-group">
+        <label>Nilai Pencairan Max (Rp) *</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_MILAI_PENCAIRAN_RP_MAX"/>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Scoring</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="scrr" value="1" ng-model="fdPRD.MP_SCORING"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" name="scrr" value="0" ng-model="fdPRD.MP_SCORING"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group has-min-height">
+        <label>SID</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="sidr" value="1" ng-model="fdPRD.MP_SID" />
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" name="sidr" value="0" ng-model="fdPRD.MP_SID"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Jaminan</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="jamr" value="1" ng-model="fdPRD.MP_JAMINAN"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" name="jamr" value="0" ng-model="fdPRD.MP_JAMINAN"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group has-min-height">
+        <label>One Obligor</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="oner" value="1" ng-model="fdPRD.MP_ONE_OBLIGOR"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" name="oner" value="0" ng-model="fdPRD.MP_ONE_OBLIGOR"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Cross Default</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="crossr" value="1" ng-model="fdPRD.MP_CROSS_DEFAULT" />
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" name="crossr" value="0" ng-model="fdPRD.MP_CROSS_DEFAULT"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Lunas Dini</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="lunr" value="1" ng-model="fdPRD.MP_LUNAS_DINI"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" name="lunr" value="0" ng-model="fdPRD.MP_LUNAS_DINI"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Wajib Asuransi</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="wajr" value="1" ng-model="fdPRD.MP_WAJIB_ASURANSI"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" name="wajr" value="0" ng-model="fdPRD.MP_WAJIB_ASURANSI"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Mata Uang *</label>
+        <select class="form-control" ng-model="fdPRD.MP_MATA_UANG_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_MATA_UANG_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Lokasi *</label>
+        <select class="form-control" ng-model="fdPRD.MP_LOKASI_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_LOKASI_PRODUK_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Regular / Promo</label>
+        <ul class="list-inline">
+            <li ng-repeat="x in $root.MS_REG_PRO_ID">
+                <input type="radio" name="regpr" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-model="fdPRD.MP_REG_PRO_ID" />
+                <label>{{x.MS_DESKRIPSI}}</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Tanggal Awal</label>
+        <md-datepicker md-placeholder="xxx" md-open-on-focus ng-model="dtTAW" ng-change="fdPRD.MP_TANGGAL_AWAL = dtTAW.toISOString()"></md-datepicker>
+    </div>
+    <div class="form-group">
+        <label>Tanggal Akhir</label>
+        <md-datepicker md-placeholder="xxx" md-open-on-focus ng-model="dtTAK" ng-change="fdPRD.MP_TANGGAL_AKHIR = dtTAK.toISOString()"></md-datepicker>
+    </div>
+    <div class="form-group">
+        <label>Status *</label>
+        <select class="form-control" ng-model="fdPRD.MP_STATUS_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MP_STATUS_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Versi *</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_VERSI"/>
+    </div>
+</div>

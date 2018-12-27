@@ -1,0 +1,33 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first container-first-two-nav page-header page-header-form no-padding">
+    <div class="col-md-12 col-no-padding">
+        <ng-include src=" 'partials/survey/subnav-survey.html' "></ng-include>
+    </div>
+</div>
+
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="page-body">
+            <div class="panel panel-default panel-app">
+                <div class="panel-heading text-center">
+                    <h4>Foto Dokumentasi</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-6 col-has-border-right" menu-alias="M-21" ng-if="SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES'">
+                        <div class="col-md-8 col-md-offset-2">
+                            <ng-include src="'partials/survey/dokumen-fields.html'"></ng-include>
+                        </div>
+                    </div>
+                    <div class="col-no-padding-right" ng-class="(SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES') ? 'col-md-6' : 'col-md-12'">
+                        <ng-include src="'partials/survey/dokumen-tabel.html'"></ng-include>
+                    </div>
+                </div>
+<!--                <div class="panel-footer text-center" ng-if="$root.DATA_STATUS_FOR_SUBMIT < 1">
+                    <button ng-click="processFormDokumen()" class="btn btn-success btn-sm">
+                        Simpan
+                    </button>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>

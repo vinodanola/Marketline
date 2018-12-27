@@ -1,0 +1,76 @@
+<div class="col-md-6 col-padding-110 col-has-border-right" ng-show="SURVEY_LOCK!='YES'" menu-alias="M-34">
+    <div class="form-group">
+        <label>Tanggal Survey Usaha *</label>
+        <md-datepicker md-placeholder="Tanggal survey usaha" md-open-on-focus ng-model="dtTSU" ng-change="fdISKU.SV_TGL_SURVEY = dtTSU.toISOString()"></md-datepicker>
+    </div>
+    <div class="form-group">
+       <label>Lokasi yang dikunjungi *</label>
+        <select class="form-control" ng-model="fdISKU.MS_LOKASI_KUNJUNGAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_LOKASI_ID">
+            <option></option>
+        </select>
+    </div> 
+    <div class="form-group">
+        <label>Nama yang ditemui *</label>
+        <input type="text" class="form-control" ng-model="fdISKU.SV_NAMA_DITEMUI"/>
+    </div>
+    <div class="form-group">
+       <label>Hubungan dengan pemohon *</label>
+        <select class="form-control" ng-model="fdISKU.MS_HUBUNGAN_PEMOHON_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_HUBUNGAN_PEMOHON_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Keterangan *</label>
+        <textarea class="form-control" ng-model="fdISKU.SV_KETERANGAN"></textarea>
+    </div>
+    <div class="form-group text-right" ng-show="SURVEY_SUBMITED!='YES'" menu-alias="M-33">
+        <a class="btn btn-success btn-sm" ng-click="postISKU()">Simpan</a>
+        <a class="btn btn-warning btn-sm" ng-click="fdISKU = {}">Reset</a>
+    </div>
+</div>
+<div class="col-no-padding-right" ng-class="SURVEY_LOCK!='YES' ? 'col-md-6' : 'col-md-12'">
+    <table wt-responsive-table class="table table-hidden-overflow small">
+<!--        <ul class="thead thead-action list-inline">
+            <li>
+                <input type="text" placeholder="Cari"/>
+            </li>
+            <li>
+                <select>
+                    <option></option>
+                </select>
+            </li>
+            <li>
+                Page: {{currentPage}} / {{numPages}}
+            </li>
+            <li class="right">
+                <ul uib-pagination total-items="totalItems"
+                    ng-model="currentPage"
+                    ng-change="pageChanged(currentPage)"
+                    max-size="maxSize" 
+                    class="pagination-sm" 
+                    boundary-links="true" 
+                    num-pages="numPages"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                ></ul>
+            </li>
+        </ul>-->
+        <tr class="thead">
+            <th>Detail</th>
+            <th>#</th>
+        </tr>
+        <tr ng-repeat="x in listISKU">
+            <td>
+                <h4>{{x.SV_NAMA_DITEMUI}}</h4>
+                <span>{{x.SV_TGL_SURVEY}}</span>
+                <p>
+                    {{x.SV_KETERANGAN}}
+                </p>
+            </td>
+            <td>
+                <a ng-click="viewISKU(x.SV_INDIVIDU_KUNJUNGAN_USAHA_ID)">View</a>
+                <a ng-show="SURVEY_LOCK!='YES'" ng-click="editISKU(x.SV_INDIVIDU_KUNJUNGAN_USAHA_ID)" menu-alias="M-34">Edit</a>
+                <a ng-show="SURVEY_LOCK!='YES'" ng-click="deleteISKU(x)" menu-alias="M-35">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>

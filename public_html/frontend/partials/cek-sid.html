@@ -1,0 +1,131 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first container-first-two-nav page-header page-header-form no-padding">
+    <div class="col-md-12 col-no-padding">
+        <ng-include src=" 'partials/subnav.html' "></ng-include>
+    </div>
+</div>
+
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="page-body">
+            <div class="panel panel-default panel-app">
+                <div class="panel-heading text-center">
+                    <div class="row hor-mod">
+                        <div class="col-md-12 text-center">
+                            <h4>CEK SISTEM LAYANAN INFORMASI KEUANGAN OJK</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body ui-view">
+                    <div class="col-md-12 text-center no-padding">
+                        <div class="form-group" ng-show="fdCSID.REQUEST_SID_STATUS == null" menu-alias="M-12">
+                            <p class="text-center clearfix">Dapatkan informasi debitur dan fasilitas kredit dari Bank dan Lembaga Pembiayaan dengan menekan button dibawah.</p>
+                            <button class="btn btn-success btn-sm" ng-click="postCSID()">Request Sistem Informasi Debitur</button>
+                        </div>
+                        <div class="form-group" ng-show="fdCSID.REQUEST_SID_STATUS == 1">
+                            <span class="ion ion-load-d text-warning" style="font-size: 100px;"></span>
+                            <p>On Progress</p>
+                            <small>Menunggu hasil pengecekan SLIK</small>
+                        </div>
+                        <div class="form-group" ng-show="fdCSID.REQUEST_SID_STATUS == 2">
+                            <span class="ion ion-ios-checkmark-outline text-success" style="font-size: 100px;"></span>
+                            <p>Success</p>
+                            <h4>Data Hasil SLIK Debitur, Keluarga & Penjamin</h4>																				
+							
+                            <table wt-responsive-table class="table table-hidden-overflow small text-left">
+                                <tr class="thead">
+                                    <th>Jenis Pemilik Rekening</th>
+                                    <th>Nama Pemilik Rekening</th>
+                                    <th>Bank</th>
+                                    <th>Plafon</th>
+                                    <th>Baki Debet</th>
+                                    <th>Angsuran</th>
+                                    <th>Tujuan Pembiayaan</th>
+                                    <th>Jatuh Tempo</th>
+                                    <th>Kolektibilitas</th>
+                                    <!--<th>Dokumen</th>-->
+                                    <th>#</th>
+                                </tr>																
+                                <tr ng-repeat="x in listCSRPDEBITUR">
+                                    <td>{{x.FLAG}}</td>
+                                    <td>{{x.NAMA_PEMILIK}}</td>
+                                    <td>{{x.MS_BANK_ID_DESKRIPSI}}</td>
+                                    <td class="text-right">{{x.SV_PLAFOND | number:2}}</td>
+                                    <td class="text-right">{{x.SV_BAKI_DEBET | number:2}}</td>
+                                    <td class="text-right">{{x.SV_ANGSURAN | number:2}}</td>
+                                    <td>{{x.MS_TUJUAN_PEMBIAYAAN_ID_DESKRIPSI}}</td>
+                                    <td>{{x.SV_JATUH_TEMPO}}</td>
+                                    <td>{{x.MS_KOLEKTIBILITAS_ID_DESKRIPSI}}</td>
+                                    <!--<td><a href="{{$root.FILE_BASE}}{{x.PATH_DOKUMEN}}" target="_blank" download> Download </a> </td>-->
+                                    <td>
+                                        <a ng-click="viewCSRP(x.SV_INDIVIDU_PINJAMAN_LAIN_ID)">View</a>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="x in listCSRPKELUARGA">
+                                    <td>{{x.FLAG}}</td>
+                                    <td>{{x.NAMA_PEMILIK}}</td>
+                                    <td>{{x.MS_BANK_ID_DESKRIPSI}}</td>
+                                    <td class="text-right">{{x.SV_PLAFOND | number:2}}</td>
+                                    <td class="text-right">{{x.SV_BAKI_DEBET | number:2}}</td>
+                                    <td class="text-right">{{x.SV_ANGSURAN | number:2}}</td>
+                                    <td>{{x.MS_TUJUAN_PEMBIAYAAN_ID_DESKRIPSI}}</td>
+                                    <td>{{x.SV_JATUH_TEMPO}}</td>
+                                    <td>{{x.MS_KOLEKTIBILITAS_ID_DESKRIPSI}}</td>
+                                    <!--<td><a href="{{$root.FILE_BASE}}{{x.PATH_DOKUMEN}}" download> Download </a> </td>-->
+                                    <td>
+                                        <a ng-click="viewCSRP(x.SV_INDIVIDU_PINJAMAN_LAIN_ID)">View</a>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="x in listCSRPPENJAMIN">
+                                    <td>{{x.FLAG}}</td>
+                                    <td>{{x.NAMA_PEMILIK}}</td>
+                                    <td>{{x.MS_BANK_ID_DESKRIPSI}}</td>
+                                    <td class="text-right">{{x.SV_PLAFOND | number:2}}</td>
+                                    <td class="text-right">{{x.SV_BAKI_DEBET | number:2}}</td>
+                                    <td class="text-right">{{x.SV_ANGSURAN | number:2}}</td>
+                                    <td>{{x.MS_TUJUAN_PEMBIAYAAN_ID_DESKRIPSI}}</td>
+                                    <td>{{x.SV_JATUH_TEMPO}}</td>
+                                    <td>{{x.MS_KOLEKTIBILITAS_ID_DESKRIPSI}}</td>
+<!--                                    <td><a href="{{$root.FILE_BASE}}{{x.PATH_DOKUMEN}}" download> Download </a> </td>-->
+                                    <td>
+                                        <a ng-click="viewCSRP(x.SV_INDIVIDU_PINJAMAN_LAIN_ID)">View</a>
+                                    </td>
+                                </tr>
+                            </table>
+							
+                            <!--<div style="font-size:15px" ng-show="fdCSID.NIHIL_PINJAMAN==1"><b>Tidak Ada Data Pinjaman Sebelumnya</b></div>-->			
+                        </div>
+                        
+                        <div class="form-group" ng-show="fdCSID.REQUEST_SID_STATUS == 2">
+                            <h4>Dokumen Hasil SLIK</h4>																							
+                            <table wt-responsive-table class="table table-hidden-overflow small text-left">
+                                <tr class="thead">
+                                    <th>Pemilik Rekening</th>
+                                    <th>Nama Pemilik Dokumen</th>
+                                    <th>Dokumen</th>
+                                </tr>																
+                                <tr ng-repeat="x in listCSRPDOC">
+                                    <td>{{x.FLAG}}</td>
+                                    <td>{{x.NAMA_PEMILIK_DOKUMEN}}</td>
+                                    <td><a href="{{$root.FILE_BASE}}{{x.PATH}}" download target="_blank"> Download </a></td>
+                                </tr>
+                            </table>
+							
+                            <!--<div style="font-size:15px" ng-show="fdCSID.NIHIL_PINJAMAN==1"><b>Tidak Ada Data Pinjaman Sebelumnya</b></div>-->
+                            
+                            
+							
+                        </div>
+                        
+                        <div class="form-group" ng-show="fdCSID.REQUEST_SID_STATUS == 3">
+                            <span class="ion ion-load-d text-danger" style="font-size: 100px;"></span>
+                            <p>Batal</p>
+                            <small>Request SLIK dibatalkan</small>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

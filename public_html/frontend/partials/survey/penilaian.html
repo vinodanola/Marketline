@@ -1,0 +1,150 @@
+<div class="col-md-6 col-padding-110 col-has-border-right">
+	<div class="form-group" ng-show="$root.jenis_agunan_id==59" >
+        <label>Jenis Penilaian *</label>
+        <select class="form-control" ng-model="fdPNL.MS_JENIS_PENILAIAN" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PENILAIAN" ng-change="fdPNL.DB_NILAI_PASAR_1 = ''; fdPNL.DB_NILAI_PASAR_2 = ''; fdPNL.DB_NILAI_PASAR_3 = ''; fdPNL.DB_NILAI_PASAR = ''; fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = '';">
+            <option></option>
+        </select>
+    </div>	
+	<div class="form-group" ng-show="fdPNL.MS_JENIS_PENILAIAN==1135" >
+        <label>Penilaian Tanah ID *</label>
+        <select class="form-control" ng-model="fdPNL.DB_NILAI_PARENT" ng-options="x.DB_INDIVIDU_NILAI_AGUNAN_ID as ('Nama Penilai : '+x.DB_NAMA_PENILAI+' - Nilai Pasar : Rp. '+x.DB_NILAI_PASAR) for x in $root.AGUNAN_ID_SELECTED_ALL">
+            <option></option>
+        </select>
+    </div>	
+    <div class="form-group">
+        <label>Status Penilaian *</label>
+        <select class="form-control" ng-model="fdPNL.MS_STATUS_PENILAIAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PENILAIAN_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Tgl Penilaian *</label>
+        <md-datepicker md-placeholder="xxx"  md-open-on-focus ng-model="dtTPNL" ng-change="fdPNL.DB_TGL_PENILAIAN = dtTPNL.toISOString()"></md-datepicker>
+    </div>
+    <div class="form-group">
+        <label>Nama Penilai *</label>
+        <input type="text" class="form-control" ng-model="$root.fdPNL.DB_NAMA_PENILAI"/>
+    </div>
+    <div class="form-group">
+        <label>Jabatan</label>
+<!--        <select class="form-control">
+            <option></option>
+        </select>-->
+        <input type="text" class="form-control" ng-model="fdPNL.DB_JABATAN"/>
+    </div>
+    <div class="form-group" >
+        <label ng-show="fdPNL.MS_JENIS_PENILAIAN==1134">Luas Tanah *</label>
+		<label ng-show="fdPNL.MS_JENIS_PENILAIAN==1135">Luas Bangunan *</label>
+        <div class="input-group" ng-show="fdPNL.MS_JENIS_PENILAIAN==1134 || fdPNL.MS_JENIS_PENILAIAN==1135" >
+            <input type="text" class="form-control" ng-model="fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI" ui-number-mask="0" />
+            <span class="input-group-addon">m<sup>2</sup></span>
+        </div>
+    </div>
+    <!--div class="form-group" ng-show="fdPNL.MS_JENIS_PENILAIAN==1134">
+        <label>Nilai Pasar Tanah (DNPT) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdPNL.NILAI_PASAR_VALIDATOR_MASTER" ui-number-mask="0" disabled="disabled"/>
+            <span class="input-group-addon">/ m<sup>2</sup></span>
+        </div>
+    </div>
+    <div class="form-group" ng-show="fdPNL.MS_JENIS_PENILAIAN==1134">
+        <label>Total Nilai Pasar Tanah (DNPT) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2" ui-number-mask="0" disabled="disabled"/>
+        </div>
+    </div>
+    <div class="form-group" ng-show="fdPNL.MS_JENIS_PENILAIAN==1134">
+        <label>Apakah nilai pasar melebihi harga DNPT ? *</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" value="1" name="overwritednptradio" ng-model="fdPNL.NILAI_PASAR_OVERWRITE" ng-click="fdPNL.NILAI_PASAR_OVERWRITE = 1; fdPNL.DB_NILAI_PASAR_1 = ''; fdPNL.DB_NILAI_PASAR_2 = ''; fdPNL.DB_NILAI_PASAR_3 = ''; fdPNL.DB_NILAI_PASAR = ''; fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = '';"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" value="0" name="overwritednptradio" ng-model="fdPNL.NILAI_PASAR_OVERWRITE" ng-click="fdPNL.NILAI_PASAR_OVERWRITE = 0; fdPNL.DB_NILAI_PASAR_1 = ''; fdPNL.DB_NILAI_PASAR_2 = ''; fdPNL.DB_NILAI_PASAR_3 = ''; fdPNL.DB_NILAI_PASAR = ''; fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = '';"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div-->
+</div>
+<div class="col-md-6 col-padding-110">
+    
+    <div class="form-group">
+        <label>Nilai Pasar 1(Sesuai NJOP) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI" ng-blur="cekNilaiPasar1();" ui-number-mask="0" />
+            <span class="input-group-addon">/ m<sup>2</sup></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Total Nilai Pasar 1(Sesuai NJOP) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdPNL.DB_NILAI_PASAR_1" ui-number-mask="0" disabled="disabled"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Nilai Pasar 2 *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI" ng-blur="cekNilaiPasar2();" ui-number-mask="0" />
+            <span class="input-group-addon">/ m<sup>2</sup></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Total Nilai Pasar 2 *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdPNL.DB_NILAI_PASAR_2" ui-number-mask="0" disabled="disabled"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Nilai Pasar 3 *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI" ng-blur="cekNilaiPasar3();" ui-number-mask="0" />
+            <span class="input-group-addon">/ m<sup>2</sup></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Total Nilai Pasar 3 *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdPNL.DB_NILAI_PASAR_3" ui-number-mask="0" disabled="disabled"/>
+        </div>
+    </div>
+    <div class="form-group"> <!--ng-show="fdPNL.MS_JENIS_PENILAIAN==1134"-->
+        <label>Nilai Pasar *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI" ng-blur="cekNilaiPasar();" ui-number-mask="0" />
+            <span class="input-group-addon">/ m<sup>2</sup></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Total Nilai Pasar *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdPNL.DB_NILAI_PASAR" ui-number-mask="0" disabled="disabled"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Presentase Likuidasi *</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdPNL.DB_PERSENTASE_LIKUIDASI"/>
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Nilai Likuidasi</label>
+       <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdPNL.DB_NILAI_LIKUIDASI" disabled ui-number-mask="0"/>
+        </div>
+    </div>
+</div>
+
+

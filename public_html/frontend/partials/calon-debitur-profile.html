@@ -1,0 +1,32 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-body container-first">
+    <div class="col-md-12 col-fit-mobile">
+        <div class="hm-lg">
+            <span class="hl-img">
+                <img src="images/user-default.png" class="img-circle" />
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12 col-fit-mobile">
+        <h1 class="hm-tt">{{PR_NAMA_LENGKAP}}</h1>
+        <!--
+        <ul class="list-inline text-center">
+            <li>
+                <span>Kode Golongan</span>
+                <p>Value disini</p>
+            </li>
+            <li>
+                <span>Jenis Prospek</span>
+                <p>Value disini</p>
+            </li>
+        </ul>
+        -->
+    </div>
+    <div class="col-md-12 col-fit-mobile">
+        <ul class="nav nav-tabs nav-center nav-cdp">
+            <li ui-sref-active="active" ui-sref="calondebiturprofile.prospek({id : PR_INDIVIDU_ID})"><a >Prospek</a></li>
+            <li ui-sref-active="active" ui-sref="calondebiturprofile.survey({id : PR_INDIVIDU_ID})"><a>Survey</a></li>
+        </ul>
+    </div>
+    <div class="col-md-12 col-fit-mobile ui-view"></div>
+</div>

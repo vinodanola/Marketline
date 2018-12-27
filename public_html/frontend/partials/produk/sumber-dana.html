@@ -1,0 +1,48 @@
+<div class="col-md-6 col-md-offset-3 col-padding-110">
+    <div class="form-group">
+        <label>Jenis Sumber Dana *</label>
+        <select class="form-control" ng-model="fdPRD.MS_JENIS_SUMBER_DANA_ID" ng-change="fdPRD.ARRAY_SUMBER_DANA=[];" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_SUMBER_DANA_ID">
+            <option></option>
+        </select>
+    </div>
+    <ng-show ng-show="fdPRD.MS_JENIS_SUMBER_DANA_ID == 477">
+        <div class="form-group">
+            <label>Sumber Dana *</label>
+            <select class="form-control" ng-model="fdPRD.ARRAY_SUMBER_DANA[0].MP_SUMBER_DANA_PIL_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_SUMBER_DANA_ID">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Komposisi *</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="fdPRD.ARRAY_SUMBER_DANA[0].MP_KOMPOSISI"/>
+                <span class="input-group-addon">%</span>
+            </div>
+        </div>
+    </ng-show>
+</div>
+<ng-show ng-show="fdPRD.MS_JENIS_SUMBER_DANA_ID == 476">
+    <div class="col-md-12">
+        <ul class="thead thead-action list-inline">
+            <li>
+                <a class="btn btn-success btn-sm" ng-click="modalSD();fdSDK={};">Tambah</a>
+            </li>
+        </ul>
+        <table wt-responsive-table class="table table-hidden-overflow small">
+            <tr class="thead">
+                <th>Id</th>
+                <th>Sumber Dana</th>
+                <th>Komposisi</th>
+                <th>#</th>
+            </tr>
+            <tr ng-repeat="x in fdPRD.ARRAY_SUMBER_DANA">
+                <td>{{x.MP_SUMBER_DANA_ID}}</td>
+                <td>{{x.MP_SUMBER_DANA_PIL_ID}}</td>
+                <td>{{x.MP_KOMPOSISI}}</td>
+                <td>
+                    <a ng-click="deleteSDK($index)">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</ng-show>

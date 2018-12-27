@@ -1,0 +1,30 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first container-first-two-nav page-header page-header-form no-padding">
+    <div class="col-md-12 col-no-padding">
+        <ng-include src=" 'partials/subnav.html' "></ng-include>
+    </div>
+</div>
+<div class="container container-body">
+    <form ng-submit="processFormIdentitasIndividu()">
+        <div class="col-md-12">
+            <div class="page-body">
+                <div class="panel panel-default panel-app">
+                    <div class="panel-heading text-center">
+                        <h1>Identitas Individu</h1>
+                        <ng-include src="'partials/prospek-step.html'"></ng-include>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12 col-no-padding" ui-view></div>
+                    </div>
+                    <div class="panel-footer text-center" ng-hide="PROSPEK_SUBMITED == 2" menu-alias="M-1">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </form>
+</div>
+

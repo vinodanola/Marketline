@@ -1,0 +1,151 @@
+
+<div class="col-md-6 col-padding-110 col-has-border-right" ng-show="SURVEY_LOCK != 'YES'" menu-alias="M-31">
+    <div class="form-group">
+        <label>Jenis Alamat *</label>	
+		<select ng-show="jenis_alamat_disable=='YES'" class="form-control" disabled><option>TEMPAT USAHA</option></select>
+        <select class="form-control" ng-model="fdISAL.MS_JENIS_ALAMAT_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_alamat2" ng-show="jenis_alamat_disable!='YES'">						
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Alamat *</label>
+        <textarea type="text" class="form-control" placeholder="Alamat" ng-model="fdISAL.PR_ALAMAT" ></textarea>
+    </div>
+    <div class="form-group">
+        <!--label class="col-md-12 col-no-padding">RT/RW</label-->
+        <label class="col-md-6 col-no-padding-left">RT *</label>
+        <label class="col-md-6 col-no-padding-right">RW </label>
+        <div class="col-md-6 col-no-padding-left">
+            <input type="text" class="form-control" placeholder="RT" ng-model="fdISAL.PR_RT" restrict="reject" mask="999" />
+        </div>
+        <div class="col-md-6 col-no-padding-right">
+            <input type="text" class="form-control" placeholder="RW" ng-model="fdISAL.PR_RW" restrict="reject" mask="999"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Provinsi *</label>
+        <select class="form-control" ng-model="fdISAL.MS_PROVINSI_ID"  ng-options="x.MS_KODE_PROVINSI as (x.MS_PROVINSI) for x in $root.provinsi" ng-change="kb(fdISAL.MS_PROVINSI_ID)">
+            <!--<option ng-repeat="x in $root.provinsi" value="{{x.MS_KODE_PROVINSI}}">{{x.MS_PROVINSI}}</option>-->
+        </select>
+    </div>
+    <div class="form-group" ng-show="fdISAL.MS_PROVINSI_ID">
+        <label>Kabupaten / Kota *</label>
+        <select class="form-control" ng-model="fdISAL.MS_KABKOT_ID" ng-options="x.MS_KODE_KABKOT as (x.MS_KABKOT) for x in $root.kabkot"  ng-change="kc(fdISAL.MS_KABKOT_ID)">
+            <!--<option ng-repeat="x in $root.kabkot" value="{{x.MS_KODE_KABKOT}}">{{x.MS_KABKOT}}</option>-->
+        </select>
+    </div>
+    <div class="form-group" ng-show="fdISAL.MS_KABKOT_ID">
+        <label>Kecamatan *</label>
+        <select class="form-control" ng-model="fdISAL.MS_KECAMATAN_ID" ng-options="x.MS_KODE_KECAMATAN as (x.MS_KECAMATAN) for x in $root.kec" ng-change="kl(fdISAL.MS_KECAMATAN_ID)">
+            <!--<option ng-repeat="x in $root.kec" value="{{x.MS_KODE_KECAMATAN}}">{{x.MS_KECAMATAN}}</option>-->
+        </select>
+    </div>
+    <div class="form-group" ng-show="fdISAL.MS_KECAMATAN_ID">
+        <label>Kelurahan *</label>
+        <select class="form-control" ng-model="fdISAL.MS_KELDES_ID" ng-options="x.MS_KODE_KELDES as (x.MS_KELDES) for x in $root.keldes">
+            <!--<option ng-repeat="x in $root.keldes" value="{{x.MS_KODE_KELDES}}">{{x.MS_KELDES}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Kode Pos *</label>
+        <input type="text" class="form-control" ng-model="fdISAL.MS_KODE_POS_ID" restrict="reject" mask="999999" />
+    </div>
+<!--    <div class="form-group">
+        <label>Lama Menempati *</label>
+        <div class="input-group">
+            <input type="input" class="form-control" ng-model="fdISAL.PR_LAMA_MENEMPATI" restrict="reject" mask="9999999"/>
+            <span class="input-group-addon">Bulan</span>
+        </div>
+    </div>-->
+    <div class="form-group">
+        <label>Lama Menempati * <b class="label label-primary">total {{fdISAL.PR_LAMA_MENEMPATI}} bulan</b></label>
+        <div class="input-group hide">
+            <input type="number" class="form-control" string-to-number ng-model="fdISAL.PR_LAMA_MENEMPATI" />
+            <span class="input-group-addon">Bulan</span>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="fdISAL.PR_LAMA_MENEMPATI_TAHUN" restrict="reject" mask="999" ng-value="0" />
+                    <span class="input-group-addon">Tahun</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="fdISAL.PR_LAMA_MENEMPATI_BULAN" restrict="reject" mask="999" ng-value="0" />
+                    <span class="input-group-addon">Bulan</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Status Tempat *</label>
+        <select class="form-control"  ng-model="fdISAL.MS_STATUS_TEMPAT_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.stat_tempat">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Jarak dari unit *</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdISAL.PR_JARAK_ALAMAT" restrict="reject" mask="999" ng-value="0" />
+            <span class="input-group-addon">KM</span>
+        </div>
+    </div>
+     <div class="form-group text-right" ng-show="SURVEY_LOCK != 'YES'" menu-alias="M-30">
+        <a class="btn btn-success btn-sm" ng-click="postISAL(); jenis_alamat_disable='NO';">Simpan</a>
+        <a class="btn btn-warning btn-sm" ng-click="fdISAL={}; jenis_alamat_disable='NO';">Reset</a>
+    </div>
+</div>
+<div class="col-no-padding-right" ng-class="(SURVEY_LOCK != 'YES') ? 'col-md-6' : 'col-md-12'">
+    <table wt-responsive-table class="table table-hidden-overflow small">
+<!--        <ul class="thead thead-action list-inline">
+            <li>
+                <input type="text" placeholder="Cari"/>
+            </li>
+            <li>
+                <select>
+                    <option></option>
+                </select>
+            </li>
+            <li>
+                Page: {{currentPage}} / {{numPages}}
+            </li>
+            <li class="right">
+                <ul uib-pagination total-items="totalItems"
+                    ng-model="currentPage"
+                    ng-change="pageChanged(currentPage)"
+                    max-size="maxSize" 
+                    class="pagination-sm" 
+                    boundary-links="true" 
+                    num-pages="numPages"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                ></ul>
+            </li>
+        </ul>-->
+        <tr class="thead">
+			<th>Priority</th> <!--Penambahan Priority FZK 11/12/2018-->
+            <th>Detail</th>
+            <th>#</th>
+        </tr>
+        <tr ng-repeat="x in listISAL">
+			<td class="text-center">
+                <h4>
+                    <input type="radio" value="1" name="alamat_utama" ng-model="x.PR_PRIORITY_ALAMAT" ng-click="setAlamatPriority(x.PR_INDIVIDU_ALAMAT_ID)" ng-disabled="$root.DATA_STATUS_FOR_SUBMIT > 1"/>
+                </h4>
+            </td>		
+            <td class="text-capitalize">
+                <h4>{{x.MS_JENIS_ALAMAT}}</h4>
+                <span>{{x.PR_ALAMAT}} RT {{x.PR_RT}} RW {{x.PR_RW}} {{x.MS_KELDES_DESKRIPSI}} {{x.MS_KECAMATAN_DESKRIPSI}} {{x.MS_KABKOT_DESKRIPSI}} {{x.MS_PROVINSI_DESKRIPSI}} {{x.MS_KODE_POS_ID}}</span>
+                <p>
+                    Lama menempati {{x.PR_LAMA_MENEMPATI}} Bulan
+                    <br> Status tempat {{x.MS_STATUS_TEMPAT}}
+                </p>
+            </td>
+            <td >
+                <a ng-click="viewISAL(x.PR_INDIVIDU_ALAMAT_ID)">View</a>
+                <a ng-show="SURVEY_LOCK != 'YES'" ng-click="editISAL(x.PR_INDIVIDU_ALAMAT_ID)" menu-alias="M-31">Edit</a>
+                <a ng-show="SURVEY_LOCK != 'YES' && x.PR_PRIORITY_ALAMAT != 1" ng-click="deleteISAL(x)" menu-alias="M-32">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,84 @@
+<div class="modal-header no-padding">
+    <h3 class="text-center">{{indvDtl.PR_NAMA_LENGKAP}}</h3>
+    <hr class="awesome no-margin"/>
+</div>
+<div class="modal-body" ng-controller="modalIDIDetailCtrl as m">
+    <div class="col-md-6">
+        <h4>Informasi Debitur</h4>
+        <dl class="dl-horizontal dl-aw">
+            <dt>Nama Panggilan</dt><dd>{{indvDtl.PR_NAMA_PANGGILAN}}</dd>
+            <dt>Jenis Identitas</dt><dd>{{indvDtl.MS_JENIS_IDENTITAS_DESKRIPSI}}</dd>
+            <dt>No Identitas</dt><dd>{{indvDtl.PR_NO_IDENTITAS}}</dd>
+            <dt>Tempat Lahir</dt><dd>{{indvDtl.PR_TEMPAT_LAHIR}}</dd>
+            <dt>Tanggal Lahir</dt><dd>{{indvDtl.PR_TGL_LAHIR}}</dd>
+            <dt>Jenis Kelamin</dt><dd>{{indvDtl.MS_JENIS_KELAMIN_DESKRIPSI}}</dd>
+            <dt>Nama Ibu Kandung</dt><dd>{{indvDtl.PR_NAMA_IBU_KANDUNG}}</dd>
+            <dt>Jenis Usaha</dt><dd>{{indvDtl.MS_JENIS_USAHA_DESKRIPSI}}</dd>
+        </dl>
+    </div>
+    <div class="col-md-6 ">
+        <h4>Informasi Pembiayaan</h4>
+        <dl class="dl-horizontal dl-aw">
+            <dt>Kode Unit</dt><dd>{{indvDtl.INFORMASI_PEMBIAYAAN.data[0].INISIAL_UNIT}}</dd>
+            <dt>Nama Unit</dt><dd>{{indvDtl.INFORMASI_PEMBIAYAAN.data[0].NAMA_UNIT}}</dd>
+            <dt>Cabang</dt><dd>{{indvDtl.INFORMASI_PEMBIAYAAN.data[0].NAMA_CABANG}}</dd>
+            <dt>Status Proses Debitur</dt><dd>...</dd>
+            <dt>Keterangan Status</dt><dd>...</dd>
+        </dl>
+		<h4>Informasi Restruktur</h4>
+		<dl class="dl-horizontal dl-aw">
+            <dt>Jumlah Pernah Restruktur(3R)</dt><dd>{{indvDtl.DB_COUNT_RESTRUKTUR}}</dd>
+            <dt>BWMP terakhir Restruktur(3R)</dt><dd>{{indvDtl.DB_BWMP}}</dd>            
+        </dl>
+		
+    </div>
+	
+    
+    <div class="col-md-12 col-no-padding">
+        <h4>Informasi Scoring</h4>
+        <table wt-responsive-table class="table small">
+            <tr class="thead">
+                <th>No Scoring</th>
+                <th>Tanggal Registrasi</th>
+                <th>Tanggal Approval</th>
+                <th>Jumlah Pengajuan</th>
+                <th>Hasil Scoring</th>
+            </tr>
+            <tr ng-repeat="x in indvDtl.INFORMASI_SCORING">
+                <td>{{x.NO_SCORING}}</td>
+                <td>{{x.TANGGAL_REGISTRASI}}</td>
+                <td>{{x.TANGGAL_APPROVAL}}</td>
+                <td class="text-right">{{x.JUMLAH_PENGAJUAN | number:2}}</td>
+                <td>{{x.HASIL_SCORING}}</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="col-md-12 col-no-padding">
+        <h4>Informasi Kredit</h4>
+        <table wt-responsive-table class="table small">
+            <tr class="thead">
+                <th>No Rekening</th>
+                <th>Tanggal Registrasi</th>
+                <th>Jumlah Pinjaman</th>
+                <th>Kolektibilitas</th>
+                <th>Saldo Akhir</th>
+                <th>Status</th>
+            </tr>
+            <tr ng-repeat="x in indvDtl.INFORMASI_PEMBIAYAAN.data">
+                <td>{{x.NO_REKENING}}</td>
+                <td>{{x.TGL_REALISASI.date}}</td>
+                <td class="text-right">{{x.JML_PINJAMAN | number:2}}</td>
+                <td>{{x.KOLEKTIBILITAS}}</td>
+                <td class="text-right">{{x.POKOK_SALDO_AKHIR}}</td>
+                <td>{{x.STATUS_AKTIF == '3' ? 'TIDAK AKTIF' : x.STATUS_AKTIF == '2' ? 'AKTIF' : x.STATUS_AKTIF = 1 ? 'AKTIF' : 'UNKNOWN' }}</td>
+            </tr>
+        </table>
+    </div>
+	
+	
+</div>
+<div class="modal-footer">
+<!--    <a class="btn btn-success" >Gunakan data ini</a>-->
+    <a class="btn btn-default btn-sm" ng-click="$root.closemid()">Tutup</a>
+</div>

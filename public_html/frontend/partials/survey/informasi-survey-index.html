@@ -1,0 +1,74 @@
+<div class="col-md-6">
+    <div class="col-md-8 col-md-offset-2">
+<!--        <div class="form-group">
+            <label>Tanggal Survey Usaha</label>
+            <input type="text" class="form-control"/>
+        </div>-->
+        <div class="form-group">
+            <label>Rencana Product</label>
+            <select class="form-control" ng-model="fdIS.MS_RENCANA_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list" convert-to-number disabled>
+                <option></option>
+            </select>
+        </div>
+        <!--
+        <div class="form-group">
+            <label>Program</label>
+            <select class="form-control">
+                <option></option>
+            </select>
+        </div>
+        -->
+        <div class="form-group">
+            <label>Rencana Plafond</label>
+            <div class="input-group">
+                <span class="input-group-addon">Rp</span>
+                <input type="text" class="form-control" ng-model="fdIS.MS_RENCANA_PLAFOND" ui-number-mask="0" disabled/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Jangka Waktu</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ui-number-mask="0" ng-model="fdIS.MS_RENCANA_TENOR" disabled/>
+                <span class="input-group-addon">Bulan</span>
+            </div>
+        </div>		
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="col-md-8 col-md-offset-2">
+        
+        <div class="form-group">
+            <label>Kemampuan Angsuran</label>
+            <div class="input-group">
+               <span class="input-group-addon">Rp</span>
+               <input type="text" class="form-control" ng-model="fdIS.MS_KEMAMPUAN_ANGSURAN" ui-number-mask="0" disabled/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Rencana Tujuan Pembiayaan</label>
+            <select class="form-control" ng-model="fdIS.MS_RENCANA_TUJUAN_PEMBIAYAAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_TUJUAN_PEMBIAYAAN_ID" disabled>
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Jenis Pembiayaan</label>
+            <select class="form-control" ng-model="fdIS.MS_JENIS_PEMBIAYAAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_pembiayaan" disabled>
+                <option></option>
+            </select>
+        </div>
+		
+    </div>
+</div>
+
+<div class="col-md-12">
+    <hr>
+    <div class="form-group">
+        <label><i>Note : Data diatas merupakan hasil dari Prospek dan ini hanya Rencana</i></label>
+    </div>
+</div>
+
+<div class="form-group form-group-btn-step">
+    <a ui-sref="survey.informasi.alamat({id : PR_PROSPEK_ID})" class="btn btn-primary btn-next no-right">
+        <span class="ion ion-ios-arrow-right"></span>
+    </a>
+</div>

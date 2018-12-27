@@ -1,0 +1,139 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first page-header page-header-form no-padding has-bg-color">
+<!--    <div class="bx-ph">
+        <h1>Daftar Review</h1>
+    </div>
+    <hr class="awesome no-margin"/>-->
+</div>
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="panel panel-default panel-app">
+            <div class="panel-heading">
+                <div class="row hor-mod">
+                    <div class="col-md-3 col-first text-center">
+                        <h1>Daftar Review</h1>
+                    </div>                    
+                    <div class="col-md-9">
+                        <ul class="thead thead-action list-inline ">
+                            <li>
+                                <label class="small">Wilayah</label>
+                                <ng-if ng-if="$storage.SESSION_LOGIN.CLUSTER">
+                                    <select placeholder="Wilayah" class="form-control" ng-model="fdPL.MS_WILAYAH_ID" ng-options="x.MS_WILAYAH_ID as (x.MS_WILAYAH) for x in $root.wilayah" ng-change="cb(fdPL.MS_WILAYAH_ID); fdPL.MS_KODE_CABANG=''; fdPL.MS_KODE_UNIT='';">
+                                        <option></option>
+                                    </select>
+                                </ng-if>
+                                <ng-if ng-if="!$storage.SESSION_LOGIN.CLUSTER">
+                                    <select placeholder="Wilayah" class="form-control" ng-model="fdPL.MS_WILAYAH_ID" ng-options="x.MS_WILAYAH_ID as (x.MS_WILAYAH) for x in $root.wilayah" ng-change="cb(fdPL.MS_WILAYAH_ID); fdPL.MS_KODE_CABANG=''; fdPL.MS_KODE_UNIT='';" ng-disabled="$storage.SESSION_LOGIN.WILAYAH">
+                                        <option></option>
+                                    </select>
+                                </ng-if>
+                            </li>
+                            <li ng-show="fdPL.MS_WILAYAH_ID">
+                                <label class="small">Cabang</label>
+                                <ng-if ng-if="$storage.SESSION_LOGIN.CLUSTER">
+                                    <select placeholder="Cabang" class="form-control" ng-model="fdPL.MS_KODE_CABANG" ng-options="x.MS_CABANG_KODE as (x.MS_CABANG_DESKRIPSI) for x in $root.cabang | filter : $root.myFilterCabang" ng-change="un(fdPL.MS_KODE_CABANG); fdPL.MS_KODE_UNIT='';">
+                                        <option></option>
+                                    </select>
+                                </ng-if>
+                                <ng-if ng-if="!$storage.SESSION_LOGIN.CLUSTER">
+                                    <select placeholder="Cabang" class="form-control" ng-model="fdPL.MS_KODE_CABANG" ng-options="x.MS_CABANG_KODE as (x.MS_CABANG_DESKRIPSI) for x in $root.cabang" ng-change="un(fdPL.MS_KODE_CABANG); fdPL.MS_KODE_UNIT='';" ng-disabled="$storage.SESSION_LOGIN.CABANG_KODE">
+                                        <option></option>
+                                    </select>
+                                </ng-if>
+                            </li>
+                            <li ng-show="fdPL.MS_KODE_CABANG">
+                                <label class="small">Unit</label>
+                                <select placeholder="Unit" class="form-control"  ng-model="fdPL.MS_KODE_UNIT" ng-options="x.MS_UNIT_KODE as (x.MS_UNIT_DESKRIPSI) for x in $root.unit" >
+                                    <option></option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>					
+					<div class="col-md-9 col-md-offset-3">
+                        <h1>
+                            <label class="label label-primary pull-right" style="font-size: 60%; font-weight: 100;" ng-if="$storage.SESSION_LOGIN.CLUSTER.CABANG">
+                                Kode Cabang <span ng-repeat="x in $storage.SESSION_LOGIN.CLUSTER.CABANG"><ng-if ng-if="$index>0">, </ng-if>{{x}}</span>
+                            </label>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-heading">
+                <ul class="thead thead-action list-inline">
+                    <li>
+                        <!--<input type="text" placeholder="Cari" ng-model="SEARCH_REVIEW"/>-->
+                        <input type="text" placeholder="Cari" ng-model="fdPL.SEARCH"/>
+                    </li>
+                    <li>
+                        <select class="form-control" ng-model="fdPL.LIMIT" ng-options="x as (x) for x in $root.tableItemPerPage">
+                            <option></option>
+                        </select>
+                    </li>
+                    <li>
+                        Page : {{fdPL.PAGE}} / {{fdPL.NUM_PAGES}}
+                    </li>
+                    <li>
+                        Total : {{fdPL.TOTAL_ITEMS}} record(s)
+                    </li>
+                    <li class="right">
+                        <ul uib-pagination 
+                            total-items="fdPL.TOTAL_ITEMS" 
+                            items-per-page= "fdPL.LIMIT"
+                            ng-model="fdPL.PAGE" 
+                            max-size="fdPL.MAX_SIZE"
+                            num-pages="fdPL.NUM_PAGES"
+                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                            boundary-links="true" 
+                            class="pagination-sm"
+                            ng-change="pageChanged(fdPL.PAGE)"
+                        ></ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body no-padding">
+                <table wt-responsive-table class="table table-striped small">
+                    <tr class="tr-head">
+                        <th>NO</th>
+                        <th>TANGGAL SUBMIT LKKU</th>
+                        <th>WILAYAH</th>
+                        <th>CABANG</th>
+                        <th>UNIT</th>
+                        <th>PROSPEK ID</th>
+                        <th>NAMA CALON DEBITUR</th>
+                        <th>JENIS PEMBIAYAAN</th>
+                        <th>SCORING</th>
+                        <th>REVIEWER</th>
+                        <th>STATUS</th>
+                        <th>#</th>
+                    </tr>
+                    <!--<tr ng-repeat="x in listRV_ | filter:SEARCH_REVIEW | limitTo:(fdPL.LIMIT):((fdPL.PAGE*fdPL.LIMIT)-fdPL.LIMIT)">-->
+                    <tr ng-repeat="x in listRV_">
+                        <td>{{(fdPL.PAGE - 1) * fdPL.LIMIT + ($index+1)}}</td>
+                        <td>{{x.TANGGAL_SUBMIT_LKKU}}</td>
+                        <td>{{x.MS_WILAYAH_DESKRIPSI}}</td>
+                        <td>{{x.MS_KODE_CABANG_DESKRIPSI}}</td>
+                        <td>{{x.MS_KODE_UNIT_DESKRIPSI}}</td>
+                        <td>{{x.DB_PROSPEK_ID}}</td>
+                        <td>{{x.PR_NAMA_LENGKAP}}</td>
+                        <td>{{x.MS_JENIS_PEMBIAYAAN_DESKRIPSI}}</td>
+                        <td>{{x.SCORING_RESULT}}</td>
+                        <td>{{x.REVIEWER_NAMA}}</td>
+                        <!--td>{{x.DB_STATUS >= 4 ? 'Submited' : 'On Progress'}}</td-->
+                        <td>{{
+                                (x.DB_STATUS >= 3 && x.DB_SUB_STATUS == 1 && x.REVIEWER_IDSDM == null) ? 'Need Take'
+                                : (x.DB_STATUS >= 3 && x.DB_SUB_STATUS == 3) ? 'Request Dokumen'
+                                : (x.DB_STATUS >= 3 && x.DB_SUB_STATUS == 2) ? 'LKKU Ulang'
+                                : x.DB_STATUS >= 4 ? 'Submitted' 
+                                : 'On Progress'
+                            }}
+                        </td>
+                        <td>
+                            <a ui-sref="review.dataumum({id:x.DB_PROSPEK_ID})">View</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        </table>
+    </div>
+</div>

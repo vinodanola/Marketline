@@ -1,0 +1,98 @@
+<div class="col-md-6 col-padding-110 col-has-border-right" ng-show="SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES'" menu-alias="M-72">
+<!--    <div class="form-group hide">
+        <input type="text" class="form-control" ng-model="fdDAS.DB_HEADER"/>
+    </div>-->
+    <div class="form-group">
+        <label>List Agunan*</label>
+        <!--<select class="form-control" ng-model="fdDAS.DB_HEADER_ID" ng-options="x.DB_INDIVIDU_AGUNAN_ID as (x.MS_JENIS_AGUNAN_ID_DESKRIPSI +' '+x.DB_NOMOR_SURAT_TANAH) for x in listAgunan" ng-change="setdataAgunan(fdDAS.DB_HEADER_ID)">-->
+        <select class="form-control" ng-model="fdDAS.DB_HEADER_ID" ng-options="x.DB_INDIVIDU_AGUNAN_ID as (x.MS_JENIS_AGUNAN_ID_DESKRIPSI +' '+x.DB_NOMOR_SURAT_TANAH) for x in listAgunan">
+            <option></option>
+        </select>
+    </div>
+<!--    <div class="form-group">
+        <label>Jenis Agunan *</label>
+        <select class="form-control" ng-model="fdDAS.MS_JENIS_AGUNAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_agunan">
+            <option></option>
+        </select>
+    </div>-->
+<!--    <div class="form-group">
+        <label>Jenis Stock</label>
+        <input type="text" class="form-control"/>
+    </div>-->
+    <div class="form-group">
+        <label>Jenis Dokumen*</label>
+        <select class="form-control"  ng-model="fdDAS.MS_JENIS_DOKUMEN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_dokumen">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Nomor Kepemilikan / Sertifikat</label>
+        <input type="text" class="form-control" ng-model="fdDAS.PR_NOMOR_DOKUMEN"/>
+    </div>
+    
+    <div class="form-group">
+        <label>Pemilik Dokumen*</label>
+        <select class="form-control"  ng-model="fdDAS.MS_PEMILIK_DOKUMEN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_HUBUNGAN_PEMOHON_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>File ( .pdf, .png, .gif, .jpeg )*</label>
+        <a ng-show="fdDAS.PR_PATH_DOKUMEN" href="{{$root.FILE_BASE}}{{fdDAS.PR_PATH_DOKUMEN}}" class="pull-right" target="_blank" uib-tooltip="{{$root.FILE_BASE}}{{fdDAS.PR_PATH_DOKUMEN}}">View</a>
+        <input type="file" class="form-control"  file-model="fdDAS.PR_DOKUMEN" />
+    </div>
+<!--    <div class="form-group">
+        <label>Executive Summary Analisa Agunan</label>
+        <textarea class="form-control"></textarea>
+    </div>-->
+    <div class="form-group" menu-alias="M-71">
+        <a class="btn btn-success btn-sm" ng-click="postDAS()">Simpan</a>
+        <a class="btn btn-warning btn-sm" ng-click="resetfdDAS()">Reset</a>
+    </div>
+</div>
+<div class=" col-no-padding-right" ng-class="(SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES') ? 'col-md-6' : 'col-md-12'">
+<!--    <ul class="thead thead-action list-inline">
+        <li>
+            <input type="text" placeholder="Cari"/>
+        </li>
+        <li>
+            <select>
+                <option></option>
+            </select>
+        </li>
+        <li>
+            Page: {{currentPage}} / {{numPages}}
+        </li>
+        <li class="right">
+            <ul uib-pagination total-items="totalItems"
+                ng-model="currentPage"
+                ng-change="pageChanged(currentPage)"
+                max-size="maxSize" 
+                class="pagination-sm" 
+                boundary-links="true" 
+                num-pages="numPages"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+            ></ul>
+        </li>
+    </ul>-->
+    <table wt-responsive-table class="table table-hidden-overflow small">
+        <tr class="thead">
+            <th>Detail</th>
+            <th>#</th>
+        </tr>
+        <tr ng-repeat="x in listDAS">
+            <td>
+                <h4>{{x.MS_JENIS_DOKUMEN_DESKRIPSI}}</h4>
+                <span>{{x.PR_NOMOR_DOKUMEN}}</span>
+                 <a ng-show="x.PR_PATH_DOKUMEN" href="{{$root.FILE_BASE}}{{x.PR_PATH_DOKUMEN}}" target="_blank" uib-tooltip="{{$root.FILE_BASE}}{{x.PR_PATH_DOKUMEN}}">View</a>
+            </td>
+            <td>
+                <a ng-click="viewDAS(x.PR_INDIVIDU_DOKUMEN_ID)">View</a>
+                <ng-if ng-if="SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES'">
+                    <a ng-click="editDAS(x.PR_INDIVIDU_DOKUMEN_ID)" menu-alias="M-72">Edit</a>
+                    <a ng-click="deleteDAS(x)" menu-alias="M-73">Delete</a>
+                </ng-if>
+            </td>
+        </tr>
+    </table>
+</div>

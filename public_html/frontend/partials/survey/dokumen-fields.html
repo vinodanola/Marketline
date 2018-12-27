@@ -1,0 +1,32 @@
+<div class="form-group">
+    <label>Jenis Foto *</label>
+    <select class="form-control" ng-model="formDataSurveyDokumen.MS_JENIS_DOKUMEN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_foto">	
+        <option></option>
+    </select>
+</div>
+<div class="form-group">
+    <label>Nama Foto *</label>
+    <input type="text" class="form-control" placeholder="" ng-model="formDataSurveyDokumen.PR_NOMOR_DOKUMEN"/>
+</div>
+<div class="form-group">
+    <label>Upload Foto ( .pdf, .png, .gif, .jpeg )*</label>
+    <a ng-show="formDataSurveyDokumen.PR_PATH_DOKUMEN" href="{{$root.FILE_BASE}}{{formDataSurveyDokumen.PR_PATH_DOKUMEN}}" class="pull-right" target="_blank" uib-tooltip="{{$root.FILE_BASE}}{{formDataSurveyDokumen.PR_PATH_DOKUMEN}}">View</a>
+    <!--<input type="file" class="form-control" fileread="formDataSurveyDokumen.PR_DOKUMEN" placeholder="Upload file"/>-->
+    <input type="file" class="form-control" file-model="formDataSurveyDokumen.PR_DOKUMEN" placeholder="Upload file" />
+</div>
+<!--div class="form-group" ng-if="$root.DATA_STATUS_FOR_SUBMIT < 3" menu-alias="M-11"-->
+<div class="form-group" menu-alias="M-11">
+    <button ng-click="processFormFoto()" class="btn btn-success btn-sm">
+        Simpan
+    </button>
+    <a ng-click="resetFormDataFoto()" class="btn btn-warning btn-sm">
+        Reset
+    </a>
+</div>
+<!--
+<div class="form-group form-group-btn-step">
+    <button class="btn btn-primary btn-next">
+        <span class="ion ion-ios-paperplane-outline"></span>
+    </button>
+</div>
+-->

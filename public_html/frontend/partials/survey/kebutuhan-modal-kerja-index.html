@@ -1,0 +1,153 @@
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <div class="form-group">
+        <label>Posisi Akhir Bulan Terakhir *</label>
+        <md-datepicker ng-disabled="(SURVEY_LOCK!='YES') ? false : true" md-placeholder="xxx"  md-open-on-focus ng-model="dtPABT" ng-change="fdKMK.MS_POSISI_AKHIR_BULAN_TERAKHIR = dtPABT.toISOString()"></md-datepicker>
+    </div>
+    <div class="form-group">
+        <label>Persediaan Dagang *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_PERSEDIAAN_DAGANG" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Persediaan Lainnya *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_PERSEDIAAN_LAINNYA" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Total Persediaan</label>
+        <p class="text-right"><b>Rp. {{fdKMK.TOTAL_PERSEDIAAN | number:2}}</b></p>
+    </div>
+    <div class="form-group">
+        <label>Piutang Dagang *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_PIUTANG_DAGANG" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Piutang Lainnya *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_PIUTANG_LAINNYA" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Total Piutang</label>
+        <p class="text-right"><b>Rp. {{fdKMK.TOTAL_PIUTANG | number:2}}</b></p>
+    </div>
+    <div class="form-group">
+        <label>Utang Dagang *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_UTANG_DAGANG" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Utang Lainnya *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_UTANG_LAINNYA" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Total Utang</label>
+        <p class="text-right"><b> Rp. {{fdKMK.TOTAL_UTANG | number:2}}</b></p>
+    </div>
+    <div class="form-group">
+        <label>Modal Kerja *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="true" type="text" class="form-control" ng-model="fdKMK.MS_MODAL_KERJA" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Investasi *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_INVESTASI" ui-number-mask="0"/>
+        </div>
+    </div>
+
+    <!--div class="form-group">
+        <label>Perputaran Persediaan Barang</label>
+        <div class="input-group">
+            <input ng-disabled="(SURVEY_SUBMITED!=2) ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_PERPUTARAN_PERSEDIAAN_BARANG" ui-number-mask="0"/>
+            <span class="input-group-addon">hari</span>
+        </div>
+    </div-->
+</div>
+
+<div class="col-md-6 col-padding-110">
+
+    <div class="form-group">
+        <label>Perputaran Persediaan Barang</label>
+        <div class="input-group">
+            <input ng-disabled="true" type="text" class="form-control" ng-model="fdKMK.MS_PERPUTARAN_PERSEDIAAN_BARANG" ui-number-mask="0"/>
+            <span class="input-group-addon">hari</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Perputaran Piutang Dagang</label>
+        <div class="input-group">
+            <input ng-disabled="true" type="text" class="form-control" ng-model="fdKMK.MS_PERPUTARAN_PIUTANG_DAGANG" ui-number-mask="0"/>
+            <span class="input-group-addon">hari</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Perputaran Utang Dagang</label>
+        <div class="input-group">
+            <input ng-disabled="true" type="text" class="form-control" ng-model="fdKMK.MS_PERPUTARAN_UTANG_DAGANG" ui-number-mask="0"/>
+            <span class="input-group-addon">hari</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Perputaran Modal Kerja</label>
+        <div class="input-group">
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_PERPUTARAN_MODAL_KERJA" ui-number-mask="0"/>
+            <span class="input-group-addon">hari</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Trend Keuangan</label>
+        <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_TREND_KEUANGAN"/>
+    </div>
+    <div class="form-group">
+        <label>Omset / Pendapatan Usaha Tahun Lalu *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_OMSET_TAHUN_LALU" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Laba / Rugi / Penghasilan Bersih Tahun Lalu (sblm Angsuran) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_PENGHASILAN_BERSIH_TAHUN_LALU" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Modal Kerja - Bersih Tahun Lalu *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_MODAL_KERJA_TAHUN_LALU" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Total Utang Tahun Lalu *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKMK.MS_TOTAL_UTANG" ui-number-mask="0"/>
+        </div>
+    </div>
+<!--    <div class="form-group">
+        <label>Executive Summary - Omzet</label>
+        <textarea class="form-control"></textarea>
+    </div>-->
+</div>
+
+<ng-include src="'partials/other/note-global.html'"></ng-include>

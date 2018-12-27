@@ -1,0 +1,25 @@
+<div class="col-md-6 col-md-offset-3">
+    <div class="form-group">
+        <label>Jenis Referensi *</label>
+        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_JENIS_REFERENSI_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_referensi">
+            <!--<option ng-repeat="x in $root.jns_referensi" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label ng-hide="formDataIdentitasIndividu.MS_JENIS_REFERENSI_ID == 15">Nama Referensi</label>
+        <input ng-hide="formDataIdentitasIndividu.MS_JENIS_REFERENSI_ID == 15" ng-disabled="(PROSPEK_SUBMITED!=2) ? false : true" type="text" class="form-control" ng-model="formDataIdentitasIndividu.PR_NAMA_REFERENSI"/>
+    </div>
+    <div class="form-group">
+        <label ng-hide="formDataIdentitasIndividu.MS_JENIS_REFERENSI_ID == 15">No HP Referensi</label>
+        <!--input ng-disabled="(PROSPEK_SUBMITED!=2) ? false : true" type="text" class="form-control" ng-model="formDataIdentitasIndividu.PR_NO_HP_REFERENSI" no-hp/-->
+        <input ng-hide="formDataIdentitasIndividu.MS_JENIS_REFERENSI_ID == 15" ng-disabled="(PROSPEK_SUBMITED!=2) ? false : true" type="text" class="form-control" ng-model="formDataIdentitasIndividu.PR_NO_HP_REFERENSI" no-hp/>
+    </div>
+    <div class="form-group form-group-btn-step">
+        <a ui-sref="prospek.identitasindividu.pendidikan" class="btn btn-primary btn-prev">
+            <span class="ion ion-ios-arrow-left"></span>
+        </a>
+        <a ui-sref="prospek.identitasindividu.lainnya" class="btn btn-primary btn-next">
+            <span class="ion ion-ios-arrow-right"></span>
+        </a>
+    </div>
+</div>

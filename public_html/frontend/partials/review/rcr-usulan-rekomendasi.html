@@ -1,0 +1,320 @@
+<div class="col-md-3 col-no-padding-left col-has-border-right">
+    <div class="form-group">
+        <label>Penjualan / bulan (Skenario-3) *</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdRCR.SK3_SKENARIO_PERCENTAGE" ui-number-mask="2" ng-keyup="CALCULATE()" />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>RCR (B)-Semua Pinjaman</label>
+        <div class="input-group">
+            <span class="code">{{SK3_RCR_REKOMENDASI_RCR_B_SEMUA_PINJAMAN | number:2}} %</span>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <label>Pinjaman yang direkomendasi *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdRCR.RCR_REKOMENDASI_PINJAMAN_YANG_DIREOMENDASI" ui-number-mask="0" ng-keyup="CALCULATE()" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Bunga *</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdRCR.RCR_REKOMENDASI_BUNGA" ng-keyup="CALCULATE()" ui-number-mask="2" />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Tenor *</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdRCR.RCR_REKOMENDASI_TENOR" ui-number-mask="0" ng-keyup="CALCULATE()" />
+            <span class="input-group-addon">Bulan</span>
+        </div>
+    </div>
+    <hr>
+    <div class="form-group">
+        <div class="input-group">
+            <a class="btn btn-success btn-sm" ng-click="postRCR()" ng-if="REVIEW_SUBMITED == 1" menu-alias="M-92">Simpan</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-9 col-no-padding-right">
+    <table wt-responsive-table class="table table-hidden-overflow small">
+        <tr class="thead">
+            <th></th>
+            <th>Skenario-1</th>
+            <th>Skenario-2</th>
+            <th>Skenario-3</th>
+            <th>Data lama(Top Up)</th>
+        </tr>
+        <tr>
+            <td>Penjualan / bln</td>
+            <td class="text-right"><b>({{SK1_SKENARIO_PERCENTAGE}}%)</b> <span>{{SK1_PENJUALAN_PER_BULAN | number:2}}</span></td>
+            <td class="text-right"><b>({{SK2_SKENARIO_PERCENTAGE}}%)</b> {{SK2_PENJUALAN_PER_BULAN | number:2}}</td>
+            <td class="text-right"><b>({{SK3_SKENARIO_PERCENTAGE}}%)</b> {{SK3_PENJUALAN_PER_BULAN | number:2}}</td>
+            <td class="text-right">{{TUP_PENJUALAN_PER_BULAN | number:2}}</td>
+        </tr>
+        <tr>
+            <td>HPP</td>
+            <td class="text-right">{{SK1_HPP | number:2}}</td>
+            <td class="text-right">{{SK2_HPP | number:2}}</td>
+            <td class="text-right">{{SK3_HPP | number:2}}</td>
+            <td class="text-right">{{TUP_HPP | number:2}}</td>
+        </tr>
+        <tr >
+            <td class="text-right">Laba kotor</td>
+            <td class="text-right">{{SK1_LABA_KOTOR | number:2}}</td>
+            <td class="text-right">{{SK2_LABA_KOTOR | number:2}}</td>
+            <td class="text-right">{{SK3_LABA_KOTOR | number:2}}</td>
+            <td class="text-right">{{TUP_LABA_KOTOR | number:2}}</td>
+        </tr>
+        <tr>
+            <td>Total Biaya Operasional Usaha</td>
+            <td class="text-right">{{SK1_TOTAL_BIAYA_OPERASIONAL_USAHA | number:2}}</td>
+            <td class="text-right">{{SK2_TOTAL_BIAYA_OPERASIONAL_USAHA | number:2}}</td>
+            <td class="text-right">{{SK3_TOTAL_BIAYA_OPERASIONAL_USAHA | number:2}}</td>
+            <td class="text-right">{{TUP_TOTAL_BIAYA_OPERASIONAL_USAHA | number:2}}</td>
+        </tr>
+        <tr >
+            <td class="text-right">Laba Operasi</td>
+            <td class="text-right">{{SK1_LABA_OPERASI | number:2}}</td>
+            <td class="text-right">{{SK2_LABA_OPERASI | number:2}}</td>
+            <td class="text-right">{{SK3_LABA_OPERASI | number:2}}</td>
+            <td class="text-right">{{TUP_LABA_OPERASI | number:2}}</td>
+        </tr>
+        <tr>
+            <td colspan="5">Penghasilan Lainnya</td>
+        </tr>
+        <tr>
+            <td>1. Usaha Lainnya 1 (sebutkan)</td>
+            <td class="text-right">{{SK1_USAHA_LAINNYA_1 | number:2}}</td>
+            <td class="text-right">{{SK2_USAHA_LAINNYA_1 | number:2}}</td>
+            <td class="text-right">{{SK3_USAHA_LAINNYA_1 | number:2}}</td>
+            <td class="text-right">{{TUP_USAHA_LAINNYA_1 | number:2}}</td>
+        </tr>
+        <tr>
+            <td>2. Usaha Lainnya 2 (sebutkan)</td>
+            <td class="text-right">{{SK1_USAHA_LAINNYA_2 | number:2}}</td>
+            <td class="text-right">{{SK2_USAHA_LAINNYA_2 | number:2}}</td>
+            <td class="text-right">{{SK3_USAHA_LAINNYA_2 | number:2}}</td>
+            <td class="text-right">{{TUP_USAHA_LAINNYA_2 | number:2}}</td>
+        </tr>
+        <tr>
+            <td>3. Gaji suami/istri</td>
+            <td class="text-right">{{SK1_GAJI_SUAMI_OR_ISTRI | number:2}}</td>
+            <td class="text-right">{{SK2_GAJI_SUAMI_OR_ISTRI | number:2}}</td>
+            <td class="text-right">{{SK3_GAJI_SUAMI_OR_ISTRI | number:2}}</td>
+            <td class="text-right">{{TUP_GAJI_SUAMI_OR_ISTRI | number:2}}</td>
+        </tr>
+        <tr>
+            <td class="text-right">Jumlah</td>
+            <td class="text-right">{{SK1_JUMLAH_PENGHASILAN_LAINNYA | number:2}}</td>
+            <td class="text-right">{{SK2_JUMLAH_PENGHASILAN_LAINNYA | number:2}}</td>
+            <td class="text-right">{{SK3_JUMLAH_PENGHASILAN_LAINNYA | number:2}}</td>
+            <td class="text-right">{{TUP_JUMLAH_PENGHASILAN_LAINNYA | number:2}}</td>
+        </tr>
+        <tr>
+            <td class="text-center">Penghasilan Sblm Biaya RT</td>
+            <td class="text-right">{{SK1_PENGHASILAN_SEBELUM_BIAYA_RT | number:2}}</td>
+            <td class="text-right">{{SK2_PENGHASILAN_SEBELUM_BIAYA_RT | number:2}}</td>
+            <td class="text-right">{{SK3_PENGHASILAN_SEBELUM_BIAYA_RT | number:2}}</td>
+            <td class="text-right">{{TUP_PENGHASILAN_SEBELUM_BIAYA_RT | number:2}}</td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>Total Biaya Rm. Tangga</td>
+            <td class="text-right">{{SK1_TOTAL_BIAYA_RUMAH_TANGGA | number:2}}</td>
+            <td class="text-right">{{SK2_TOTAL_BIAYA_RUMAH_TANGGA | number:2}}</td>
+            <td class="text-right">{{SK3_TOTAL_BIAYA_RUMAH_TANGGA | number:2}}</td>
+            <td class="text-right">{{TUP_TOTAL_BIAYA_RUMAH_TANGGA | number:2}}</td>
+        </tr>
+        <tr class="text-center">
+            <td>Sisa Penghasilan Sblm Angs.</td>
+            <td class="text-right">{{SK1_SISA_PENGHASILAN_SEBELUM_ANGSURAN | number:2}}</td>
+            <td class="text-right">{{SK2_SISA_PENGHASILAN_SEBELUM_ANGSURAN | number:2}}</td>
+            <td class="text-right">{{SK3_SISA_PENGHASILAN_SEBELUM_ANGSURAN | number:2}}</td>
+            <td class="text-right">{{TUP_SISA_PENGHASILAN_SEBELUM_ANGSURAN | number:2}}</td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>Pinjaman yang di usulkan</td>
+            <td class="text-right">{{GBL_RCR_USULAN_PINJAMAN_YANG_DI_USULKAN | number:2}}</td>
+            <td>Pokok</td>
+            <td class="text-right">{{GBL_RCR_USULAN_POKOK | number:2}}</td>
+            <td class="text-right"></td>
+        </tr>
+        <tr>
+            <td>Bunga</td>
+            <td class="text-right">{{GBL_RCR_USULAN_BUNGA_PERCEN | number:2}} %</td>
+            <td>Bunga / Margin</td>
+            <td class="text-right">{{GBL_RCR_USULAN_BUNGA_RUPIAH | number:2}}</td>
+            <td class="text-right"></td>
+        </tr>
+        <tr>
+            <td>Tenor</td>
+            <td class="text-right">{{GBL_RCR_USULAN_TENOR | number:2}}</td>
+            <td>Total Angsuran</td>
+            <td class="text-right">{{GBL_RCR_USULAN_TOTAL_ANGSURAN | number:2}}</td>
+            <td class="text-right"></td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>Angs. Pinjaman saat ini</td>
+            <td class="text-right">{{SK1_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
+            <td class="text-right">{{SK2_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
+            <td class="text-right">{{SK3_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
+            <td class="text-right">{{TUP_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
+        </tr>
+        <tr>
+            <td>Angs. Pinj. UlaMM Baru</td>
+            <td class="text-right">{{SK1_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU | number:2}}</td>
+            <td class="text-right">{{SK2_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU | number:2}}</td>
+            <td class="text-right">{{SK3_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU | number:2}}</td>
+            <td class="text-right">{{TUP_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU | number:2}}</td>
+        </tr>
+        <tr>
+            <td>Total Angsuran</td>
+            <td class="text-right">{{SK1_RCR_USULAN_TOTAL_ANGSURAN | number:2}}</td>
+            <td class="text-right">{{SK2_RCR_USULAN_TOTAL_ANGSURAN | number:2}}</td>
+            <td class="text-right">{{SK3_RCR_USULAN_TOTAL_ANGSURAN | number:2}}</td>
+            <td class="text-right">{{TUP_RCR_USULAN_TOTAL_ANGSURAN | number:2}}</td>
+        </tr>
+        <tr>
+            <td>Disposable Income</td>
+            <td class="text-right">{{SK1_RCR_USULAN_DISPOSABLE_INCOME | number:2}}</td>
+            <td class="text-right">{{SK2_RCR_USULAN_DISPOSABLE_INCOME | number:2}}</td>
+            <td class="text-right">{{SK3_RCR_USULAN_DISPOSABLE_INCOME | number:2}}</td>
+            <td class="text-right">{{TUP_RCR_USULAN_DISPOSABLE_INCOME | number:2}}</td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td class="text-right">RCR (A) - Pinj.Baru</td>
+            <td class="text-right">{{SK1_RCR_USULAN_RCR_A_PINJAMAN_BARU | number:2}} %</td>
+            <td></td>
+            <td></td>
+            <td></td>
+<!--            <td class="text-right">{{SK2_RCR_USULAN_RCR_A_PINJAMAN_BARU | number:2}}</td>
+            <td class="text-right">{{SK3_RCR_USULAN_RCR_A_PINJAMAN_BARU | number:2}}</td>
+            <td class="text-right">{{TUP_RCR_USULAN_RCR_A_PINJAMAN_BARU | number:2}}</td>-->
+        </tr>
+        <tr>
+            <td class="text-right">RCR (B) - Semua Pinjaman</td>
+            <td class="text-right">{{SK1_RCR_USULAN_RCR_B_SEMUA_PINJAMAN | number:2}} %</td>
+            <td class="text-right">{{SK2_RCR_USULAN_RCR_B_SEMUA_PINJAMAN | number:2}} %</td>
+            <td></td>
+            <!--<td class="text-right">{{SK3_RCR_USULAN_RCR_B_SEMUA_PINJAMAN | number:2}}</td>-->
+            <td class="text-right">{{TUP_RCR_USULAN_RCR_B_SEMUA_PINJAMAN | number:2}} %</td>
+        </tr>
+        <tr>
+            <td class="text-right">OPM Ratio</td>
+            <td class="text-right">{{SK1_RCR_USULAN_OPM_RATIO | number:2}} %</td>
+            <td class="text-right">{{SK2_RCR_USULAN_OPM_RATIO | number:2}} %</td>
+            <td></td>
+            <!--<td class="text-right">{{SK3_RCR_USULAN_OPM_RATIO | number:2}}</td>-->
+            <td class="text-right">{{TUP_RCR_USULAN_OPM_RATIO | number:2}} %</td>
+        </tr>
+        <tr>
+            <td class="text-right">Sensitivitas RCR Usulan</td>
+            <td class="text-right"></td>
+            <td class="text-right text-center {{GBL_RCR_USULAN_SENSITIVITAS_COLOR}}">{{GBL_RCR_USULAN_SENSITIVITAS}}</td>
+            <td class="text-right"></td>
+            <td class="text-right"></td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>Pinjaman yang direkomendasi</td>
+            <td class="text-right">{{GBL_RCR_REKOMENDASI_PINJAMAN_YANG_DI_REKOMENDASIKAN | number:2}}</td>
+            <td>Pokok</td>
+            <td class="text-right">{{GBL_RCR_REKOMENDASI_POKOK | number:2}}</td>
+            <td class="text-right"></td>
+        </tr>
+        <tr>
+            <td>Bunga</td>
+            <td class="text-right">{{GBL_RCR_REKOMENDASI_BUNGA_PERCEN | number:2}} %</td>
+            <td>Bunga / Margin</td>
+            <td class="text-right">{{GBL_RCR_REKOMENDASI_BUNGA_RUPIAH | number:2}}</td>
+            <td class="text-right"></td>
+        </tr>
+        <tr>
+            <td>Tenor</td>
+            <td class="text-right">{{GBL_RCR_REKOMENDASI_TENOR | number:2}}</td>
+            <td>Total Angsuran</td>
+            <td class="text-right">{{GBL_RCR_REKOMENDASI_TOTAL_ANGSURAN | number:2}}</td>
+            <td class="text-right"></td>
+        </tr>
+        <tr>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td>Angs. Pinjaman saat ini</td>
+            <td class="text-right">{{SK1_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
+            <td class="text-right">{{SK2_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
+            <td class="text-right">{{SK3_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
+            <td class="text-right">{{TUP_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
+        </tr>
+        <tr>
+            <td>Angs. Pinj. UlaMM Baru</td>
+            <td class="text-right">{{SK1_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU | number:2}}</td>
+            <td class="text-right">{{SK2_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU | number:2}}</td>
+            <td class="text-right">{{SK3_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU | number:2}}</td>
+            <td class="text-right"></td>
+        </tr>
+        <tr>
+            <td>Total Angusran</td>
+            <td class="text-right">{{SK1_RCR_REKOMENDASI_TOTAL_ANGSURAN | number:2}}</td>
+            <td class="text-right">{{SK2_RCR_REKOMENDASI_TOTAL_ANGSURAN | number:2}}</td>
+            <td class="text-right">{{SK3_RCR_REKOMENDASI_TOTAL_ANGSURAN | number:2}}</td>
+            <td class="text-right"></td>
+        </tr>
+        <tr>
+            <td>Disposable Income-2</td>
+            <td class="text-right">{{SK1_RCR_REKOMENDASI_DISPOSABLE_INCOME | number:2}}</td>
+            <td class="text-right">{{SK2_RCR_REKOMENDASI_DISPOSABLE_INCOME | number:2}}</td>
+            <td class="text-right">{{SK3_RCR_REKOMENDASI_DISPOSABLE_INCOME | number:2}}</td>
+            <td class="text-right"></td>
+        </tr>
+        <tr>
+            <td class="text-right">RCR (A)-Pinj.Baru</td>
+            <td class="text-right">{{SK1_RCR_REKOMENDASI_RCR_A_PINJAMAN_BARU | number:2}} %</td>
+<!--            <td class="text-right">{{SK2_RCR_REKOMENDASI_RCR_A_PINJAMAN_BARU | number:2}} %</td>
+            <td class="text-right">{{SK3_RCR_REKOMENDASI_RCR_A_PINJAMAN_BARU | number:2}} %</td>-->
+            <td class="text-right"></td>
+            <td class="text-right"></td>
+            <td class="text-right"></td>
+        </tr>
+        <tr class="">
+            <td class="text-right">RCR (B)-Semua Pinjaman</td>
+            <td class="text-right">{{SK1_RCR_REKOMENDASI_RCR_B_SEMUA_PINJAMAN | number:2}} %</td>
+            <td class="text-right">{{SK2_RCR_REKOMENDASI_RCR_B_SEMUA_PINJAMAN | number:2}} %</td>
+            <td class="text-right text-primary">{{SK3_RCR_REKOMENDASI_RCR_B_SEMUA_PINJAMAN | number:2}} %</td>
+            <td class="text-right"></td>
+        </tr>
+        <tr>
+            <td class="text-right">OPM Ratio</td>
+            <td class="text-right">{{SK1_RCR_REKOMENDASI_OPM_RATIO | number:2}} %</td>
+            <td class="text-right">{{SK2_RCR_REKOMENDASI_OPM_RATIO | number:2}} %</td>
+            <td class="text-right">{{SK3_RCR_REKOMENDASI_OPM_RATIO | number:2}} %</td>
+            <td class="text-right"></td>
+        </tr>
+        <tr>
+            <td class="text-right">Sensitivitas RCR Rekomendasi</td>
+            <td class="text-right"></td>
+            <td class="text-right text-center {{GBL_RCR_REKOMENDASI_SENSITIVITAS_COLOR}}">{{GBL_RCR_REKOMENDASI_SENSITIVITAS}}</td>
+            <td class="text-right"></td>
+            <td class="text-right"></td>
+        </tr>
+    </table>
+</div>

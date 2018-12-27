@@ -1,0 +1,6 @@
+<ul ng-show="$root.agShow" ng-class="{false : 'fadeOutRight' , true : 'fadeInRight'}[$root.agShow==true]" class="animated box-shadow list-unstyled alert alert-global alert-{{$root.agType}}">
+    <a class="close" ng-click="$root.agShow=false">
+        <span class="ion ion-ios-close"></span>
+    </a>
+    <li ng-repeat="x in $root.agMsg">{{x}}</li>
+</ul>

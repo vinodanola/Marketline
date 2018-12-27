@@ -1,0 +1,61 @@
+<ul class="thead thead-action list-inline">
+    <li ng-if="SURVEY_LOCK!='YES'" menu-alias="M-68">
+        <a class="btn btn-success btn-sm" ng-click="modalAS('N');">Tambah</a>
+    </li>
+    <li>
+        <input type="text" placeholder="Cari" ng-model="SEARCH_AGUNAN"/>
+    </li>
+    <li>
+        <select class="form-control" ng-model="fdPL.LIMIT" ng-options="x as (x) for x in $root.tableItemPerPage">
+            <option></option>
+        </select>
+    </li>
+    <li>
+        Page: {{fdPL.PAGE}} / {{fdPL.NUM_PAGES}}
+    </li>
+    <li>
+        Total : {{fdPL.TOTAL_ITEMS}} record(s)
+    </li>
+    <li class="right">
+        <ul uib-pagination 
+            total-items="fdPL.TOTAL_ITEMS" 
+            items-per-page= "fdPL.LIMIT"
+            ng-model="fdPL.PAGE" 
+            max-size="fdPL.MAX_SIZE"
+            num-pages="fdPL.NUM_PAGES"
+            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+            boundary-links="true" 
+            class="pagination-sm"
+        ></ul>
+    </li>
+</ul>
+<table wt-responsive-table class="table table-hidden-overflow small">
+    <tr class="thead">
+        <th>Jenis Agunan</th>
+        <th>Nomor Kepemilikan / Sertifikat</th>
+        <!--th>Keterangan</th TYW-->
+        <th>Nama Pemilik</th>
+        <th>#</th>
+    </tr>
+    <tr ng-repeat="x in listAS | filter:SEARCH_AGUNAN | limitTo:(fdPL.LIMIT):((fdPL.PAGE*fdPL.LIMIT)-fdPL.LIMIT)">
+        <td>{{x.MS_JENIS_AGUNAN_ID_DESKRIPSI}}</td>
+        <td>{{x.DB_NO_IMB}} &middot; {{x.DB_NOMOR_SURAT_TANAH}}</td>
+        <td>{{x.DB_NAMA_PEMILIK}}</td>
+        <td>
+            <a ng-click="viewAS(x.DB_INDIVIDU_AGUNAN_ID)">View</a>
+            &middot;
+            <a ng-click="modalLPNL(x.DB_INDIVIDU_AGUNAN_ID,x.MS_JENIS_AGUNAN_ID)" menu-alias="M-79">Taksasi</a>
+            <!--a ng-click="modalLPNL(x.DB_INDIVIDU_AGUNAN_ID,x.MS_JENIS_AGUNAN_ID)" menu-alias="M-79">Taksasi</a-->
+            <ng-if ng-if="x.MS_JENIS_AGUNAN_ID == 59">
+                &middot;
+                <a ng-click="getlistBTB(x.DB_INDIVIDU_AGUNAN_ID)" >BTB</a>
+            </ng-if>
+            <ng-if ng-if="SURVEY_LOCK!='YES'">
+                &middot;
+                <a ng-click="editAS(x.DB_INDIVIDU_AGUNAN_ID)" menu-alias="M-69">Edit</a>
+                &middot;
+                <a ng-click="deleteAS(x)" menu-alias="M-70">Delete</a>
+            </ng-if>
+        </td>
+    </tr>
+</table>

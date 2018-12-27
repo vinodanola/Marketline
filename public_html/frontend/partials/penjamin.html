@@ -1,0 +1,94 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first container-first-two-nav page-header page-header-form no-padding">
+    <div class="col-md-12 col-no-padding">
+        <ng-include src=" 'partials/subnav.html' "></ng-include>
+    </div>
+</div>
+
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="page-body">
+            <div class="panel panel-default panel-app">
+                <div class="panel-heading text-center">
+                    <div class="row hor-mod">
+                        <div class="col-md-12">
+                            <h1 class="no-margin">Penjamin Pembiayaan</h1>
+							
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+				
+                    <div class="col-md-12 col-padding-110">
+                        <h5 class="text-info small" ><i>Note : Penjamin pembiayaan merupakan orang yang bersedia bertanggung jawab atas pembiayaan debitur. Jika penjamin adalah debitur sendiri, maka form penjamin tidak perlu di isi.</i></h5>
+                        <hr>
+                    </div>
+					
+                    <div class="col-md-6 col-padding-110 col-has-border-right">
+                        <div class="form-group">
+                            <label>NIK *</label>
+                            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdPJ.PENJAMIN_NIK" restrict="reject" mask="999999999999999999999999999999"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Nama *</label>
+                            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdPJ.PENJAMIN_NAMA" />
+                        </div>
+                        <div class="form-group">
+                            <label>Tempat Lahir *</label>
+                            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdPJ.PENJAMIN_TEMPAT_LAHIR" />
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal Lahir *</label>
+                            <md-datepicker ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" md-placeholder="Masukan Tanggal Lahir"  md-open-on-focus ng-model="dtPJTL" ng-change="fdPJ.PENJAMIN_TANGGAL_LAHIR = dtPJTL.toISOString()"></md-datepicker>                            
+                        </div>
+                        <div class="form-group">
+                            <label>Alamat *</label>
+                            <textarea ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="fdPJ.PENJAMIN_ALAMAT" ></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-padding-110">
+                        <div class="form-group">
+                            <label>Jenis Kelamin *</label>
+                             <ul class="list-inline">
+                                <li ng-repeat="x in $root.jns_kelamin">
+                                    <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="radio" name="jeniskelamin" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-model="fdPJ.PENJAMIN_JENIS_KELAMIN_ID"/>
+                                    <label>{{x.MS_DESKRIPSI}}</label>
+                                </li>
+                            </ul>
+                            <!--select ng-disabled="(PROSPEK_SUBMITED!=2) ? false : true" class="form-control" ng-model="fdPJ.PENJAMIN_JENIS_KELAMIN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_kelamin">
+                                <option></option>
+                            </select-->
+                        </div>
+                        <div class="form-group">
+                            <label>Pendidikan *</label>
+                            <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="fdPJ.PENJAMIN_PENDIDIKAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.pendidikan">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tempat Bekerja *</label>
+                            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdPJ.PENJAMIN_TEMPAT_BEKERJA"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Pekerjaan *</label>
+                            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdPJ.PENJAMIN_PEKERJAAN" />
+                        </div>
+                        <div class="form-group">
+                            <label>NPWP *</label>
+                            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" mask="99.999.999.9-999.999" clean="false" ng-value="{{fdPJ.PENJAMIN_NPWP}}" ng-model="fdPJ.PENJAMIN_NPWP" />
+                        </div>
+						<div class="form-group">
+                            <label>Nomor Handphone *</label>
+                            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdPJ.PENJAMIN_NO_HP" restrict="reject" mask="999999999999999"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center" ng-if="SURVEY_SUBMITED != 2">
+                    <a class="btn btn-primary btn-sm" ng-click="postPJ()" >
+                        Submit
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

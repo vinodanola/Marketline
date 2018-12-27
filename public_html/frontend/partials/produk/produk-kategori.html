@@ -1,0 +1,107 @@
+
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <fieldset>
+        <legend>Pencarian Produk</legend>
+        <div class="form-group">
+            <label>Jenis Produk *</label>
+            <select class="form-control" ng-model="fdPRDK.MS_JENIS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PRODUK_ID">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Nama Produk *</label>
+            <select class="form-control" ng-model="fdPRDK.MP_PRODUK_ID" ng-options="x.MP_PRODUK_ID as (x.MP_NAMA_PRODUK) for x in $root.listProduk" ng-change="getlistKS(fdPRDK.MP_PRODUK_ID)">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Versi</label>
+            <input type="text" class="form-control" ng-model="fdPRDK.MP_VERSI" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Lokasi</label>
+            <select class="form-control" ng-model="fdPRDK.MP_LOKASI_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_LOKASI_PRODUK_ID" disabled>
+                <option></option>
+            </select>
+        </div>
+<!--        <div class="form-group">
+            <button class="btn btn-success btn-sm" ng-click="getlistKS(fdPRDK.MP_PRODUK_ID)">Search</button>
+            <button class="btn btn-warning btn-sm">Clear</button>
+        </div>-->
+    </fieldset>
+</div>
+<div class="col-md-6 col-padding-110">    
+    <fieldset>
+        <legend>Pencarian Kategori</legend>
+        <div class="form-group">
+            <label>Nama Produk *</label>
+            <select class="form-control" ng-model="fdPRDK.MP_PRODUK_ID" ng-options="x.MP_PRODUK_ID as (x.MP_NAMA_PRODUK) for x in listProduk" disabled>
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Kategori Produk</label>
+            <select class="form-control" ng-model="fdPRDK.MP_KATEGORI_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_KATEGORI_PRODUK_ID">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success btn-sm" ng-click="getlistKB()">Search</button>
+            <button class="btn btn-warning btn-sm">Clear</button>
+        </div>
+    </fieldset>
+</div>
+<div class="col-md-12 col-no-padding">
+    <hr>
+    <div class="col-md-6 col-padding-110">
+        <fieldset>
+            <legend>Kategori yang sudah dipilih</legend>
+            <!--<small>{{KS}} -- {{KS_SELECTED}}</small>-->
+            <table wt-responsive-table class="table table-hidden-overflow small">
+                <tr class="thead">
+                    <th></th>
+                    <th>Kategori Produk</th>
+                    <th class="text-right">
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-sm" ng-click="moveItem('ALL',KS_SELECTED,KS,KB)">&raquo;</a>
+                            <a class="btn btn-default btn-sm" ng-click="moveItem('ITEM',KS_SELECTED,KS,KB)">&rsaquo;</a>
+                        </div>
+                    </th>
+                </tr>
+                <tr ng-repeat="xs in KS">
+                    <td><input type="checkbox" ng-model="xs.checked" ng-change="SELECTKS()"/></td>
+                    <td>{{xs.MS_DESKRIPSI}}</td>
+                    <td></td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <div class="col-md-6 col-padding-110">
+        <fieldset>
+            <legend>Kategori yang belum dipilih </legend>
+            <!--<small>{{KB}} -- {{KB_SELECTED}}</small>-->
+            <table wt-responsive-table class="table table-hidden-overflow small">
+                <tr class="thead">
+                    <th>
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-sm" ng-click="moveItem('ITEM',KB_SELECTED,KB,KS)">&lsaquo;</a>
+                            <a class="btn btn-default btn-sm" ng-click="moveItem('ALL',KB_SELECTED,KB,KS)">&laquo;</a>
+                        </div>
+                    </th>
+                    <th>Kategori Produk</th>
+                </tr>
+                <tr ng-repeat="xb in KB | filter: filterKB">
+                    <td><input type="checkbox" ng-model="xb.checked" ng-change="SELECTKB()"/></td>
+                    <td>{{xb.MS_DESKRIPSI}}</td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+</div>
+
+<div class="col-md-12 col-no-padding">
+    <hr>
+    <div class="form-group text-center">
+        <button class="btn btn-primary btn-sm" ng-click="postPRDK()">Simpan</button>
+    </div>
+</div>

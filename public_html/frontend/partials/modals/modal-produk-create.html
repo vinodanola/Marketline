@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <div class="col-md-2 col-has-border-right">
+        <h4 class="text-center">Tambah Produk</h4>
+    </div>
+    <div class="col-md-10">
+        <ng-include src=" 'partials/produk/produk-create-step.html' "></ng-include>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row" ng-show="tab==1">
+        <ng-include src="'partials/produk/pencarian-data-produk.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==2">
+        <ng-include src="'partials/produk/struktur-kredit.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==3">
+        <ng-include src="'partials/produk/sumber-dana.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==4">
+        <ng-include src="'partials/produk/lainnya.html'"></ng-include>
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-success btn-sm" ng-click="postPRDC()">Simpan</a>
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalCP()">Tutup</a>
+</div>

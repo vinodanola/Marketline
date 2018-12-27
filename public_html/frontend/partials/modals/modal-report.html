@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h3 class="no-margin text-center">Report {{titleREPORT}} </h3>
+        
+</div>
+<!--<hr class="awesome no-margin"/>-->
+<div class="modal-body">    
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="clearfix"></div>
+            <div class="row">
+<!--                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">           
+                            <center>                               -->
+							
+<iframe onload="afterload()" ng-src="{{trustedUrl}}" class="iframe" ng-hide="!trustedUrl" >
+    
+</iframe>
+<div class="{{hideloading}} loading-report">
+    <span >Loading ...</span>
+</div>
+
+                
+<!--                            </center>
+                            <div class="clearfix"></div>                            
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">    
+    <a class="btn btn-success btn-sm" ng-click="save('.pdf')"><i class="fa fa-file-pdf-o"></i> PDF</a>
+    <!--a class="btn btn-success btn-sm" ng-click="save('.xls')"><i class="fa fa-file-excel-o"></i> XLS</a>
+    <a class="btn btn-success btn-sm" ng-click="save('.csv')"><i class="fa fa-file-text-o"></i> CSV</a>
+    <a class="btn btn-success btn-sm" ng-click="save('.docx')"><i class="fa fa-file-word-o"></i> DOC</a>
+    <a class="btn btn-success btn-sm" ng-click="save('.pptx')"><i class="fa fa-file-powerpoint-o"></i> PPT</a-->
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalRPT()">Tutup</a>
+</div>

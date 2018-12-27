@@ -1,0 +1,40 @@
+<div class="col-md-6 col-has-border-right col-padding-110">
+    <div class="form-group">
+        <label>Bentuk Usaha *</label>
+        <ul class="list-unstyled small">
+            <li ng-repeat="x in $root.MS_BENTUK_USAHA_ID">
+                <input type="checkbox" ng-true-value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-false-value="" ng-model="fdPRD.BENTUK_USAHA[$index]"/> {{x.MS_DESKRIPSI}}
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Tujuan Pembiayaan *</label>
+        <ul class="list-unstyled small">
+            <li ng-repeat="x in $root.MS_TUJUAN_PEMBIAYAAN_ID">
+                <input type="checkbox" ng-true-value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-false-value="" ng-model="fdPRD.TUJUAN_PEMBIAYAAN[$index]" /> {{x.MS_DESKRIPSI}}
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Kategori Pembiayaan *</label>
+        <ul class="list-unstyled small">
+            <li ng-repeat="x in $root.MS_KATEGORI_PEMBIAYAAN_ID">
+                <input type="checkbox" ng-true-value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-false-value="" ng-model="fdPRD.KATEGORI_PEMBIAYAAN[$index]"/> {{x.MS_DESKRIPSI}}
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Sektor Usaha BI *</label>
+        <select class="form-control" ng-model="sektor_usaha_bi" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Sektor Usaha Real *</label>
+        <select class="form-control" ng-model="sektor_usaha_real" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+            <option></option>
+        </select>
+    </div>
+</div>

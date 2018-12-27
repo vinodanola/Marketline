@@ -1,0 +1,21 @@
+<table wt-responsive-table class="table table-hidden-overflow small">
+    <tr class="thead">
+        <th>Dokumen detail</th>
+        <th>#</th>
+    </tr>
+    <tr ng-repeat="x in dokumenList">
+        <td>
+            <h4>{{x.MS_JENIS_DOKUMEN}}</h4>
+            <span>{{x.PR_NOMOR_DOKUMEN}}</span> 
+            <a ng-show="x.PR_PATH_DOKUMEN" href="{{$root.FILE_BASE}}{{x.PR_PATH_DOKUMEN}}" class="" target="_blank" uib-tooltip="{{$root.FILE_BASE}}{{x.PR_PATH_DOKUMEN}}">View</a>
+        </td>
+        <td>
+            <a ng-click="viewDokumen(x.PR_INDIVIDU_DOKUMEN_ID)">View</a>
+            <ng-if ng-if="SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES'">
+                <a ng-click="editDokumenFoto(x.PR_INDIVIDU_DOKUMEN_ID)" menu-alias="M-21">Edit</a>
+                <a ng-click="deleteDokumenFoto(x)" menu-alias="M-27">Delete</a>
+            </ng-if>
+        </td>
+    </tr>
+    
+</table>

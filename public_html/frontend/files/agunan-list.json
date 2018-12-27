@@ -1,0 +1,63 @@
+[
+    {
+        "DB_AGUNAN_ID" : 1,
+        "DB_NO_LPJ" : "7363/ss/353",
+        "MS_JENIS_AGUNAN_ID" : [{ 
+            "MS_PARA_GLOBAL_DETAIL_ID" : 23 , 
+            "MS_DESKRIPSI" : "TANAH DAN BANGUNAN" 
+        }],
+        "MS_STATUS_KEPEMILIKAN_ID" : [{ 
+            "MS_PARA_GLOBAL_DETAIL_ID" : 230 , 
+            "MS_DESKRIPSI" : "ORANG LAIN" 
+        }],
+        "MS_HUBUNGAN_PEMOHON_ID" : [{ 
+            "MS_PARA_GLOBAL_DETAIL_ID" : 115 , 
+            "MS_DESKRIPSI" : "SUAMI" 
+        }],
+        "DB_NAMA_PEMILIK" : "Siti",
+        "MS_BUKTI_KEPEMILIKAN_AGUNAN_ID" : [{ 
+            "MS_PARA_GLOBAL_DETAIL_ID" : 236 , 
+            "MS_DESKRIPSI" : "IMB" 
+        }],
+        "DB_NOMOR_SURAT_TANAH" : "215123515/kkk/we32525",
+        "DB_LOKASI_KELUAR_SURAT_TANAH" : "jakarta",
+        "DB_TGL_KELUAR_SURAT_TANAH" : "1999-12-24",
+        "DB_NO_IMB" : "2395252",
+        "DB_TGL_IMB" : "2000-01-02",
+        "DB_NAMA_IMB" : "Budi",
+        "DB_PERUNTUKAN_IMB" : "jalan jalana",
+        "DB_NO_AJB" : "24325235",
+        "DB_TGL_AJB" : "2000-02-24",
+        "DB_AJB_DIKELUARKAN" : "pemerintah jakarta"
+    },
+    {
+        "DB_AGUNAN_ID" : 2,
+        "DB_NO_LPJ" : "123/aa/231",
+        "MS_JENIS_AGUNAN_ID" : [{ 
+            "MS_PARA_GLOBAL_DETAIL_ID" : 23 , 
+            "MS_DESKRIPSI" : "TANAH DAN BANGUNAN" }],
+        "MS_STATUS_KEPEMILIKAN_ID" : [{ 
+            "MS_PARA_GLOBAL_DETAIL_ID" : 230 , 
+            "MS_DESKRIPSI" : "ORANG LAIN" 
+        }],
+        "MS_HUBUNGAN_PEMOHON_ID" : [{ 
+            "MS_PARA_GLOBAL_DETAIL_ID" : 115 , 
+            "MS_DESKRIPSI" : "SUAMI" 
+        }],
+        "DB_NAMA_PEMILIK" : "ASDF",
+        "MS_BUKTI_KEPEMILIKAN_AGUNAN_ID" : [{ 
+            "MS_PARA_GLOBAL_DETAIL_ID" : 236 , 
+            "MS_DESKRIPSI" : "IMB" 
+        }],
+        "DB_NOMOR_SURAT_TANAH" : "215123515/kkk/we32525",
+        "DB_LOKASI_KELUAR_SURAT_TANAH" : "jakarta",
+        "DB_TGL_KELUAR_SURAT_TANAH" : "1999-12-24",
+        "DB_NO_IMB" : "2395252",
+        "DB_TGL_IMB" : "2000-01-02",
+        "DB_NAMA_IMB" : "asdf",
+        "DB_PERUNTUKAN_IMB" : "jalan asdfdsa",
+        "DB_NO_AJB" : "24325235",
+        "DB_TGL_AJB" : "2000-02-24",
+        "DB_AJB_DIKELUARKAN" : "pemerintah asdfasdfa"
+    }
+]

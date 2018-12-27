@@ -1,0 +1,48 @@
+<div class="modal-header no-padding">
+    <div class="col-md-12 col-no-padding">
+        <ng-include src=" 'partials/survey/agunan-tab.html' "></ng-include>
+        <hr class="awesome no-margin">
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row" ng-show="tab==1">
+        <ng-include src="'partials/survey/agunan-index.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==2">
+        <ng-include src="'partials/survey/tanah-dan-bangunan.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==3">
+        <ng-include src="'partials/survey/ajb.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==4">
+        <ng-include src="'partials/survey/alamat-agunan.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==5">
+        <ng-include src="'partials/survey/keadaan-tanah-dan-status-penghunian.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==6">
+        <ng-include src="'partials/survey/fasilitas.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==7">
+        <ng-include src="'partials/survey/keadaan-bangunan.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==8">
+        <ng-include src="'partials/survey/konstruksi-bangunan.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==9">
+        <ng-include src="'partials/survey/tata-ruang.html'"></ng-include>
+    </div>
+    <div class="row" ng-show="tab==10">
+        <ng-include src="'partials/survey/penilaian-table.html'"></ng-include>
+    </div>
+	<div class="row" ng-show="tab==11">
+        <ng-include src="'partials/survey/kios.html'"></ng-include>
+    </div>
+	<div class="row" ng-show="tab==12">
+        <ng-include src="'partials/survey/keadaan-kios.html'"></ng-include>
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-primary btn-sm" ng-click="postAS()">Simpan</a>
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalAS()">Tutup</a>
+</div>

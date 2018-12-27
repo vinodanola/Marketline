@@ -1,0 +1,47 @@
+<div class="container container-fluid container-first container-first-two-nav page-header page-header-form no-padding">
+    <div class="col-md-12 col-no-padding">
+        <ng-include src=" 'partials/subnav.html' "></ng-include>
+    </div>
+    <div class="col-md-12 col-no-padding">
+        <div class="bx-ph">
+            <h1>Kategori</h1>
+            <ul class="list-inline ph-ac">
+                <li class="box-shadow" ng-controller="modalCtrl as m" ng-click="m.showObjectInfo();" 
+                    ng-init="
+                        modalTemplate='partials/modals/modal-prospek-list.html'; 
+                        modalClass='modal-right fade-right modal-prospek-list'; 
+                        modalController='modalProspekListCtrl'
+                ">
+                    <span class="ion ion-ios-list-outline"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12 col-no-padding">
+        <hr class="awesome no-margin">
+    </div>
+</div>
+<div class="container container-body">
+    <ng-include src="'partials/navbar.html'"></ng-include>
+    
+    <div class="col-md-8 col-md-offset-2">
+        <div class="page-body">
+            <form ng-submit="processFormKategori()">
+                <div class="panel panel-default panel-app">
+                    <div class="panel-body">
+                        <div class="col-md-6 col-md-offset-3">
+                            <ng-include src=" 'partials/kategori-fields.html' "></ng-include>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary btn-lg">
+                                Simpan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

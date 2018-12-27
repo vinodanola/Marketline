@@ -1,0 +1,71 @@
+
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <div class="form-group">
+        <label>Kapasitas Listrik(Watt) *</label>
+        <input type="text" class="form-control" ng-model="fdAS.DB_LISTRIK"/>
+    </div>
+    <div class="form-group">
+        <label>Saluran Telepon *</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" value="1" name="saluranteleponradio" ng-model="fdAS.DB_TELEPON_YN" ng-click="fdAS.DB_TELEPON_YN = 1"/>
+                <label>Ada</label>
+            </li>
+            <li>
+                <input type="radio" value="0" name="saluranteleponradio" ng-model="fdAS.DB_TELEPON_YN" ng-click="fdAS.DB_TELEPON_YN = 0; fdAS.DB_TELEPON = ''"/>
+                <label>Tidak Ada</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group" ng-show="fdAS.DB_TELEPON_YN == 1">
+        <label>Telepon *</label>
+        <input type="text" class="form-control" ng-model="fdAS.DB_TELEPON" restrict="reject" mask="999999999999999"/>
+    </div>
+    <div class="form-group">
+        <label>Saluran Air *</label>
+        <select class="form-control" ng-model="fdAS.MS_AIR_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_AIR_ID">
+            <option></option>
+        </select>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">    
+    <div class="form-group">
+        <label>Tersedia Angkutan Umum *</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" value="1" name="tauradio" ng-model="fdAS.DB_ANGKUTAN_UMUM"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" value="0" name="tauradio" ng-model="fdAS.DB_ANGKUTAN_UMUM"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Tersedia Sekolah *</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" value="1" name="tsradio" ng-model="fdAS.DB_SEKOLAH"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" value="0" name="tsradio" ng-model="fdAS.DB_SEKOLAH"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Tersedia Rumah Sakit *</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" value="1" name="trsradio" ng-model="fdAS.DB_RUMAH_SAKIT"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio"  value="0" name="trsradio" ng-model="fdAS.DB_RUMAH_SAKIT"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+</div>

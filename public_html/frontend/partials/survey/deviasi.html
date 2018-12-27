@@ -1,0 +1,57 @@
+
+<div class="container container-fluid container-first container-first-two-nav page-header page-header-form no-padding">
+<!--    <div class="col-md-12 col-no-padding">
+        <div class="bx-ph">
+            <h1>Faktor Kualitatif</h1>
+        </div>
+    </div>
+    <div class="col-md-12 col-no-padding">
+        <hr class="awesome no-margin">
+    </div>-->
+</div>
+
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="page-body">
+            <div class="panel panel-default panel-app">
+                <div class="panel-heading text-center">
+                    <h4>Deviasi</h4> 
+                </div>
+                <div class="panel-body no-padding">
+                    <ul class="thead thead-action list-inline">
+<!--                        <li>
+                            <input type="text" placeholder="Cari" ng-model="SEARCH_DEVIASI"/>
+                        </li>-->
+                        <li ng-if="SURVEY_LOCK!='YES'" menu-alias="M-115">
+                            <a class="btn btn-success btn-sm" ng-click="modalDV('N');" ng-hide="listDV.length > 0">Tambah</a>
+                        </li>
+                    </ul>
+                    <table wt-responsive-table class="table table-hidden-overflow small">
+						<thead>
+							<tr class="thead">
+								<th>Kategori</th>
+								<th class="col-md-2" >Keterangan</th>
+								<th>#</th>
+							</tr>
+						</thead>
+                        <tbody>
+							<tr ng-repeat="x in listDV">
+								<td>{{x.MS_JENIS_DEVIASI_ID_DESKRIPSI}}</td>
+								<td ng-bind-html="x.SV_KETERANGAN_DEVIASI"></td>
+								<td>
+									<a ng-click="viewDV(x.SV_INDIVIDU_DEVIASI_ID)">View</a>
+									<ng-if ng-if="SURVEY_LOCK!='YES'">
+										&middot;
+										<a ng-click="editDV(x.SV_INDIVIDU_DEVIASI_ID)" menu-alias="M-116">Edit</a>
+										&middot;
+										<a ng-click="deleteDV(x)" menu-alias="M-117">Delete</a>
+									</ng-if>
+								</td>
+							</tr>
+						</tbody>						                       
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

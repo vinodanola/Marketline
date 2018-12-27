@@ -1,0 +1,40 @@
+<div class="col-md-4 col-md-offset-4">
+    <div class="form-group">
+        <label>Bangunan Didirikan Thn</label>
+        <input type="text" class="form-control" ng-model="fdAS.DB_TAHUN_BANGUNAN" restrict="reject" mask="9999"/>
+    </div>
+    <div class="form-group">
+        <label>Renovasi Thn</label>
+        <input type="text" class="form-control" ng-model="fdAS.DB_TAHUN_RENOVASI" restrict="reject" mask="9999"/>
+    </div>
+    <div class="form-group">
+        <label>Luas Bangunan Lt 1</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdAS.DB_LUAS_BANGUNAN" restrict="reject" mask="999999999999999999999999999999999999"/>
+            <span class="input-group-addon">M2</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Jalan Akses*</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" value="0" name="jaradio" ng-model="fdAS.jalan_akses"/>
+                <label>Tersedia</label>
+            </li>
+            <li>
+                <input type="radio" value="1" name="jaradio" ng-model="fdAS.jalan_akses" ng-click="fdAS.DB_LEBAR_JALAN='';"/>
+                <label>Tidak Tersedia</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group" ng-show="fdAS.jalan_akses==0">
+        <label>Jika Ada(Lebar Jalan) *</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdAS.DB_LEBAR_JALAN"/>
+            <span class="input-group-addon">M</span>
+        </div>
+			
+        <label><I>Noted : Input Angka Hanya Bilangan Bulat</I></label>        
+    
+    </div>
+</div>

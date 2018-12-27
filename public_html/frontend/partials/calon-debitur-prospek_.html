@@ -1,0 +1,42 @@
+<ul class="thead thead-action list-inline">
+    <li>
+        <input type="text" placeholder="Cari"/>
+    </li>
+    <li>
+        Page: {{currentPage}} / {{numPages}}
+    </li>
+    <li class="right">
+        <ul uib-pagination total-items="totalItems"
+            ng-model="currentPage"
+            ng-change="pageChanged(currentPage)"
+            max-size="maxSize" 
+            class="pagination-sm" 
+            boundary-links="true" 
+            num-pages="numPages"
+            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+        ></ul>
+    </li>
+</ul>
+<table wt-responsive-table class="table table-hidden-overflow small">
+    <tr class="thead">
+        <th>Prospek Id</th>
+        <th>Kelegkapan Data</th>
+        <th>Status</th>
+        <th>#</th>
+    </tr>
+    <tr ng-repeat="x in prList">
+        <td>
+            <h4>ID# {{x.DB_PROSPEK_ID}}</h4>
+            <span></span>
+        </td>
+        <td>
+            <!--<uib-progressbar max="100" value="x.KELENGKAPAN_DATA.PERCENTASE_FILL_DATA_PROSPEK" type="{{this.t}}" ng-init="x.KELENGKAPAN_DATA.PERCENTASE_FILL_DATA_PROSPEK >= 80 ? this.t='primary' : (x.KELENGKAPAN_DATA.PERCENTASE_FILL_DATA_PROSPEK < 80 || x.KELENGKAPAN_DATA.PERCENTASE_FILL_DATA_PROSPEK >= 60 ? this.t='warning' : this.t='danger')"><span>{{x.KELENGKAPAN_DATA.PERCENTASE_FILL_DATA_PROSPEK}} %</span></uib-progressbar>-->
+            <uib-progressbar max="100" value="x.KELENGKAPAN_DATA.PERCENTASE_FILL_DATA_PROSPEK" type="{{types(x.KELENGKAPAN_DATA.PERCENTASE_FILL_DATA_PROSPEK)}}"><span>{{x.KELENGKAPAN_DATA.PERCENTASE_FILL_DATA_PROSPEK}} %</span></uib-progressbar>
+        </td>
+        <td>xxx</td>
+        <td>
+            <a ui-sref="prospek.identitasindividu.informasipribadi({id : x.DB_PROSPEK_ID})">View</a>
+            <!--<a ng-show="KELENGKAPAN_DATA.PERCENTAGE.TOTAL > 90 && $root.DATA_STATUS_FOR_SUBMIT < 1" ng-click="$root.submitProspek(x.DB_PROSPEK_ID)">Submit</a>-->
+        </td>
+    </tr>
+</table>

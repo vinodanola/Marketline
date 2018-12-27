@@ -1,0 +1,26 @@
+<ul class="thead thead-action list-inline">
+    <li>
+        <label>LPK</label>
+        <select ng-model="fdFAL.MS_LPK_ID" ng-options="x.MS_LPK_ID as (x.MS_LPK_ID +' - '+x.MS_KETERANGAN_COVERAGE) for x in $root.lpk" ng-change="postFAL();">
+            <option></option>
+        </select>
+    </li>
+</ul>
+<table wt-responsive-table class="table table-hidden-overflow small">
+    <tr class="thead">
+        <th>Jenis Asuransi</th>
+        <th>Vendor Asuransi</th>
+        <th>Tarif Premi (%)</th>
+        <th>Taris Premi (Rp)</th>
+        <th>#</th>
+    </tr>
+    <tr ng-repeat="x in listFAL">
+        <td>{{x.MS_LPK_ID}}</td>
+        <td>{{x.MS_DESCRIPTION}}</td>
+        <td>{{x.FDE_ASURANSI_LPK_TARIF_PREMI_PERCENTAGE}}</td>
+        <td>{{x.FDE_ASURANSI_LPK_TARIF_PREMI_RP}}</td>
+        <td>
+            <a ng-click="deleteFAL(x)">Delete</a>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,85 @@
+<div class="col-md-6">
+    <h4>
+        Konstruksi
+        <a class="pull-right" ng-hide="fdBTB.LOCK_KONSTRUKSI == 1" ng-click="addForm({formName : 'formKonstruksi'})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>
+    </h4>
+    <hr>
+    <form ng-repeat="x in formKonstruksi">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Material *</label>
+                <select class="form-control" ng-disabled="fdBTB.LOCK_KONSTRUKSI == 1" ng-model="fdBTB.KONSTRUKSI[x].MATERIAL_ID" ng-options="x.MATERIAL_ID as (x.NAMA_MATERIAL) for x in $root.MATERIAL | filter : {KATEGORI_ID : 1} | unique : 'MATERIAL_ID'" ng-change="">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3"> 
+            <div class="form-group">
+           		<label>Vol *</label>
+             		<div class="input-group">
+             			<input type="text" class="form-control" ng-model="fdBTB.KONSTRUKSI[x].VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_KONSTRUKSI == 1" />
+                		<span class="input-group-addon">% </span>              	
+                	</div>      
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Harga Satuan *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.KONSTRUKSI[x].HARGA" disabled />
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>.</label>
+                <a class="small btn btn-link" ng-hide="fdBTB.LOCK_KONSTRUKSI == 1" ng-click="removeForm({ id : x , formName : 'formKonstruksi', objectName : 'KONSTRUKSI'})"><span class="glyphicon glyphicon-trash" ></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-6">
+    <h4>
+        Basement
+        <a class="pull-right" ng-hide="fdBTB.LOCK_KONSTRUKSI == 1" ng-click="formBasement.push({id: formBasement.length + 1})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>
+    </h4>
+    <hr>
+    <form ng-repeat="x in formBasement">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Material *</label>
+                <select class="form-control"  ng-disabled="fdBTB.LOCK_KONSTRUKSI == 1"  ng-model="fdBTB.BASEMENT[x].MATERIAL_ID" ng-options="x.MATERIAL_ID as (x.NAMA_MATERIAL) for x in $root.MATERIAL | filter : {KATEGORI_ID : 2}  | unique : 'MATERIAL_ID'">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+                	<div class="input-group">
+                		<input type="text" class="form-control" ng-model="fdBTB.BASEMENT[x].VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_KONSTRUKSI == 1" />
+                		<span class="input-group-addon">% </span>
+                	</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Harga Satuan *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.BASEMENT[x].HARGA" disabled/>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>.</label>
+                <a class="small btn btn-link" ng-hide="fdBTB.LOCK_KONSTRUKSI == 1" ng-click="removeForm({ id : x , formName : 'formBasement', objectName : 'BASEMENT'})"><span class="glyphicon glyphicon-trash" ></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-12">
+    <hr>
+</div>
+<div class="col-md-12">
+    <div class="form-group text-center">
+        <button class="btn btn-default btn-sm" ng-click="editKonstruksi()">Edit</button>
+        <button class="btn btn-default btn-sm" ng-click="calculateKonstruksi()">Lanjutkan</button>
+    </div>
+</div>

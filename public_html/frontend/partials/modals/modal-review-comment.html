@@ -1,0 +1,25 @@
+<div class="modal-header">
+    Komentar Gambaran Umum
+</div>
+<div class="modal-body">
+    <div class="col-md-12 col-no-padding">
+        <div class="form-inline">
+            <div class="form-group form-group-lg">
+                <label>Jenis Gambaran Umum</label>
+                <select class="form-control" ng-disabled="REVIEW_LOCK == 'YES'" ng-model="fdRVC.MS_JENIS_GAMBARAN_UMUM_REVIEW" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_GAMBARAN_UMUM_REVIEW">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-no-padding">
+        <div class="form-group">
+            <label></label>
+            <text-angular ng-model="fdRVC.RV_NOTE_KETERANGAN" ta-disabled="REVIEW_LOCK == 'YES'"></text-angular>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <a ng-show="REVIEW_LOCK != 'YES'" class="btn btn-primary btn-sm" ng-click="postRVC()">Simpan</a>
+    <a class="btn btn-default btn-sm" ng-click="closemodalRVC()">Tutup</a>
+</div>

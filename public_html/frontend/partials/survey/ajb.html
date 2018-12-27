@@ -1,0 +1,14 @@
+<div class="col-md-4 col-md-offset-4">
+    <div class="form-group">
+        <label>Nomor AJB/Hibah/akte peralihan lainnya</label>
+        <input type="text" class="form-control" ng-model="fdAS.DB_NO_AJB" restrict="reject" mask="999999999999999999999999999"/>
+    </div>
+    <div class="form-group">
+        <label>Tgl Terbit AJB</label>
+        <md-datepicker md-placeholder="Tanggal Terbit AJB"  md-open-on-focus ng-model="dtAJB" ng-change="fdAS.DB_TGL_AJB = dtAJB.toISOString()"></md-datepicker>
+    </div>
+    <div class="form-group">
+        <label>AJB Dikeluarkan Oleh</label>
+        <input type="text" class="form-control" ng-model="fdAS.DB_AJB_DIKELUARKAN"/>
+    </div>
+</div>

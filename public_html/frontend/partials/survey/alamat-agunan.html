@@ -1,0 +1,76 @@
+
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Alamat *</label>
+        <input type="text" class="form-control" ng-model="fdAS.DB_ALAMAT"/>
+    </div>
+    <div class="form-group">
+        <!--label class="col-md-12 col-no-padding">RT/RW</label-->
+        <label class="col-md-6 col-no-padding-left">RT *</label>
+        <label class="col-md-6 col-no-padding-right">RW</label>
+        <div class="col-md-6 col-no-padding-left">
+            <input type="text" class="form-control" placeholder="RT" ng-model="fdAS.DB_RT" restrict="reject" mask="999" />
+        </div>
+        <div class="col-md-6 col-no-padding-right">
+            <input type="text" class="form-control" placeholder="RW" ng-model="fdAS.DB_RW" restrict="reject" mask="999" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Provinsi *</label>
+        <select class="form-control" ng-model="fdAS.MS_PROVINSI_ID"  ng-options="x.MS_KODE_PROVINSI as (x.MS_PROVINSI) for x in $root.provinsi" ng-change="kb(fdAS.MS_PROVINSI_ID)">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group" ng-show="fdAS.MS_PROVINSI_ID">
+        <label>Kabupaten / Kota *</label>
+        <select class="form-control" ng-model="fdAS.MS_KABKOT_ID" ng-options="x.MS_KODE_KABKOT as (x.MS_KABKOT) for x in $root.kabkot"  ng-change="kc(fdAS.MS_KABKOT_ID)">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group" ng-show="fdAS.MS_KABKOT_ID">
+        <label>Kecamatan *</label>
+        <select class="form-control" ng-model="fdAS.MS_KECAMATAN_ID" ng-options="x.MS_KODE_KECAMATAN as (x.MS_KECAMATAN) for x in $root.kec" ng-change="kl(fdAS.MS_KECAMATAN_ID)">
+            <option></option>
+        </select>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">
+    <div class="form-group" ng-show="fdAS.MS_KECAMATAN_ID">
+        <label>Kelurahan *</label>
+        <select class="form-control" ng-model="fdAS.MS_KELDES_ID" ng-options="x.MS_KODE_KELDES as (x.MS_KELDES) for x in $root.keldes">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Kode Pos *</label>
+        <input type="text" class="form-control" ng-model="fdAS.MS_KODE_POS_ID"/>
+    </div>
+    <div class="form-group">
+        <label>Peruntukan Lokasi *</label>
+        <select class="form-control" ng-model="fdAS.MS_PERUNTUKAN_LOKASI_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PERUNTUKAN_LOKASI_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Jalan Yang Dilalui *</label>
+        <select class="form-control" ng-model="fdAS.MS_JALAN_DILALUI_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JALAN_DILALUI_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Kualifikasi Jalan *</label>
+        <select class="form-control" ng-model="fdAS.MS_KLASIFIKASI_JALAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_KLASIFIKASI_JALAN_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Jarak Agunan Ke Unit *</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdAS.DB_JARAK_AGUNAN"/>
+            <span class="input-group-addon">KM</span>
+        </div>
+    </div>
+	<div class="form-group">
+        <label><I>Noted : Input Angka Hanya Bilangan Bulat</I></label>        
+    </div>
+</div>

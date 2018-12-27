@@ -1,0 +1,49 @@
+
+    <div class="col-md-4 col-md-offset-4">
+        <div class="form-group">
+            <label>Note</label>
+            <p class="small">Data muncul hanya jika calon debitur pernah atau sedang memiliki pembiayaan.</p>
+            <hr>
+        </div>
+        <div class="form-group">
+            <label>ID Debitur</label>
+            <input type="text" class="form-control" placeholder="" ng-model="formDataAplikasi.DB_DEBITUR_ID_SEBELUMNYA" disabled="disabled"/>
+        </div>
+        <div class="form-group">
+            <label>Jenis Fasilitas</label>
+<!--            <select class="form-control" ng-model="formDataAplikasi.jenis_fasilitas" disabled="disabled">
+                <option>Sindikasi</option>
+                <option>Kredit lainnya</option>
+            </select>-->
+            <input type="text" class="form-control" placeholder="" ng-model="formDataAplikasi.JENIS_FASILITAS_SEBELUMNYA" disabled="disabled"/>
+        </div>
+        <div class="form-group">
+            <label>Plafon</label>
+            <input type="text" class="form-control" ui-number-mask="0" placeholder="" ng-model="formDataAplikasi.PLAFOND_SEBELUMNYA" disabled="disabled"/>
+        </div>
+        <div class="form-group">
+            <label>Outstanding(OS)</label>
+            <input type="text" class="form-control" placeholder=""  ng-model="formDataAplikasi.OUTSTANDING_SEBELUMNYA" disabled="disabled"/>
+        </div>
+        <div class="form-group">
+            <label>Kolektibilitas</label>
+            <input type="text" class="form-control" placeholder="" ng-model="formDataAplikasi.KOLEKTIBILITAS_SEBELUMNYA" disabled="disabled"/>
+        </div>		
+		<div class="form-group">
+            <label>Jumlah Pernah Restruktur(3R)</label>
+            <input type="text" class="form-control" placeholder="" ng-model="formDataAplikasi.DB_COUNT_RESTRUKTUR" disabled="disabled"/>
+        </div>		
+		<div class="form-group">
+            <label>BWMP terakhir Restruktur(3R)</label>
+            <input type="text" class="form-control" placeholder="" ng-model="formDataAplikasi.DB_BWMP" disabled="disabled"/>
+        </div>		
+		
+		
+        <div class="form-group form-group-btn-step">
+            <a ui-sref="prospek.aplikasi.datapembiayaan" class="btn btn-primary btn-next">
+                <span class="ion ion-ios-arrow-right"></span>
+            </a>
+        </div>
+		
+		
+    </div>

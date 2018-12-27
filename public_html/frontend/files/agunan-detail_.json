@@ -1,0 +1,163 @@
+[
+    {
+        "INDEX" :
+                    {
+                        "MS_KODE_CABANG" : 12,
+                        "MS_KODE_UNIT" : 21,
+                        "DB_DEBITUR_ID" : 1,
+                        "DB_AGUNAN_ID" : 1,
+                        "DB_NO_LPJ" : "7363/ss/353",
+                        "MS_JENIS_AGUNAN_ID" : { 
+                            "23" : "TANAH DAN BANGUNAN" 
+                        },
+                        "MS_STATUS_KEPEMILIKAN_ID" : { 
+                            "230" : "ORANG LAIN" 
+                        },
+                        "MS_HUBUNGAN_PEMOHON_ID" : { 
+                            "115" : "SUAMI" 
+                        },
+                        "DB_NAMA_PEMILIK" : "Siti",
+                        "MS_BUKTI_KEPEMILIKAN_AGUNAN_ID" : { 
+                            "236" : "IMB" 
+                        },
+                        "DB_NOMOR_SURAT_TANAH" : "215123515/kkk/we32525",
+                        "DB_LOKASI_KELUAR_SURAT_TANAH" : "jakarta",
+                        "DB_TGL_KELUAR_SURAT_TANAH" : "1999-12-24",
+                        "DB_NO_IMB" : "2395252",
+                        "DB_TGL_IMB" : "2000-01-02",
+                        "DB_NAMA_IMB" : "Budi",
+                        "DB_PERUNTUKAN_IMB" : "jalan jalana",
+                        "DB_NO_AJB" : "24325235",
+                        "DB_TGL_AJB" : "2000-02-24",
+                        "DB_AJB_DIKELUARKAN" : "pemerintah jakarta"
+                    },
+        "ALAMAT_AGUNAN" :
+                    {
+                        "DB_ALAMAT" : "setiabudi",
+                        "DB_RT" : "002",
+                        "DB_RW" : "002",
+                        "MS_PROVINSI_ID" : { 
+                            "11" : "ACEH" 
+                        },
+                        "MS_KABKOT_ID" : { 
+                            "1001" : "KAB. ACEH SELATAN" 
+                        },
+                        "MS_KECAMATAN_ID" : { 
+                            "123123" : "TRUMON" 
+                        },
+                        "MS_KELDES_ID" : { 
+                            "23132412346" : "KREDE TRUMON" 
+                        },
+                        "MS_KODE_POS_ID" : { 
+                            "26187" : "ABC" 
+                        },
+                        "MS_LOKASI_ID" : { 
+                            "12" : "PERKAMPUNGAN" 
+                        },
+                        "MS_JALAN_DILALUI_ID" : 22
+                    },
+        "DETAIL_AGUNAN" :
+                    {
+                        "MS_BENTUK_TANAH_ID" : { 
+                            "12" : "PERSEGI PANJANG" 
+                        },
+                        "DB_LUAS_TANAH" : 112,
+                        "MS_KONDISI_PERMUKAAN_ID" : { 
+                             "34" : "MENDATAR" 
+                        },
+                        "MS_PENGGUNAAN_TANAH_ID" : { 
+                             "32" : "RUMAH TINGGAL" 
+                        },
+                        "DB_BANJIR" : { 
+                            "1" : "YA" 
+                        },
+                        "MS_BATAS_UTARA_ID" : { 
+                            "132" : "SAWAH" 
+                        },
+                        "MS_BATAS_SELATAN_ID" : { 
+                             "21" : "JALAN PROVINSI" 
+                        },
+                        "MS_BATAS_BARAT_ID" : { 
+                             "45" : "TANAH KEBUN" 
+                        },
+                        "MS_BATAS_TIMUR_ID" : { 
+                             "345" : "GANG" 
+                        },
+                        "MS_STATUS_TANAH_ID" : { 
+                             "23" : "SPG" 
+                        },
+                        "DB_PENGHUNI" : "saya sendiri",
+                        "DB_DASAR_PENGHUNIAN" : "rumah sendiri",
+                        "DB_WAKTU_SEWA" : 21,
+                        "DB_BIAYA_SEWA" : 2000000,
+                        "DB_LISTRIK" : 1300,
+                        "DB_TELEPON" : "021-2993830",
+                        "MS_AIR_ID" : { 
+                             "23" : "PAM" 
+                        },
+                        "DB_ANGKUTAN_UMUM" : 1,
+                        "DB_SEKOLAH" : 1,
+                        "DB_RUMAH_SAKIT" : 1,
+                        "DB_TAHUN_BANGUNAN" : 2000,
+                        "DB_TAHUN_RENOVASI" : 2010,
+                        "DB_LUAS_BANGUNAN" : 78,
+                        "DB_LEBAR_JALAN" : 12,
+                        "MS_PONDASI_ID" : { 
+                             "231" : "TIANG PANCANG" 
+                        },
+                        "MS_LANTAI_ID" : { 
+                             "12" : "TEGEL" 
+                        },
+                        "MS_DINDING_ID" : { 
+                             "233" : "TEMBOK PERMANEN" 
+                        },
+                        "MS_PLAFON_ID" : { 
+                             "222" : "PVC" 
+                        },
+                        "MS_KUSEN_ID" : { 
+                             "47" : "KAYU" 
+                        },
+                        "MS_ATAP_ID" : { 
+                             "68" : "GENTENG TANAH LIAT" 
+                        },
+                        "MS_PINTU_ID" : { 
+                             "57" : "PINTU BESI" 
+                        },
+                        "MS_JENDELA_ID" : { 
+                             "75" : "KAYU" 
+                        },
+                        "DB_LANTAI_1" : "ruang tamu, dapur",
+                        "DB_LANTAI_2" : "kamar 1, kamar 2",
+                        "DB_LANTAI_3" : ""
+                    },
+        "PENILAIAN_AGUNAN" :
+                    [{
+                        "MS_STATUS_PENILAIAN_ID" : { 
+                             "24" : "INTERNAL" 
+                        },
+                        "DB_TGL_PENILAIAN" : "2017-02-22",
+                        "DB_NAMA_PENILAI" : "hendra",
+                        "DB_JABATAN" : "AOM",
+                        "DB_NILAI_PASAR_1" : 2000000,
+                        "DB_NILAI_PASAR_2" : "",
+                        "DB_NILAI_PASAR_3" : "",
+                        "DB_NILAI_PASAR" : 150000000,
+                        "DB_PERSENTASE_LIKUIDASI" : 30,
+                        "DB_NILAI_LIKUIDASI" : 2000000
+                    }],
+        "DOKUMEN_AGUNAN" : 
+                    [{
+                        "DB_DOKUMEN" : "215123515/kkk/we32525",
+                        "DB_HEADER" : "AG",
+                        "DB_AGUNAN_ID" : 1,
+                        "MS_JENIS_AGUNAN_ID" : { 
+                             "23" : "TANAH DAN BANGUNAN" 
+                        },
+                        "MS_JENIS_DOKUMEN_ID" : { 
+                             "1" : "SERTIFIKAT HAK MILIK" 
+                        },
+                        "PR_NOMOR_DOKUMEN" : "2359/LK/2q35rq23",
+                        "PR_PATH_DOKUMEN" : "http://123.123.123.123/individu/08325265_KTP_21435.jpg"
+                    }]
+    }
+]

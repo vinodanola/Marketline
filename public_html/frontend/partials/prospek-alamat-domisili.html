@@ -1,0 +1,20 @@
+<ng-include src="'partials/prospek-alamat-tab.html'"></ng-include>
+<p class="text-center">
+    <span class="text-uppercase">
+        <b>Domisili</b>
+    </span>
+</p>
+<ng-include ng-controller="identitasIndividuAlamatDomisiliCtrl" src="'partials/prospek-alamat-form.html'"></ng-include>
+<div class="form-group form-group-btn-step">
+    <a ui-sref="identitasindividu.alamat.ktp" class="btn btn-primary btn-prev no-left">
+        <span class="ion ion-ios-arrow-left"></span>
+    </a>
+    <!--
+    <a ui-sref="identitasindividu.alamat.tempatusaha" class="btn btn-primary btn-next no-right">
+        <span class="ion ion-ios-arrow-right"></span>
+    </a>
+    -->
+    <a ui-sref="identitasindividu.statuspekerjaan" class="btn btn-primary btn-next no-right">
+        <span class="ion ion-ios-arrow-right"></span>
+    </a>
+</div>

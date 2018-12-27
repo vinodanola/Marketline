@@ -1,0 +1,50 @@
+<div class="col-md-6 col-md-offset-3">
+<!--    <div class="form-group">
+        <label>Kode Usaha (SID) *</label>
+        <select ng-disabled="(PROSPEK_SUBMITED!=2) ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_KODE_USAHA_SID" ng-options="x.MS_SANDI_SEKTOR_SATU as (x.MS_NAMA_SEKTOR_SATU) for x in $root.sektor_ekonomi">
+            <option></option>
+        </select>
+    </div>-->
+<!--    <div class="form-group">
+        <label>Kode Bidang Usaha *</label>
+        <select ng-disabled="(PROSPEK_SUBMITED!=2) ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_KODE_BIDANG_USAHA" ng-options="x.MS_SANDI_SEKTOR_LIMA as (x.TRACK_DESC) for x in $root.sektor_ekonomi | badan_usaha : formDataIdentitasIndividu.MS_KODE_USAHA_SID ">
+            <option></option>
+        </select>
+    </div>-->
+    <div class="form-group">
+        <label>Kode Bidang Usaha *</label>
+<!--        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_KODE_BIDANG_USAHA" ng-options="x.MS_SANDI_SEKTOR_LIMA as (x.MS_NAMA_SEKTOR_LIMA) for x in $root.lov_bidang_usaha_sid_mis">
+            <option></option>
+        </select>-->
+        <ui-select ng-model="formDataIdentitasIndividu.MS_KODE_BIDANG_USAHA_SELECT" theme="selectize" class="" title="Choose .."  ng-change="formDataIdentitasIndividu.MS_KODE_BIDANG_USAHA = formDataIdentitasIndividu.MS_KODE_BIDANG_USAHA_SELECT.MS_SANDI_SEKTOR_LIMA;">
+            <ui-select-match placeholder="Select or search something in the list...">{{$select.selected.MS_SANDI_SEKTOR_LIMA}} - {{$select.selected.MS_NAMA_SEKTOR_LIMA}}</ui-select-match>
+            <ui-select-choices repeat="x in $root.lov_bidang_usaha_sid_mis | filter: $select.search">
+                <div ng-bind-html="x.MS_SANDI_SEKTOR_LIMA | highlight: $select.search"></div>
+                <small ng-bind-html="x.MS_NAMA_SEKTOR_LIMA | highlight: $select.search"></small>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="form-group">
+        <label>Kode Golongan Debitur (SID) *</label>
+        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_KODE_GOLONGAN_DEBITUR_SID_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.kode_golongan_sid">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Hub Debitur Dengan Bank (SID) *</label>
+        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_HUB_DEB_PNM_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_RELASI_DEB_PNM_SID_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Hub Debitur Dengan Bank *</label>
+        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_HUB_DEB_BANK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_RELASI_DEB_BANK_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group form-group-btn-step">
+        <a ui-sref="prospek.identitasindividu.referensi" class="btn btn-primary btn-prev">
+            <span class="ion ion-ios-arrow-left"></span>
+        </a>
+    </div>
+</div>

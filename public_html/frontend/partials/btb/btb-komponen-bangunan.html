@@ -1,0 +1,375 @@
+<div class="col-md-6">
+    <h4>
+        Rangka Atap
+        <a class="pull-right" ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="addForm({formName : 'formRangkaAtap'})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>
+    </h4>
+    <hr>
+    <form ng-repeat="x in formRangkaAtap">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Material *</label>
+                <select class="form-control"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" ng-model="fdBTB.RANGKA_ATAP[x].MATERIAL_ID" ng-options="x.MATERIAL_ID as (x.NAMA_MATERIAL) for x in $root.MATERIAL | filter : {KATEGORI_ID : 3} | unique : 'MATERIAL_ID'">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="fdBTB.RANGKA_ATAP[x].VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" />
+                        <span class="input-group-addon">% </span>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Harga Satuan *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.RANGKA_ATAP[x].HARGA" disabled/>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>.</label>
+                <a class="small btn btn-link"  ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="removeForm({ id : x , formName : 'formRangkaAtap', objectName : 'RANGKA_ATAP'})"><span class="glyphicon glyphicon-trash" ></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-6">
+    <h4>
+        Penutup Atap
+        <a class="pull-right" ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="addForm({formName : 'formPenutupAtap'})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>
+    </h4>
+    <hr>
+    <form ng-repeat="x in formPenutupAtap">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Material</label>
+                <select class="form-control"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" ng-model="fdBTB.PENUTUP_ATAP[x].MATERIAL" ng-options="y as (y.NAMA_MATERIAL) for y in $root.MATERIAL | filter : {KATEGORI_ID : 4} | unique : 'MATERIAL_ID' track by y.MATERIAL_ID" ng-change="fdBTB.PENUTUP_ATAP[x].MATERIAL_ID = fdBTB.PENUTUP_ATAP[x].MATERIAL.MATERIAL_ID; fdBTB.PENUTUP_ATAP[x].KELAS_MATERIAL = fdBTB.PENUTUP_ATAP[x].MATERIAL.KELAS_MATERIAL; fdBTB.PENUTUP_ATAP[x].KONVERSI = fdBTB.PENUTUP_ATAP[x].MATERIAL.KONVERSI">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="fdBTB.PENUTUP_ATAP[x].VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" />
+                        <span class="input-group-addon">% </span>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Harga Satuan *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.PENUTUP_ATAP[x].HARGA" disabled/>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>.</label>
+                <a class="small btn btn-link"  ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="removeForm({ id : x , formName : 'formPenutupAtap', objectName : 'PENUTUP_ATAP'})"><span class="glyphicon glyphicon-trash" ></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-12">
+    <hr>
+</div>
+<div class="col-md-6">
+    <h4>
+        Dinding - Material Utama
+        <a class="pull-right" ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="addForm({formName : 'formDindingMaterialUtama'})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>
+    </h4>
+    <hr>
+    <form ng-repeat="x in formDindingMaterialUtama">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Material *</label>
+                <select class="form-control"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-model="fdBTB.DINDING_MATERIAL_UTAMA[x].MATERIAL_ID" ng-options="x.MATERIAL_ID as (x.NAMA_MATERIAL) for x in $root.MATERIAL | filter : {KATEGORI_ID : 5, FLAG : 'UTAMA'} | unique : 'MATERIAL_ID'" ng-change="">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">                
+                <label>Vol *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="fdBTB.DINDING_MATERIAL_UTAMA[x].VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" />
+                        <span class="input-group-addon">% </span>
+                     </div>    
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Harga Satuan *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.DINDING_MATERIAL_UTAMA[x].HARGA" disabled/>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>.</label>
+                <a class="small btn btn-link"  ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="removeForm({ id : x , formName : 'formDindingMaterialUtama', objectName : 'DINDING_MATERIAL_UTAMA'})"><span class="glyphicon glyphicon-trash" ></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-6">
+    <h4>
+        Dinding - Material Pendukung
+        <a class="pull-right" ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="addForm({formName : 'formDindingMaterialPendukung'})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>
+    </h4>
+    <hr>
+    <form ng-repeat="x in formDindingMaterialPendukung">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Material *</label>
+                <select class="form-control"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-model="fdBTB.DINDING_MATERIAL_PENDUKUNG[x].MATERIAL_ID" ng-options="x.MATERIAL_ID as (x.NAMA_MATERIAL) for x in $root.MATERIAL | filter : {KATEGORI_ID : 5, FLAG : 'PENDUKUNG'} | unique : 'MATERIAL_ID'" ng-change="">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+                    <div class="input-group">
+                         <input type="text" class="form-control" ng-model="fdBTB.DINDING_MATERIAL_PENDUKUNG[x].VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" />
+                         <span class="input-group-addon">% </span>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Harga Satuan *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.DINDING_MATERIAL_PENDUKUNG[x].HARGA" disabled/>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>.</label>
+                <a class="small btn btn-link"  ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="removeForm({ id : x , formName : 'formDindingMaterialPendukung', objectName : 'DINDING_MATERIAL_PENDUKUNG'})"><span class="glyphicon glyphicon-trash" ></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-12">
+    <hr>
+</div>
+<div class="col-md-6">
+    <h4>
+        Pintu Jendela
+        <a class="pull-right" ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="addForm({formName : 'formPintuJendela'})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>
+    </h4>
+    <hr>
+    <form ng-repeat="x in formPintuJendela">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Material *</label>
+                <select class="form-control"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-model="fdBTB.PINTU_JENDELA[x].MATERIAL" ng-options="y as (y.NAMA_MATERIAL) for y in $root.MATERIAL | filter : {KATEGORI_ID : 6} | unique : 'MATERIAL_ID' track by y.MATERIAL_ID" ng-change="fdBTB.PINTU_JENDELA[x].MATERIAL_ID = fdBTB.PINTU_JENDELA[x].MATERIAL.MATERIAL_ID; fdBTB.PINTU_JENDELA[x].KELAS_MATERIAL = fdBTB.PINTU_JENDELA[x].MATERIAL.KELAS_MATERIAL; fdBTB.PINTU_JENDELA[x].KONVERSI = fdBTB.PINTU_JENDELA[x].MATERIAL.KONVERSI">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="fdBTB.PINTU_JENDELA[x].VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" />
+                        <span class="input-group-addon">% </span>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Harga Satuan *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.PINTU_JENDELA[x].HARGA" disabled/>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>.</label>
+                <a class="small btn btn-link"  ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="removeForm({ id : x , formName : 'formPintuJendela', objectName : 'PINTU_JENDELA'})"><span class="glyphicon glyphicon-trash" ></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-6">
+    <h4>
+        Langit - langit
+        <a class="pull-right" ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="addForm({formName : 'formLangitLangit'})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>
+    </h4>
+    <hr>
+    <form ng-repeat="x in formLangitLangit">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Material *</label>
+                <select class="form-control"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" ng-model="fdBTB.LANGIT_LANGIT[x].MATERIAL" ng-options="y as (y.NAMA_MATERIAL) for y in $root.MATERIAL | filter : {KATEGORI_ID : 7} | unique : 'MATERIAL_ID' track by y.MATERIAL_ID" ng-change="fdBTB.LANGIT_LANGIT[x].MATERIAL_ID = fdBTB.LANGIT_LANGIT[x].MATERIAL.MATERIAL_ID; fdBTB.LANGIT_LANGIT[x].KELAS_MATERIAL = fdBTB.LANGIT_LANGIT[x].MATERIAL.KELAS_MATERIAL; fdBTB.LANGIT_LANGIT[x].KONVERSI = fdBTB.LANGIT_LANGIT[x].MATERIAL.KONVERSI">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="fdBTB.LANGIT_LANGIT[x].VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" />
+                        <span class="input-group-addon">% </span>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Harga Satuan *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.LANGIT_LANGIT[x].HARGA" disabled/>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>.</label>
+                <a class="small btn btn-link"  ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="removeForm({ id : x , formName : 'formLangitLangit', objectName : 'LANGIT_LANGIT'})"><span class="glyphicon glyphicon-trash" ></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-12">
+    <hr>
+</div>
+<div class="col-md-6">
+    <h4>
+        Lantai
+        <a class="pull-right" ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="addForm({formName : 'formLantai'})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>
+    </h4>
+    <hr>
+    <form ng-repeat="x in formLantai">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Material *</label>
+                <select class="form-control"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-model="fdBTB.LANTAI[x].MATERIAL" ng-options="y as (y.NAMA_MATERIAL) for y in $root.MATERIAL | filter : {KATEGORI_ID : 8} | unique : 'MATERIAL_ID' track by y.MATERIAL_ID" ng-change="fdBTB.LANTAI[x].MATERIAL_ID = fdBTB.LANTAI[x].MATERIAL.MATERIAL_ID; fdBTB.LANTAI[x].KELAS_MATERIAL = fdBTB.LANTAI[x].MATERIAL.KELAS_MATERIAL; fdBTB.LANTAI[x].KONVERSI = fdBTB.LANTAI[x].MATERIAL.KONVERSI">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="fdBTB.LANTAI[x].VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" />
+                        <span class="input-group-addon">% </span>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Harga Satuan *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.LANTAI[x].HARGA" disabled/>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>.</label>
+                <a class="small btn btn-link"  ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" ng-click="removeForm({ id : x , formName : 'formLantai', objectName : 'LANTAI'})"><span class="glyphicon glyphicon-trash" ></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-6">
+    <h4>
+        Sanitasi
+        <!--<a class="pull-right" ng-click="addForm({formName : 'formSanitasi'})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>-->
+    </h4>
+    <hr>
+    <form ng-repeat="x in formSanitasi">
+        <div class="col-md-5">
+<!--            <div class="form-group">
+                <label>Material *</label>
+                <select class="form-control" ng-model="fdBTB.SANITASI[x].MATERIAL_ID" ng-options="x.MATERIAL_ID as (x.NAMA_MATERIAL) for x in $root.MATERIAL" ng-change="">
+                    <option></option>
+                </select>
+            </div>-->
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="fdBTB.SANITASI[x].VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" />
+                        <span class="input-group-addon">% </span>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Harga Satuan *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.SANITASI[x].HARGA" disabled/>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>.</label>
+                <a class="small btn btn-link"  ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="removeForm({ id : x , formName : 'formSanitasi', objectName : 'SANITASI'})"><span class="glyphicon glyphicon-trash" ></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-6">
+    <h4>
+        Instalasi Listrik
+        <!--<a class="pull-right" ng-click="addForm({formName : 'formSanitasi'})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>-->
+    </h4>
+    <hr>
+    <form ng-repeat="x in formInstalasiListrik">
+        <div class="col-md-5">
+<!--            <div class="form-group">
+                <label>Material *</label>
+                <select class="form-control" ng-model="fdBTB.SANITASI[x].MATERIAL_ID" ng-options="x.MATERIAL_ID as (x.NAMA_MATERIAL) for x in $root.MATERIAL" ng-change="">
+                    <option></option>
+                </select>
+            </div>-->
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="fdBTB.INSTALASI_LISTRIK[x].VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1" />
+                        <span class="input-group-addon">% </span>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Harga Satuan *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.INSTALASI_LISTRIK[x].HARGA" disabled />
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>.</label>
+                <a class="small btn btn-link"  ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 1"  ng-click="removeForm({ id : x , formName : 'formInstalasiListrik', objectName : 'INSTALASI_LISTRIK'})"><span class="glyphicon glyphicon-trash" ></span></a>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="col-md-12">
+    <hr>
+</div>
+<div class="col-md-12">
+    <div class="form-group text-center">
+        <button class="btn btn-default btn-sm" ng-click="editKomponenBangunan()">Edit</button>
+        <button class="btn btn-default btn-sm" ng-click="calculateKomponenBangunan()">Lanjutkan</button>
+    </div>
+</div>
+<div class="col-md-12">
+    <hr>
+</div>
+<div class="col-md-12" ng-hide="fdBTB.LOCK_KOMPONEN_BANGUNAN == 0">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Nilai Bangunan per m<sup>2</sup></label>
+            <input type="text" class="form-control" ng-model="fdBTB.TOTAL_HARGA_BANGUNAN_PER_METER_PERSEGI" disabled/>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default btn-sm" ng-click="editNilaiBangunanPerMeter()">Edit</button>
+            <button class="btn btn-default btn-sm" ng-click="calculateNilaiBangunanPerMeter()">Lanjutkan</button>
+        </div>
+    </div>
+</div>

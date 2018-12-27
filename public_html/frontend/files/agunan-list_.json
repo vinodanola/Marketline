@@ -1,0 +1,61 @@
+[
+    {
+        "MS_KODE_CABANG" : 12,
+        "MS_KODE_UNIT" : 21,
+        "DB_DEBITUR_ID" : 1,
+        "DB_AGUNAN_ID" : 1,
+        "DB_NO_LPJ" : "7363/ss/353",
+        "MS_JENIS_AGUNAN_ID" : { 
+            "23" : "TANAH DAN BANGUNAN" 
+        },
+        "MS_STATUS_KEPEMILIKAN_ID" : { 
+            "230" : "ORANG LAIN" 
+        },
+        "MS_HUBUNGAN_PEMOHON_ID" : { 
+            "115" : "SUAMI" 
+        },
+        "DB_NAMA_PEMILIK" : "Siti",
+        "MS_BUKTI_KEPEMILIKAN_AGUNAN_ID" : { 
+            "236" : "IMB" 
+        },
+        "DB_NOMOR_SURAT_TANAH" : "215123515/kkk/we32525",
+        "DB_LOKASI_KELUAR_SURAT_TANAH" : "jakarta",
+        "DB_TGL_KELUAR_SURAT_TANAH" : "1999-12-24",
+        "DB_NO_IMB" : "2395252",
+        "DB_TGL_IMB" : "2000-01-02",
+        "DB_NAMA_IMB" : "Budi",
+        "DB_PERUNTUKAN_IMB" : "jalan jalana",
+        "DB_NO_AJB" : "24325235",
+        "DB_TGL_AJB" : "2000-02-24",
+        "DB_AJB_DIKELUARKAN" : "pemerintah jakarta"
+    },
+    {
+        "MS_KODE_CABANG" : 12,
+        "DB_DEBITUR_ID" : 1,
+        "DB_AGUNAN_ID" : 2,
+        "DB_NO_LPJ" : "1111/asda/353",
+        "MS_JENIS_AGUNAN_ID" : { 
+            "23" : "TANAH DAN BANGUNAN" 
+        },
+        "MS_STATUS_KEPEMILIKAN_ID" : { 
+            "230" : "ORANG LAIN" 
+        },
+        "MS_HUBUNGAN_PEMOHON_ID" : { 
+            "115" : "SUAMI" 
+        },
+        "DB_NAMA_PEMILIK" : "Siti",
+        "MS_BUKTI_KEPEMILIKAN_AGUNAN_ID" : { 
+            "236" : "IMB" 
+        },
+        "DB_NOMOR_SURAT_TANAH" : "xs/xsxs/wxse32525",
+        "DB_LOKASI_KELUAR_SURAT_TANAH" : "bandung",
+        "DB_TGL_KELUAR_SURAT_TANAH" : "1999-12-24",
+        "DB_NO_IMB" : "2395252",
+        "DB_TGL_IMB" : "2000-01-02",
+        "DB_NAMA_IMB" : "Boy",
+        "DB_PERUNTUKAN_IMB" : "jalan ABC",
+        "DB_NO_AJB" : "24325235",
+        "DB_TGL_AJB" : "2000-02-24",
+        "DB_AJB_DIKELUARKAN" : "pemerintah jakarta"
+    }
+]

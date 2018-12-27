@@ -1,0 +1,102 @@
+formDataIdentitasIndividu
+=========================
+ktp
+	alamat_detail
+	kabupaten_kota
+	kecamatan
+	kodepos
+	lama_menempati
+	provinsi
+	rt_rw
+	status_tempat
+domisili
+	alamat_detail
+	kabupaten_kota
+	kecamatan
+	kodepos
+	lama_menempati
+	provinsi
+	rt_rw
+	status_tempat
+tempat_usaha
+	alamat_detail
+	kabupaten_kota
+	kecamatan
+	kodepos
+	lama_menempati
+	rt_rw
+	status_lama
+namaibukandung
+namalengkap
+namapanggilan
+nomor_hp
+nomor_telepon
+pekerjaan
+pendidikan_terakhir
+status_pekerjaan
+statusperkawinan
+tanggallahir
+tempatlahir
+agama
+gelar
+
+
+
+formDatakeluarga
+================
+nomor_kartu_keluarga
+upload_kartu_keluarga
+jumlah_anak
+
+
+formDataDetailKeluarga
+=======================
+status_hubungan
+nama_lengkap
+jenis_kelamin
+jenis_identitas
+nomor_identitas
+masa_berlaku
+tempat_lahir
+tanggal_lahir
+nomor_hp
+nomor_telepon
+
+formDataAplikasi
+=================
+
+informasi pembiayaan
+    id_debitur
+    jenis_fasilitas
+    plafon
+    outstanding
+    kolekbilitas
+
+data pembiayaan
+    rencana_plafond
+    jangka_waktu
+    kemampuan_angsuran
+    tujuan_pembiayaan
+
+informasi usaha (subform)
+    jenis_usaha
+    lama_usaha
+    alamat_usaha
+    omset_per_hari
+    nama_usaha
+    jumlah_karyawan
+    no_telepon
+
+formDataAgunan
+==============
+nomor_lpj
+jenis_agunan
+status_kepemilikan
+hubungan_dengan_pemohon
+nama_pemilik
+
+formDataDokumen
+===============
+jenis_dokumen
+nomor_dokumen
+upload_file_dokumen

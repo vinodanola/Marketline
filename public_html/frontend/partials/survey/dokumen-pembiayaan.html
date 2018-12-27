@@ -1,0 +1,76 @@
+<div class="col-md-6 col-padding-110 col-has-border-right" ng-show="SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES'" menu-alias="M-41">
+    <div class="form-group hide">
+        <input type="text" ng-model="fdPDKDP.DB_HEADER_ID" />
+        <input type="text" ng-model="fdPDKDP.DB_HEADER" value="PEMBIAYAAN" />
+    </div>
+	<div class="form-group">
+		<label>Jenis Dokumen *</label>
+		<select class="form-control" ng-model="fdPDKDP.MS_JENIS_DOKUMEN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_dokumen">
+			<option></option>
+			<!--<option ng-repeat="(k,v) in $root.dataMaster.jenis_dokumen" value="{{k}}">{{v}}</option>-->
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Nomor Dokumen *</label>
+		<input type="text" class="form-control" ng-model="fdPDKDP.PR_NOMOR_DOKUMEN"/>
+	</div>
+	<div class="form-group">
+		<label>File (.jpg, .jpeg, .pdf) *</label>
+		<a ng-show="fdPDKDP.PR_PATH_DOKUMEN" href="{{$root.FILE_BASE}}{{fdPDKDP.PR_PATH_DOKUMEN}}" class="pull-right" target="_blank" uib-tooltip="{{$root.FILE_BASE}}{{fdPDKDP.PR_PATH_DOKUMEN}}">View</a>
+		<input type="file" class="form-control"  file-model="fdPDKDP.PR_DOKUMEN" />
+	</div>
+    <!--
+    <div class="form-group">
+        <label>Executive Summary Critical Karakter</label>
+        <textarea class="form-control"></textarea>
+    </div>
+    -->
+    <div class="form-group text-right" menu-alias="M-40">
+        <a class="btn btn-success btn-sm" ng-click="postPDKDP()">Simpan</a>
+        <a class="btn btn-warning btn-sm" ng-click="fdPDKDP = {}">Reset</a>
+    </div>		
+</div>
+<div class=" col-no-padding-right" ng-class="(SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES') ? 'col-md-6' : 'col-md-12'">
+    <table wt-responsive-table class="table table-hidden-overflow small">
+<!--        <ul class="thead thead-action list-inline">
+            <li>
+                <input type="text" placeholder="Cari"/>
+            </li>
+            <li>
+                <select>
+                    <option></option>
+                </select>
+            </li>
+            <li>
+                Page: {{currentPage}} / {{numPages}}
+            </li>
+            <li class="right">
+                <ul uib-pagination total-items="totalItems"
+                    ng-model="currentPage"
+                    ng-change="pageChanged(currentPage)"
+                    max-size="maxSize" 
+                    class="pagination-sm" 
+                    boundary-links="true" 
+                    num-pages="numPages"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                ></ul>
+            </li>
+        </ul>-->
+        <tr class="thead">
+            <th>Detail</th>
+            <th>#</th>
+        </tr>
+        <tr ng-repeat="x in listPDKDP">
+            <td>
+                <h4>{{x.MS_JENIS_DOKUMEN_DESKRIPSI}}</h4>
+                <span>{{x.PR_NOMOR_DOKUMEN}}</span>
+                <p>{{x.PR_PATH_DOKUMEN}}</p>
+            </td>
+            <td>
+                <a ng-click="viewPDKDP(x.PR_INDIVIDU_DOKUMEN_ID)">View</a>
+                <a ng-show="SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES'" ng-click="editPDKDP(x.PR_INDIVIDU_DOKUMEN_ID)" menu-alias="M-41">Edit</a>
+                <a ng-show="SURVEY_LOCK != 'YES' || SURVEY_UNLOCK_DOKUMEN == 'YES'" ng-click="deletePDKDP(x)" menu-alias="M-42">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>

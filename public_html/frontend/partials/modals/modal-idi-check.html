@@ -1,0 +1,46 @@
+<div class="modal-body" ng-controller="modalCheckIdiCtrl as m">
+    <div class="col-md-6 col-mic-left">
+        <a class="pull-left" ng-click="$root.closemcIDI()">
+            <h1><span class="ion ion-ios-arrow-back"></span></h1>
+        </a>
+        <div class="text-center">
+            <ng-show ng-hide="$root.cekidiresultL || $root.cekidiresultL == ''">
+                <div class='uil-ripple-css' style=''><div></div><div></div></div>
+            </ng-show>
+            <ng-show ng-show="$root.cekidiresultL || $root.cekidiresultL == 0">
+                <h1>
+                    <code class="code-dt">
+                        <span >{{$root.cekidiresultL}}<span>
+                    </code>
+                </h1>
+                <span>Data ditemukan</span>
+            </ng-show>
+        </div>
+        <div class="text-center">
+            <h3>Cek IDI Calon Debitur</h3>
+            <ng-show ng-show="$root.btncreate">
+                <p class="h5">Jika tidak ada data yang sesuai buat data baru dengan klik button dibawah !</p>
+                <a class="btn btn-lg btn-success" ng-click="$root.submitFormDataProspekCreate()">
+                    Submit data baru
+                </a>
+            </ng-show>
+        </div>
+    </div>
+    <div class="col-md-6 col-mic-right">
+        <div class="cidi-list-item" ng-repeat="x in cekidiresult">
+            <span class="cli-t">{{x.PR_NAMA_LENGKAP}} <ng-if ng-if="x.IS_3R>=1" class="text-danger">3R</ng-if></span>
+            <!--<span class="cli-p" ng-class="{x.Percentage >= 80 : 'green', x.Percentage < 80 || x.Percentage >= 60 : 'yellow', x.Percentage < 60 : 'red'}">{{x.Percentage}}</span>-->
+            <span class="cli-p" ng-class="x.Percentage >= 80 ? 'blue' : (x.Percentage < 80 && x.Percentage >= 60 ? 'green' : 'red')">{{x.Percentage}} %</span>
+            <ul class="list-inline">
+                <li>
+                    <a ng-click="IDIDetail(x.PR_INDIVIDU_ID)">Detail</a>
+                </li>
+                <li>
+                    <!--<a ui-sref="calondebiturprofile.prospek({id:x.PR_INDIVIDU_ID})" ng-click="$root.closemcIDI()">Gunakan data ini</a>-->
+                    <a ng-if="x.IS_3R<1 || $root.btnGunakanhave3R" ng-click="$root.submitFormDataProspekCreate(x.PR_INDIVIDU_ID); $root.closemcIDI()">Gunakan</a>
+                    <span class="text-danger" ng-if="x.IS_3R>=1 && !$root.btnGunakanhave3R">Data ini tidak bisa digunakan karena berstatus 3R</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>        

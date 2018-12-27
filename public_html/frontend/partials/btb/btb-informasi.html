@@ -1,0 +1,68 @@
+    
+    <div class="col-md-12 col-padding-110">
+        <h4>Informasi Umum</h4>
+        <hr>
+    </div>
+    <div class="col-md-6 col-padding-110">
+        <div class="form-group">
+            <label>Tanggal Penilaian *</label>
+            <md-datepicker md-placeholder="xxx"  md-open-on-focus ng-model="dtTP" ng-change="fdBTB.TANGGAL_PENILAIAN = dtTP.toISOString()" ng-disabled="fdBTB.LOCK_INFORMASI == 1"></md-datepicker>
+        </div>
+        <div class="form-group">
+            <label>Tahun Penilai *</label>
+            <input type="text" class="form-control" ng-model="fdBTB.TAHUN_PENILAIAN" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Index Kemahalan *</label>
+            <input type="text" class="form-control" ng-model="fdBTB.INDEX_KEMAHALAN" disabled/>
+        </div>
+        <div class="form-group">
+            <label>Jenis Bangunan</label>
+            <select class="form-control" ng-model="fdBTB.JENIS_BANGUNAN_ID" ng-options="x.JENIS_BANGUNAN_ID as (x.NAMA_JENIS_BANGUNAN) for x in $root.JENIS_BANGUNAN" ng-disabled="fdBTB.LOCK_INFORMASI == 1">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Tipe Bangunan</label>
+            <select class="form-control" ng-model="fdBTB.TIPE_BANGUNAN" ng-options="x as (x.NAMA_TIPE_BANGUNAN) for x in $root.TIPE_BANGUNAN track by x.TIPE_BANGUNAN_ID" ng-change="fdBTB.TIPE_BANGUNAN_ID = fdBTB.TIPE_BANGUNAN.TIPE_BANGUNAN_ID; fdBTB.TIPE_BANGUNAN_SKOR = fdBTB.TIPE_BANGUNAN.SKOR;" ng-disabled="fdBTB.LOCK_INFORMASI == 1">
+                <option></option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-6 col-padding-110">
+        <div class="form-group">
+            <label>Luas Bangunan *</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="fdBTB.DB_LUAS_BANGUNAN" ui-number-mask="0" ng-disabled="fdBTB.LOCK_INFORMASI == 1"/>
+                <span class="input-group-addon">m<sup>2</sup> </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Jumlah Lantai Bangunan</label>
+<!--            <select class="form-control" ng-model="xxx" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+                <option></option>
+            </select>-->
+            <input type="text" class="form-control" ng-model="fdBTB.JUMLAH_LANTAI_BANGUNAN" ui-number-mask="0" ng-disabled="fdBTB.LOCK_INFORMASI == 1"/>
+        </div>
+        <div class="form-group">
+            <label>Jumlah Lantai Basement</label>
+<!--            <select class="form-control" ng-model="xxx" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+                <option></option>
+            </select>-->
+            <input type="text" class="form-control" ng-model="fdBTB.JUMLAH_LANTAI_BASEMENT" ui-number-mask="0" ng-disabled="fdBTB.LOCK_INFORMASI == 1"/>
+        </div>
+        <div class="form-group">
+            <label>Tahun dibangun / Renov Total</label>
+<!--            <select class="form-control" ng-model="xxx" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+                <option></option>
+            </select>-->
+            <input type="text" class="form-control" ng-model="fdBTB.TAHUN_DIBANGUN" mask="9999" ng-disabled="fdBTB.LOCK_INFORMASI == 1"/>
+        </div>
+    </div>
+    <div class="col-md-12 text-center">
+        <hr>
+        <button class="btn btn-default btn-sm" ng-click="editInformasi()">Edit</button>
+        <button class="btn btn-default btn-sm" ng-click="calculateInformasi()">Lanjutkan</button>
+    </div>
+
+

@@ -1,0 +1,131 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first page-header page-header-form no-padding has-bg-color">
+</div>
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="panel panel-default panel-app">
+            <div class="panel-heading">
+                <div class="row hor-mod">
+                    <div class="col-md-3 col-first text-center">
+                        <h1>Portofolio AOM</h1>
+                    </div>
+                    <div class="col-md-9">
+                        <ul class="thead thead-action list-inline">
+                            <li>
+                                <label class="small">Wilayah</label>
+                                <select placeholder="Wilayah" class="form-control" ng-model="fdPL.MS_WILAYAH_ID" ng-options="x.MS_WILAYAH_ID as (x.MS_WILAYAH) for x in $root.wilayah" ng-change="cb(fdPL.MS_WILAYAH_ID); fdPL.MS_KODE_CABANG=''; fdPL.MS_KODE_UNIT='';" ng-disabled="$storage.SESSION_LOGIN.WILAYAH">
+                                    <option></option>
+                                </select>
+                            </li>
+                            <li ng-show="fdPL.MS_WILAYAH_ID">
+                                <label class="small">Cabang</label>
+                                <select placeholder="Cabang" class="form-control" ng-model="fdPL.MS_KODE_CABANG" ng-options="x.MS_CABANG_KODE as (x.MS_CABANG_DESKRIPSI) for x in $root.cabang" ng-change="un(fdPL.MS_KODE_CABANG); fdPL.MS_KODE_UNIT='';" ng-disabled="$storage.SESSION_LOGIN.CABANG_KODE">
+                                    <option></option>
+                                </select>
+                            </li>
+                            <li ng-show="fdPL.MS_KODE_CABANG">
+                                <label class="small">Unit</label>
+                                <select placeholder="Unit" class="form-control"  ng-model="fdPL.MS_KODE_UNIT" ng-options="x.MS_UNIT_KODE as (x.MS_UNIT_DESKRIPSI) for x in $root.unit" ng-change="getCountAOM()"  ng-disabled="$storage.SESSION_LOGIN.UNIT_KODE">
+                                    <option></option>
+                                </select>
+                            </li>																				
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-heading">
+					
+                <ul class="thead thead-action list-inline">
+                    <li>
+                        <input type="text" placeholder="Cari" ng-model="fdPL.SEARCH"/>
+                    </li>
+                    <li>
+                        <select class="form-control" ng-model="fdPL.LIMIT" ng-options="x as (x) for x in $root.tableItemPerPage">
+                            <option></option>
+                        </select>
+                    </li>
+                    <li>
+                        Page : {{fdPL.PAGE}} / {{fdPL.NUM_PAGES}}
+                    </li>
+                    <li>
+                        Total : {{fdPL.TOTAL_ITEMS}} record(s)
+                    </li>
+                    <li class="right">
+                        <ul uib-pagination 
+                            total-items="fdPL.TOTAL_ITEMS" 
+                            items-per-page= "fdPL.LIMIT"
+                            ng-model="fdPL.PAGE" 
+                            max-size="fdPL.MAX_SIZE"
+                            num-pages="fdPL.NUM_PAGES"
+                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                            boundary-links="true" 
+                            class="pagination-sm"
+                        ></ul>
+                    </li>
+                </ul>		
+				
+				<div class="row hor-mod" ng-show="fdPL.MS_KODE_UNIT">
+					<hr>
+                    <div class="col-md-2 col-first text-center">
+                        <h4>Total NOA</h4>
+						<input type="text" class="text-right" ng-Model="cuPN.total_noa"  ng-disabled="true">
+                    </div>	
+					<div class="col-md-3 col-first text-center">
+                        <h4>Total Plafond</h4>
+						<input type="text" class="text-right" ng-Model="cuPN.total_plafond" ng-disabled="true" ui-number-mask="0">
+                    </div>
+					<div class="col-md-3 col-first text-center">
+                        <h4>Total Outstanding</h4>
+						<input type="text" class="text-right" ng-Model="cuPN.total_os" ng-disabled="true" ui-number-mask="0">
+                    </div>					
+					 <div class="col-md-2 col-first text-center">
+                        <h4>Total PAR (%)</h4>
+						<input type="text" class="text-right" ng-Model="cuPN.par" ng-disabled="true">
+                    </div>
+					 <div class="col-md-2 text-center">
+                        <h4>Total NPL (%)</h4>
+						<input type="text" class="text-right" ng-Model="cuPN.npl" ng-disabled="true">
+                    </div>
+                </div>
+								
+            </div>
+            <div style="z-index: -99"  class="panel-body no-padding">
+                <table wt-responsive-table class="table table-striped small">
+                    <tr class="tr-head">
+                        <th>CABANG</th>
+                        <th>UNIT</th>
+                        <th>NO REKENING DEBITUR</th>								
+                        <th>ID DEBITUR</th>								
+                        <th>NAMA DEBITUR</th>								
+                        <th>PLAFOND</th>								
+                        <th>OUTSTANDING</th>
+                        <th>HARI TUNGGAKAN</th>						
+                        <th>KOL</th>								
+                        <th>STATUS WO</th>						
+                        <th>ANGSURAN</th>
+                        <th>TGL PEMBAYARAN</th>
+                        <!--th>Action</th-->						
+                    </tr>
+                    <tr ng-repeat="x in listDEBITUR ">
+                        <td>{{x.cabang}}</td>
+                        <td>{{x.unit}}</td>
+                        <td>{{x.no_rekening_debitur}}</td>                        				
+                        <td>{{x.debitur_id}}</td>                        				
+                        <td>{{x.nama_debitur}}</td>                        				
+                        <td><input type="text" class="text-right" ng-Model="x.plafond" ng-disabled="true" ui-number-mask="0"></td>                        				
+						<td><input type="text" class="text-right" ng-Model="x.OS" ng-disabled="true" ui-number-mask="0"></td>                        				
+                        <td>{{x.jml_hari1}}</td>                        				
+                        <td>{{x.kolektibilitas}}</td>                        				
+                        <td>{{x.status_wo}}</td>     						
+						<td><input type="text" class="text-right" ng-Model="x.angsuran_bulanan" ng-disabled="true" ui-number-mask="0"></td> 
+                        <td class="text-right">{{x.Tanggal_pembayaran}}</td>                  
+						<!--td class="col-md-1">
+							&nbsp&nbsp
+                            <a ng-click="$root.PROSPEK_ID = x.DB_PROSPEK_ID; modalRPT(x.DB_PROSPEK_ID);">View</a>                        
+                        </td-->
+                    </tr>  
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

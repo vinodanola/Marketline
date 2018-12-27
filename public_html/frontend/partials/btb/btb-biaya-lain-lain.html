@@ -1,0 +1,165 @@
+<div class="col-md-12 ">
+    <h4>
+        Biaya Langsung
+    </h4>
+    <hr>
+    <div class="col-md-6">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Overhead</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+            	<label>Vol *</label>
+	            	<div class="input-group">
+	            		<input type="text" class="form-control" ng-model="fdBTB.BIAYA_LANGSUNG.OVERHEAD.VOL"  ng-disabled="fdBTB.LOCK_BIAYA_LANGSUNG == 1"/>
+	            		<span class="input-group-addon">% </span>
+	            	</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Nilai *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.BIAYA_LANGSUNG.OVERHEAD.NILAI" disabled/>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Fee Konsultan</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+	                <div class="input-group">
+	                	<input type="text" class="form-control" ng-model="fdBTB.BIAYA_LANGSUNG.FEE_KONSULTAN.VOL" ng-disabled="fdBTB.LOCK_BIAYA_LANGSUNG == 1"/>
+	                	<span class="input-group-addon">% </span>
+	                </div>                
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Nilai *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.BIAYA_LANGSUNG.FEE_KONSULTAN.NILAI" disabled/>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Biaya IMB</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+	                <div class="input-group">
+	                	<input type="text" class="form-control" ng-model="fdBTB.BIAYA_LANGSUNG.BIAYA_KONSULTAN.VOL" ng-disabled="fdBTB.LOCK_BIAYA_LANGSUNG == 1"/>
+	                	<span class="input-group-addon">% </span>
+	                </div>                
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Nilai *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.BIAYA_LANGSUNG.BIAYA_KONSULTAN.NILAI" disabled/>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-padding-110">
+        <div class="form-group">
+            <label>Total Biaya Langsung</label>
+            <input type="text" class="form-control " ng-model="fdBTB.TOTAL_BIAYA_LANGSUNG" disabled="disabled"/>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default btn-sm" ng-click="editBiayaLangsung()">Edit</button>
+            <button class="btn btn-default btn-sm" ng-click="calculateBiayaLangsung()">Lanjutkan</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 " ng-hide="fdBTB.LOCK_BIAYA_LANGSUNG == 0">
+    <h4>
+        Biaya Tidak Langsung
+    </h4>
+    <hr>
+    <div class="col-md-6">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>PPN</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+	                <div class="input-group">
+	                	<input type="text" class="form-control" ng-model="fdBTB.BIAYA_TIDAK_LANGSUNG.PPN.VOL" ui-number-mask="0" ng-disabled="fdBTB.LOCK_BIAYA_TIDAK_LANGSUNG == 1"/>
+	                	<span class="input-group-addon">% </span>
+	                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Nilai *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.BIAYA_TIDAK_LANGSUNG.PPN.NILAI" disabled/>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>Biaya konasultasi dll</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+	                <div class="input-group">
+	                	<input type="text" class="form-control" ng-model="fdBTB.BIAYA_TIDAK_LANGSUNG.BIAYA_KONSULTASI.VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_BIAYA_TIDAK_LANGSUNG == 1"/>
+	                	<span class="input-group-addon">% </span>
+	                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Nilai *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.BIAYA_TIDAK_LANGSUNG.BIAYA_KONSULTASI.NILAI" disabled/>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label>IDC</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Vol *</label>
+	                <div class="input-group">
+	                	<input type="text" class="form-control" ng-model="fdBTB.BIAYA_TIDAK_LANGSUNG.IDC.VOL" ui-number-mask="0"  ng-disabled="fdBTB.LOCK_BIAYA_TIDAK_LANGSUNG == 1"/>
+	                	<span class="input-group-addon">% </span>
+	                </div>               
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Nilai *</label>
+                <input type="text" class="form-control" ng-model="fdBTB.BIAYA_TIDAK_LANGSUNG.IDC.NILAI" disabled/>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-padding-110">
+        <div class="form-group">
+            <label>Total Biaya Tidak Langsung</label>
+            <input type="text" class="form-control " ng-model="fdBTB.TOTAL_BIAYA_TIDAK_LANGSUNG" disabled="disabled"/>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default btn-sm" ng-click="editBiayaTidakLangsung()">Edit</button>
+            <button class="btn btn-default btn-sm" ng-click="calculateBiayaTidakLangsung()">Lanjutkan</button>
+        </div>
+    </div>
+</div>
+<!--<div class="col-md-12">
+    <hr>
+</div>
+<div class="col-md-12">
+    <div class="form-group text-center">
+        <button class="btn btn-success btn-sm">Submit</button>
+    </div>
+</div>-->

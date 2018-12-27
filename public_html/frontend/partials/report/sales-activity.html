@@ -1,0 +1,63 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first page-header page-header-form no-padding has-bg-color">
+</div>
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="panel panel-default panel-app">
+            <div class="panel-heading">
+                <div class="row hor-mod">
+                    <div class="col-md-3 col-first text-center">
+                        <h1>Report Sales Activity</h1>
+                    </div>
+                    <div class="col-md-9">
+                        <ul class="thead thead-action list-inline">
+							<!--li>
+                                <label class="small">Tipe Report</label>
+                                <select placeholder="Tipe Report" class="form-control" ng-model="facy.tipe_report">
+                                    <option>AOM</option>
+									<option>UNIT</option>
+									<option>CABANG</option>
+                                </select>
+                            </li-->
+                            <li>
+                                <label class="small">Jenis Report</label>
+								<select placeholder="Jenis Report" class="form-control" ng-model="facy.jenis_report" ">
+                                    <option>Sales Activity Bulanan</option>
+									<option>Plafond Proposal Approval</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label class="small">Jenis Pengajuan</label>
+								<select placeholder="Jenis Pengajuan" class="form-control" ng-model="facy.jenis_pengajuan" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID	 as (x.MS_DESKRIPSI) for x in $root.jns_pembiayaan" ">
+                                    <option></option>
+                                </select>
+                            </li>							
+                            <li>
+                                <md-datepicker ng-model="facy.tglawal" md-placeholder="Tanggal Awal"></md-datepicker>                                                           
+                                <md-datepicker ng-model="facy.tglakhir" md-placeholder="Tanggal Akhir"></md-datepicker>
+                            </li>
+							<li>
+								<a class="btn btn-success btn-sm" ng-click="PreviewSalesActivity(facy.jenis_report,facy.jenis_pengajuan,facy.tglawal,facy.tglakhir,'html')">Preview</a>															
+							</li>						
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--div class="panel-heading">   				
+								
+            </div-->
+				<div style="z-index: -99"  class="panel-body">                
+					<div class="right_col" role="main">
+						<div class="clearfix"></div>
+						<div class="row">
+							<iframe ng-src="{{trustedUrl}}" class="iframe" ng-hide="!trustedUrl" width="100%" height="400px" ></iframe>								
+							<!--iframe src="http://reportserver.pnm.co.id/jasperserver/rest_v2/reports/reports/MIS/SalesActivity/CABANG_SalesActivityBulanan.pdf?NAMA=PSN&END_DATE=2018-12-31&START_DATE=2018-01-01&JENIS_PENGAJUAN=109" class="iframe" width="100%" height="600px" ></iframe-->								
+														
+						</div>
+						<div class="col-md-offset-11" ><a ng-hide="!trustedUrl" class="btn btn-success btn-sm" ng-click="PreviewSalesActivity(facy.jenis_report,facy.jenis_pengajuan,facy.tglawal,facy.tglakhir,'pdf')">Download</a></div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>

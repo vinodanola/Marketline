@@ -1,0 +1,55 @@
+<div class="form-group">
+    <label>Alamat {{$root.addrstype}}</label>
+    <textarea type="text" class="form-control" placeholder="Alamat" ng-model="formDataIdentitasIndividu.domisili.alamat_detail" ></textarea>
+</div>
+<div class="form-group">
+    <label>RT/RW</label>
+    <input type="text" class="form-control" placeholder="RT/RW" ng-model="formDataIdentitasIndividu.domisili.rt_rw" />
+</div>
+<div class="form-group">
+    <label>Provinsi</label>
+    <select class="form-control" ng-model="formDataIdentitasIndividu.domisili.provinsi" ng-change="kb(formDataIdentitasIndividu.domisili.provinsi)">
+        <option ng-repeat="x in $root.provinsi" value="{{x.MS_KODE_PROVINSI}}">{{x.MS_PROVINSI}}</option>
+    </select>
+</div>
+<div class="form-group">
+    <label>Kabupaten / Kota</label>
+    <select class="form-control" ng-model="formDataIdentitasIndividu.domisili.kabupaten_kota" ng-change="kc(formDataIdentitasIndividu.domisili.kabupaten_kota)">
+        <option ng-repeat="x in $root.kabkot" value="{{x.MS_KODE_KABKOT}}">{{x.MS_KABKOT}}</option>
+        <!--<option>Jakarta Barat</option>
+        <option>Jakarta Utara</option>
+        <option>Jakarta Selatan</option>
+        <option>Jakarta Pusat</option>-->
+    </select>
+</div>
+<div class="form-group">
+    <label>Kecamatan</label>
+    <select class="form-control" ng-model="formDataIdentitasIndividu.domisili.kecamatan" ng-change="kl(formDataIdentitasIndividu.domisili.kecamatan)">
+        <option ng-repeat="x in $root.kec" value="{{x.MS_KODE_KECAMATAN}}">{{x.MS_KECAMATAN}}</option>
+        <!--<option>Jatinegara</option>
+        <option>Ciracas</option>-->
+    </select>
+</div>
+<div class="form-group">
+    <label>Kelurahan</label>
+    <select class="form-control" ng-model="formDataIdentitasIndividu.domisili.kelurahan">
+        <option ng-repeat="x in $root.keldes" value="{{x.MS_KODE_KELDES}}">{{x.MS_KELDES}}</option>
+        <!--<option>Jatinegara</option>
+        <option>Ciracas</option>-->
+    </select>
+</div>
+<div class="form-group">
+    <label>Kode Pos</label>
+    <input type="number" class="form-control" placeholder="Kode Pos" ng-model="formDataIdentitasIndividu.domisili.kodepos" />
+</div>
+<div class="form-group">
+    <label>Lama Menempati</label>
+    <input type="number" class="form-control" ng-model="formDataIdentitasIndividu.domisili.lama_menempati" />
+</div>
+<div class="form-group">
+    <label>Status Tempat</label>
+    <select class="form-control" ng-model="formDataIdentitasIndividu.domisili.status_tempat">
+        <option>Milik Pribadi</option>
+        <option>Kontrak</option>
+    </select>
+</div>

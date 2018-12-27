@@ -1,0 +1,56 @@
+<div class="container container-body container-fit">
+    <div class="startflow-background pin-all"></div>
+    <div class="page-header page-header-apps col-md-12">
+        <div class="col-md-3 text-center">
+            <img src="images/logopnm.png" class="image mw100" />
+        </div>
+        <div class="col-md-3 col-md-offset-4">
+<!--            <div class="form-group">
+                <input class="form-control" ng-model="fdAPPS.search" placeholder="Search"/>
+            </div>-->
+        </div>
+    </div>
+    
+    <div class="col-md-4 col-md-offset-1">
+        <h1><font color = "#041e74">MarketLine</font></h1>
+        <h4>PT Permodalan Nasional Madani, <i>(Persero)</i></h4>
+        <div class="img-apps-logo">
+            <img src="../../images/ulamm.png"/>
+        </div>
+        <h5><b>Hubungi Kami,</b></h5>
+        <h6>ITD-Call Center</h6>
+        <h6>Handphone : <font color="#337ab7">+62 811-8865-093</font></h6>
+        <h6>WhatsApp Only :  <a href="https://wa.me/628119322674">+62 811-9322-674</a></h6>
+    </div>
+    <div class="col-md-4 col-md-offset-1">
+<!--        <div class="col-md-6" ng-repeat="x in listAPPS | filter:{name : fdAPPS.search}" >
+            <div class="panel panel-default panel-list-app" ng-click="goURL(x.url)">
+                <div class="panel-body">
+                    <div class="bx">
+                        <span class="icn ion ion-ios-monitor-outline"></span>
+                        <span class="ttl">{{x.name}}</span>
+                        <div class="ifbx animated flip" uib-tooltip="{{x.description}}">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        
+        <div class="list-group list-group-apps">
+            <div class="list-group-item">
+                <h4>Daftar Aplikasi</h4>
+            </div>
+            <div class="list-group-item">
+                <input class="form-control input-sm" ng-model="fdAPPS.search" placeholder="Search"/>
+            </div>
+            <a class="list-group-item" ng-click="goURL(x.url)" ng-repeat="x in listAPPS | filter:{name : fdAPPS.search}">
+                {{x.name}}
+                <p class="no-margin small">{{x.description}}</p>
+            </a>
+            <div class="list-group-item">
+                <small>&copy; PNM 2017 </small>
+            </div>
+        </div>
+    </div>
+</div>

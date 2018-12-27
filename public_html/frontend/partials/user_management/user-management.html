@@ -1,0 +1,29 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first page-header page-header-form no-padding">
+<!--    <div class="col-md-12 col-no-padding">
+        <ng-include src=" 'partials/subnav.html' "></ng-include>
+    </div>-->
+</div>
+
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="page-body">
+            <div class="panel panel-default panel-app">
+                <div class="panel-heading text-center">
+                    <div class="row hor-mod">
+                        <div class="col-md-3 col-first">
+                            <h1>User Management</h1>
+                        </div>
+                        <div class="col-md-9">
+                            <ng-include src="'partials/user_management/user-management-step.html'"></ng-include>
+                        </div> 
+                    </div>
+                </div>
+                <ui-view></ui-view>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

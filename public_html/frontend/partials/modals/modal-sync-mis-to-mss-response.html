@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <span class="h4">Send to MMS</span>
+</div>
+<div class="modal-body">
+    <div class="col-md-12">
+        <h5>{{fdRMTM.RESPONSE_DESC}}</h5>
+        <code class="code-response col-md-12">
+            <ul>
+                <li>
+                    Http Code Status : {{fdRMTM.RESPONSE_STATUS_CODE}}
+                </li>
+                <li>
+                    Sync Debitur
+                    <ul>
+                        <li>Http Code : {{fdRMTM.RESPONSE_SYNC_DEBITUR.Status}}</li>
+                        <li>Status : {{fdRMTM.RESPONSE_SYNC_DEBITUR.Data[0].Status ? fdRMTM.RESPONSE_SYNC_DEBITUR.Data[0].Status : fdRMTM.RESPONSE_SYNC_DEBITUR.Data}}</li>
+                    </ul>
+                </li>
+                <li>
+                    Sync LKKU
+                    <ul>
+                        <li>Http Code : {{fdRMTM.RESPONSE_SYNC_LKKU.Status}}</li>
+                        <li>Status : {{fdRMTM.RESPONSE_SYNC_LKKU.Data[0].Status ? fdRMTM.RESPONSE_SYNC_LKKU.Data[0].Status : fdRMTM.RESPONSE_SYNC_LKKU.Data}}</li>
+                    </ul>
+                </li>
+                <li>
+                    Sync Jaminan
+                    <ul>
+                        <li>Http Code : {{fdRMTM.RESPONSE_SYNC_JAMINAN.Status}}</li>
+                        <li>Status : {{fdRMTM.RESPONSE_SYNC_JAMINAN.Data[0].Status ? fdRMTM.RESPONSE_SYNC_JAMINAN.Data[0].Status : fdRMTM.RESPONSE_SYNC_JAMINAN.Data}}</li>
+                    </ul>
+                </li>
+            </ul>
+        </code>
+    </div>
+</div>
+<div class="modal-footer text-right">
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalRMTM()">Tutup</a>
+</div>

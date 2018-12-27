@@ -1,0 +1,161 @@
+<div class="col-md-6 col-padding-110 col-has-border-right" ng-hide="PROSPEK_SUBMITED == 2" menu-alias="M-17">
+    <div class="form-group">
+        <label>Jenis Alamat *</label> 
+		<select ng-show="jenis_alamat_disable=='YES'" class="form-control" disabled><option>TEMPAT USAHA</option></select>
+        <select class="form-control" ng-model="formDataIdentitasIndividuAlamat.MS_JENIS_ALAMAT_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_alamat2 " ng-show="jenis_alamat_disable!='YES'">
+            <!--<option ng-repeat="x in $root.jns_alamat" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>-->
+        </select>
+
+    </div>
+    <div class="form-group">
+        <label>Alamat *</label>
+        <textarea type="text" class="form-control" placeholder="Alamat" ng-model="formDataIdentitasIndividuAlamat.PR_ALAMAT" ></textarea>
+    </div>
+    <div class="form-group">
+        <!--label class="col-md-12 col-no-padding">RT*/RW</label--> 
+        <label class="col-md-6 col-no-padding-left">RT *</label>
+        <label class="col-md-6 col-no-padding-right">RW</label>
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="RT" ng-model="formDataIdentitasIndividuAlamat.PR_RT" restrict="reject" mask="999" />
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="RW" ng-model="formDataIdentitasIndividuAlamat.PR_RW" restrict="reject" mask="999"  />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Provinsi *</label>
+        <select class="form-control" ng-model="formDataIdentitasIndividuAlamat.MS_PROVINSI_ID"  ng-options="x.MS_KODE_PROVINSI as (x.MS_PROVINSI) for x in $root.provinsi" ng-change="kb(formDataIdentitasIndividuAlamat.MS_PROVINSI_ID)">
+            <!--<option ng-repeat="x in $root.provinsi" value="{{x.MS_KODE_PROVINSI}}">{{x.MS_PROVINSI}}</option>-->
+        </select>
+    </div>
+    <div class="form-group" ng-show="formDataIdentitasIndividuAlamat.MS_PROVINSI_ID">
+        <label>Kabupaten / Kota *</label>
+        <select class="form-control" ng-model="formDataIdentitasIndividuAlamat.MS_KABKOT_ID" ng-options="x.MS_KODE_KABKOT as (x.MS_KABKOT) for x in $root.kabkot"  ng-change="kc(formDataIdentitasIndividuAlamat.MS_KABKOT_ID)">
+            <!--<option ng-repeat="x in $root.kabkot" value="{{x.MS_KODE_KABKOT}}">{{x.MS_KABKOT}}</option>-->
+        </select>
+    </div>
+    <div class="form-group" ng-show="formDataIdentitasIndividuAlamat.MS_KABKOT_ID">
+        <label>Kecamatan *</label>
+        <select class="form-control" ng-model="formDataIdentitasIndividuAlamat.MS_KECAMATAN_ID" ng-options="x.MS_KODE_KECAMATAN as (x.MS_KECAMATAN) for x in $root.kec" ng-change="kl(formDataIdentitasIndividuAlamat.MS_KECAMATAN_ID)">
+            <!--<option ng-repeat="x in $root.kec" value="{{x.MS_KODE_KECAMATAN}}">{{x.MS_KECAMATAN}}</option>-->
+        </select>
+    </div>
+    <div class="form-group" ng-show="formDataIdentitasIndividuAlamat.MS_KECAMATAN_ID">
+        <label>Kelurahan *</label>
+        <select class="form-control" ng-model="formDataIdentitasIndividuAlamat.MS_KELDES_ID" ng-options="x.MS_KODE_KELDES as (x.MS_KELDES) for x in $root.keldes">
+            <!--<option ng-repeat="x in $root.keldes" value="{{x.MS_KODE_KELDES}}">{{x.MS_KELDES}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Kode Pos *</label>
+        <input type="text" restrict="reject" mask="9999999" class="form-control" ng-model="formDataIdentitasIndividuAlamat.MS_KODE_POS_ID" kode-pos />
+    </div>
+    <div class="form-group">
+        <label>Lama Menempati * <b class="label label-primary">total {{formDataIdentitasIndividuAlamat.PR_LAMA_MENEMPATI}} bulan</b></label>
+        <div class="input-group hide">
+            <input type="number" class="form-control" string-to-number ng-model="formDataIdentitasIndividuAlamat.PR_LAMA_MENEMPATI" />
+            <span class="input-group-addon">Bulan</span>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="formDataIdentitasIndividuAlamat.PR_LAMA_MENEMPATI_TAHUN" restrict="reject" mask="999" ng-value="0" />
+                    <span class="input-group-addon">Tahun</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="formDataIdentitasIndividuAlamat.PR_LAMA_MENEMPATI_BULAN" restrict="reject" mask="999" ng-value="0" />
+                    <span class="input-group-addon">Bulan</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Status Tempat *</label>
+        <select class="form-control"  ng-model="formDataIdentitasIndividuAlamat.MS_STATUS_TEMPAT_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.stat_tempat">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Jarak dari unit *</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="formDataIdentitasIndividuAlamat.PR_JARAK_ALAMAT" restrict="reject" mask="999" ng-value="0" />
+            <span class="input-group-addon">KM</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label><i>Noted : Input Angka Hanya Bilangan Bulat</i></label>
+    </div>
+     
+    <div class="form-group" menu-alias="M-3">
+        <a class="btn btn-success btn-sm" ng-click="proccessFormIdentitasIndividuAlamat(); jenis_alamat_disable='NO';">Simpan</a>
+        <a class="btn btn-warning btn-sm"  ng-click="resetAlamat();">Reset</a>
+    </div>
+</div>
+
+<div class="col-no-padding-right" ng-class="PROSPEK_SUBMITED!=2 ? 'col-md-6' : 'col-md-12'">
+    <table wt-responsive-table class="table table-hidden-overflow small">
+<!--        <ul class="thead thead-action list-inline">
+            <li>
+                <input type="text" placeholder="Cari"/>
+            </li>
+            <li>
+                Page: {{currentPage}} / {{numPages}}
+            </li>
+            <li class="right">
+                <ul uib-pagination total-items="totalItems"
+                    ng-model="currentPage"
+                    ng-change="pageChanged(currentPage)"
+                    max-size="maxSize" 
+                    class="pagination-sm" 
+                    boundary-links="true" 
+                    num-pages="numPages"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                ></ul>
+            </li>
+        </ul>-->
+        <tr class="thead">
+            <th>Priority</th>
+            <th>Detail Alamat</th>
+            <th>#</th>
+        </tr>
+        <tr ng-repeat="x in alamatList">
+            <td class="text-center">
+                <h4>
+                    <input type="radio" value="1" name="alamat_utama" ng-model="x.PR_PRIORITY_ALAMAT" ng-click="setAlamatUtama(x.PR_INDIVIDU_ALAMAT_ID)" ng-disabled="$root.DATA_STATUS_FOR_SUBMIT > 1"/>
+                </h4>
+            </td>
+            <td>
+                <h4>{{x.MS_JENIS_ALAMAT}}</h4>
+                <span class="text-lowercase h5">{{x.PR_ALAMAT}} RT {{x.PR_RT}} RW {{x.PR_RW}} {{x.MS_KELDES_DESKRIPSI}} {{x.MS_KECAMATAN_DESKRIPSI}} {{x.MS_KABKOT_DESKRIPSI}} {{x.MS_PROVINSI_DESKRIPSI}} {{x.MS_KODE_POS_ID}}</span>
+                <p>
+                    Lama menempati {{x.PR_LAMA_MENEMPATI}} bulan <br>
+                    Status tempat <span class="text-lowercase">{{x.MS_STATUS_TEMPAT}}</span>
+                </p>				
+				<!--FZL penambahan data belum lengkap 6/4/2018-->
+				<ng-if ng-if="x.PR_RT == NULL || x.MS_KELDES_DESKRIPSI == NULL || x.MS_KECAMATAN_DESKRIPSI == NULL || x.MS_KABKOT_DESKRIPSI == NULL || x.MS_PROVINSI_DESKRIPSI == NULL || x.MS_KODE_POS_ID == NULL  " >			
+					<p style="color:red"><span class="glyphicon glyphicon-exclamation-sign"></span> Data Belum Lengkap</p>
+				</ng-if>
+            </td>			
+            <td>
+                <a ng-click="viewAlamat(x.PR_INDIVIDU_ALAMAT_ID)">View</a>
+                <ng-if ng-if="$root.DATA_STATUS_FOR_SUBMIT < 1">
+                    <a ng-click="editAlamat(x.PR_INDIVIDU_ALAMAT_ID)" menu-alias="M-17">Edit</a>
+                    <a ng-show="x.PR_PRIORITY_ALAMAT != 1" ng-click="deleteAlamat(x)" menu-alias="M-23">Delete</a>
+                </ng-if>
+            </td>			
+        </tr>
+    </table>
+</div>
+
+<div class="form-group form-group-btn-step">
+    <a ui-sref="prospek.identitasindividu.kontak" class="btn btn-primary btn-prev left-mx">
+        <span class="ion ion-ios-arrow-left"></span>
+    </a>
+    <a ui-sref="prospek.identitasindividu.statuspekerjaan" class="btn btn-primary btn-next right-mx">
+        <span class="ion ion-ios-arrow-right"></span>
+    </a>
+</div>

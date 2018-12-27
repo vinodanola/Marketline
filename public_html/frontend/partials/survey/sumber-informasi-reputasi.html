@@ -1,0 +1,81 @@
+<div class="col-md-6 col-padding-110 col-has-border-right" ng-show="SURVEY_LOCK!='YES'" menu-alias="M-38">
+    <div class="form-group">
+        <label>Nama*</label>
+        <input type="text" class="form-control" ng-model="fdPDKSIR.SV_NAMA"/>
+    </div>
+    <div class="form-group">
+        <label>Status Hubungan *</label>
+        <select class="form-control" ng-model="fdPDKSIR.MS_HUBUNGAN_PEMOHON_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_HUBUNGAN_PEMOHON_ID | filter:filterStatusHubungan">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group" ng-show="fdPDKSIR.MS_HUBUNGAN_PEMOHON_ID == 120">
+        <!--label>Hubungan Lainnya (kalau milih orang lain)</label (dirubah oleh TYW)-->
+        <label>Hubungan Lainnya *</label>
+        <input type="text" class="form-control" ng-model="fdPDKSIR.SV_HUBUNGAN_LAIN"/>
+    </div>
+    <div class="form-group">
+        <label>Handphone *</label>
+        <input type="text" class="form-control" ng-model="fdPDKSIR.SV_NO_HP" restrict="reject" mask="999999999999999"/>
+    </div>
+    <div class="form-group">
+        <label>Penilaian Reputasi </label>
+        <select class="form-control" ng-model="fdPDKSIR.MS_REPUTASI_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_REPUTASI_ID">
+            <option></option>
+            <!--<option ng-repeat="(k,v) in $root.dataMaster.penilaian_reputasi" value="{{k}}">{{v}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Keterangan</label>
+        <textarea class="form-control" ng-model="fdPDKSIR.SV_KETERANGAN"></textarea>
+    </div>
+    <div class="form-group text-right" menu-alias="M-37">
+        <a class="btn btn-success btn-sm" ng-click="postPDKSIR()">Simpan</a>
+        <a class="btn btn-warning btn-sm" ng-click="fdPDKSIR = {}">Reset</a>
+    </div>
+</div>
+<div class="" ng-class="SURVEY_LOCK!='YES' ? 'col-md-6' : 'col-md-12'">
+    <table wt-responsive-table class="table table-hidden-overflow small">
+<!--        <ul class="thead thead-action list-inline">
+            <li>
+                <input type="text" placeholder="Cari"/>
+            </li>
+            <li>
+                <select>
+                    <option></option>
+                </select>
+            </li>
+            <li>
+                Page: {{currentPage}} / {{numPages}}
+            </li>
+            <li class="right">
+                <ul uib-pagination total-items="totalItems"
+                    ng-model="currentPage"
+                    ng-change="pageChanged(currentPage)"
+                    max-size="maxSize" 
+                    class="pagination-sm" 
+                    boundary-links="true" 
+                    num-pages="numPages"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                ></ul>
+            </li>
+        </ul>-->
+        <tr class="thead">
+            <th>Detail</th>
+            <th>#</th>
+        </tr>
+        <tr ng-repeat="x in listPDKSIR">						
+            <td>								
+                <h4>{{x.SV_NAMA}}</h4>
+                <p>{{x.SV_KETERANGAN}}</p>
+            </td>
+            <td >
+                <a ng-click="viewPDKSIR(x.SV_INDIVIDU_REPUTASI_ID)">View</a>
+                <a ng-show="SURVEY_LOCK!='YES'" ng-click="editPDKSIR(x.SV_INDIVIDU_REPUTASI_ID)" menu-alias="M-38">Edit</a>
+                <a ng-show="SURVEY_LOCK!='YES'" ng-click="deletePDKSIR(x)" menu-alias="M-39">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<ng-include src="'partials/other/note-sumberinformasireputasi.html'"></ng-include>

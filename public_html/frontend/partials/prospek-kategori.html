@@ -1,0 +1,23 @@
+<div class="form-group">
+    <label>Kode Golongan</label>
+    <select class="form-control" placeholder="Kode Golongan" ng-model="formDataProspek.kodegolongan" >
+        <option>INDIVIDU</option>
+        <option>LEMBAGA</option>
+    </select>
+</div>
+<div class="form-group">
+    <label>Jenis Prospek</label>
+    <select class="form-control" placeholder="Jenis Prospek" ng-model="formDataProspek.jenisprospek" >
+        <option>BARU</option>
+        <option>TOP UP</option>
+        <option>3R</option>
+    </select>
+</div>
+<div class="form-group form-group-btn-step">
+    <a ui-sref="identitasindividu.mandatory" class="btn btn-primary btn-prev">
+        <span class="ion ion-ios-arrow-left"></span>
+    </a>
+    <a ui-sref="identitasindividu.informasipribadi" class="btn btn-primary btn-next">
+        <span class="ion ion-ios-arrow-right"></span>
+    </a>
+</div>

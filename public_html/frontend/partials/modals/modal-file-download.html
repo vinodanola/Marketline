@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h3 class="no-margin text-center">File Proposal Banding</h3>   
+</div>
+<hr class="awesome no-margin"/>
+<div class="modal-body">    
+	<!--ng-repeat ng-repeat="y in FILE_PROPOSAL_BANDING">
+		{{($index > 0) ? '&middot;' : ''}} <a href="{{y}}" target="_blank"> {{($index+1)}} </a>
+	</ng-repeat-->	
+
+	<table wt-responsive-table class="table small">
+            <tr class="thead">
+                <th>Nama File</th>
+                <th>Action</th>
+            </tr>
+            <tr ng-repeat="x in FILE_PROPOSAL_BANDING">
+                <td>{{x}}</td>
+                <td><a href="{{x |  jasperfile}}" target="_blank">Download</a></td>                
+            </tr>
+    </table>
+</div>
+<div class="modal-footer">    
+    <a class="btn btn-default btn-sm col-md-2 col-md-offset-10" ng-click="$root.closemodalFDN()">Tutup</a>
+</div>

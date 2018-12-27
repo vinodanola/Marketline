@@ -1,0 +1,37 @@
+<table wt-responsive-table class="table table-hidden-overflow small">
+    <ul class="thead thead-action list-inline">
+        <li>
+            <input type="text" placeholder="Cari"/>
+        </li>
+        <li>
+            Page: {{currentPage}} / {{numPages}}
+        </li>
+        <li class="right">
+            <ul uib-pagination total-items="totalItems"
+                ng-model="currentPage"
+                ng-change="pageChanged(currentPage)"
+                max-size="maxSize" 
+                class="pagination-sm" 
+                boundary-links="true" 
+                num-pages="numPages"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+            ></ul>
+        </li>
+    </ul>
+    <tr class="thead">
+        <th>Nama</th>
+        <th>Identitas</th>
+        <th>Jenis Usaha</th>
+        <th>Jenis Referensi</th>
+        <th>#</th>
+    </tr>
+    <tr ng-repeat="prospekRow in prospekList">
+        <td>{{prospekRow.id}}</td>
+        <td>{{prospekRow.idsdm}}</td>
+        <td>{{prospekRow.jabatan}}</td>
+        <td>{{prospekRow.nomor_sk}}</td>
+        <td>
+            <a ui-sref="prospekperorang( { id : {{prospekRow.id}} } )">Edit</a>
+        </td>
+    </tr>
+</table>

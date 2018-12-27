@@ -1,0 +1,126 @@
+    <div class="col-md-6 col-has-border-right col-no-padding" ng-if="SURVEY_LOCK!='YES'" menu-alias="M-66">
+        <div class="col-md-12 col-padding-110 ">
+            <div class="form-group">
+                <label>Status Hubungan Keluarga *</label>
+                <select class="form-control" ng-model="fdKDS.MS_STATUS_HUBUNGAN_KELUARGA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.hub_keluarga">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nama lengkap *</label>
+                <input type="text" class="form-control" ng-model="fdKDS.PR_NAMA_LENGKAP" />
+            </div>
+            <div class="form-group has-min-height">
+                <label>Jenis Kelamin *</label>
+                <ul class="list-inline">
+                    <li ng-repeat="x in $root.jns_kelamin">
+                        <input type="radio" name="jeniskelamin" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-model="fdKDS.MS_JENIS_KELAMIN_ID"/>
+                        <label>{{x.MS_DESKRIPSI}}</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <label>Jenis Identitas *</label>
+                <select class="form-control" ng-model="fdKDS.MS_JENIS_IDENTITAS_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_identitas">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nomor Identitas *</label>
+                <input type="text" class="form-control" ng-model="fdKDS.PR_NO_IDENTITAS" restrict="reject" mask="9999999999999999999999999999"/>
+            </div>
+            <div class="form-group">
+                <label>Masa Berlaku *</label>
+                <div class="pull-right">
+                    <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="fdKDS.masa_berlaku_identitas_seumur_hidup"> Seumur hidup
+                </div>
+                <div ng-hide="fdKDS.masa_berlaku_identitas_seumur_hidup==1">
+                    <md-datepicker md-placeholder="Tanggal masa berlaku"  md-open-on-focus ng-model="dtMBI" ng-change="fdKDS.PR_MASA_BERLAKU_IDENTITAS = dtMBI.toISOString()"></md-datepicker>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Tempat Lahir *</label>
+                <input type="text" class="form-control" ng-model="fdKDS.PR_TEMPAT_LAHIR"/>
+            </div>
+            <div class="form-group fg-date">
+                <label>Tanggal Lahir</label>
+                <md-datepicker md-placeholder="Masukkan tanggal lahir"  md-open-on-focus ng-model="dtFDTL" ng-change="fdKDS.PR_TANGGAL_LAHIR = dtFDTL.toISOString()"></md-datepicker>
+            </div>
+            <div class="form-group">
+                <label>Pekerjaan *</label>
+                <select class="form-control" ng-model="fdKDS.MS_PEKERJAAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.pekerjaan">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nomor Handphone</label>
+                <input type="text" string-to-number class="form-control" ng-model="fdKDS.PR_NO_HP" no-hp/>
+            </div>
+            <div class="form-group">
+                <label>Nomor Telepon</label>
+                <input type="text" string-to-number class="form-control" ng-model="fdKDS.PR_NO_TELP" no-hp/>
+            </div>
+            <div class="form-group" menu-alias="M-65">
+                <a class="btn btn-success btn-sm" ng-click="postKDS()">Simpan</a>
+                <a class="btn btn-warning btn-sm" ng-click="resetfdKDS();">Reset</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-no-padding-right" ng-class="SURVEY_LOCK!='YES' ? 'col-md-6' : 'col-md-12'">
+        <table wt-responsive-table class="table small">
+<!--            <ul class="thead thead-action list-inline">
+                <li>
+                    <input type="text" placeholder="Cari"/>
+                </li>
+                <li>
+                    <select>
+                        <option></option>
+                    </select>
+                </li>
+                <li>
+                    Page: {{currentPage}} / {{numPages}}
+                </li>
+                <li class="right">
+                    <ul uib-pagination total-items="totalItems"
+                        ng-model="currentPage"
+                        ng-change="pageChanged(currentPage)"
+                        max-size="maxSize" 
+                        class="pagination-sm" 
+                        boundary-links="true" 
+                        num-pages="numPages"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                    ></ul>
+                </li>
+            </ul>-->
+            <tr class="thead">
+                <th>Identitas</th>
+                <th>#</th>
+            </tr>
+            <tr ng-repeat="x in listKDS">
+                <td>
+                    <h4 class="text-left">{{x.PR_NAMA_LENGKAP}}</h4>
+                    <span>{{x.MS_JENIS_STATUS_HUBUNGAN_KELUARGA}}</span>
+<!--                    <dl class="dl-horizontal">
+                        
+                        <dt>Status Hubungan :</dt><dd>{{x.MS_JENIS_STATUS_HUBUNGAN_KELUARGA}}</dd>
+                        <dt>Jenis Identitas :</dt><dd>{{x.MS_JENIS_IDENTITAS}}</dd>
+                        <dt>No Identitas :</dt><dd>{{x.PR_NO_IDENTITAS}}</dd>
+                        <dt>Masa Berlaku :</dt><dd>{{(x.PR_MASA_BERLAKU_IDENTITAS=="9999-12-31") ? 'SEUMUR HIDUP' : x.PR_MASA_BERLAKU_IDENTITAS}}</dd>
+                        <dt>Jenis Kelamin :</dt><dd>{{x.MS_JENIS_KELAMIN}}</dd>
+                        <dt>Pekerjaan :</dt><dd>{{x.MS_PEKERJAAN}}</dd>
+                        <dt>No HP :</dt><dd>{{x.PR_NO_HP}}</dd>
+                        <dt>No Telepon :</dt><dd>{{x.PR_NO_TELP}}</dd>
+                        <dt>Tanggal Lahir :</dt><dd>{{x.PR_TANGGAL_LAHIR}}</dd>
+                        <dt>Tempat Lahir :</dt><dd>{{x.PR_TEMPAT_LAHIR}}</dd>
+                    </dl>-->
+                </td>
+                <td>
+                    <a ng-click="viewKDS(x.PR_INDIVIDU_KELUARGA_ID)">View</a>
+                    <ng-if ng-if="SURVEY_LOCK!='YES'">
+                        <a ng-click="editKDS(x.PR_INDIVIDU_KELUARGA_ID)" menu-alias="M-66">Edit</a>
+                        <a ng-click="deleteKDS(x)" menu-alias="M-67">Delete</a>
+                    </ng-if>
+                </td>
+            </tr>
+        </table>
+    </div>

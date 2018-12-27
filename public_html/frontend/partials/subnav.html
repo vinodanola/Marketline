@@ -1,0 +1,236 @@
+<div class="bx-subnav">
+    <ul class="nav nav-tabs nav-center subnav">
+        <li>
+            <a ui-sref="calondebiturprofile.prospek({id : $root.DB_PROSPEK_ID})">
+                {{PR_NAMA_PANGGILAN}}
+            </a>
+        </li>
+        <!--
+        <li>
+            <a ui-sref="kategoriprospek">
+                Kategori
+            </a>
+        </li>
+        -->
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+            <a uib-dropdown-toggle>
+                Identitas
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.indentitas.percentage_fill_indentitas.toFixed(0))}}">{{KELENGKAPAN_DATA.indentitas.percentage_fill_indentitas.toFixed(0)}} %</span>
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li>
+                    <a ui-sref="prospek.identitasindividu.informasipribadi({id : DB_PROSPEK_ID})">
+                        Informasi Pribadi
+                        <span class="badge {{types(KELENGKAPAN_DATA.indentitas.percentage_fill_individu.toFixed(0))}}">IDT {{KELENGKAPAN_DATA.indentitas.percentage_fill_individu.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="prospek.identitasindividu.kontak({id : DB_PROSPEK_ID})">
+                        Kontak
+                        <span class="badge {{types(KELENGKAPAN_DATA.indentitas.percentage_fill_kontak.toFixed(0))}}">{{KELENGKAPAN_DATA.indentitas.percentage_fill_kontak.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="prospek.identitasindividu.alamat({id : DB_PROSPEK_ID})">
+                        Alamat
+                        <span class="badge {{types(KELENGKAPAN_DATA.indentitas.percentage_fill_alamat.toFixed(0))}}">{{KELENGKAPAN_DATA.indentitas.percentage_fill_alamat.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="prospek.identitasindividu.statuspekerjaan({id : DB_PROSPEK_ID})">
+                        Status Pekerjaan
+                        <span class="badge {{types(KELENGKAPAN_DATA.indentitas.percentage_fill_individu.toFixed(0))}}">IDT {{KELENGKAPAN_DATA.indentitas.percentage_fill_individu.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="prospek.identitasindividu.pendidikan({id : DB_PROSPEK_ID})">
+                        Pendidikan
+                        <span class="badge {{types(KELENGKAPAN_DATA.indentitas.percentage_fill_individu.toFixed(0))}}">IDT {{KELENGKAPAN_DATA.indentitas.percentage_fill_individu.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="prospek.identitasindividu.referensi({id : DB_PROSPEK_ID})">
+                        Referensi
+                        <span class="badge {{types(KELENGKAPAN_DATA.indentitas.percentage_fill_individu.toFixed(0))}}">IDT {{KELENGKAPAN_DATA.indentitas.percentage_fill_individu.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="prospek.identitasindividu.lainnya({id : DB_PROSPEK_ID})">
+                        Lainnya
+                        <span class="badge {{types(KELENGKAPAN_DATA.indentitas.percentage_fill_individu.toFixed(0))}}">IDT {{KELENGKAPAN_DATA.indentitas.percentage_fill_individu.toFixed(0)}} %</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+            <a uib-dropdown-toggle>
+                Keluarga
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.keluarga.percentage_fill_keluarga.toFixed(0))}}">{{KELENGKAPAN_DATA.keluarga.percentage_fill_keluarga.toFixed(0)}} %</span>
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li>
+                    <a ui-sref="prospek.keluarga.data({id : DB_PROSPEK_ID})">
+                        Data Keluarga
+                        <!--remark FZL span class="badge {{types(KELENGKAPAN_DATA.indentitas.percentage_fill_individu.toFixed(0))}}">IDT {{KELENGKAPAN_DATA.indentitas.percentage_fill_individu.toFixed(0)}} %</span-->
+						<span class="badge {{types(KELENGKAPAN_DATA.keluarga.percentage_fill_data_keluarga.toFixed(0))}}">{{KELENGKAPAN_DATA.keluarga.percentage_fill_data_keluarga.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="prospek.keluarga.detail({id : DB_PROSPEK_ID})">
+                        Detail Keluarga
+                        <!--remark FZL span class="badge {{types(KELENGKAPAN_DATA.keluarga.percentage_fill_keluarga.toFixed(0))}}">{{KELENGKAPAN_DATA.keluarga.percentage_fill_keluarga.toFixed(0)}} %</span-->
+						<span class="badge {{types(KELENGKAPAN_DATA.keluarga.percentage_fill_detail_keluarga.toFixed(0))}}">{{KELENGKAPAN_DATA.keluarga.percentage_fill_detail_keluarga.toFixed(0)}} %</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+            <a uib-dropdown-toggle>
+                Aplikasi
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.aplikasi.percentage_fill_aplikasi.toFixed(0))}}">{{KELENGKAPAN_DATA.aplikasi.percentage_fill_aplikasi.toFixed(0)}} %</span>
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li>
+                    <a ui-sref="prospek.aplikasi.informasipembiayaan({id : DB_PROSPEK_ID})">
+                        Informasi Pembiayaan
+                        <!--remark FZL span class="badge {{types(KELENGKAPAN_DATA.aplikasi.percentage_fill_pembiayaan.toFixed(0))}}">{{KELENGKAPAN_DATA.aplikasi.percentage_fill_pembiayaan.toFixed(0)}} %</span-->
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="prospek.aplikasi.datapembiayaan({id : DB_PROSPEK_ID})">
+                        Data Pembiayaan
+                        <span class="badge {{types(KELENGKAPAN_DATA.aplikasi.percentage_fill_pembiayaan.toFixed(0))}}">{{KELENGKAPAN_DATA.aplikasi.percentage_fill_pembiayaan.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="prospek.aplikasi.informasiusaha({id : DB_PROSPEK_ID})">
+                        Informasi Usaha
+                        <span class="badge {{types(KELENGKAPAN_DATA.aplikasi.percentage_fill_usaha.toFixed(0))}}">{{KELENGKAPAN_DATA.aplikasi.percentage_fill_usaha.toFixed(0)}} %</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="prospek.agunan({id : DB_PROSPEK_ID})">
+                Rencana Agunan
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.agunan.percentage_fill_agunan.toFixed(0))}}">{{KELENGKAPAN_DATA.agunan.percentage_fill_agunan.toFixed(0)}} %</span>
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="prospek.dokumen({id : DB_PROSPEK_ID})">
+                Dokumen
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.dokumen.percentage_fill_dokumen.toFixed(0))}}">{{KELENGKAPAN_DATA.dokumen.percentage_fill_dokumen.toFixed(0)}} %</span>
+            </a>
+        </li>
+		<li ui-sref-active="active"> <!--FZL 6/4/2018-->
+		    <a ui-sref="prospek.penjamin({id : DB_PROSPEK_ID})">
+                Penjamin
+            </a>
+		</li>
+        <li ui-sref-active="active">
+            <a ui-sref="prospek.ceksid({id : DB_PROSPEK_ID})">
+                Cek SLIK
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="prospek.oneobligor({id : DB_PROSPEK_ID})">
+                One Obligor
+            </a>
+        </li>
+    <!--    <li>
+            <a ui-sref="aom({id : DB_PROSPEK_ID})">
+                AOM
+            </a>
+        </li>-->
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+            <a uib-dropdown-toggle>
+                AOM
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.kunjungan.percentage_fill_kunjungan.toFixed(0))}}">{{KELENGKAPAN_DATA.kunjungan.percentage_fill_kunjungan.toFixed(0)}} %</span>
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li>
+                    <a ui-sref="prospek.aom.info({id : DB_PROSPEK_ID})">
+                        Informasi AOM
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="prospek.aom.kunjungan({id : DB_PROSPEK_ID})">
+                        Kunjungan
+                        <span class="badge {{types(KELENGKAPAN_DATA.kunjungan.percentage_fill_kunjungan.toFixed(0))}}">{{KELENGKAPAN_DATA.kunjungan.percentage_fill_kunjungan.toFixed(0)}} %</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>		
+            <a ng-show="PROSPEK_SUBMITED==3">
+                <span class="badge">{{$root.MY_MATH.floor(KELENGKAPAN_DATA.PERCENTASE_FILL_DATA_PROSPEK)}}%</span>
+            </a>
+            <a class="btn-sbm" ng-show="PROSPEK_SUBMITED == 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" menu-alias="M-15"  ng-click="$root.submitProspekToApproval()">
+                Submit
+            </a>
+            <!--a class="btn-sbm" ng-show="PROSPEK_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1 && $storage.SESSION_LOGIN.POSISI_NAMA == 'AOM'" menu-alias="M-15"  ng-click="$root.submitProspekToApproval()">
+                Submited
+            </a-->
+			<a class="text-success" ng-show="PROSPEK_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1 && $storage.SESSION_LOGIN.POSISI_NAMA == 'AOM'" menu-alias="M-15"  ng-click="$root.submitProspekToApproval()">
+                <span class="glyphicon glyphicon-check"></span> Submited
+            </a>
+            <a class="text-success" ng-show="PROSPEK_SUBMITED == 2">
+                <span class="glyphicon glyphicon-check"></span> Approved
+            </a>			
+            <a class="text-success" ng-show="PROSPEK_SUBMITED == 5">
+                <span class="glyphicon glyphicon-check"></span> Rejected
+            </a>
+        </li>
+		
+		
+        <!--li ng-show="PROSPEK_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" menu-alias="M-110" ng-click="$root.submitProspek()">
+            <a class="btn-sbm" >
+                Approve
+            </a>
+        </li>
+		<li ng-show="PROSPEK_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" menu-alias="M-110" ng-click="$root.revisiProspek()">
+            <a class="btn-wrng" >
+                Revisi
+            </a>
+        </li>
+        <li ng-show="PROSPEK_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" menu-alias="M-110" ng-click="$root.rejectProspek()">
+            <a class="btn-dgr" >
+                Reject
+            </a>
+        </li-->
+		
+		<li ng-show="PROSPEK_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" class="dropdown" uib-dropdown on-toggle="toggled(open)">
+            <a class="btn-sbm" uib-dropdown-toggle >
+                Action
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
+                <li ng-show="PROSPEK_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" menu-alias="M-110" ng-click="$root.submitProspek()">
+                    <a class="btn-sbm " >
+                        <span class="glyphicon glyphicon-ok text-success"></span> Approve
+                    </a>
+                </li>
+                <li ng-show="PROSPEK_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" menu-alias="M-110" ng-click="$root.revisiProspek()">
+                    <a class="btn-wrng " >
+                        <span class="glyphicon glyphicon-repeat text-warning"></span> Revisi
+                    </a>
+                </li>
+                <li ng-show="PROSPEK_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" menu-alias="M-110" ng-click="$root.rejectProspek()">
+                    <a class="btn-dgr " >
+                        <span class="glyphicon glyphicon-remove text-danger"></span> Reject
+                    </a>
+                </li>
+            </ul>
+        </li>
+		
+    </ul>
+</div>

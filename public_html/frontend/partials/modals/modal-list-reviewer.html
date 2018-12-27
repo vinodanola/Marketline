@@ -1,0 +1,62 @@
+<div class="modal-header">
+    <h4 class="text-center">Assign to Reviewer</h4>
+</div>
+<hr class="awesome no-margin">
+<div class="modal-body">
+    <div class="panel-heading">
+        
+    </div>
+    <div class="panel-body no-padding">
+        <h4>List Reviewer</h4>
+        <div class="alert alert-danger" ng-show="listBWMP.error">
+            <span >{{listReviewer.error}}</span>
+        </div>
+        <ul class="thead thead-action list-inline">
+            <li>
+                <input type="text" placeholder="Cari" ng-model="fdPLReviewer.SEARCH_REVIEWER"/>
+            </li>
+            <li>
+                <select class="form-control" ng-model="fdPLReviewer.LIMIT" ng-options="x as (x) for x in $root.tableItemPerPage">
+                    <option></option>
+                </select>
+            </li>
+            <li>
+                Page: {{fdPLReviewer.PAGE}} / {{fdPLReviewer.NUM_PAGES}}
+            </li>
+            <li>
+                Total : {{fdPLReviewer.TOTAL_ITEMS}} record(s)
+            </li>
+            <li class="right">
+                <ul uib-pagination 
+                    total-items="fdPLReviewer.TOTAL_ITEMS" 
+                    items-per-page= "fdPLReviewer.LIMIT"
+                    ng-model="fdPLReviewer.PAGE" 
+                    max-size="fdPLReviewer.MAX_SIZE"
+                    num-pages="fdPLReviewer.NUM_PAGES"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                    boundary-links="true" 
+                    class="pagination-sm"
+                    ng-change="pageChanged(fdPLReviewer.PAGE)"
+                ></ul>
+            </li>
+        </ul>
+        <table wt-responsive-table class="table table-striped small">
+            <tr style="background-color: #5da5cb;">
+                <th>Nama</th>
+                <th>Cabang</th>   				
+                <th>Action</th>
+            </tr>
+            <tr ng-repeat="x in listReviewer | filter:fdPLReviewer.SEARCH_REVIEWER | limitTo:(fdPLReviewer.LIMIT):((fdPLReviewer.PAGE*fdPLReviewer.LIMIT)-fdPLReviewer.LIMIT)">
+                <td>{{x.nama}}</td>
+                <td>{{x.deskripsi_cabang}}</td>         
+                <td>
+                    <a ng-hide="x.reviewer_id==$root.REVIEWER_IDSDM" ng-click="postTakeProposal(x);" >Select</a>
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalListReviewer()">Tutup</a>
+</div>

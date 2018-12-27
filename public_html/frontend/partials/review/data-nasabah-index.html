@@ -1,0 +1,113 @@
+<div class="col-md-6 col-has-border-right">
+    <div class="col-md-12">
+        <p class="h4">Tujuan Pinjaman</p>
+        <dl class="dl-horizontal dl-aw">
+            <dd>{{fdRDN.TUJUAN_PINJAMAN}}</dd>
+        </dl>
+    </div>
+    <div class="col-md-12">
+        <p class="h4">Kondisi Tempat Usaha</p>
+        <dl class="dl-horizontal dl-aw">
+            <dt>Bidang Usaha</dt>
+            <dd>{{fdRDN.BIDANG_USAHA}}</dd>
+            <dt>Lama Usaha</dt>
+            <dd>{{fdRDN.LAMA_USAHA}}</dd>
+            <dt>Status Kepemilikan Tempat Usaha</dt>
+            <dd>{{fdRDN.STATUS_KEPEMILIKAN_TEMPAT}}</dd>
+            <dt>Lokasi Tempat Usaha</dt>
+            <dd>{{fdRDN.LOKASI_TEMPAT_USAHA}}</dd>
+            <dt>Jarak dari unit</dt>
+            <dd>{{fdRDN.JARAK_DARI_UNIT}}</dd>
+            <dt>Periode Penjualan</dt>
+            <dd>{{fdRDN.PERIODE_PENJUALAN}}</dd>
+            <dt>Pola Pembayaran Customer</dt>
+            <dd>{{fdRDN.POLA_PEMBAYARAN_CUSTOMER}}</dd>
+            <dt>Periode Pembelian Bahan Baku</dt>
+            <dd>{{fdRDN.PERIODE_PEMBELIAN_BAHAN_BAKU}}</dd>
+            <dt>Pola Pembayaran pada Suplier</dt>
+            <dd>{{fdRDN.POLA_PEMBAYARAN_PADA_SUPLIER}}</dd>
+            <dt>Daftar Negatif List Industri</dt>
+            <dd>{{fdRDN.DAFTAR_NEGATIF_LIST_INDUSTRI}}</dd>
+        </dl>
+    </div>
+    <div class="col-md-12">
+        <p class="h4">Kekayaan yang dimiliki</p>
+        <dl class="dl-horizontal dl-aw">
+            <dd ng-repeat="x in fdRDN.KEKAYAAN_YANG_DIMILIKI">			
+                <span>{{x.MS_DESKRIPSI}}</span>
+            </dd>
+        </dl>
+        <!--dl class="dl-horizontal dl-aw">
+            <dd>{{fdRDN.KEKAYAAN_YANG_DIMILIKI}}</dd>						           
+        </dl-->
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="col-md-12">
+        <p class="h4">Usaha Tambahan Lainnya</p>
+        <ng-repeat ng-repeat="x in fdRDN.USAHA_TAMBAHAN_LAINNYA">
+            <dl class="dl-horizontal dl-aw">
+                <dt>Bidang Usaha</dt>
+                <dd>{{x.SV_USAHA.PR_NAMA_USAHA}}</dd>
+                <dt>Sektor Usaha</dt>
+                <dd>{{x.SV_USAHA.MS_STATUS_TEMPAT_ID_DESKRIPSI}}</dd>
+                <dt>Status Kepemilikan Tempat Usaha</dt>
+                <dd>{{x.SV_USAHA.MS_STATUS_TEMPAT_ID_DESKRIPSI}}</dd>
+                <dt>Jarak dari unit</dt>
+                <dd>{{x.SV_USAHA.SV_JARAK_USAHA_DENGAN_ULAMM}}</dd>
+            </dl>
+        </ng-repeat>
+<!--        <dl class="dl-horizontal">
+            <dt>Bidang Usaha</dt>
+            <dd>{{fdRDN.USAHA_TAMBAHAN_BIDANG_USAHA}}</dd>
+            <dt>Sektor Usaha</dt>
+            <dd>{{fdRDN.USAHA_TAMBAHAN_SEKTOR_USAHA}}</dd>
+            <dt>Status Kepemilikan Tempat Usaha</dt>
+            <dd>{{fdRDN.STATUS_KEPEMILIKAN_TEMPAT_USAHA}}</dd>
+            <dt>Jarak dari unit</dt>
+            <dd>{{fdRDN.JARAK_DARI_UNIT}}</dd>
+        </dl>-->
+    </div>
+    <div class="col-md-12">
+        <p class="h4">Reputasi Calon Debitur</p>
+        <dl class="dl-horizontal dl-aw">
+            <dt>Info negatif/tersangkut perkara hukum</dt>
+            <dd>{{fdRDN.INFO_NEGATIF_TERSANGKUT_PERKARA_HUKUM}}</dd>
+            <dt>Tagihan Utilitas (PLN/PDAM) lancar</dt>
+            <dd>{{fdRDN.TAGIHAN_UTILITAS}}</dd>
+            <dt>Merupakan tokoh masyarakat</dt>			
+            <dd>{{fdRDN.MERUPAKAN_TOKOH_MASYARAKAT_YON}} {{fdRDN.MERUPAKAN_TOKOH_MASYARAKAT_SEBUTKAN}}</dd>
+        </dl>
+    </div>
+    <div class="col-md-12">
+        <p class="h4">Kondisi Agunan/Jaminan</p>
+<!--        <dl class="dl-horizontal">
+            <dt>Jaminan</dt>
+            <dd>{{fdRDN.JAMINAN}}</dd>
+            <dt>Bukti Kepemilikan</dt>
+            <dd>{{fdRDN.BUKTI_KEPEMILIKAN}}</dd>
+            <dt>Status Kepemilikan</dt>
+            <dd>{{fdRDN.STATUS_KEPEMILIKAN}}</dd>
+            <dt>Jarak Jaminan dari Unit</dt>
+            <dd>{{fdRDN.JARAK_JAMINAN_DARI_UNIT}}</dd>
+            <dt>Kondisi Jaminan</dt>
+            <dd>{{fdRDN.KONDISI_JAMINAN}}</dd>
+        </dl>-->
+        <dl class="dl-horizontal dl-aw" ng-repeat="x in fdRDN.KONDISI_AGUNAN_JAMINAN">
+            <dt>Jaminan</dt>
+            <dd>{{x.AGUNAN_INDEX.MS_JENIS_AGUNAN_ID_DESKRIPSI}}</dd>
+            <dt>Bukti Kepemilikan</dt>
+            <dd>{{x.AGUNAN_INDEX.MS_BUKTI_KEPEMILIKAN_AGUNAN_ID_DESKRIPSI}} - {{x.AGUNAN_INDEX.DB_NOMOR_SURAT_TANAH}}</dd>
+            <dt>Status Kepemilikan</dt>
+            <dd>{{x.AGUNAN_INDEX.MS_STATUS_KEPEMILIKAN_ID_DESKRIPSI}}</dd>
+            <dt>Jarak Jaminan dari Unit</dt>
+            <dd>{{x.DETAIL_AGUNAN.DB_JARAK_AGUNAN}}</dd>
+            <dt>Kondisi Jaminan</dt>
+            <dd>{{x.DETAIL_AGUNAN.MS_KONDISI_PERMUKAAN_ID_DESKRIPSI}}</dd>
+        </dl>
+    </div>
+</div>
+
+
+
+

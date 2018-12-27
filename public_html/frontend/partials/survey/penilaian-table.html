@@ -1,0 +1,62 @@
+<ul class="thead thead-action list-inline">
+    <li ng-show="SURVEY_LOCK!='YES'">
+        <a class="btn btn-success btn-sm" ng-click="$root.fdPNL={}; modalPNL($root.AGUNAN_ID_SELECTED); ">Tambah</a>
+    </li>
+<!--    <li>
+        <input type="text" placeholder="Cari"/>
+    </li>
+    <li>
+        <select>
+            <option></option>
+        </select>
+    </li>
+    <li>
+        Page: {{currentPage}} / {{numPages}}
+    </li>
+    <li class="right">
+        <ul uib-pagination total-items="totalItems"
+            ng-model="currentPage"
+            ng-change="pageChanged(currentPage)"
+            max-size="maxSize" 
+            class="pagination-sm" 
+            boundary-links="true" 
+            num-pages="numPages"
+            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+        ></ul>
+    </li>-->
+</ul>
+<table wt-responsive-table class="table table-hidden-overflow small">
+    <tr class="thead">
+		<th>Jenis Penilaian</th>
+        <th>Status Penilaian</th>
+        <th>Tgl Penilaian</th>
+        <th>Nama Penilai</th>
+        <th>Jabatan</th>
+        <th>Nilai Pasar</th>
+        <th>Nilai Likuidasi</th>
+        <th>Penilaian Tanah Id</th>
+        <th>#</th>
+    </tr>
+    <tr ng-repeat="x in listPNL">
+		<td><p ng-show="x.MS_JENIS_PENILAIAN==1134">Tanah</p><p ng-show="x.MS_JENIS_PENILAIAN==1135">Bangunan</p><p ng-show="x.MS_JENIS_PENILAIAN!=1134 && x.MS_JENIS_PENILAIAN!=1135">Lainnnya</p></td>
+        <td>{{x.MS_STATUS_PENILAIAN_ID}}</td>
+        <td>{{x.DB_TGL_PENILAIAN}}</td>
+        <td>{{x.DB_NAMA_PENILAI}}</td>
+        <td>{{x.DB_JABATAN}}</td>
+        <td>Rp. {{x.DB_NILAI_PASAR | number:2}}</td>
+        <td>Rp. {{x.DB_NILAI_LIKUIDASI | number:2}}</td>
+		<td>{{x.DB_NILAI_PARENT}}</td>
+        <td>
+            <a ng-click="viewPNL(x.DB_INDIVIDU_NILAI_AGUNAN_ID)">View</a>
+            <ng-if ng-if="SURVEY_LOCK!='YES'">
+                <a ng-click="editPNL(x.DB_INDIVIDU_NILAI_AGUNAN_ID)">Edit</a>
+                <a ng-click="deletePNL(x)">Delete</a>
+            </ng-if>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="5"><center>Total</center></td>        
+        <td>Rp. {{ TotalPenilaian() | number:2 }}</td>
+        <td colspan="5">Rp. {{ listPNL | sumByColumn: 'DB_NILAI_LIKUIDASI' | number:2}}</td>
+    </tr>
+</table>

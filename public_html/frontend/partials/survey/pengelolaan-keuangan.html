@@ -1,0 +1,70 @@
+<div class="panel-body">
+    <div class="col-md-12 col-no-padding">
+        <h4>
+            Pengelolaan Keuangan
+        </h4>
+<!--        <div class="form-group has-min-height">
+            <label></label>
+            <ul class="list-unstyled">
+                <li ng-repeat="x in $root.MS_PENGELOLAAN_KEUANGAN_ID">
+                    <input type="radio" name="a" ng-model="fdJUS.MS_PENGELOLAAN_KEUANGAN_ID" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}"/> 
+                    {{x.MS_DESKRIPSI}}
+                </li>
+            </ul>
+        </div>-->
+    </div>
+    <div class="col-md-12 col-no-padding">
+        <table wt-responsive-table class="table table-hidden-overflow small">
+            <tr class="thead">
+                <th>Kondisi Pengelolaan Keuangan</th>
+                <th>Ya</th>
+                <th>Tidak</th>
+            </tr>
+            <tr>
+                <td>Ada pembukuan traksaksi usaha *</td>
+                <td><input type="radio" name="pk1" ng-model="fdJUS.SV_PEMBUKUAN_TRANSAKSI" value="1" ng-click="changePembukuanTransaksi(1)"/></td>
+                <td><input type="radio" name="pk1" ng-model="fdJUS.SV_PEMBUKUAN_TRANSAKSI" value="0" ng-click="changePembukuanTransaksi(0)"/></td>
+            </tr>
+            <tr>
+                <td>Ada pemisahan pembukuan pribadi dan usaha *</td>
+                <td><input type="radio" name="pk2" ng-model="fdJUS.SV_PEMISAHAN_PEMBUKUAN" value="1" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0"/></td>
+                <td><input type="radio" name="pk2" ng-model="fdJUS.SV_PEMISAHAN_PEMBUKUAN" value="0" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" ng-checked="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" /></td>
+            </tr>
+            <tr>
+                <td>Ada tanggal transaksi *</td>
+                <td><input type="radio" name="pk3" ng-model="fdJUS.SV_TANGGAL_TRANSAKSI" value="1" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0"/></td>
+                <td><input type="radio" name="pk3" ng-model="fdJUS.SV_TANGGAL_TRANSAKSI" value="0" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" ng-checked="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" /></td>
+            </tr>
+            <tr>
+                <td>Ada catatan penerimaan *</td>
+                <td><input type="radio" name="pk4" ng-model="fdJUS.SV_CATATAN_PENERIMAAN" value="1" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0"/></td>
+                <td><input type="radio" name="pk4" ng-model="fdJUS.SV_CATATAN_PENERIMAAN" value="0" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" ng-checked="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" /></td>
+            </tr>
+            <tr>
+                <td>Ada catatan pengeluaran *</td>
+                <td><input type="radio" name="pk5" ng-model="fdJUS.SV_CATATAN_PENGELUARAN" value="1" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0"/></td>
+                <td><input type="radio" name="pk5" ng-model="fdJUS.SV_CATATAN_PENGELUARAN" value="0" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" ng-checked="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" /></td>
+            </tr>
+            <tr>
+                <td>Ada catatan piutang dan hutang *</td>
+                <td><input type="radio" name="pk6" ng-model="fdJUS.SV_CATATAN_PIUTANG_HUTANG" value="1" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0"/></td>
+                <td><input type="radio" name="pk6" ng-model="fdJUS.SV_CATATAN_PIUTANG_HUTANG" value="0" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" ng-checked="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" /></td>
+            </tr>
+            <tr>
+                <td>Ada catatan persediaan *</td>
+                <td><input type="radio" name="pk7" ng-model="fdJUS.SV_CATATAN_PERSEDIAAN" value="1" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0"/></td>
+                <td><input type="radio" name="pk7" ng-model="fdJUS.SV_CATATAN_PERSEDIAAN" value="0" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" ng-checked="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" /></td>
+            </tr>
+            <tr>
+                <td>Ada catatan laba/rugi *</td>
+                <td><input type="radio" name="pk8" ng-model="fdJUS.SV_CATATAN_LABA_RUGI" value="1" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0"/></td>
+                <td><input type="radio" name="pk8" ng-model="fdJUS.SV_CATATAN_LABA_RUGI" value="0" ng-disabled="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" ng-checked="fdJUS.SV_PEMBUKUAN_TRANSAKSI == 0" /></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!--<div class="panel-footer text-center">
+    <a class="btn btn-primary btn-sm">Simpan</a>
+</div>-->
+

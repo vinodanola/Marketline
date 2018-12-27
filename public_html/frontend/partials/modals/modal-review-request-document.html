@@ -1,0 +1,21 @@
+<div class="modal-header">
+    Permintaan Dokumen
+</div>
+<div class="modal-body">
+<!--    <div class="col-md-10 col-md-offset-1 col-no-padding">
+        <div ng-init="DocForRequest()">
+            <div class="form-group form-group-sm" ng-repeat="x in listDocForRequest" >
+                <input type="checkbox" ng-true-value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-false-value="" ng-model="fdRDCK.MS_JENIS_DOKUMEN_ID[x.MS_PARA_GLOBAL_DETAIL_ID]" />
+                <label>{{x.MS_DESKRIPSI}}</label>
+            </div>
+        </div>
+    </div>-->
+    <div class="col-md-10 col-md-offset-1">
+        <label>Keterangan Permintaan Dokumen</label>
+        <text-angular ta-disabled="(REVIEW != 'YES') ? false : true" ng-model="fdRDCK.KETERANGAN_PERMINTAAN_DOKUMEN"></text-angular>
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-primary btn-sm" ng-click="postRDCK()">Request</a>
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalRD()">Tutup</a>
+</div>

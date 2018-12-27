@@ -1,0 +1,72 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first page-header page-header-form no-padding">
+<!--    <div class="bx-ph">
+        <div class="bxph-left">
+            <h1 class="text-left animated bounceInLeft">
+                <span class="ion ion-document"></span>
+                Create
+            </h1>
+        </div>
+        <div class="bxph-right">
+            <h3 class="text-right animated bounceInRight">
+                <a ui-sref="prospeklist">
+                    <span class="ion ion-ios-list-outline"></span>
+                </a>
+            </h3>
+            <ng-include src=" 'partials/prospek-create-step.html' "></ng-include>
+        </div>
+        <hr class="awesome no-margin"/>
+    </div>-->
+<!--    <div class="col-md-12 col-no-padding">
+        <div class="bx-ph">
+            <h1>Prospek Baru</h1>
+        </div>
+    </div>
+    <div class="col-md-12 col-no-padding">
+        <ng-include src=" 'partials/prospek-create-step.html' "></ng-include>
+        <hr class="awesome no-margin">
+    </div>-->
+        
+</div>
+<div class="container container-body">
+    <div class="col-md-12">
+        <form name="prospekCreateForm" ng-submit="processFormProspekCreate()">
+            <div class="panel panel-default panel-app">
+                <div class="panel-heading text-center">
+                    <div class="row hor-mod">
+                        <div class="col-md-3 col-first">
+                            <h1>Prospek Baru</h1>
+                        </div>
+                        <div class="col-md-9">
+                            <ng-include src=" 'partials/prospek-create-step.html' "></ng-include>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body relative">
+                    <ul ng-show="formValidStatus" class="list-unstyled alert alert-danger animated" ng-class="{false : 'bounceOutUp' , true : 'bounceInDown'}[formValidStatus==true]">
+                        <a class="close" ng-click="formValidStatus=false">
+                            <span class="ion ion-ios-close"></span>
+                        </a>
+                        <li ng-repeat="x in formValidMsg">{{x}}</li>
+                    </ul>
+                    <div class="col-md-12 ui-view"></div>
+                </div>
+                <div class="panel-footer text-center" >
+                    <button type="submit" class="btn btn-primary btn-sm" ng-show="$root.thisState == 'prospekcreate.3'">Submit</button>
+                    <span ng-show="$root.thisState != 'prospekcreate.3'" class="small">Pilih selanjutnya untuk submit <span class="ion ion-arrow-right-c"></span></span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--
+    <div class="col-md-6 col-no-padding">
+        <div class="panel panel-default panel-app panel-wz-ls">
+            <div class="panel-body">
+                <ng-include src="'partials/tabel-calon-debitur.html'"></ng-include>
+            </div>
+        </div>
+    </div>
+    -->
+</div>
+
+

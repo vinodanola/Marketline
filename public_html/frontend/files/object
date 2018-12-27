@@ -1,0 +1,375 @@
+
+[{
+	informasi_survei => 
+		[{
+			index =>	
+				[{
+					rencana_produk,
+					rencana_plafond,
+					jangka_waktu,
+					kemampuan_angsuran,
+					rencana_tujuan_pembiayaan
+				}],
+			alamat =>	
+				[{
+					[{
+						MS_JENIS_ALAMAT_ID,
+						PR_ALAMAT,
+						PR_RT,
+						PR_RW,
+						MS_PROVINSI_ID,
+						MS_KABKOT_ID,
+						MS_KECAMATAN_ID,
+						MS_KELDES_ID,
+						MS_KODE_POS_ID,
+						PR_LAMA_MENEMPATI,
+						MS_STATUS_TEMPAT_ID
+					}]
+				}],
+			kunjungan_usaha =>	
+				[{
+					[{
+						SV_TGL_SURVEY,
+						MS_LOKASI_KUNJUNGAN_ID,
+						SV_NAMA_DITEMUI,
+						MS_HUBUNGAN_PEMOHON_ID,
+						SV_KETERANGAN
+					}]
+				}],
+			AOM =>	
+				[{
+					AOM,
+					lama_bekerja
+				}]
+		}],
+		
+	profil_&_karakter =>	
+		[{
+			informasi_pribadi =>
+				[{
+					usia,
+					kewarganegaraan,
+					pendidikan_terakhir,
+					status_kawin,
+					kerjasama_dari_pemohon,
+					track_rec_pinjaman,
+					bagaimana_calon_debitur_mengenal_ulam,
+					reputasi_pemohon
+				}],
+			sumber_info_reputasi =>
+				[{
+					[{
+						SV_NAMA,
+						MS_HUBUNGAN_PEMOHON_ID,
+						SV_HUBUNGAN_LAIN,
+						SV_NO_HP,
+						MS_REPUTASI_ID,
+						SV_KETERANGAN
+					}]
+				}],
+			dokumen_pembiayaan =>
+				[{
+					[{
+						MS_JENIS_DOKUMEN_ID,
+						PR_NOMOR_DOKUMEN,
+						PR_PATH_DOKUMEN
+					}]
+				}],
+			executive_summary_critical,
+		}],
+		
+	kapasitas_usaha =>	
+		[{
+			index =>
+				[{
+					pekerjaan,
+					harta_benda_yang_dimiliki,
+					lama_bekerja,
+					jenis_rekening,
+					tahun_rekening
+				}],
+			aktivitas_rekening_bank =>
+				[{
+					[{
+						SV_BULAN_KE,
+						MS_BULAN_ID,
+						SV_KREDIT_RIBUAN,
+						SV_FREQ_KREDIT,
+						SV_DEBIT_RIBUAN,
+						SV_FREQ_DEBIT
+					}]
+				}]
+		}],
+	
+	usaha =>
+		[{
+			header_usaha =>
+				[{
+					PR_PRIORITY_USAHA,
+					MS_JENIS_USAHA_ID,
+					PR_LAMA_USAHA,
+					PR_INDIVIDU_ALAMAT_ID,
+					PR_NO_TELP_USAHA,
+					PR_OMSET_HARIAN,
+					PR_NAMA_USAHA,
+					PR_JUMLAH_KARYAWAN
+				}],
+			detail_usaha =>
+				[{
+					MS_BENTUK_USAHA_ID,
+					MS_JENIS_BADAN_USAHA_ID,
+					MS_STATUS_TEMPAT_ID,
+					MS_KEGIATAN_USAHA_ID,
+					MS_KONDISI_TEMPAT_USAHA_ID,
+					MS_AKSES_KENDARAAN_ID,
+					MS_PRODUK_DITAWARKAN_ID,
+					SV_KETERANGAN_PRODUK,
+					SV_JARAK_USAHA_DENGAN_ULAMM,
+					SV_SURAT_KETERANGAN_USAHA,
+					MS_KETERSEDIAAN_BAHAN_BAKU_ID,
+					MS_JML_PEMASOK_ID,
+					MS_PERSAINGAN_USAHA_ID,
+					MS_KONDISI_SEKTOR_USAHA_ID,
+					SV_PANGSA_PASAR,
+					MS_LOKASI_USAHA_ID,
+					MS_PERIODE_PENJUALAN_ID,
+					MS_POLA_PEMBAYARAN_ID,
+					MS_POLA_PEMBELIAN_ID,
+					MS_POLA_PEMBAYARAN_SUPPLIER_ID,
+					MS_PENGELOLAAN_KEUANGAN_ID
+				}],
+			alamat_usaha =>
+				[{
+					MS_JENIS_ALAMAT_ID,
+					PR_ALAMAT,
+					PR_RT,
+					PR_RW,
+					MS_PROVINSI_ID,
+					MS_KABKOT_ID,
+					MS_KECAMATAN_ID,
+					MS_KELDES_ID,
+					MS_KODE_POS_ID,
+					PR_LAMA_MENEMPATI,
+					MS_STATUS_TEMPAT_ID
+				}]
+		}],
+		
+	keuangan =>
+		[{	
+			index =>
+				[{
+					omset_per_bulan,
+					harga_pokok_penjualan_per_produksi,
+					biaya_tenaga_kerja_per_bulan,
+					biaya_sewa_tempat_per_bulan,
+					biaya_sewa_lainnya_per_bulan,
+					biaya_listrik_air_telp_per_bulan,
+					biaya_lainnya_per_bulan,
+					usaha_lainnya,
+					nama_usaha_lainnya,
+					penghasilan_bersih_usaha_lain1_per_bulan,
+					penghasilan_bersih_usaha_lain2_per_bulan,
+					penghasilan_lain,
+					gaji_per_bulan,
+					gaji_pasangan_per_bulan,
+					biaya_rumah_tangga_pasangan_per_orang_per_bulan,
+					biaya_rumah_tangga_anak_per_orang_per_bulan,
+					biaya_rumah_tangga_tanggungan_per_orang_per_bulan
+				}],
+			data_pinjaman =>
+				[{
+					produk,
+					tenor,
+					plafond,
+					program,
+					bunga_%_per_bulan,
+					angsuran_rata_rata_per_bulan,
+					tujuan_pembiayaan
+				}],
+			rincian_pinjaman =>
+				[{
+					[{
+						nama_bank,
+						plafond,
+						baki_debet,
+						angsuran,
+						keterangan,
+						jatuh_tempo,
+						kolektibilitas
+					}]
+				}]
+		}],
+		
+	kebutuhan_modal_kerja =>
+		[{
+			index => 
+				[{
+					posisi_bulan_terakhir,
+					persediaan_dagang,
+					persediaan_lainnya,
+					piutang_dagang,
+					piutang_lainnya,
+					utang_dagang,
+					utang_lainnya,
+					modal_kerja,
+					investasi,
+					perputaran_persediaan_barang,
+					perputaran_piutang_dagang,
+					perputaran_dagang,
+					perputaran_modal_kerja,
+					tren_keuagan,
+					omzet_pendapatan_tahun_lalu,
+					laba_rugi_penghasilan_bersih_tahun_lalu,
+					total_utang,
+					executive_summary_omzet
+				}],
+			aset =>
+				[{
+					[{
+						MS_JENIS_ASSET_ID,
+						SV_NILAI_ASSET
+					}]
+				}],
+			rab =>
+				[{
+					[{
+						MS_TUJUAN_PEMBIAYAAN_ID,
+						SV_JML_RAB,
+						SV_KETERANGAN
+					}]
+				}],
+			doc_rab =>
+				[{
+					[{
+						MS_JENIS_DOKUMEN_ID,
+						PR_NOMOR_DOKUMEN,
+						PR_PATH_DOKUMEN
+					}]
+				}]
+		}],
+	
+	keluarga =>
+		[{
+			index =>
+				[{
+					jumlah_tanggungan_istri,
+					jumlah_tanggungan_anak,
+					jumlah_tanggungan_lainnya,
+					jumlah_tanggungan,
+					pasangan_bekerja,
+					anak_bekerja,
+					orang_tua_bekerja
+				}],
+			detail_keluarga =>
+				[{
+					[{
+						MS_STATUS_HUBUNGAN_KELUARGA_ID,
+						PR_NAMA_LENGKAP,
+						MS_JENIS_IDENTITAS_ID,
+						PR_NO_IDENTITAS,
+						PR_MASA_BERLAKU_IDENTITAS,
+						MS_JENIS_KELAMIN_ID,
+						PR_TANGGAL_LAHIR,
+						PR_TEMPAT_LAHIR,
+						MS_PEKERJAAN_ID,
+						PR_NO_TELP,
+						PR_NO_HP
+					}]
+				}]
+		}],
+		
+	agunan =>
+		[{
+			index =>
+				[{
+					DB_NO_LPJ,
+					MS_JENIS_AGUNAN_ID,
+					MS_STATUS_KEPEMILIKAN_ID,
+					MS_HUBUNGAN_PEMOHON_ID,
+					DB_NAMA_PEMILIK
+					MS_BUKTI_KEPEMILIKAN_AGUNAN_ID,
+					DB_NOMOR_SURAT_TANAH,
+					DB_LOKASI_KELUAR_SURAT_TANAH,
+					DB_TGL_KELUAR_SURAT_TANAH,
+					DB_NO_IMB,
+					DB_TGL_IMB,
+					DB_NAMA_IMB,
+					DB_PERUNTUKAN_IMB,
+					DB_NO_AJB,
+					DB_TGL_AJB,
+					DB_AJB_DIKELUARKAN
+				}],
+			alamat_agunan =>
+				[{
+					DB_ALAMAT,
+					DB_RT,
+					DB_RW,
+					MS_PROVINSI_ID,
+					MS_KABKOT_ID,
+					MS_KECAMATAN_ID,
+					MS_KELDES_ID,
+					MS_KODE_POS_ID,
+					MS_LOKASI_ID,
+					MS_JALAN_DILALUI_ID
+				}],
+			detail_agunan =>
+				[{
+					MS_BENTUK_TANAH_ID,
+					DB_LUAS_TANAH,
+					MS_KONDISI_PERMUKAAN_ID,
+					MS_PENGGUNAAN_TANAH_ID,
+					DB_BANJIR,
+					MS_BATAS_UTARA_ID,
+					MS_BATAS_SELATAN_ID,
+					MS_BATAS_BARAT_ID,
+					MS_BATAS_TIMUR_ID,
+					MS_STATUS_TANAH_ID,
+					DB_PENGHUNI,
+					DB_DASAR_PENGHUNIAN,
+					DB_WAKTU_SEWA,
+					DB_BIAYA_SEWA,
+					DB_LISTRIK,
+					DB_TELEPON,
+					MS_AIR_ID,
+					DB_ANGKUTAN_UMUM,
+					DB_SEKOLAH,
+					DB_RUMAH_SAKIT,
+					DB_TAHUN_BANGUNAN,
+					DB_TAHUN_RENOVASI,
+					DB_LUAS_BANGUNAN,
+					DB_LEBAR_JALAN,
+					MS_PONDASI_ID,
+					MS_LANTAI_ID,
+					MS_DINDING_ID,
+					MS_PLAFON_ID,
+					MS_KUSEN_ID,
+					MS_ATAP_ID,
+					MS_PINTU_ID,
+					MS_JENDELA_ID,
+					DB_LANTAI_1,
+					DB_LANTAI_2,
+					DB_LANTAI_3
+				}],
+			penilaian =>
+				[{
+					MS_STATUS_PENILAIAN_ID,
+					DB_TGL_PENILAIAN,
+					DB_NAMA_PENILAI,
+					MS_JABATAN_ID,
+					DB_NILAI_PASAR_1,
+					DB_NILAI_PASAR_2,
+					DB_NILAI_PASAR_3,
+					DB_NILAI_PASAR,
+					DB_PERSENTASE_LIKUIDASI,
+					DB_NILAI_LIKUIDASI
+				}]
+		}]
+	
+	note =>
+		[{
+			SV_PEMBERI_NOTE,
+			MS_JENIS_CATATAN_ID,
+			SV_NOTE
+		}]
+
+}]

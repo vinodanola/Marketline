@@ -1,0 +1,101 @@
+
+<div class="col-md-6 col-has-border-right" ng-hide="PROSPEK_SUBMITED == 2" menu-alias="M-20">
+    <div class="col-md-8 col-md-offset-2">
+        <!--<div class="form-group">
+            <label>Nomor LPJ</label>
+            <input type="text" class="form-control" placeholder="" ng-model="formDataAgunan.nomor_lpj"/>
+        </div>-->
+        <div class="form-group">
+            <label>Jenis Agunan *</label>
+            <select class="form-control" ng-model="formDataAgunan.MS_JENIS_AGUNAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_agunan">
+                <option></option>
+                <!--<option ng-repeat="x in $root.jns_agunan" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" >{{x.MS_DESKRIPSI}}</option>-->
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Nomor dokumen *</label>
+            <input type="text" class="form-control" placeholder="" ng-model="formDataAgunan.PR_NO_DOKUMEN"/>
+        </div>
+        <div class="form-group">
+            <label>Keterangan</label>
+            <textarea type="text" class="form-control" placeholder="" ng-model="formDataAgunan.PR_KETERANGAN_AGUNAN"></textarea>
+        </div>
+        <!--
+        <div class="form-group">
+            <label>Status Kepemilikan</label>
+            <select class="form-control" ng-model="formDataAgunan.status_kepemilikan">
+                <option>Milik sendiri</option>
+                <option>Milik orang lain</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Hubungan Dengan Pemohon</label>
+            <select class="form-control" ng-model="formDataAgunan.hubungan_dengan_pemohon">
+                <option>Ayah</option>
+                <option>Ibu</option>
+                <option>Suami</option>
+                <option>Istri</option>
+                <option>Anak</option>
+                <option>Saudara</option>
+                <option>Tetangga</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Nama Pemilik</label>
+            <input type="text" class="form-control" placeholder="" ng-model="formDataAgunan.nama_pemilik"/>
+        </div>
+        -->
+        <!--
+        <div class="form-group form-group-btn-step">
+            <button type="submit" class="btn btn-primary btn-next">
+                <span class="ion ion-ios-paperplane-outline"></span>
+            </button>
+        </div>
+        -->
+        <div class="form-group" menu-alias="M-10">
+            <button type="submit" class="btn btn-success btn-sm">Simpan</button>
+            <a class="btn btn-warning btn-sm" ng-click="resetformDataAgunan()">Reset</a>
+        </div>
+    </div>
+</div>
+<div class="col-no-padding-right" ng-class="PROSPEK_SUBMITED!=2 ? 'col-md-6' : 'col-md-12'">
+<!--    <ul class="thead thead-action list-inline">
+        <li>
+            <input type="text" placeholder="Cari"/>
+        </li>
+        <li>
+            Page: {{currentPage}} / {{numPages}}
+        </li>
+        <li class="right">
+            <ul uib-pagination total-items="totalItems"
+                ng-model="currentPage"
+                ng-change="pageChanged(currentPage)"
+                max-size="maxSize" 
+                class="pagination-sm" 
+                boundary-links="true" 
+                num-pages="numPages"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+            ></ul>
+        </li>
+    </ul>-->
+    <table wt-responsive-table class="table small">
+        <tr class="thead">
+            <th>Detail Agunan</th>
+            <th>#</th>
+        </tr>
+        <tr ng-repeat="x in agunanList">
+            <td>
+                <h4>{{x.MS_JENIS_AGUNAN}}</h4>
+                <span>{{x.PR_NO_DOKUMEN}}</span>
+                <p>{{x.PR_KETERANGAN_AGUNAN}}</p>
+            </td>
+            <td>
+                <a ng-click="viewAgunan(x.PR_INDIVIDU_RENCANA_AGUNAN_ID)">View</a>
+                <ng-if ng-hide="PROSPEK_SUBMITED == 2">
+                    <a ng-click="editAgunan(x.PR_INDIVIDU_RENCANA_AGUNAN_ID)" menu-alias="M-20">Edit</a>
+                    <a ng-click="deleteAgunan(x)" menu-alias="M-26">Delete</a>
+                </ng-if>
+            </td>
+        </tr>
+    </table>
+</div>

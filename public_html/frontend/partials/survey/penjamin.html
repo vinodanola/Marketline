@@ -1,0 +1,83 @@
+<div class="container container-fluid container-first container-first-two-nav page-header page-header-form no-padding"></div>
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="page-body">
+            <div class="panel panel-default panel-app">
+                <div class="panel-heading text-center">
+                    <div class="row hor-mod">
+                        <div class="col-md-12">
+                            <h1 class="no-margin">Penjamin</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-6 col-padding-110 col-has-border-right">
+                        <div class="form-group">
+                            <label>NIK</label>
+                            <input type="text" class="form-control" ng-model="fdPJ.PENJAMIN_NIK" restrict="reject" mask="999999999999999999999999999999" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="text" class="form-control" ng-model="fdPJ.PENJAMIN_NAMA" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label>Tempat Lahir</label>
+                            <input type="text" class="form-control" ng-model="fdPJ.PENJAMIN_TEMPAT_LAHIR" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal Lahir</label>
+                            <md-datepicker md-placeholder="xxx"  md-open-on-focus ng-model="dtPJTL" ng-change="fdPJ.PENJAMIN_TANGGAL_LAHIR = dtPJTL.toISOString()" disabled ></md-datepicker>
+                        </div>
+                        <div class="form-group">
+                            <label>Alamat</label>
+                            <textarea class="form-control" ng-model="fdPJ.PENJAMIN_ALAMAT" disabled ></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-padding-110">
+                        <div class="form-group">
+                            <label>Jenis Kelamin</label>
+                             <ul class="list-inline">
+                                <li ng-repeat="x in $root.jns_kelamin">
+                                    <input type="radio" name="jeniskelamin" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-model="fdPJ.PENJAMIN_JENIS_KELAMIN_ID" disabled />
+                                    <label>{{x.MS_DESKRIPSI}}</label>
+                                </li>
+                            </ul>
+                            <!--select class="form-control" ng-model="fdPJ.PENJAMIN_JENIS_KELAMIN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_kelamin" disabled >
+                                <option></option>
+                            </select-->
+                        </div>
+                        <div class="form-group">
+                            <label>Pendidikan</label>
+                            <select class="form-control" ng-model="fdPJ.PENJAMIN_PENDIDIKAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.pendidikan" disabled >
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tempat Bekerja</label>
+                            <input type="text" class="form-control" ng-model="fdPJ.PENJAMIN_TEMPAT_BEKERJA" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label>Pekerjaan</label>
+                            <input type="text" class="form-control" ng-model="fdPJ.PENJAMIN_PEKERJAAN" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label>NPWP</label>
+                            <input type="text" class="form-control" mask="99.999.999.9-999.999" clean="false" ng-value="{{fdPJ.PENJAMIN_NPWP}}" ng-model="fdPJ.PENJAMIN_NPWP" disabled >
+                        </div>
+						<div class="form-group">
+                            <label>Nomor Handphone</label>
+                            <input type="text" class="form-control" ng-model="fdPJ.PENJAMIN_NO_HP" restrict="reject" mask="999999999999999" disabled />
+                        </div>
+                    </div>
+                </div>
+				<!-- FZL 9/4/2018 remark hanya digunakan untuk view
+                <div class="panel-footer text-center" ng-if="SURVEY_SUBMITED != 2">
+                    <a class="btn btn-primary btn-sm" ng-click="postPJ()" >
+                        Submit
+                    </a>
+                </div>
+				-->
+            </div>
+        </div>
+    </div>
+</div>

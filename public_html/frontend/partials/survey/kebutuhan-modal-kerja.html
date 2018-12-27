@@ -1,0 +1,38 @@
+<div class="container container-fluid container-first container-first-two-nav page-header page-header-form no-padding">
+<!--    <div class="col-md-12 col-no-padding">
+        <div class="bx-ph">
+            <h1>Kebutuhan Modal Kerja</h1>
+        </div>
+    </div>
+    <div class="col-md-12 col-no-padding">
+        <ng-include src="'partials/survey/kebutuhan-modal-kerja-step.html'"></ng-include>
+        <hr class="awesome no-margin">
+    </div>-->
+</div>
+
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="page-body">
+            <form ng-submit="processFormKebutuhanModalKerja()">
+                <div class="panel panel-default panel-app">
+                    <div class="panel-heading text-center">
+                        <div class="row hor-mod">
+                            <div class="col-md-3 col-first">
+                                <h1>Kebutuhan Modal Kerja</h1>
+                            </div>
+                            <div class="col-md-9">
+                                <ng-include src="'partials/survey/kebutuhan-modal-kerja-step.html'"></ng-include>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body ui-view"></div>
+                    <div class="panel-footer text-center" ng-if="SURVEY_LOCK!='YES'" menu-alias="M-54">
+                        <button type="submit" class="btn btn-primary" ng-click="postKMK()">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

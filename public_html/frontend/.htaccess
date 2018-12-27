@@ -1,0 +1,17 @@
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /MIS_ITD/public_html/frontend/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*) #/$1 
+</IfModule>
+
+#<IfModule mod_rewrite.c>
+#    RewriteEngine On
+#    RewriteBase /PROSPEK_PNM/public_html/frontend/
+#    RewriteRule ^index.html$ - [L]
+#    RewriteCond %{REQUEST_FILENAME} !-f
+#    RewriteCond %{REQUEST_FILENAME} !-d
+#    RewriteRule . /index.html [L]
+#</IfModule>

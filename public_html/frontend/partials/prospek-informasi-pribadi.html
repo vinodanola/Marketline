@@ -1,0 +1,108 @@
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <div class="form-group hide">
+        <label>Individu ID</label>
+        <input type="text" class="form-control" value="{{PR_INDIVIDU_ID}}" ng-model="formDataIdentitasIndividu.PR_INDIVIDU_ID"/>
+    </div>
+    <div class="form-group">
+        <label>Nama Panggilan</label>
+        <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="formDataIdentitasIndividu.PR_NAMA_PANGGILAN"/>
+    </div>
+    <div class="form-group">
+        <label>Nama Lengkap *</label>
+        <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="formDataIdentitasIndividu.PR_NAMA_LENGKAP"/>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Jenis Kelamin *</label>
+        <ul class="list-inline">
+            <li ng-repeat="x in $root.jns_kelamin">
+                <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="radio" name="jeniskelamin" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-model="formDataIdentitasIndividu.MS_JENIS_KELAMIN_ID"/>
+                <label>{{x.MS_DESKRIPSI}}</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Tempat Lahir *</label>
+        <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="formDataIdentitasIndividu.PR_TEMPAT_LAHIR"/>
+    </div>
+    <div class="form-group">
+        <label>Tanggal Lahir *</label>
+        <md-datepicker ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" md-placeholder="Tanggal masa berlaku"  md-open-on-focus ng-model="dtTL" ng-change="formDataIdentitasIndividu.PR_TGL_LAHIR = dtTL.toISOString()"></md-datepicker>
+    </div>
+    <div class="form-group">
+        <label>Jenis Identitas *</label>
+        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_JENIS_IDENTITAS_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_identitas">
+            <option></option>
+            <!--<option ng-repeat="x in $root.jns_identitas" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>No Identitas *</label>
+        <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="formDataIdentitasIndividu.PR_NO_IDENTITAS" restrict="reject" mask="9999999999999999"/>
+    </div>
+	<div class="form-group">
+        <label>Masa Berlaku</label>
+        <div class="pull-right">
+            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formDataIdentitasIndividu.masa_berlaku_identitas_seumur_hidup"> Seumur hidup
+        </div>
+        <div ng-hide="formDataIdentitasIndividu.masa_berlaku_identitas_seumur_hidup==1">
+            <md-datepicker md-placeholder="Tanggal masa berlaku"  md-open-on-focus ng-model="dtMB" ng-change="formDataIdentitasIndividu.PR_MASA_BERLAKU_IDENTITAS = dtMB.toISOString()"></md-datepicker>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110 ">
+    
+    <div class="form-group">
+        <label>Status Perkawinan *</label>
+        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_STATUS_KAWIN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.perkawinan">
+            <option></option>
+            <!--<option ng-repeat="x in $root.perkawinan" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Nama Ibu Kandung</label>
+        <input  ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="formDataIdentitasIndividu.PR_NAMA_IBU_KANDUNG"/>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Kewarganegaraan *</label>
+        <ul class="list-inline">
+            <li ng-repeat="x in $root.kewarganegaraan">
+                <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="radio" name="kewarganegaraan" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-model="formDataIdentitasIndividu.MS_KEWARGANEGARAAN_ID"/>
+                <label>{{x.MS_DESKRIPSI}}</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Agama *</label>
+        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_AGAMA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.agama">
+            <option></option>
+            <!--<option ng-repeat="x in $root.agama" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Suku</label>
+        <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="formDataIdentitasIndividu.PR_SUKU"/>
+    </div>
+    <div class="form-group">
+        <label>Jenis Usaha *</label>
+        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_JENIS_USAHA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+            <!--<option ng-repeat="x in $root.jns_usaha" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>-->
+        </select>
+    </div>
+</div>
+
+<div class="form-group form-group-btn-step">
+    <!--
+    <a ui-sref="prospek.kategori" class="btn btn-primary btn-prev">
+        <span class="ion ion-ios-arrow-left"></span>
+    </a>
+    -->
+    <!--
+    <a ui-sref="prospek.dokumenidentitas" class="btn btn-primary btn-next">
+        <span class="ion ion-ios-arrow-right"></span>
+    </a>
+    -->
+    <a ui-sref="prospek.identitasindividu.kontak" class="btn btn-primary btn-next no-right">
+        <span class="ion ion-ios-arrow-right"></span>
+    </a>
+</div>
+

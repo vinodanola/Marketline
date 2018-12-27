@@ -1,0 +1,28 @@
+[
+    {
+        "DB_NOMOR_SURAT_TANAH" : "7363/ss/353",
+        "MS_JENIS_AGUNAN_ID" : [{ 
+            "MS_PARA_GLOBAL_DETAIL_ID" : 23, 
+            "MS_DESKRIPSI" : "TANAH DAN BANGUNAN" 
+        }],
+        "MS_JENIS_DOKUMEN_ID" : [{ 
+            "MS_PARA_GLOBAL_DETAIL_ID" : 1, 
+            "MS_DESKRIPSI" : "SERTIFIKAT HAK MILIK" 
+        }],
+        "PR_NOMOR_DOKUMEN" : "2359/LK/2q35rq23",
+        "PR_PATH_DOKUMEN" : "ftp://123.123.123.123/individu/08325265_KTP_21435.jpg"
+    },
+    {
+        "DB_NOMOR_SURAT_TANAH" : "7363/ss/353",
+        "MS_JENIS_AGUNAN_ID" : [{ 
+            "MS_PARA_GLOBAL_DETAIL_ID" : 23, 
+            "MS_DESKRIPSI" : "TANAH DAN BANGUNAN" 
+        }],
+        "MS_JENIS_DOKUMEN_ID" : [{ 
+            "MS_PARA_GLOBAL_DETAIL_ID" : 1, 
+            "MS_DESKRIPSI" : "SERTIFIKAT HAK MILIK" 
+        }],
+        "PR_NOMOR_DOKUMEN" : "2359/LK/2q35rq23",
+        "PR_PATH_DOKUMEN" : "ftp://123.123.123.123/individu/08325265_KTP_21435.jpg"
+    }
+]

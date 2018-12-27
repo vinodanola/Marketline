@@ -1,0 +1,46 @@
+<div class="modal-header">
+    Buat Produk Asuransi
+</div>
+<div class="modal-body">
+    <div class="col-md-6 col-padding-110 col-has-border-right">
+        <div class="form-group">
+            <label>Produk Asuransi *</label>
+            <select class="form-control" ng-model="fdPA.MS_PRODUK_ASURANSI_ID" ng-options="x.MS_PRODUK_ASURANSI_ID as (x.MS_NAMA_PRODUK) for x in $root.produk_asuransi">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Jenis Asuransi *</label>
+            <input type="text" class="form-control" disabled="disabled"/>
+        </div>
+        <div class="form-group">
+            <label>Vendor Asuransi *</label>
+            <input type="text" class="form-control" disabled="disabled"/>
+        </div>
+        <div class="form-group">
+            <label>Nilai Awal</label>
+            <input type="text" class="form-control" disabled="disabled"/>
+        </div>
+    </div>
+    <div class="col-md-6 col-padding-110">
+        <div class="form-group">
+            <label>Nilai Akhir</label>
+            <input type="text" class="form-control" disabled="disabled"/>
+        </div>
+        <div class="form-group">
+            <label>Premi *</label>
+            <div class="input-group">
+                <span class="input-group-addon">Rp</span>
+                <input type="text" class="form-control" ui-number-mask="0" ng-model="fdPA.FDE_PRODUK_ASURANSI_PREMI"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Nomor Polis</label>
+            <input type="text" class="form-control" ng-model="fdPA.FDE_PRODUK_ASURANSI_NO_POLIS"/>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-success btn-sm" ng-click="postPA()">Simpan</a>
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalPA()">Tutup</a>
+</div>

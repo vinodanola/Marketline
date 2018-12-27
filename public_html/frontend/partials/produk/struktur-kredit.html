@@ -1,0 +1,115 @@
+<div class="col-md-6 col-has-border-right col-padding-110">
+    <div class="form-group">
+        <label>Jenis Suku Bunga *</label>
+        <select class="form-control"  ng-model="fdPRD.MP_JENIS_SUKU_BUNGA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_SUKU_BUNGA_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Jadwal Pembayaran *</label>
+        <select class="form-control" ng-model="fdPRD.MP_JADWAL_PEMBAYARAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PEMBAYARAN_PRODUK_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Pokok Per</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_POKOK_PER"/>
+    </div>
+    <div class="form-group">
+        <label>Bunga Per</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_BUNGA_PER"/>
+    </div>
+    <div class="form-group">
+        <label>Jenis Perhitungan Bunga *</label>
+        <select class="form-control" ng-model="fdPRD.MP_JENIS_PERHITUNGAN_BUNGA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PERHITUNGAN_BUNGA_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Perhitungan Bunga *</label>
+        <select class="form-control" ng-model="fdPRD.MP_PERHITUNGAN_BUNGA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JADWAL_PERHITUNGAN_BUNGA_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Bunga / Bulan *</label>
+        <div class="form-group row">
+            <div class="col-md-4">
+                Min <input type="text" class="form-control" ng-model="fdPRD.MP_BUNGA_PERBULAN_MIN"/>
+            </div>
+            <div class="col-md-4">
+                Default <input type="text" class="form-control" ng-model="fdPRD.MP_BUNGA_PERBULAN_DEFAULT"/>
+            </div>
+            <div class="col-md-4">
+                Maks <input type="text" class="form-control" ng-model="fdPRD.MP_BUNGA_PERBULAN_MAX"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Bunga / Tahun *</label>
+        <div class="form-group row">
+            <div class="col-md-4">
+                Min <input type="text" class="form-control" ng-model="fdPRD.MP_BUNGA_PERTAHUN_MIN"/>
+            </div>
+            <div class="col-md-4">
+                Default <input type="text" class="form-control" ng-model="fdPRD.MP_BUNGA_PERTAHUN_DEFAULT"/>
+            </div>
+            <div class="col-md-4">
+                Maks <input type="text" class="form-control" ng-model="fdPRD.MP_BUNGA_PERTAHUN_MAX"/>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Pemotongan Bunga *</label>
+        <select class="form-control" ng-model="fdPRD.MP_PEMOTONGAN_BUNGA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PEMOTONGAN_BUNGA_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group has-min-height">
+        <label>Grace Periode</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="grcp" ng-model="fdPRD.MP_GRACE_PERIODE"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" name="grcp" ng-model="fdPRD.MP_GRACE_PERIODE"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Grace Periode Pokok</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_GRACE_PERIODE_POKOK"/>
+    </div>
+    <div class="form-group">
+        <label>Grace Periode Bunga</label>
+        <input type="text" class="form-control" ng-model="fdPRD.MP_GRACE_PERIODE_BUNGA"/>
+    </div>
+    <div class="form-group">
+        <label>Hari Dalam 1 Tahun *</label>
+        <select class="form-control" ng-model="fdPRD.MP_HARI_SATU_TAHUN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_STRUKTUR_KREDIT_HARI_DALAM_SATU_TAHUN_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Hari Dalam 1 Bulan *</label>
+        <select class="form-control" ng-model="fdPRD.MP_HARI_SATU_BULAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_STRUKTUR_KREDIT_HARI_DALAM_SATU_BULAN_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Hari Libur *</label>
+        <select class="form-control" ng-model="fdPRD.MP_HARI_LIBUR_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_STRUKTUR_KREDIT_HARI_LIBUR_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Nilai Biaya *</label>
+        <select class="form-control" ng-model="fdPRD.MP_NILAI_NIAYA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_STRUKTUR_KREDIT_NILAI_BIAYA_ID">
+            <option></option>
+        </select>
+    </div>
+</div>

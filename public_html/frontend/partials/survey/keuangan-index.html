@@ -1,0 +1,125 @@
+<div class="col-md-4 col-has-border-right">
+    <div class="form-group">
+        <label>Penjualan / Omset Per Bulan (/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_OMSET_PERBULAN" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Harga Pokok Penjualan / Produksi *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_HARGA_POKOK_PENJUALAN" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Biaya Tenaga Kerja (/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true"t type="text" class="form-control" ng-model="fdKS.MS_BIAYA_TENAGA_KERJA" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Sewa Tempat Usaha (/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_SEWA_TEMPAT_USAHA_PERBULAN" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Sewa lainnya (/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_SEWA_LAINNYA" ui-number-mask="0"/>
+        </div>
+    </div>
+    
+</div>
+
+<div class="col-md-4 col-has-border-right">
+    <div class="form-group">
+        <label>Biaya listrik, telpon, air untuk usaha (/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_BIAYA_LISTRIK_PERBULAN" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Biaya lainnya untuk usaha tsb (/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_BIAYA_LAINNYA_PERBULAN" ui-number-mask="0"/>
+        </div>
+    </div>
+<!--    <div class="form-group">
+        <label>Apakah ada usaha lainnya selain usaha usaha utama ?</label>
+        <select class="form-control">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Sebutkan bidang usaha lainnya tersebut</label>
+        <input type="text" class="form-control"/>
+    </div>-->
+    <div class="form-group">
+        <label>Penghasilan bersih usaha lain 1 (/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_PENGHASILAN_USAHA_LAIN_1" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Penghasilan bersih usaha lain 2 (*/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_PENGHASILAN_USAHA_LAIN_2" ui-number-mask="0"/>
+        </div>
+    </div>
+<!--    <div class="form-group">
+        <label>Apakah ada penghasilan gaji dari debitur atau suami/istrinya ?</label>
+        <select class="form-control">
+            <option></option>
+        </select>
+    </div>-->
+    <div class="form-group">
+        <label>Gaji debitur (/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_GAJI_DEBITUR_PERBULAN" ui-number-mask="0"/>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="form-group">
+        <label>Gaji pasangan (/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_GAJI_PASANGAN_PERBULAN" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Biaya Rumah Tangga Pasangan (/Per Orang/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_BIAYA_RUMAH_TANGGA_PASANGAN_PERBULAN" ui-number-mask="0"/>
+        </div>
+    </div>		
+    <div class="form-group">
+        <label>Biaya Rumah Tangga Anak (/Per Orang/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_BIAYA_RUMAH_TANGGA_ANAK_PERBULAN" ui-number-mask="0"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Biaya Rumah tangga Tanggungan Lainnya (/Per Orang/Bulan) *</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_BIAYA_RUMAH_TANGGA_LAINNYA_PERBULAN" ui-number-mask="0"/>
+        </div>
+    </div>
+</div>
+
+<ng-include src="'partials/other/note-global.html'"></ng-include>

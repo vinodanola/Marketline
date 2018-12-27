@@ -1,0 +1,51 @@
+ <div class="panel-heading">
+    <h4 class="text-center">{{title}}</h4>
+</div>
+<div class="panel-body">
+    <ul class="thead thead-action list-inline">
+        <li ng-if="REVIEW_SUBMITED == 1" menu-alias="M-80">
+            <a class="btn btn-success btn-sm" ng-click="modalRVC(); $root.fdRVC = {};">Tambah</a>
+        </li>
+        <li>
+            <input type="text" placeholder="Cari" ng-model="SEARCH_COMMENT"/>
+        </li>
+        <li>
+            <select class="form-control" ng-model="fdPL.LIMIT" ng-options="x as (x) for x in $root.tableItemPerPage">
+                <option></option>
+            </select>
+        </li>
+        <li>
+            Page: {{fdPL.PAGE}} / {{fdPL.NUM_PAGES}}
+        </li>
+        <li>
+            Total : {{fdPL.TOTAL_ITEMS}} record(s)
+        </li>
+        <li class="right">
+            <ul uib-pagination 
+                total-items="fdPL.TOTAL_ITEMS" 
+                items-per-page= "fdPL.LIMIT"
+                ng-model="fdPL.PAGE" 
+                max-size="fdPL.MAX_SIZE"
+                num-pages="fdPL.NUM_PAGES"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                boundary-links="true" 
+                class="pagination-sm"
+            ></ul>
+        </li>
+    </ul>
+    <table wt-responsive-table class="table table-hidden-overflow small">
+        <tr class="thead">
+            <th>Jenis Gambaran Umum</th>
+            <th>Catatan</th>
+            <th>#</th>
+        </tr>
+        <tr ng-repeat="x in listRVC | filter: SEARCH_COMMENT | limitTo:(fdPL.LIMIT):((fdPL.PAGE*fdPL.LIMIT)-fdPL.LIMIT)">
+            <td>{{x.MS_JENIS_GAMBARAN_UMUM_REVIEW_DESKRIPSI}}</td>
+            <td ng-bind-html="x.RV_NOTE_KETERANGAN "></td>
+            <td >
+                <a ng-click="editRVC(x.RV_NOTE_ID)" menu-alias="M-90">View</a>
+                <a ng-show="REVIEW_LOCK != 'YES'" ng-click="deleteRVC(x)" menu-alias="M-91">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>

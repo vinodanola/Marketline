@@ -1,0 +1,75 @@
+<ul class="nav nav-tabs nav-center subnav subnav-fde">
+    <li ui-sref-active="active">
+        <a>
+            {{PR_NAMA_PANGGILAN}}
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="review.dataumum({id : $root.PR_PROSPEK_ID})">
+            Data Umum
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="review.datanasabah.index({id : $root.PR_PROSPEK_ID})">
+            Data Nasabah
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="review.comment({id : $root.PR_PROSPEK_ID})">
+            Catatan
+        </a>
+    </li>
+    <!--li ui-sref-active="active">
+        <a ui-sref="review.rekomendasi({id : $root.PR_PROSPEK_ID})">
+            Rekomendasi
+        </a>
+    </li-->
+    <li ui-sref-active="active">
+        <a ui-sref="review.analisasensitivitas.datafasilitaslama({id : $root.PR_PROSPEK_ID})">
+            Analisa Sensitivitas
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="review.documentcheck({id : $root.PR_PROSPEK_ID})">
+            Cek Dokumen
+        </a>
+    </li>
+    <li ng-show="REVIEW_SUBMITED==1" menu-alias="M-220">
+        <a class="text-danger" ng-click="$root.lkkuulang()" menu-alias="M-220">LKKU Ulang</a>
+    </li>
+    <li ng-show="REVIEW_SUBMITED==1" menu-alias="M-96">
+        <a class="btn-sbm" ng-click="postSUBMITSTATUS()" >
+            Submit
+        </a>
+    </li>
+    <li>
+        <a class="text-success" ng-show="REVIEW_SUBMITED==2">
+            <span class="glyphicon glyphicon-check"></span> Submited
+        </a>    
+    </li>
+    <li>
+        <a class="text-warning" ng-show="REVIEW_SUBMITED==3">
+            <span class="glyphicon glyphicon-check"></span> Request Dokumen Submited
+        </a>
+    </li>
+    <li ng-show="REVIEW_SUBMITED==6" >
+        <a class="text-info">
+            <span class="glyphicon glyphicon-check"></span> LKKU Ulang Submited
+        </a>
+    </li>
+    <li ng-show="REVIEW_SUBMITED==4" menu-alias="M-223">
+        <a class="btn-sbm" ng-click="postTakeProposal()">
+            Take this
+        </a>
+    </li>
+    <li ng-show="REVIEW_SUBMITED==5">
+        <a class="text-danger">
+            Dikerjakan Oleh {{$root.REVIEWER_NAMA}}
+        </a>
+    </li>
+	<li ng-show="REVIEW_SUBMITED!=6 && REVIEW_SUBMITED!=2 && $root.$storage.SESSION_LOGIN.CLUSTER.KRW == true">
+        <a class="btn-sbm" ng-click="getListReviewer();">
+            Assign To
+        </a>
+    </li>
+</ul>

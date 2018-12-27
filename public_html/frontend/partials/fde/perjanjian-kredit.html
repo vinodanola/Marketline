@@ -1,0 +1,40 @@
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <div class="form-group">
+        <label>Nomor Surat Kuasa *</label>
+        <input type="text" class="form-control" ng-model="fdFDE.FDE_PK_NOMOR_SURAT_KUASA"/>
+    </div>
+    <div class="form-group">
+        <label>Status Perkawinan</label>
+        <input type="text" class="form-control" ng-model="fdFDE.PK_STATUS_PERKAWINAN" disabled="disabled" />
+<!--        <select class="form-control" ng-model="fdFDE.PK_STATUS_PERKAWINAN" disabled="disabled">
+            <option></option>
+        </select>-->
+    </div>
+    <div class="form-group">
+        <label>Tanggal SP3 *</label>
+        <md-datepicker md-placeholder="xxx"  md-open-on-focus ng-model="dtTSP" ng-change="fdFDE.FDE_PK_TANGGAL_SP3 = dtTSP.toISOString()"></md-datepicker>
+    </div>
+    <div class="form-group">
+        <label>Nomor Surat SP3</label>
+        <input type="text" class="form-control" ng-model="fdFDE.PK_NOMOR_SURAT_SP3" disabled="disabled"/>
+    </div>
+</div>
+
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Nama Saksi 1 *</label>
+        <input type="text" class="form-control" ng-model="fdFDE.FDE_PK_NAMA_SAKSI_1"/>
+    </div>
+    <div class="form-group">
+        <label>Nama Saksi 2 *</label>
+        <input type="text" class="form-control" ng-model="fdFDE.FDE_PK_NAMA_SAKSI_2"/>
+    </div>
+    <div class="form-group">
+        <label>Nama Pengadian Negri *</label>
+        <select class="form-control" ng-model="fdFDE.FDE_PK_NAMA_PENGADILAN_NEGERI_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_NAMA_PENGADILAN_NEGERI_ID">
+            <option></option>
+        </select>
+    </div>
+</div>
+
+

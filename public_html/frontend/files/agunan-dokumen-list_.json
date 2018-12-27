@@ -1,0 +1,33 @@
+[
+    {
+        "MS_KODE_CABANG" : 12,
+        "MS_KODE_UNIT" : 21,
+        "DB_DEBITUR_ID" : 1,
+        "DB_DOKUMEN" : "215123515/kkk/we32525",
+        "DB_HEADER" : "AGUNAN",
+        "DB_AGUNAN_ID" : 1,
+        "MS_JENIS_AGUNAN_ID" : { 
+             "23" : "TANAH DAN BANGUNAN" 
+        },
+        "MS_JENIS_DOKUMEN_ID" : { 
+             "1" : "SERTIFIKAT HAK MILIK" 
+        },
+        "PR_NOMOR_DOKUMEN" : "2359/LK/2q35rq23",
+        "PR_PATH_DOKUMEN" : "http://123.123.123.123/individu/08325265_KTP_21435.jpg"
+    },
+    {
+        "MS_KODE_CABANG" : 12,
+        "DB_DEBITUR_ID" : 1,
+        "DB_DOKUMEN" : "100/aa/888",
+        "DB_HEADER" : "AGUNAN",
+        "DB_AGUNAN_ID" : 2,
+        "MS_JENIS_AGUNAN_ID" : { 
+             "23" : "TANAH DAN BANGUNAN" 
+        },
+        "MS_JENIS_DOKUMEN_ID" : { 
+             "1" : "SERTIFIKAT HAK MILIK" 
+        },
+        "PR_NOMOR_DOKUMEN" : "2359/LK/2q35rq23",
+        "PR_PATH_DOKUMEN" : "http://123.123.123.123/individu/08325265_KTP_21435.jpg"
+    }
+]

@@ -1,0 +1,42 @@
+<ul class="thead thead-action list-inline">
+    <li ng-if="SURVEY_LOCK != 'YES'" menu-alias="M-75">
+        <a class="btn btn-success btn-sm" ng-click="$root.fdNTE={}; modalCT();">Tambah</a>
+    </li>
+<!--    <li>
+        <input type="text" placeholder="Cari"/>
+    </li>
+    <li>
+        Page: {{currentPage}} / {{numPages}}
+    </li>
+    <li class="right">
+        <ul uib-pagination total-items="totalItems"
+            ng-model="currentPage"
+            ng-change="pageChanged(currentPage)"
+            max-size="maxSize" 
+            class="pagination-sm" 
+            boundary-links="true" 
+            num-pages="numPages"
+            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+        ></ul>
+    </li>-->
+</ul>
+<table wt-responsive-table class="table table-hidden-overflow small">
+    <tr class="thead">
+        <th>Jenis Note</th>
+        <th>Pemberi Note</th>
+        <th>Note</th>
+        <th>#</th>
+    </tr>
+    <tr ng-repeat="x in listNTE">
+        <td>{{x.MS_JENIS_CATATAN}}</td>
+        <td>{{x.SV_PEMBERI_NOTE}}</td>
+        <td>{{x.SV_NOTE}}</td>
+        <td>
+            <a ng-click="viewNTE(x.SV_INDIVIDU_NOTE_ID)">View</a>
+            <ng-if ng-if="SURVEY_LOCK != 'YES'">
+                <a ng-click="editNTE(x.SV_INDIVIDU_NOTE_ID)" menu-alias="M-76">Edit</a>
+                <a ng-click="deleteNTE(x)" menu-alias="M-77">Delete</a>
+            </ng-if>
+        </td>
+    </tr>
+</table>

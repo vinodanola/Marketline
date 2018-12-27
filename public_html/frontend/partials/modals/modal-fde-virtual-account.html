@@ -1,0 +1,22 @@
+<div class="modal-header no-padding-top no-padding-bottom">
+    <h4>Buat Virtual Account</h4>
+</div>
+<hr class="awesome no-margin">
+<div class="modal-body">
+    <div class="col-md-6 col-md-offset-3 col-padding-110">
+        <div class="form-group">
+            <label>Nama Bank*</label>
+            <select class="form-control" ng-model="fdFVA.FDE_VA_BANK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_BANK_ID">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Nomor Virtual Account</label>
+            <input type="text" class="form-control" ng-model="fdFVA.FDE_VA_NOMOR_VIRTUAL_ACCOUNT"/>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-success btn-sm" ng-click="postFVA()">Simpan</a>
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalFVA()">Tutup</a>
+</div>

@@ -1,0 +1,438 @@
+<div class="bx-subnav">
+    <ul class="nav nav-tabs nav-center subnav subnav-survey">
+        <li ui-sref-active="active">
+            <a ui-sref="calondebiturprofile.survey({id : $root.PR_PROSPEK_ID})">
+                {{PR_NAMA_PANGGILAN}}
+            </a>
+        </li>
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+            <a uib-dropdown-toggle>
+                Informasi Survey 
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.TOTAL.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.TOTAL.toFixed(0)}} %</span>
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li>
+                    <a ui-sref="survey.informasi.index({id : $root.PR_PROSPEK_ID})">
+                        Index
+                        <!--remark FZL span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.DETAIL.INFORMASI_SURVEY_INDEX.percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.DETAIL.INFORMASI_SURVEY_INDEX.percentage_fill.toFixed(0)}} %</span-->
+                    </a>
+                </li>
+
+                <li>
+                    <a ui-sref="survey.informasi.alamat({id : $root.PR_PROSPEK_ID})">
+                        Alamat
+                        <!--span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.DETAIL.ALAMAT[0].percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.DETAIL.ALAMAT[0].percentage_fill.toFixed(0)}} %</span-->
+						<span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.PERCENTAGE_FILL_ALAMAT.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.PERCENTAGE_FILL_ALAMAT.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                 <li>
+                    <a ui-sref="survey.informasi.kunjunganusaha({id : $root.PR_PROSPEK_ID})">
+                        Kunjungan Usaha
+                        <!--span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.DETAIL.KUNJUNGAN_USAHA[0].percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.DETAIL.KUNJUNGAN_USAHA[0].percentage_fill.toFixed(0)}} %</span-->
+						<span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.PERCENTAGE_FILL_KUNJUNGAN_USAHA.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.PERCENTAGE_FILL_KUNJUNGAN_USAHA.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                 <li>
+                    <a ui-sref="survey.informasi.aom({id : $root.PR_PROSPEK_ID})">
+                        Informasi AOM
+                        <!--remark FZL span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.DETAIL.AOM.percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.INFORMASI_SURVEY.DETAIL.AOM.percentage_fill.toFixed(0)}} %</span-->
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+            <a uib-dropdown-toggle>
+                Profile & Karakter
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.PROFIL.TOTAL.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.PROFIL.TOTAL.toFixed(0)}} %</span>
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li>
+                    <a ui-sref="survey.profilekarakter.index({id : $root.PR_PROSPEK_ID})">
+                        Index
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.PROFIL.DETAIL.PROFIL_INFO_PRIBADI.percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.PROFIL.DETAIL.PROFIL_INFO_PRIBADI.percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.profilekarakter.sumberinformasireputasi({id : $root.PR_PROSPEK_ID})">
+                        Sumber Informasi Reputasi
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.PROFIL.DETAIL.SUMBER_INFO_REPUTASI[0].percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.PROFIL.DETAIL.SUMBER_INFO_REPUTASI[0].percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.profilekarakter.dokumenpembiayaan({id : $root.PR_PROSPEK_ID})">
+                       Dokumen Pembiayaan
+                       <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.PROFIL.DETAIL.DOKUMEN_PEMBIAYAAN[0].percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.PROFIL.DETAIL.DOKUMEN_PEMBIAYAAN[0].percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.profilekarakter.executivesummarycriticalcharacter({id : $root.PR_PROSPEK_ID})">
+                       Executive Summary Critical Character
+                       <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.PROFIL.DETAIL.MS_EXSUM_CRITICAL.percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.PROFIL.DETAIL.MS_EXSUM_CRITICAL.percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+            <a uib-dropdown-toggle>
+                Kapasitas Usaha
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KAPASITAS_USAHA.TOTAL.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KAPASITAS_USAHA.TOTAL.toFixed(0)}} %</span>
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li>
+                    <a ui-sref="survey.kapasitasusaha.index({id : $root.PR_PROSPEK_ID})">
+                        Index
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KAPASITAS_USAHA.DETAIL.KAPASITAS_USAHA_INDEX.percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KAPASITAS_USAHA.DETAIL.KAPASITAS_USAHA_INDEX.percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.kapasitasusaha.aktivitasrekeningbank({id : $root.PR_PROSPEK_ID})">
+                        Aktifitas Rekening Bank
+                        <!--remark FZL span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KAPASITAS_USAHA.DETAIL.AKTIFITAS_REKENING_BANK.percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KAPASITAS_USAHA.DETAIL.AKTIFITAS_REKENING_BANK[0].percentage_fill.toFixed(0)}} %</span-->
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+            <a uib-dropdown-toggle>
+                Jenis Usaha
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.JENIS_USAHA.TOTAL.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.JENIS_USAHA.TOTAL.toFixed(0)}} %</span>
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+    <!--            <li>
+                    <a ui-sref="survey.jenisusaha.index({id : id_individu})">
+                        Index
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.jenisusaha.alamat({id : id_individu})">
+                        Alamat
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.jenisusaha.detail({id : id_individu})">
+                        Detail
+                    </a>
+                </li>-->
+                <li>
+                    <a ui-sref="survey.jenisusaha.list({id : $root.PR_PROSPEK_ID})">
+                        List
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.JENIS_USAHA.TOTAL.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.JENIS_USAHA.TOTAL.toFixed(0)}} %</span>
+                    </a>
+                </li>
+    <!--            <li>
+                    <a ui-sref="survey.jenisusaha.pengelolaankeuangan({id : id_individu})">
+                        Pengelolaan Keuangan
+                    </a>
+                </li>-->
+            </ul>
+        </li>
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+            <a uib-dropdown-toggle>
+                Keuangan
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEUANGAN.TOTAL.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEUANGAN.TOTAL.toFixed(0)}} %</span>
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li>
+                    <a ui-sref="survey.keuangan.index({id : $root.PR_PROSPEK_ID})">
+                        Index
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEUANGAN.DETAIL.KEUANGAN_INDEX.percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEUANGAN.DETAIL.KEUANGAN_INDEX.percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.keuangan.datapinjaman({id : $root.PR_PROSPEK_ID})">
+                        Data Pinjaman
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEUANGAN.DETAIL.KEUANGAN_DATA_PINJAMAN.percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEUANGAN.DETAIL.KEUANGAN_DATA_PINJAMAN.percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.keuangan.rincianpinjaman({id : $root.PR_PROSPEK_ID})">
+                        Rincian Pinjaman
+                        <!--span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEUANGAN.DETAIL.RINCIAN_PINJAMAN[0].percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEUANGAN.DETAIL.RINCIAN_PINJAMAN[0].percentage_fill.toFixed(0)}} %</span remark FZL-->
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.keuangan.angsuran({id : $root.PR_PROSPEK_ID})">
+                        Rincian Angsuran
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+            <a uib-dropdown-toggle>
+                Kebutuhan Modal Kerja 
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEBUTUHAN_MODAL_KERJA.TOTAL.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEBUTUHAN_MODAL_KERJA.TOTAL.toFixed(0)}} %</span>
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li>
+                    <a ui-sref="survey.kebutuhanmodalkerja.index({id : $root.PR_PROSPEK_ID})">
+                        Index
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEBUTUHAN_MODAL_KERJA.DETAIL.KEBUTUHAN_INDEX.percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEBUTUHAN_MODAL_KERJA.DETAIL.KEBUTUHAN_INDEX.percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.kebutuhanmodalkerja.aset({id : $root.PR_PROSPEK_ID})">
+                        Aset
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEBUTUHAN_MODAL_KERJA.DETAIL.ASET[0].percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEBUTUHAN_MODAL_KERJA.DETAIL.ASET[0].percentage_fill.toFixed(0)}} %</span>						
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.kebutuhanmodalkerja.rencanaanggaranbelanja({id : $root.PR_PROSPEK_ID})">
+                        Rencana Anggaran Belanja
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEBUTUHAN_MODAL_KERJA.DETAIL.RAB[0].percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEBUTUHAN_MODAL_KERJA.DETAIL.RAB[0].percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.kebutuhanmodalkerja.dokumenrencanaanggaranbelanja({id : $root.PR_PROSPEK_ID})">
+                        Dokumen Rencana Anggaran Belanja
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEBUTUHAN_MODAL_KERJA.DETAIL.DOC_RAB[0].percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEBUTUHAN_MODAL_KERJA.DETAIL.DOC_RAB[0].percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.kebutuhanmodalkerja.executivesummaryomset({id : $root.PR_PROSPEK_ID})">
+                        Executive Summary Omset
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEBUTUHAN_MODAL_KERJA.DETAIL.MS_EXSUM_OMSET.percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KEBUTUHAN_MODAL_KERJA.DETAIL.MS_EXSUM_OMSET.percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+            <a uib-dropdown-toggle>
+                Keluarga
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KELUARGA.TOTAL.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KELUARGA.TOTAL.toFixed(0)}} %</span>
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li>
+                    <a ui-sref="survey.keluarga.index({id : $root.PR_PROSPEK_ID})">
+                        Index
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KELUARGA.DETAIL.KELUARGA_INDEX.percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KELUARGA.DETAIL.KELUARGA_INDEX.percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.keluarga.detail({id : $root.PR_PROSPEK_ID})">
+                        Detail Keluarga
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KELUARGA.DETAIL.DETAIL_KELUARGA[0].percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.KELUARGA.DETAIL.DETAIL_KELUARGA[0].percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+            <a uib-dropdown-toggle>
+                Agunan
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.AGUNAN.TOTAL.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.AGUNAN.TOTAL.toFixed(0)}} %</span>
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu" uib-dropdown-menu>
+                <li>
+                    <a ui-sref="survey.agunan.list({id : $root.PR_PROSPEK_ID})">
+                        List
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.AGUNAN.DETAIL.LIST.TOTAL.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.AGUNAN.DETAIL.LIST.TOTAL.toFixed(0)}} %</span>
+                    </a>
+                </li>
+    <!--            <li>
+                    <a ui-sref="survey.agunan.index({id : id_individu})">
+                        Index
+                    </a>
+                </li>
+                <li ng-show="jao==0 || jao==1">
+                    <a ui-sref="survey.agunan.tanahdanbangunan({id : id_individu})">
+                        Tanah dan Bangunan
+                    </a>
+                </li>
+                <li ng-show="jao==0 || jao==1">
+                    <a ui-sref="survey.agunan.ajb({id : id_individu})">
+                        AJB
+                    </a>
+                </li>
+                <li ng-show="jao==0 || jao==1">
+                    <a ui-sref="survey.agunan.alamat({id : id_individu})">
+                        Alamat Agunan
+                    </a>
+                </li>
+                <li ng-show="jao==0 || jao==1">
+                    <a ui-sref="survey.agunan.keadaantanahdanstatuspenghunian({id : id_individu})">
+                        Keadaan Tanah dan Status Penghunian
+                    </a>
+                </li>
+                <li ng-show="jao==1">
+                    <a ui-sref="survey.agunan.fasilitas({id : id_individu})">
+                        Fasilitas
+                    </a>
+                </li>
+                <li ng-show="jao==1">
+                    <a ui-sref="survey.agunan.keadaanbangunan({id : id_individu})">
+                        Keadaan Bangunan
+                    </a>
+                </li>
+                <li ng-show="jao==1">
+                    <a ui-sref="survey.agunan.konstruksibangunan({id : id_individu})">
+                        Konstruksi Bangunan
+                    </a>
+                </li>
+                <li ng-show="jao==1">
+                    <a ui-sref="survey.agunan.tataruang({id : id_individu})">
+                        Tata Ruang
+                    </a>
+                </li>
+                <li ng-show="jao==1">
+                    <a ui-sref="survey.agunan.penilaian({id : id_individu})">
+                        Penilaian
+                    </a>
+                </li>-->
+                <li>
+                    <a ui-sref="survey.agunan.dokumen({id : $root.PR_PROSPEK_ID})">
+                        Dokumen Agunan
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.AGUNAN.DETAIL.DOC_AGUNAN[0].percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.AGUNAN.DETAIL.DOC_AGUNAN[0].percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="survey.agunan.executivesummaryanalisaagunan({id : $root.PR_PROSPEK_ID})">
+                        Exsum analisa agunan
+                        <span class="badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.AGUNAN.DETAIL.MS_EXSUM_AGUNAN.percentage_fill.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.AGUNAN.DETAIL.MS_EXSUM_AGUNAN.percentage_fill.toFixed(0)}} %</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="survey.faktorkualitatif({id : $root.PR_PROSPEK_ID})">
+                Faktor Kualitatif
+                <span class="sn-badge {{types(KELENGKAPAN_DATA.PERCENTAGE.DETAIL.NOTE.TOTAL.toFixed(0))}}">{{KELENGKAPAN_DATA.PERCENTAGE.DETAIL.NOTE.TOTAL.toFixed(0)}} %</span>
+            </a>
+        </li>
+        
+        <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+            <a uib-dropdown-toggle >
+                Lainnya
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-left" uib-dropdown-menu>
+                <li ui-sref-active="active">
+                    <a ui-sref="survey.penjamin({id : $root.PR_PROSPEK_ID})">
+                        Penjamin
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="survey.dokumen({id : DB_PROSPEK_ID})">
+                        Dokumen               
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="survey.deviasi({id : DB_PROSPEK_ID})">
+                        Deviasi               
+                    </a>
+                </li>
+            </ul>
+        </li>
+        
+        <li>
+            <a ng-show="SURVEY_SUBMITED==3">
+                <span class="badge">{{$root.MY_MATH.floor(KELENGKAPAN_DATA.PERCENTAGE.TOTAL)}}%</span>
+            </a>
+            <!--a class="btn-sbm" ng-show="SURVEY_SUBMITED==1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" ng-click="$root.submitSurveyToApproval()" menu-alias="M-78">
+                Submit {{$root.MY_MATH.floor(KELENGKAPAN_DATA.PERCENTAGE.TOTAL)}}%
+            </a-->
+			<a class="btn-sbm" ng-show="SURVEY_SUBMITED==1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" ng-click="$root.submitSurveyToApproval()" menu-alias="M-78">
+                Submit
+            </a>
+			
+			<!--a class="btn-sbm" ng-show="SURVEY_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1 && $storage.SESSION_LOGIN.POSISI_NAMA == 'AOM'" menu-alias="M-78"  ng-click="$root.submitSurveyToApproval()">			
+                Submited
+            </a-->
+			<!--Tambahan FZL START-->
+			<a class="text-success" ng-show="SURVEY_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1 && $storage.SESSION_LOGIN.POSISI_NAMA == 'AOM'" menu-alias="M-78" ng-click="$root.submitSurveyToApproval()">			
+                <span class="glyphicon glyphicon-check"></span> Submited
+            </a>
+            <a class="text-success" ng-show="SURVEY_SUBMITED == 5">
+                <span class="glyphicon glyphicon-check"></span> Rejected
+            </a>
+            <a class="text-success" ng-show="SURVEY_SUBMITED == 2">
+                <span class="glyphicon glyphicon-check"></span> Diteruskan
+            </a>
+            <a class="text-success" ng-show="SURVEY_SUBMITED == 7">
+                <span class="glyphicon glyphicon-check"></span> LLKU Ulang
+            </a>
+			<!--Tambahan FZL END-->
+			<!--	REMARK FZL							
+            <a class="text-success" ng-show="SURVEY_SUBMITED==2">
+                <span class="glyphicon glyphicon-check"></span> Submited {{KELENGKAPAN_DATA.PERCENTAGE.TOTAL.toFixed(0)}}%
+            </a>			
+			-->
+        </li>
+        <li ng-show="SURVEY_SUBMITED == 6" class="dropdown" uib-dropdown on-toggle="toggled(open)">
+            <a class="text-success" uib-dropdown-toggle >
+                <span class="glyphicon glyphicon-check"></span> Approved
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-left" uib-dropdown-menu>
+                <li>
+                    <a>{{$root.STATUS_SCORING}}</a>
+                </li>
+                <li>
+                    <a ng-click="$root.teruskanSurvey()" ng-show="$root.STATUS_SCORING == 'LAYAK'" menu-alias="M-113">Teruskan</a>
+                </li>
+                <li>
+                    <a ng-click="$root.lkkuulang()" menu-alias="M-114">LKKU Ulang</a>
+                </li>
+            </ul>
+        </li>
+        
+        
+        <li ng-show="SURVEY_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" class="dropdown" menu-alias="M-112" uib-dropdown on-toggle="toggled(open)">
+            <a class="btn-sbm" uib-dropdown-toggle >
+                Action
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
+                <li ng-show="SURVEY_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" menu-alias="M-112" ng-click="$root.submitSurvey()">
+                    <a class="btn-sbm " >
+                        <span class="glyphicon glyphicon-ok text-success"></span> Approve
+                    </a>
+                </li>
+                <li ng-show="SURVEY_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" menu-alias="M-112" ng-click="$root.revisiSurvey()">
+                    <a class="btn-wrng " >
+                        <span class="glyphicon glyphicon-repeat text-warning"></span> Revisi
+                    </a>
+                </li>
+                <li ng-show="SURVEY_SUBMITED == 4 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_MARKETING != 1 && $storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT != 1" menu-alias="M-112" ng-click="$root.rejectSurvey()">
+                    <a class="btn-dgr " >
+                        <span class="glyphicon glyphicon-remove text-danger"></span> Reject
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!--Tambahan FZL END-->
+        
+        <li ng-show="SURVEY_SUBMITED == 8" class="dropdown" uib-dropdown on-toggle="toggled(open)" menu-alias="M-221">
+            <a class="text-success" uib-dropdown-toggle >
+                <span class="glyphicon glyphicon-check"></span> Request Dokumen
+                <span class="ion ion-ios-arrow-down"></span>
+                <span class="caret-dropdown"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-left" uib-dropdown-menu>
+                <li>
+                    <a ng-click="modalKRD()" menu-alias="M-221">Keterangan</a>
+                </li>
+                <li>
+                    <a ng-click="$root.teruskanSurvey()" ng-show="$root.STATUS_SCORING == 'LAYAK'" menu-alias="M-113">Teruskan</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

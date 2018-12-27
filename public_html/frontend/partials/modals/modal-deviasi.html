@@ -1,0 +1,25 @@
+<div class="modal-header">
+    Buat Deviasi
+</div>
+<div class="modal-body">
+    <div class="col-md-12 col-no-padding">
+        <div class="form-inline">
+            <div class="form-group form-group-lg">
+                <label>Jenis Devisi</label>
+                <select class="form-control" ng-model="fdDV.MS_JENIS_DEVIASI_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_DEVIASI_ID">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-no-padding">
+        <div class="form-group">
+            <label></label>
+            <text-angular ng-model="fdDV.SV_KETERANGAN_DEVIASI"></text-angular>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-primary btn-sm" ng-click="postDV()">Simpan</a>
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalDV()">Tutup</a>
+</div>

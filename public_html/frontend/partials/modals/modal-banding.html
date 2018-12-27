@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h4 class="no-margin text-center">Banding</h4>
+</div>
+<hr class="awesome no-margin"/>
+<div class="modal-body">
+    <div class="col-md-6 col-padding-110 col-has-border-right">
+        <div class="form-group">
+            <label>Plafond *</label>
+            <div class="input-group">
+                <span class="input-group-addon">Rp</span>
+                <input type="text" class="form-control" ui-number-mask="0" ng-model="fdBDG.BD_PLAFOND"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Suku Bunga *</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ui-number-mask="2" ng-model="fdBDG.BD_SUKU_BUNGA"/>
+                <span class="input-group-addon">%</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Tenor</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ui-number-mask="0" ng-model="fdBDG.BD_TENOR"/>
+                <span class="input-group-addon">Bulan</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-padding-110">
+        <div class="form-group">
+            <label>Biaya Administrasi</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ui-number-mask="2" ng-model="fdBDG.BD_ADM"/>
+                <span class="input-group-addon">%</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>File ( .pdf, .png, .gif, .jpeg )*</label>
+            <input type="file" class="form-control"  file-model="fdBDG.BD_FILE" />
+        </div>
+    </div>
+    <div class="col-md-12 col-padding-110">
+        <div class="form-group">
+            <label>Catatan *</label>
+            <text-angular></text-angular>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-success btn-sm" ng-click="postBDG()">Simpan</a>
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalBDG()">Tutup</a>
+</div>

@@ -1,0 +1,26 @@
+<ul class="thead thead-action list-inline">
+    <li>
+        <a class="btn btn-success btn-sm" ng-click="modalPA(); $root.fdPA={};">Tambah</a>
+    </li>
+</ul>
+<table wt-responsive-table class="table table-hidden-overflow small">
+    <tr class="thead">
+        <th>Produk Asuransi</th>
+        <th>Jenis Asuransi</th>
+        <th>Vendor Asuransi</th>
+        <th>No Polis</th>
+        <th>Premi (Rp)</th>
+        <th>#</th>
+    </tr>
+    <tr ng-repeat="x in listPA">
+        <td>{{x.MS_PRODUK_ASURANSI_ID}}</td>
+        <td></td>
+        <td></td>
+        <td class="text-right">{{x.FDE_PRODUK_ASURANSI_NO_POLIS | number:2}}</td>
+        <td class="text-right">{{x.FDE_PRODUK_ASURANSI_PREMI | number:2}}</td>
+        <td>
+            <a ng-click="editPA(x.FDE_PRODUK_ASURANSI_ID)">Edit</a>
+            <a ng-click="deletePA(x)">Delete</a>
+        </td>
+    </tr>
+</table>

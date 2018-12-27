@@ -1,0 +1,82 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first page-header page-header-form no-padding has-bg-color">
+<!--    <div class="bx-ph">
+        <h1>Daftar Prospek</h1>
+    </div>
+    <hr class="awesome no-margin"/>-->
+</div>
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="panel panel-default panel-app">
+            <div class="panel-heading">
+                <div class="row hor-mod">
+                    <div class="col-md-3 col-first text-center">
+                        <h1>Tracking Proposal</h1>
+                        <a ui-sref="proposal.list" class="small"><span class="glyphicon glyphicon-triangle-left"></span> Back</a>
+                    </div>
+                    <div class="col-md-9">
+                        <h1>{{listPST[0].DB_NO_LKKU}}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-heading">
+                <ul class="thead thead-action list-inline">
+                    <li>
+                        <input type="text" placeholder="Cari" ng-model="fdPL.SEARCH"/>
+                    </li>
+                    <li>
+                        <select class="form-control" ng-model="fdPL.LIMIT" ng-options="x as (x) for x in $root.tableItemPerPage">
+                            <option></option>
+                        </select>
+                    </li>
+                    <li>
+                        Page : {{fdPL.PAGE}} / {{fdPL.NUM_PAGES}}
+                    </li>
+                    <li>
+                        Total : {{fdPL.TOTAL_ITEMS}} record(s)
+                    </li>
+                    <li class="right">
+                        <ul uib-pagination 
+                            total-items="fdPL.TOTAL_ITEMS" 
+                            items-per-page= "fdPL.LIMIT"
+                            ng-model="fdPL.PAGE" 
+                            max-size="fdPL.MAX_SIZE"
+                            num-pages="fdPL.NUM_PAGES"
+                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                            boundary-links="true" 
+                            class="pagination-sm"
+                            ng-change="pageChanged(fdPL.PAGE)"
+                        ></ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body no-padding">
+                <table wt-responsive-table class="table table-striped small">
+                    <tr class="tr-head">
+                        <th>NO</th>
+                        <th>PROSPEK ID</th>
+                        <th>STATUS TERAKHIR</th>
+                        <th>CREATOR</th>
+                        <th>CREATOR ID</th>
+                        <th>DATE</th>
+                        <th>#</th>
+                    </tr>
+                    <!--<tr ng-repeat="x in prospekList | filter:SEARCH_PROSPEK | limitTo:(fdPL.LIMIT):((fdPL.PAGE*fdPL.LIMIT)-fdPL.LIMIT)">-->
+                    <tr ng-repeat="x in listPST">
+                        <td>{{(fdPL.PAGE - 1) * fdPL.LIMIT + ($index+1)}}</td>
+                        <td>{{x.DB_PROSPEK_ID}}</td>
+                        <td>{{x.DB_PROSES}}</td>
+                        <td>{{x.CREATED_BY_NAME}}</td>
+                        <td>{{x.CREATED_BY_ID}}</td>
+                        <td>{{x.CREATED_DATE}}</td>
+                        <td>
+                            &nbsp&nbsp
+                            <a ng-show="x.DB_STATUS==4 || x.DB_STATUS==5" ng-click="modalTracking(x.DB_PROSPEK_ID);">Lacak</a>                        
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        </table>
+    </div>
+</div>

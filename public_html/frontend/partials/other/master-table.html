@@ -1,0 +1,43 @@
+<ul class="thead thead-action list-inline">
+    <li>
+        <input type="text" placeholder="Cari"/>
+    </li>
+    <li>
+        <select>
+            <option></option>
+        </select>
+    </li>
+    <li>
+        Page: {{currentPage}} / {{numPages}}
+    </li>
+    <li class="right">
+        <ul uib-pagination total-items="totalItems"
+            ng-model="currentPage"
+            ng-change="pageChanged(currentPage)"
+            max-size="maxSize" 
+            class="pagination-sm" 
+            boundary-links="true" 
+            num-pages="numPages"
+            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+        ></ul>
+    </li>
+</ul>
+<table wt-responsive-table class="table small">
+    <tr class="thead">
+        <th>Detail</th>
+        <th>#</th>
+    </tr>
+    <tr>
+        <td>
+            <h4>XXX</h4>
+            <span>xxx</span>
+            <p>
+                xxx
+            </p>
+        </td>
+        <td>
+            <a>Edit</a>
+            <a>Delete</a>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,23 @@
+<div class="modal-header no-padding-top no-padding-bottom">
+    <h4 class="text-center">{{MODAL_VIEW_TITLE}}</h4>
+</div>
+<hr class="awesome no-margin">
+<div class="modal-body">
+    <dl class="dl-horizontal">
+        <ng-repeat ng-repeat="(x,y) in ROW_VIEW">
+            <dt uib-tooltip="{{y.k}}">{{y.k}}</dt>
+            <dd>
+                <span ng-if="y.t != 'html'">{{y.t == 'number' ?  (y.v | number:2) : (y.t == 'percent') ? y.v + ' %' : (y.t != 'yesorno') ? y.v : '' }}</span>
+                <span ng-if="y.t == 'html'" ng-bind-html="y.v"></span>
+                <a href="{{$root.FILE_BASE}}{{y.v}}" target="_blank" ng-if="y.t == 'file' && y.v">View</a>
+                <span ng-if="y.t == 'yesorno' && (y.v || y.v==0)">
+                    {{y.v==y.tv ? 'YA' : 'TIDAK'}}
+                </span>
+                {{y.l}}
+            </dd>
+        </ng-repeat>
+    </dl>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-default btn-sm" ng-click="$root.closeModalView()">Tutup</a>
+</div>

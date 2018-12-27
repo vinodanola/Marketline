@@ -1,0 +1,121 @@
+
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <fieldset>
+        <legend>Pencarian Produk</legend>
+        <div class="form-group">
+            <label>Jenis Produk *</label>
+            <select class="form-control" ng-model="jenis_produk" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Nama Produk *</label>
+            <select class="form-control" ng-model="nama_produk" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Versi</label>
+            <input type="text" class="form-control"/>
+        </div>
+        <div class="form-group has-min-height">
+            <label>Scoring</label>
+            <ul class="list-inline">
+                <li>
+                    <input type="radio" name="scrr" />
+                    <label>Ya</label>
+                </li>
+                <li>
+                    <input type="radio" name="scrr" />
+                    <label>Tidak</label>
+                </li>
+            </ul>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success btn-sm">Search</button>
+            <button class="btn btn-warning btn-sm">Clear</button>
+        </div>
+    </fieldset>
+</div>
+<div class="col-md-6 col-padding-110">    
+    <fieldset>
+        <legend>Pencarian Scema Scoring</legend>
+        <div class="form-group">
+            <label>Nama Produk *</label>
+            <select class="form-control" ng-model="jenis_produk" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Jenis Pembiayaan *</label>
+            <select class="form-control" ng-model="nama_produk" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Nama Scema Scoring</label>
+            <select class="form-control" ng-model="nama_produk" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_usaha">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success btn-sm">Search</button>
+            <button class="btn btn-warning btn-sm">Clear</button>
+        </div>
+    </fieldset>
+</div>
+<div class="col-md-12 col-no-padding">
+    <hr>
+    <div class="col-md-6 col-padding-110">
+        <fieldset>
+            <legend>Scema yang sudah dipilih</legend>
+            <table wt-responsive-table class="table table-hidden-overflow small">
+                <tr class="thead">
+                    <th></th>
+                    <th>Jenis Pembiayaan</th>
+                    <th>Nama Scema</th>
+                    <th class="text-right">
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-sm" ng-click="moveItem('ALL',SS_SELECTED,SS,SB)">&raquo;</a>
+                            <a class="btn btn-default btn-sm" ng-click="moveItem('ITEM',SS_SELECTED,SS,SB)">&rsaquo;</a>
+                        </div>
+                    </th>
+                </tr>
+                <tr ng-repeat="xs in SS">
+                    <td><input type="checkbox" ng-model="xs.checked" ng-change="SELECTSS()"/></td>
+                    <td>{{xs.jenis_pembiayaan}}</td>
+                    <td>{{xs.nama_scema}}</td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+    <div class="col-md-6 col-padding-110">
+        <fieldset>
+            <legend>Scema yang belum dipilih</legend>
+            <table wt-responsive-table class="table table-hidden-overflow small">
+                <tr class="thead">
+                    <th>
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-sm" ng-click="moveItem('ITEM',SB_SELECTED,SB,SS)">&lsaquo;</a>
+                            <a class="btn btn-default btn-sm" ng-click="moveItem('ALL',SB_SELECTED,SB,SS)">&laquo;</a>
+                        </div>
+                    </th>
+                    <th>Jenis Pembiayaan</th>
+                    <th>Nama Scema</th>
+                </tr>
+                <tr ng-repeat="xb in SB">
+                    <td><input type="checkbox" ng-model="xb.checked" ng-change="SELECTSB()"/></td>
+                    <td>{{xb.jenis_pembiayaan}}</td>
+                    <td>{{xb.nama_scema}}</td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+</div>
+<div class="col-md-12 col-no-padding">
+    <hr>
+    <div class="form-group text-center">
+        <button class="btn btn-primary btn-sm">Simpan</button>
+    </div>
+</div>
+

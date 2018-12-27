@@ -1,0 +1,60 @@
+<div class="col-md-4 col-md-offset-1">
+    <div class="form-group hide">
+        <label>Jenis Alamat</label>
+        <input type="text" class="form-control" placeholder="jenis alamat" ng-model="formDataIdentitasIndividu[adrstype].MS_JENIS_ALAMAT_ID" />
+    </div>
+    <div class="form-group">
+        <label>Alamat</label>
+        <textarea type="text" class="form-control" placeholder="Alamat" ng-model="formDataIdentitasIndividu[adrstype].PR_ALAMAT" ></textarea>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12 col-no-padding">RT/RW</label>
+        <div class="col-md-6 col-no-padding-left">
+            <input type="text" class="form-control" placeholder="RT" ng-model="formDataIdentitasIndividu[adrstype].PR_RT" />
+        </div>
+        <div class="col-md-6 col-no-padding-right">
+            <input type="text" class="form-control" placeholder="RW" ng-model="formDataIdentitasIndividu[adrstype].PR_RW" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Provinsi</label>
+        <select class="form-control" ng-model="formDataIdentitasIndividu[adrstype].MS_PROVINSI_ID" ng-change="kb(formDataIdentitasIndividu[adrstype].MS_PROVINSI_ID)">
+            <option ng-repeat="x in $root.provinsi" value="{{x.MS_KODE_PROVINSI}}">{{x.MS_PROVINSI}}</option>
+        </select>
+    </div>
+    <div class="form-group" ng-show="formDataIdentitasIndividu[adrstype].provinsi">
+        <label>Kabupaten / Kota</label>
+        <select class="form-control" ng-model="formDataIdentitasIndividu[adrstype].MS_KABKOT_ID" ng-change="kc(formDataIdentitasIndividu[adrstype].MS_KABKOT_ID)">
+            <option ng-repeat="x in $root.kabkot" value="{{x.MS_KODE_KABKOT}}">{{x.MS_KABKOT}}</option>
+        </select>
+    </div>
+    <div class="form-group" ng-show="formDataIdentitasIndividu[adrstype].MS_KABKOT_ID">
+        <label>Kecamatan</label>
+        <select class="form-control" ng-model="formDataIdentitasIndividu[adrstype].MS_KECAMATAN_ID" ng-change="kl(formDataIdentitasIndividu[adrstype].MS_KECAMATAN_ID)">
+            <option ng-repeat="x in $root.kec" value="{{x.MS_KODE_KECAMATAN}}">{{x.MS_KECAMATAN}}</option>
+        </select>
+    </div>
+</div>
+<div class="col-md-4 col-md-offset-2">
+    <div class="form-group" ng-show="formDataIdentitasIndividu[adrstype].MS_KECAMATAN_ID">
+        <label>Kelurahan</label>
+        <select class="form-control" ng-model="formDataIdentitasIndividu[adrstype].MS_KELDES_ID">
+            <option ng-repeat="x in $root.keldes" value="{{x.MS_KODE_KELDES}}">{{x.MS_KELDES}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Kode Pos</label>
+        <input type="number" class="form-control" placeholder="Kode Pos" ng-model="formDataIdentitasIndividu[adrstype].kodepos" />
+    </div>
+    <div class="form-group">
+        <label>Lama Menempati</label>
+        <input type="number" class="form-control" ng-model="formDataIdentitasIndividu[adrstype].lama_menempati" />
+    </div>
+    <div class="form-group">
+        <label>Status Tempat</label>
+        <select class="form-control"  ng-model="formDataIdentitasIndividu[adrstype].status_tempat">
+            <option>Milik Pribadi</option>
+            <option>Kontrak</option>
+        </select>
+    </div>
+</div>

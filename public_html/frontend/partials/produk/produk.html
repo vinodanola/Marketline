@@ -1,0 +1,24 @@
+<ng-include src=" 'partials/navbar.html' "></ng-include>
+<ng-include src="'partials/produk/produk-subnav.html'"></ng-include>
+<div class="container container-fluid container-first container-first-two-nav page-header page-header-form no-padding"></div>
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="page-body">
+            <div class="panel panel-default panel-app">
+                <div class="panel-heading text-center">
+                    <div class="row hor-mod">
+                        <div class="col-md-12">
+                            <h1>{{title}}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body ui-view"></div>
+<!--                <div class="panel-footer text-center">
+                    <a class="btn btn-primary" ng-click="postKLGS()">
+                        Submit
+                    </a>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>

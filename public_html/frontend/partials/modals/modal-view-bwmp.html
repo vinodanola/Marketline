@@ -1,0 +1,123 @@
+<div class="modal-header">
+    <h4 class="text-center">Daftar BWMP</h4>
+</div>
+<hr class="awesome no-margin">
+<div class="modal-body">
+    <div class="panel-heading">
+        
+    </div>
+    <div class="panel-body no-padding">
+        <h4>BWMP Standar</h4>
+        <div class="alert alert-danger" ng-show="listBWMP.error">
+            <span >{{listBWMP.error}}</span>
+        </div>
+        <ul class="thead thead-action list-inline">
+            <li>
+                <input type="text" placeholder="Cari" ng-model="fdPLBWMP.SEARCH_BWMP"/>
+            </li>
+            <li>
+                <select class="form-control" ng-model="fdPLBWMP.LIMIT" ng-options="x as (x) for x in $root.tableItemPerPage">
+                    <option></option>
+                </select>
+            </li>
+            <li>
+                Page: {{fdPLBWMP.PAGE}} / {{fdPLBWMP.NUM_PAGES}}
+            </li>
+            <li>
+                Total : {{fdPLBWMP.TOTAL_ITEMS}} record(s)
+            </li>
+            <li class="right">
+                <ul uib-pagination 
+                    total-items="fdPLBWMP.TOTAL_ITEMS" 
+                    items-per-page= "fdPLBWMP.LIMIT"
+                    ng-model="fdPLBWMP.PAGE" 
+                    max-size="fdPLBWMP.MAX_SIZE"
+                    num-pages="fdPLBWMP.NUM_PAGES"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                    boundary-links="true" 
+                    class="pagination-sm"
+                    ng-change="pageChanged(fdPLBWMP.PAGE)"
+                ></ul>
+            </li>
+        </ul>
+        <table wt-responsive-table class="table table-striped small">
+            <tr style="background-color: #5da5cb;">
+                <th>Nama</th>
+                <th>Inisial</th>
+                <th>SK Berlaku</th>
+                <th>SK Berakhir</th>
+                <th>Plafond</th>
+                <th>Action</th>
+            </tr>
+            <!--<tr ng-repeat="x in listBWMP">-->
+            <tr ng-repeat="x in listBWMP | filter:fdPLBWMP.SEARCH_BWMP | limitTo:(fdPLBWMP.LIMIT):((fdPLBWMP.PAGE*fdPLBWMP.LIMIT)-fdPLBWMP.LIMIT)">
+                <td>{{x.namabwmp}}</td>
+                <td>{{x.inisialbwmp}}</td>
+                <td>{{x.skberlakubwmp | date : format : 'fullDate'}}</td>
+                <td>{{x.skberakhirbwmp | date : format : 'fullDate'}}</td>
+                <td>{{x.plafondskbwmp | number:2}}</td>
+                <td>
+                    <a ng-click="postBWMP(x)">Select</a>
+                </td>
+            </tr>
+        </table>
+        
+        <h4>BWMP Deviasi</h4>
+        <div class="alert alert-danger" ng-show="listBWMPDeviasi.error">
+            <span >{{listBWMPDeviasi.error}}</span>
+        </div>
+        <ul class="thead thead-action list-inline">
+            <li>
+                <input type="text" placeholder="Cari" ng-model="fdPLBWMPDeviasi.SEARCH_BWMP"/>
+            </li>
+            <li>
+                <select class="form-control" ng-model="fdPLBWMPDeviasi.LIMIT" ng-options="x as (x) for x in $root.tableItemPerPage">
+                    <option></option>
+                </select>
+            </li>
+            <li>
+                Page: {{fdPLBWMPDeviasi.PAGE}} / {{fdPLBWMPDeviasi.NUM_PAGES}}
+            </li>
+            <li>
+                Total : {{fdPLBWMPDeviasi.TOTAL_ITEMS}} record(s)
+            </li>
+            <li class="right">
+                <ul uib-pagination 
+                    total-items="fdPLBWMPDeviasi.TOTAL_ITEMS" 
+                    items-per-page= "fdPLBWMPDeviasi.LIMIT"
+                    ng-model="fdPLBWMPDeviasi.PAGE" 
+                    max-size="fdPLBWMPDeviasi.MAX_SIZE"
+                    num-pages="fdPLBWMPDeviasi.NUM_PAGES"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                    boundary-links="true" 
+                    class="pagination-sm"
+                    ng-change="pageChanged(fdPLBWMPDeviasi.PAGE)"
+                ></ul>
+            </li>
+        </ul>
+        <table wt-responsive-table class="table table-striped small">
+            <tr style="background-color: #5da5cb;">
+                <th>Nama</th>
+                <th>Inisial</th>
+                <th>SK Berlaku</th>
+                <th>SK Berakhir</th>
+                <th>Plafond</th>
+                <th>Action</th>
+            </tr>
+            <!--<tr ng-repeat="x in listBWMP">-->
+            <tr ng-repeat="x in listBWMPDeviasi | filter:fdPLBWMPDeviasi.SEARCH_BWMP | limitTo:(fdPLBWMPDeviasi.LIMIT):((fdPLBWMPDeviasi.PAGE*fdPLBWMPDeviasi.LIMIT)-fdPLBWMPDeviasi.LIMIT)">
+                <td>{{x.namabwmp}}</td>
+                <td>{{x.inisialbwmp}}</td>
+                <td>{{x.skberlakubwmp | date : format : 'fullDate'}}</td>
+                <td>{{x.skberakhirbwmp | date : format : 'fullDate'}}</td>
+                <td>{{x.plafondskbwmp | number:2}}</td>
+                <td>
+                    <a ng-click="postBWMP(x)">Select</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalBWMP()">Tutup</a>
+</div>

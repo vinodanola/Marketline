@@ -1,0 +1,36 @@
+
+<table wt-responsive-table class="table table-hidden-overflow small">
+    <ul class="thead thead-action list-inline">
+        <li ng-show="SURVEY_SUBMITED!=2" menu-alias="M-47">
+            <a class="btn btn-success btn-sm" uib-tooltip="Klik tombol ini untuk melakukan banding !" ng-if="$root.DATA_STATUS_FOR_SUBMIT <= 5" ng-click="modalBDG();">Banding</a>
+        </li>
+    </ul>
+    <tr class="thead">
+        <th>BWMP</th>
+        <th>Plafond Disetujui</th>
+        <th>Suku Bunga Disetujui</th>
+        <th>Tenor Disetujui (bulan)</th>
+        <th>Banding</th>
+        <th>File Proposal Banding</th>
+        <th>Status</th>
+        <th>Tanggal</th>
+    </tr>
+    <tr ng-repeat="x in listFAH">
+        <td>{{x.DB_BWMP}}</td>
+        <td class="text-right">{{x.RA_PLAFOND | number:2}}</td>
+        <td class="text-right">{{x.RA_SUKU_BUNGA}}</td>
+        <td class="text-right">{{x.RA_TENOR}}</td>
+        <td>{{x.BANDING}}</td>
+        <!--td>
+            <ng-repeat ng-repeat="y in x.RA_FILE_EXPLODED">
+                {{($index > 0) ? '&middot;' : ''}} <a href="{{y}}" target="_blank"> {{($index+1)}} </a>
+            </ng-repeat>
+        </td-->
+		<td>
+			<a ng-click="modalFDN(x.RA_FILE_EXPLODED);">View</a>                        
+		</td>
+        <td>{{x.STATUS}}</td>
+        <td>{{x.CREATED_DATE}}</td>
+    </tr>
+</table>
+ 

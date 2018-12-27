@@ -1,0 +1,105 @@
+<ul class="nav nav-tabs nav-center subnav subnav-fde">
+    <li>
+        <a>
+            {{PR_NAMA_PANGGILAN}}
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="fde.calondebiturinfo({id : $root.PR_PROSPEK_ID})">
+            Calon Debitur / Debitur
+        </a>
+    </li>	
+    <!--li ui-sref-active="active"> 
+        <a ui-sref="fde.traceapproval({id : $root.PR_PROSPEK_ID})">
+            Lacak Persetujuan
+        </a> 
+    </li-->
+    <li ui-sref-active="active">
+        <a ui-sref="fde.historyapproval({id : $root.PR_PROSPEK_ID})">
+            History Persetujuan
+        </a>
+    </li>
+    
+    <li class="{{HIDE_FDE_FOR_NEW_MMS}}" ui-sref-active="active">
+        <a ui-sref="fde.nomorrekeningpembiayaan({id : $root.PR_PROSPEK_ID})">
+            Nomor Rekening Pembiayaan
+        </a>
+    </li>
+    <li class="{{HIDE_FDE_FOR_NEW_MMS}}" ui-sref-active="active">
+        <a ui-sref="fde.historypembiayaansebeumnya({id : $root.PR_PROSPEK_ID})">
+            History Pembiayaan Sebelumnya
+        </a>
+    </li>
+    <li class="{{HIDE_FDE_FOR_NEW_MMS}}" ui-sref-active="active">
+        <a ui-sref="fde.virtualaccount({id : $root.PR_PROSPEK_ID})">
+            Virtual Account
+        </a>
+    </li>
+    <li class="{{HIDE_FDE_FOR_NEW_MMS}}" ui-sref-active="active">
+        <a ui-sref="fde.aplikasi({id : $root.PR_PROSPEK_ID})">
+            Aplikasi
+        </a>
+    </li>
+    <li class="{{HIDE_FDE_FOR_NEW_MMS}}" ui-sref-active="active">
+        <a ui-sref="fde.asuransilpk({id : $root.PR_PROSPEK_ID})">
+            Asuransi LPK
+        </a>
+    </li>
+    <li class="{{HIDE_FDE_FOR_NEW_MMS}}" class="dropdown" uib-dropdown on-toggle="toggled(open)" ui-sref-active="active">
+        <a uib-dropdown-toggle>
+            More 
+            <span class="ion ion-ios-arrow-down"></span>
+            <span class="caret-dropdown"></span>
+        </a>
+        <ul class="dropdown-menu" uib-dropdown-menu>
+            <li ui-sref-active="active">
+                <a ui-sref="fde.produkasuransi({id : $root.PR_PROSPEK_ID})">
+                    Produk Asuransi
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="fde.biaya({id : $root.PR_PROSPEK_ID})">
+                    Biaya
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="fde.sisteminformasidebitur({id : $root.PR_PROSPEK_ID})">
+                    Sistem Informasi Debitur
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="fde.perjanjiankredit({id : $root.PR_PROSPEK_ID})">
+                    Perjanjian Kredit
+                </a>
+            </li>
+            <!--li ui-sref-active="active">
+                <a ui-sref="fde.kolektor({id : $root.PR_PROSPEK_ID})">
+                    Kolektor
+                </a>
+            </li-->
+            <li ui-sref-active="active">
+                <a ui-sref="fde.rekeningpribadi({id : $root.PR_PROSPEK_ID})">
+                    Rekening Pribadi
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="fde.rekeningtujuanpencairan({id : $root.PR_PROSPEK_ID})">
+                    Rekening Tujuan Pencairan
+                </a>
+            </li>
+        </ul>
+    </li> 
+    <li>
+        <a class="btn-sbm" ng-click="submitFDE()" ng-show="FDE_SUBMITED==1">
+            Submit
+        </a>
+        <a class="text-success" ng-show="FDE_SUBMITED==2">
+            <span class="glyphicon glyphicon-check"></span> Submited
+        </a>
+    </li>
+    <li class="{{HIDE_FDE_FOR_NEW_MMS}}">
+        <a class="btn-sbm" ng-click="submitFDENewMMS()" >
+            Submit MMS
+        </a>
+    </li>
+</ul>

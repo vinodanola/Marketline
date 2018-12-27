@@ -1,0 +1,49 @@
+
+<div class="col-md-4 col-md-offset-4">
+    <div class="form-group" ng-show="jao!=2" >
+        <label>Nomor LPJ *</label>
+        <input type="text" class="form-control" ng-model="fdAS.DB_NO_LPJ" restrict="reject" mask="99999999999999999999999999999999"/>
+    </div>
+		
+    <div class="form-group">
+        <label>Jenis Agunan *</label>
+        <!--<select class="form-control" ng-change="detectJA(fdAS.MS_JENIS_AGUNAN_ID.MS_DESKRIPSI)" ng-model="fdAS.MS_JENIS_AGUNAN_ID" ng-options="x as x.MS_DESKRIPSI for x in $root.jns_agunan" >-->
+         <select class="form-control" ng-change="detectJA(fdAS.MS_JENIS_AGUNAN_ID)" ng-model="fdAS.MS_JENIS_AGUNAN_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_agunan" >
+            <option> </option>
+            <!--<option ng-repeat="x in $root.jns_agunan" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" data-descrition="{{x.MS_DESKRIPSI}}">{{x.MS_DESKRIPSI}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Status Kepemilikan *</label>
+        <select class="form-control" ng-model="fdAS.MS_STATUS_KEPEMILIKAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_KEPEMILIKAN_ID">
+            <option></option>
+        </select>
+    </div>
+	
+	<div class="form-group" ng-show="jao==2" >
+        <label>Nomor Kepemilikan *</label>
+        <input type="text" class="form-control" ng-model="fdAS.DB_NOMOR_SURAT_TANAH" restrict="reject" mask="99999999999999999999999999999999"/>
+    </div>
+	
+    <div class="form-group">
+        <label>Hubungan dgn Pemohon *</label>
+        <select class="form-control" ng-model="fdAS.MS_HUBUNGAN_PEMOHON_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_HUBUNGAN_PEMOHON_ID" ng-disabled="fdAS.MS_STATUS_KEPEMILIKAN_ID == 229">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Nama Pemilik</label>
+        <ng-hide ng-hide="fdAS.MS_STATUS_KEPEMILIKAN_ID == 229">
+            <span class="pull-right">
+                <small class="label label-info ng-binding" ng-click="ADD_NUM_NAMA_PEMILIK()"><span class="glyphicon glyphicon-plus"></span> Tambah</small> 
+            </span>
+            <div class="input-group" ng-repeat="x in fdAS.NUM_NAMA_PEMILIK" style="margin-bottom: 5px;">
+                <!--<span class="input-group-addon">{{x+1}}</span>-->
+                <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-keyup="KEYUP_NAMA_PEMILIK()" ng-init="KEYUP_NAMA_PEMILIK()" ng-model="fdAS.DB_NAMA_PEMILIK_PART[x]"  aria-invalid="false"/>
+                <span class="input-group-addon" ng-click="REMOVE_NUM_NAMA_PEMILIK({ id : x })"><span class="glyphicon glyphicon-trash"></span></span>
+            </div>
+        </ng-hide>
+        <input type="text" class="form-control" ng-model="fdAS.DB_NAMA_PEMILIK" />
+    </div>
+</div>
+

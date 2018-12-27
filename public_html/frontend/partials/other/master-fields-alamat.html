@@ -1,0 +1,108 @@
+
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <div class="form-group">
+        <label>Jenis Alamat</label>
+        <select class="form-control" ng-model="fdISAL.MS_JENIS_ALAMAT_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_alamat" ng-change="kb(formDataIdentitasIndividuAlamat.MS_JENIS_ALAMAT_ID)">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Alamat</label>
+        <textarea type="text" class="form-control" placeholder="Alamat" ng-model="fdISAL.PR_ALAMAT" ></textarea>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12 col-no-padding">RT/RW</label>
+        <div class="col-md-6 col-no-padding-left">
+            <input type="text" class="form-control" placeholder="RT" ng-model="fdISAL.PR_RT" />
+        </div>
+        <div class="col-md-6 col-no-padding-right">
+            <input type="text" class="form-control" placeholder="RW" ng-model="formDatafdISAL.PR_RW" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Provinsi</label>
+        <select class="form-control" ng-model="fdISAL.MS_PROVINSI_ID" ng-change="kb(fdISAL.MS_PROVINSI_ID)">
+            <option ng-repeat="x in $root.provinsi" value="{{x.MS_KODE_PROVINSI}}">{{x.MS_PROVINSI}}</option>
+        </select>
+    </div>
+    <div class="form-group" ng-show="fdISAL.MS_PROVINSI_ID">
+        <label>Kabupaten / Kota</label>
+        <select class="form-control" ng-model="fdISAL.MS_KABKOT_ID" ng-change="kc(fdISAL.MS_KABKOT_ID)">
+            <option ng-repeat="x in $root.kabkot" value="{{x.MS_KODE_KABKOT}}">{{x.MS_KABKOT}}</option>
+        </select>
+    </div>
+    <div class="form-group" ng-show="fdISAL.MS_KABKOT_ID">
+        <label>Kecamatan</label>
+        <select class="form-control" ng-model="fdISAL.MS_KECAMATAN_ID" ng-change="kl(fdISAL.MS_KECAMATAN_ID)">
+            <option ng-repeat="x in $root.kec" value="{{x.MS_KODE_KECAMATAN}}">{{x.MS_KECAMATAN}}</option>
+        </select>
+    </div>
+    <div class="form-group" ng-show="fdISAL.MS_KECAMATAN_ID">
+        <label>Kelurahan</label>
+        <select class="form-control" ng-model="fdISAL.MS_KELDES_ID">
+            <option ng-repeat="x in $root.keldes" value="{{x.MS_KODE_KELDES}}">{{x.MS_KELDES}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Kode Pos</label>
+        <input type="number" class="form-control" ng-model="fdISAL.MS_KODE_POS_ID" />
+    </div>
+    <div class="form-group">
+        <label>Lama Menempati (Bulan)</label>
+        <input type="number" class="form-control" ng-model="fdISAL.PR_LAMA_MENEMPATI" />
+    </div>
+    <div class="form-group">
+        <label>Status Tempat</label>
+        <select class="form-control"  ng-model="fdISAL.MS_STATUS_TEMPAT_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.stat_tempat">
+            <option></option>
+        </select>
+    </div>
+     <div class="form-group text-right">
+        <a class="btn btn-success btn-sm">Tambah</a>
+        <a class="btn btn-warning btn-sm">Reset</a>
+    </div>
+</div>
+<div class="col-md-6 col-no-padding-right">
+    <table wt-responsive-table class="table table-hidden-overflow small">
+        <ul class="thead thead-action list-inline">
+            <li>
+                <input type="text" placeholder="Cari"/>
+            </li>
+            <li>
+                <select>
+                    <option></option>
+                </select>
+            </li>
+            <li>
+                Page: {{currentPage}} / {{numPages}}
+            </li>
+            <li class="right">
+                <ul uib-pagination total-items="totalItems"
+                    ng-model="currentPage"
+                    ng-change="pageChanged(currentPage)"
+                    max-size="maxSize" 
+                    class="pagination-sm" 
+                    boundary-links="true" 
+                    num-pages="numPages"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                ></ul>
+            </li>
+        </ul>
+        <tr class="thead">
+            <th>XXXX</th>
+            <th>#</th>
+        </tr>
+        <tr class="animated fadeInDown">
+            <td>
+                <h4>XXX</h4>
+                <span>xxx</span>
+                <p>
+                    xxx
+                </p>
+            </td>
+            <td>
+                <a>Update</a>
+            </td>
+        </tr>
+    </table>
+</div>

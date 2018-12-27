@@ -1,0 +1,121 @@
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <div class="form-group">
+        <label>Produk * <ng-show ng-show="fdKS.MS_PRODUK_ID">({{fdKS.MS_PRODUK_ID}} - {{fdKS.MS_PRODUK_ID_DESKRIPSI}})</ng-show></label>
+<!--        <select class="form-control" ng-model="fdKS.MS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PRODUK_ID">
+            <option></option>
+        </select>-->
+        <!--<select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list" ng-change="getDetailProduk(fdKS.MS_PRODUK_ID); fdKS.MS_ANGSURAN_PERBULAN = null" convert-to-number>-->
+        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list" ng-change="getCalculateProdukProgram({'id_produk' : fdKS.MS_PRODUK_ID, 'id_program' : fdKS.MS_PROGRAM_ID, 'id_pembiayaan' : fdKS.MS_JENIS_PEMBIAYAAN_ID })" convert-to-number>
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Program * <ng-show ng-show="fdKS.MS_PROGRAM_ID">({{fdKS.MS_PROGRAM_ID}} - {{fdKS.MS_PROGRAM_ID_DESKRIPSI}})</ng-show></label>
+<!--        <select class="form-control" ng-model="fdKS.MS_PROGRAM_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PROGRAM_ID">
+            <option></option>
+        </select>-->
+        <!--<select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PROGRAM_ID" ng-options="x.id as (x.nama_program + ' ' +x.id) for x in $root.program_list" ng-change="getDetailProgram(fdKS.MS_PROGRAM_ID); fdKS.MS_ANGSURAN_PERBULAN = null" convert-to-number>-->
+        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PROGRAM_ID" ng-options="x.id as (x.nama_program) for x in $root.program_list" ng-change="getCalculateProdukProgram({'id_produk' : fdKS.MS_PRODUK_ID, 'id_program' : fdKS.MS_PROGRAM_ID, 'id_pembiayaan' : fdKS.MS_JENIS_PEMBIAYAAN_ID })" convert-to-number>
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Tenor *</label>
+        <span class="pull-right">
+            <small class="label label-info">Min {{fdKS.MS_TENOR_MIN}}</small> 
+            <small class="label label-info">Max {{fdKS.MS_TENOR_MAX}}</small>
+        </span>
+        <div class="input-group">
+            <input ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_TENOR" restrict="reject" mask="9999" ng-blur="checkTenorMinMax();" ng-change="fdKS.MS_ANGSURAN_PERBULAN = null"/>
+            <span class="input-group-addon"> Bulan</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Plafond * </label>
+        <span class="pull-right">
+            <small class="label label-info">Min {{fdKS.MS_PLAFOND_MIN | number}}</small> 
+            <small class="label label-info">Max {{fdKS.MS_PLAFOND_MAX | number}}</small>
+        </span>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_PLAFOND" ui-number-mask="0" ng-blur="checkPlafondMinMax();" ng-change="fdKS.MS_ANGSURAN_PERBULAN = null"/>
+        </div>
+        <span></span>
+    </div>
+    <div class="form-group">
+        <label>Bunga / Margin *</label>
+        <div class="input-group">
+            <input ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_BUNGA_PERBULAN" ui-number-mask="2" ng-change="fdKS.MS_ANGSURAN_PERBULAN = null"/>
+            <span class="input-group-addon">% / Bulan</span>
+        </div>
+    </div>
+	
+	<div class="form-group">
+        <label>Count Restruktur(3R)</label>
+        <div class="input-group">
+            <input ng-disabled="true" type="text" class="form-control" ng-model="fdKS.DB_COUNT_RESTRUKTUR" />
+            <span class="input-group-addon"></span>
+        </div>
+    </div>
+	
+</div>
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>CCR</label>
+        <div class="input-group">
+            <input ng-disabled="true" type="text" class="form-control" ng-model="fdKS.MS_CCR" ui-number-mask="2" ng-change="fdKS.MS_ANGSURAN_PERBULAN = null"/>
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Perkiraan Angsuran (rata-rata)</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdKS.MS_ANGSURAN_PERBULAN" ui-number-mask="0" disabled="disabled"/>
+            <span class="input-group-addon">/ Bulan</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Perkiraan Angsuran (rata-rata) dengan Pembulatan</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdKS.MS_ANGSURAN_PERBULAN_PEMBULATAN" ui-number-mask="0" disabled="disabled"/>
+            <span class="input-group-addon">/ Bulan</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Tujuan Pembiayaan *</label>
+        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_TUJUAN_PEMBIAYAAN_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_TUJUAN_PEMBIAYAAN_ID">
+            <option></option>
+        </select>
+    </div>
+<!--    <div class="form-group">
+        <label>Keterangan</label>
+        <select class="form-control">
+            <option></option>
+        </select>
+    </div>-->
+
+    <div class="form-group">
+        <label>Business Type *</label>
+        <select class="form-control" disabled ng-model="fdKS.MS_JENIS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PRODUK_ID">
+            <option></option>
+        </select>
+    </div>
+
+    <div class="form-group" ng-show="fdKS.MS_JENIS_PRODUK_ID == 474">
+        <label>Jenis Top Up *</label>
+        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_JENIS_TOP_UP_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_TOP_UP_ID">
+            <option></option>
+        </select>
+    </div>
+	
+	<div class="form-group">
+        <label>Last BWMP Restruktur(3R)</label>
+        <div class="input-group">
+            <input ng-disabled="true" type="text" class="form-control" ng-model="fdKS.DB_BWMP_RESTRUKTUR"/>
+            <span class="input-group-addon"></span>
+        </div>
+    </div>
+
+</div>

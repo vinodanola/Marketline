@@ -1,0 +1,9 @@
+
+<div class="col-md-6 col-padding-110 col-md-offset-3">
+    <div class="form-group">
+        <label>Kolektor</label>
+        <select class="form-control" ng-model="fdFDE.FDE_KOLEKTOR_ID" ng-options="x.MS_KOLEKTOR_ID as (x.MS_KOLEKTOR_DESKRIPSI+' ('+x.MS_KOLEKTOR_KODE+')') for x in $root.kolektor">
+            <option></option>
+        </select>
+    </div>
+</div>

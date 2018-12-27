@@ -1,0 +1,170 @@
+
+/*
+| -------------------------------------------------------------------------
+| Start - Manajemen Produk by HSJ <ITD> - Agustus 16th 2017
+| -------------------------------------------------------------------------
+*/
+## big
+
+## get
+url: api/v1/produk/get_produk 
+method: post
+data post: 
+- 'MP_JENIS_PRODUK_ID'
+- 'MP_NAMA_PRODUK'
+- 'MP_INISIAL_PODUK'
+- 'MP_VERSI'
+- 'MP_LOKASI_ID'
+- 'MP_STATUS_ID'
+- 'MP_SCORING'
+note: no data post = all data
+
+
+## delete
+url: api/v1/produk/delete_produk
+method: post
+data post: 
+- 'LOGID'
+- 'MODIFIED_BY_ID'
+- 'MODIFIED_BY_NAME'
+- 'MP_PRODUK_ID' 
+
+## set
+url: api/v1/produk/set_produk
+method: post
+array data post: 
+[{
+	'MP_PRODUK_ID' : <data>,
+	'MP_PRODUK_PILIHAN' : <data>,
+	'MP_NAMA_PRODUK_SUDAH_ADA_ID' : <data>,
+	'MP_JENIS_PRODUK_ID' : <data>,
+	'MP_NAMA_PRODUK' : <data>,
+	'MP_INISIAL_PODUK' : <data>,
+	'MP_KETERANGAN' : <data>,
+	'MP_PLAFON_MIN' : <data>,
+	'MP_PLAFON_DEFAULT' : <data>,
+	'MP_PLAFON_MAX' : <data>,
+	'MP_TENOR_MIN' : <data>,
+	'MP_TENOR_DEFAULT' : <data>,
+	'MP_TENOR_MAX' : <data>,
+	'MP_DCA_ID' : <data>,
+	'MP_POLA_PENCAIRAN_ID' : <data>,
+	'MP_TERMIN_PENCAIRAN_MIN' : <data>,
+	'MP_TERMIN_PENCAIRAN_DEFAULT' : <data>,
+	'MP_TERMIN_PENCAIRAN_MAX' : <data>,
+	'MP_NILAI_PENCAIRAN_ID' : <data>,
+	'MP_NILAI_PENCAIRAN_PERCEN_MIN' : <data>,
+	'MP_NILAI_PENCAIRAN_PERCEN_DEFAULT' : <data>,
+	'MP_NILAI_PENCAIRAN_PERCEN_MAX' : <data>,
+	'MP_NILAI_PENCAIRAN_RP_MIN' : <data>,
+	'MP_NILAI_PENCAIRAN_RP_DEFAULT' : <data>,
+	'MP_MILAI_PENCAIRAN_RP_MAX' : <data>,
+	'MP_SCORING' : <data>,
+	'MP_SID' : <data>,
+	'MP_JAMINAN' : <data>,
+	'MP_ONE_OBLIGOR' : <data>,
+	'MP_CROSS_DEFAULT' : <data>,
+	'MP_LUNAS_DINI' : <data>,
+	'MP_WAJIB_ASURANSI' : <data>,
+	'MP_MATA_UANG_ID' : <data>,
+	'MP_LOKASI_ID' : <data>,
+	'MP_REG_PRO' : <data>,
+	'MP_TANGGAL_AWAL' : <data>,
+	'MP_TANGGAL_AKHIR' : <data>,
+	'MP_STATUS_ID' : <data>,
+	'MP_VERSI' : <data>,
+	'MP_SUMBER_DANA_ID' : <data>,
+	'MP_SEKTOR_USAHA_BI_ID' : <data>,
+	'MP_SEKTOR_USAHA_REAL_ID' : <data>,	
+							
+	'MP_STRUKTUR_KREDIT_ID' : <data>,
+	'MP_JENIS_SUKU_BUNGA_ID' : <data>,
+	'MP_JADWAL_PEMBAYARAN_ID' : <data>,
+	'MP_POKOK_PER' : <data>,
+	'MP_BUNGA_PER' : <data>,
+	'MP_JENIS_PERHITUNGAN_BUNGA_ID' : <data>,
+	'MP_PERHITUNGAN_BUNGA_ID' : <data>,
+	'MP_BUNGA_PERBULAN_MIN' : <data>,
+	'MP_BUNGA_PERBULAN_DEFAULT' : <data>,
+	'MP_BUNGA_PERBULAN_MAX' : <data>,
+	'MP_BUNGA_PERTAHUN_MIN' : <data>,
+	'MP_BUNGA_PERTAHUN_DEFAULT' : <data>,
+	'MP_BUNGA_PERTAHUN_MAX' : <data>,
+	'MP_PEMOTONGAN_BUNGA_ID' : <data>,
+	'MP_GRACE_PERIODE' : <data>,
+	'MP_GRACE_PERIODE_POKOK' : <data>,
+	'MP_GRACE_PERIODE_BUNGA' : <data>,
+	'MP_HARI_SATU_TAHUN_ID' : <data>,
+	'MP_HARI_SATU_BULAN_ID' : <data>,
+	'MP_HARI_LIBUR_ID' : <data>,
+	'MP_NILAI_NIAYA_ID' : <data>,
+	'MP_BIAYA_ADMIN' : <data>,
+	'MP_BIAYA_DENDA' : <data>,
+	'MP_BIAYA_PINALTY' : <data>,
+	'MP_BIAYA_PROVISI'' : <data>,
+	
+	'ARRAY_SUMBER_DANA' : [{
+		{
+			'MP_PENGGUNAAN_PRODUK_ID' : <data>,
+			'MP_PRODUK_ID' : <data>,
+			'MP_PENGGOLONGAN_PENGGUNAAN' : <data>,
+			'MP_JENIS_PENGGOLONGAN_ID' : <data>
+		},
+		{
+			'MP_PENGGUNAAN_PRODUK_ID' : <data>,
+			'MP_PRODUK_ID' : <data>,
+			'MP_PENGGOLONGAN_PENGGUNAAN' : <data>,
+			'MP_JENIS_PENGGOLONGAN_ID' : <data>
+		}
+	}]
+			
+	'ARRAY_PENGGUNAAN_PRODUK' : [{
+		'ENTUK_USAHA' : {1,2},
+		'TUJUAN_PEMBIAYAAN' : {1,2},
+		'KATEGORI_PEMBIAYAAN' : {1,2}
+	}],
+	
+	'LOGID'' : <data>,
+	'CREATED_BY_ID' : <data>,
+	'CREATED_BY_NAME' : <data>
+}]
+						
+
+
+url: api/v1/produk/set_produk_kategori
+method: post
+array data post: 
+[{
+    'MP_PRODUK_ID' : <data>,
+    'MP_KATEGORI_ID : {1,2,3},
+	'LOGID'' : <data>,
+	'CREATED_BY_ID' : <data>,
+	'CREATED_BY_NAME' = <data>
+}]
+
+
+url: api/v1/produk/set_produk_lokasi
+method: post
+array data post: 
+[{
+	'MP_PRODUK_ID' : <data>,
+    'MP_LOKASI : [
+					{
+						'MP_KODE_CABANG' : <data>,
+						'MP_KODE_UNIT' : <data>
+					},
+					{
+						'MP_KODE_CABANG' : <data>,
+						'MP_KODE_UNIT' : <data>
+					}
+				],
+	'LOGID'' : <data>,
+	'CREATED_BY_ID' : <data>,
+	'CREATED_BY_NAME' : <data>
+}]
+
+/*
+| -------------------------------------------------------------------------
+| End - Manajemen Produk by HSJ <ITD> - Agustus 16th 2017
+| -------------------------------------------------------------------------
+*/

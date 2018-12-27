@@ -1,0 +1,86 @@
+<table wt-responsive-table class="table table-hidden-overflow small table-bordered">
+    <tr class="thead">	
+        <th colspan="5" class="text-center">Usulan Unit</th>
+        <th class="text-center">Parameter</th>
+        <th colspan="2" class="text-center">Rekomendasi</th>
+    </tr>
+    <tr class="thead">	
+        <th >No</th>
+        <th>Agunan</th>
+        <th class="text-center" >Nilai Pasar</th>	
+        <th class="text-center">Nilai Likuidasi</th>
+        <th class="text-center">Nilai Likuidasi Sebelumnya</th>		
+        <th class="text-center">DNPT m<sup>2</sup></th>				
+        <th class="text-center" >Nilai Pasar Tanah direkomendasikan</th>						               
+        <th class="text-center">Nilai Likuidasi Total Rekomendasi</th>        
+    </tr>
+    <tr ng-repeat="x in listRVAG">
+        <td>{{$index + 1}}</td>
+        <td>{{x.MS_JENIS_AGUNAN_DESKRIPSI}}</td>
+        <td class="text-right">{{x.NILAI_PASAR | number:2}}</td>	
+        <td class="text-right">{{x.NILAI_LIKUIDASI | number:2}}</td>
+        <td class="text-right">{{x.NILAI_LIKUIDASI_SEBELUMNYA | number:2}}</td>
+        <td class="text-right">{{x.NILAI_PASAR_VALIDATOR | number:2}}</td>		
+        <td>
+            <div class="form-group form-group-sm">
+                <div class="input-group">
+                    <span class="input-group-addon">Rp</span>
+                    <input type="text" class="form-control" ui-number-mask="0" ng-blur="calculateNilaiLikuidasiRekomendasi(listRVAG)" ng-model="fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN_PER_METER_PERSEGI[x.DB_INDIVIDU_AGUNAN_ID.toString()]" />
+                    <span class="input-group-addon">/M<sup>2</sup></span>
+                </div>
+            </div>
+            <input type="text" class="form-control hide" ui-number-mask="0" ng-model="fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[x.DB_INDIVIDU_AGUNAN_ID.toString()]" />
+			Luas Tanah {{x.DB_LUAS_TANAH_PER_METER_PERSEGI}} M<sup>2</sup>
+			</br>
+            Total {{fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[x.DB_INDIVIDU_AGUNAN_ID.toString()] | number:2}}
+        </td>
+        <td class="text-right">{{( (fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[x.DB_INDIVIDU_AGUNAN_ID.toString()] * x.DB_PERSENTASE_LIKUIDASI / 100) + x.NILAI_PASAR_BANGUNAN) | number:2}}</td>        
+    </tr>
+    <tr>
+        <td colspan="2">Total</td>
+        <td class="text-right">{{ listRVAG | sumByColumn: 'NILAI_PASAR' | number:2}}</td>
+        <td class="text-right">{{ listRVAG | sumByColumn: 'NILAI_LIKUIDASI' | number:2}}</td>
+        <td colspan="3"></td>
+        <td class="text-right">{{ fdSCR.TOTAL_NILAI_LIKUIDASI_DIREKOMENDASIKAN | number:2}}</td>
+    </tr>
+</table>
+
+<div class="panel-body">
+    <p>Security Coverage Ratio (SCR)</p>	
+    <div class="col-md-6">
+        <dl class="dl-horizontal dt-left">		
+            <dt>Plafon Usulan </dt>
+            <dd>Rp. {{fdSCR.SCR_PLAFON_USULAN | number:2}}</dd>
+            <dt>Plafon direkomendasikan</dt>
+<!--            <dd>{{fdSCR.PLAFON_DIREKOMENDASIKAN}}</dd>-->
+            <dd>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control" ui-number-mask="0" ng-model="fdSCR.SCR_PLAFON_DIREKOMENDASIKAN" />
+                        <!--span class="input-group-btn">
+                            <a class="btn btn-primary" ng-click="postSCR()" ng-if="REVIEW_SUBMITED == 1" menu-alias="M-94">
+                                <span class="glyphicon glyphicon-save-file"></span> Simpan
+                            </a>
+                        </span-->
+                    </div>
+                </div>
+            </dd>
+            
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <dl class="dl-horizontal">
+            <!--<dd>{{fdSCR.SCR_USULAN}}</dd>-->
+            <dt>SCR Usulan </dt>
+            <!--<dd>{{fdSCR.SCR_USULAN}}</dd>-->			
+            <dd>{{ (listRVAG | sumByColumn: 'NILAI_LIKUIDASI') / (fdSCR.SCR_PLAFON_USULAN * 1 + fdSCR.SCR_OS_ONE_OBLIGOR * 1) * 100 | number:2 }} %</dd>
+            <dt>SCR - Rekomendasi</dt>
+            <!--<dd>{{fdSCR.SCR_REKOMENDASI}}</dd>-->
+            <dd>{{ fdSCR.TOTAL_NILAI_LIKUIDASI_DIREKOMENDASIKAN / (fdSCR.SCR_PLAFON_DIREKOMENDASIKAN * 1 + fdSCR.SCR_OS_ONE_OBLIGOR * 1) * 100 | number:2}} %</dd>
+        </dl>
+    </div>
+</div>
+<div class="panel-footer text-center" ng-if="REVIEW_SUBMITED == 1">
+    <button ng-click="postSCR()" ng-if="REVIEW_SUBMITED == 1" class="btn btn-primary btn-sm" menu-alias="M-94"><span class="glyphicon glyphicon-save-file"></span> Simpan</button>
+</div>

@@ -1,0 +1,59 @@
+<div class="col-md-6 col-padding-110 col-has-border-right">    
+	<div class="form-group">
+        <label>Luas Kios</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdAS.DB_LUAS_BANGUNAN" restrict="reject" mask="999999999999999999999999999999999999"/>
+            <span class="input-group-addon">M2</span>
+        </div>
+    </div>			
+	
+	<div class="form-group">
+        <label>Batas Utara *</label>
+        <select class="form-control" ng-model="fdAS.MS_BATAS_UTARA_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_BATAS_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Batas Selatan *</label>
+        <select class="form-control" ng-model="fdAS.MS_BATAS_SELATAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_BATAS_ID">
+            <option></option>
+        </select>
+    </div>
+	
+	<div class="form-group">
+        <label>Batas Barat *</label>
+        <select class="form-control" ng-model="fdAS.MS_BATAS_BARAT_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_BATAS_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Batas Timur *</label>
+        <select class="form-control" ng-model="fdAS.MS_BATAS_TIMUR_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_BATAS_ID">
+            <option></option>
+        </select>
+    </div>	
+    
+</div>
+
+<div class="col-md-6 col-padding-110">	
+  	
+	<div class="form-group">
+        <label>Bangunan Didirikan Thn</label>
+        <input type="text" class="form-control" ng-model="fdAS.DB_TAHUN_BANGUNAN" restrict="reject" mask="9999"/>
+    </div>
+	
+    <div class="form-group">
+        <label>Bahaya Banjir *</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="bbradio" value="1" ng-model="fdAS.DB_BANJIR"/>
+                <label>Ya</label>
+            </li>
+            <li>
+                <input type="radio" name="bbradio" value="0" ng-model="fdAS.DB_BANJIR"/>
+                <label>Tidak</label>
+            </li>
+        </ul>
+    </div>	
+	
+</div>

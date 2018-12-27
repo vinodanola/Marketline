@@ -1,0 +1,91 @@
+<div class="col-md-6 col-padding-110 col-has-border-right">		
+    <div class="form-group">
+        <label>Alamat</label>
+        <textarea type="text" class="form-control" placeholder="Alamat"  ng-model="fdJUS.PR_ALAMAT" ></textarea>
+    </div>
+    <div class="form-group">
+        <!--label class="col-md-12 col-no-padding">RT/RW</label-->
+        <label class="col-md-6 col-no-padding-left">RT *</label>
+        <label class="col-md-6 col-no-padding-righ">RW</label>
+        <div class="col-md-6 col-no-padding-left">
+            <input type="text" class="form-control" placeholder="RT" ng-model="fdJUS.PR_RT" restrict="reject" mask="999"/>
+        </div>
+        <div class="col-md-6 col-no-padding-right">
+            <input type="text" class="form-control" placeholder="RW" ng-model="fdJUS.PR_RW" restrict="reject" mask="999"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Provinsi *</label>
+        <select class="form-control" ng-model="fdJUS.MS_PROVINSI_ID"  ng-options="x.MS_KODE_PROVINSI as (x.MS_PROVINSI) for x in $root.provinsi" ng-change="kb(fdJUS.MS_PROVINSI_ID)">
+            <!--<option ng-repeat="x in $root.provinsi" value="{{x.MS_KODE_PROVINSI}}">{{x.MS_PROVINSI}}</option>-->
+        </select>
+    </div>
+    <div class="form-group" ng-show="fdJUS.MS_PROVINSI_ID">
+        <label>Kabupaten / Kota *</label>
+        <select class="form-control" ng-model="fdJUS.MS_KABKOT_ID" ng-options="x.MS_KODE_KABKOT as (x.MS_KABKOT) for x in $root.kabkot"  ng-change="kc(fdJUS.MS_KABKOT_ID)">
+            <!--<option ng-repeat="x in $root.kabkot" value="{{x.MS_KODE_KABKOT}}">{{x.MS_KABKOT}}</option>-->
+        </select>
+    </div>
+    <div class="form-group" ng-show="fdJUS.MS_KABKOT_ID">
+        <label>Kecamatan *</label>
+        <select class="form-control" ng-model="fdJUS.MS_KECAMATAN_ID" ng-options="x.MS_KODE_KECAMATAN as (x.MS_KECAMATAN) for x in $root.kec" ng-change="kl(fdJUS.MS_KECAMATAN_ID)">
+            <!--<option ng-repeat="x in $root.kec" value="{{x.MS_KODE_KECAMATAN}}">{{x.MS_KECAMATAN}}</option>-->
+        </select>
+    </div>
+   
+</div>
+<div class="col-md-6 col-padding-110">
+    <div class="form-group" ng-show="fdJUS.MS_KECAMATAN_ID">
+        <label>Kelurahan *</label>
+        <select class="form-control" ng-model="fdJUS.MS_KELDES_ID" ng-options="x.MS_KODE_KELDES as (x.MS_KELDES) for x in $root.keldes">
+            <!--<option ng-repeat="x in $root.keldes" value="{{x.MS_KODE_KELDES}}">{{x.MS_KELDES}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Kode Pos *</label>
+        <input type="number" class="form-control" ng-model="fdJUS.MS_KODE_POS_ID" restrict="reject" mask="99999999"/>
+    </div>
+    <!--div class="form-group">
+        <label>Lama Menempati *</label>
+        <div class="input-group">
+            <input type="number" class="form-control" ng-model="fdJUS.PR_LAMA_MENEMPATI" />
+            <span class="input-group-addon">Tahun</span>
+        </div>
+    </div-->
+	
+	<div class="form-group">
+		<label>Lama Menempati * <b class="label label-primary">total {{fdJUS.PR_LAMA_MENEMPATI}} bulan</b></label>
+		<div class="input-group hide">
+			<input type="number" class="form-control" string-to-number ng-model="fdJUS.PR_LAMA_MENEMPATI" />
+			<span class="input-group-addon">Bulan</span>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="input-group">
+					<input type="text" class="form-control" ng-model="fdJUS.PR_LAMA_MENEMPATI_TAHUN" restrict="reject" mask="999" ng-value="0" />
+					<span class="input-group-addon">Tahun</span>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="input-group">
+					<input type="text" class="form-control" ng-model="fdJUS.PR_LAMA_MENEMPATI_BULAN" restrict="reject" mask="999" ng-value="0" />
+					<span class="input-group-addon">Bulan</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    <div class="form-group">
+        <label>Status Tempat *</label>
+        <select class="form-control"  ng-model="fdJUS.MS_STATUS_TEMPAT_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.stat_tempat">
+            <option></option>
+        </select>
+    </div>
+     <div class="form-group">
+        <label>Jarak lokasi usaha dengan kantor ULaMM *</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdJUS.SV_JARAK_USAHA_DENGAN_ULAMM"/>
+            <span class="input-group-addon">KM</span>
+        </div>
+    </div>
+</div>

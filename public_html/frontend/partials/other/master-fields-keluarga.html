@@ -1,0 +1,118 @@
+    <div class="col-md-6 col-has-border-right col-no-padding">
+        <div class="col-md-6 ">
+            <div class="form-group">
+                <label>Status Hubungan Keluarga</label>
+                <select class="form-control" ng-model="formData[formDataNameKeluarga].status_hubungan">
+                    <option>Kepala Keluarga</option>
+                    <option>Suami</option>
+                    <option>Istri</option>
+                    <option>Anak</option>
+                    <option>Orangtua</option>
+                    <option>Mertua</option>
+                    <option>Lainnya</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nama lengkap</label>
+                <input type="text" class="form-control" ng-model="formData[formDataNameKeluarga].nama_lengkap" />
+            </div>
+            <div class="form-group has-min-height">
+                <label>Jenis Kelamin</label>
+                <ul class="list-inline">
+                    <li>
+                        <input type="radio" name="jeniskelamin" value="0" ng-model="formData[formDataNameKeluarga].jenis_kelamin"/>
+                        <label>Laki-laki</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="jeniskelamin" value="1" ng-model="formData[formDataNameKeluarga].jenis_kelamin"/>
+                        <label>Perempuan</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <label>Jenis Identitas</label>
+                <select class="form-control" ng-model="formData[formDataNameKeluarga].jenis_identitas">
+                    <option></option>
+                    <option>KTP</option>
+                    <option>SIM</option>
+                    <option>PASPOR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nomor Identitas</label>
+                <input type="text" class="form-control" ng-model="formData[formDataNameKeluarga].nomor_identitas"/>
+            </div>
+        </div>
+        <div class="col-md-6 ">
+            
+            <div class="form-group fg-date">
+                <label>Masa Berlaku</label>
+                <md-datepicker md-placeholder="Masukkan masa berlaku"  md-open-on-focus ng-model="dtFDMB" ng-change="formData[formDataNameKeluarga].masa_berlaku = dtFDMB.toISOString()"></md-datepicker>
+            </div>
+            <div class="form-group">
+                <label>Tempat Lahir</label>
+                <input type="text" class="form-control" ng-model="formData[formDataNameKeluarga].tempat_lahir"/>
+            </div>
+            <div class="form-group fg-date">
+                <label>Tanggal Lahir</label>
+                <md-datepicker md-placeholder="Masukkan tanggal lahir"  md-open-on-focus ng-model="dtFDTL" ng-change="formData[formDataNameKeluarga].tanggal_lahir = dtFDTL.toISOString()"></md-datepicker>
+            </div>
+            <div class="form-group">
+                <label>Nomor Handphone</label>
+                <input type="number" class="form-control" ng-model="formData[formDataNameKeluarga].nomor_hp"/>
+            </div>
+            <div class="form-group">
+                <label>Nomor Telepon</label>
+                <input type="number" class="form-control" ng-model="formData[formDataNameKeluarga].nomor_telepon"/>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <a class="btn btn-success btn-sm">Tambah</a>
+            <a class="btn btn-warning btn-sm">Reset</a>
+        </div>
+    </div>
+    <div class="col-md-6 col-no-padding-right">
+        <table wt-responsive-table class="table table-striped small">
+            <ul class="thead thead-action list-inline">
+                <li>
+                    <input type="text" placeholder="Cari"/>
+                </li>
+                <li>
+                    <select>
+                        <option></option>
+                    </select>
+                </li>
+                <li>
+                    Page: {{currentPage}} / {{numPages}}
+                </li>
+                <li class="right">
+                    <ul uib-pagination total-items="totalItems"
+                        ng-model="currentPage"
+                        ng-change="pageChanged(currentPage)"
+                        max-size="maxSize" 
+                        class="pagination-sm" 
+                        boundary-links="true" 
+                        num-pages="numPages"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                    ></ul>
+                </li>
+            </ul>
+            <tr class="thead">
+                <th>Identitas</th>
+                <th>#</th>
+            </tr>
+            <tr>
+                <td>
+                    <h4>NAMA</h4>
+                    <span>Status Hubungan</span>
+                    <p>
+                        xxxx
+                    </p>
+                </td>
+                <td>
+                    <a>Edit</a>
+                    <a>Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>

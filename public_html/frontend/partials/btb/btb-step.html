@@ -1,0 +1,8 @@
+<div class="step step-6">
+    <a ui-sref-active="active" ui-sref=".informasi" ><span></span> Informasi</a>
+    <a ui-sref-active="active" ui-sref=".konstruksi" ng-show="fdBTB.LOCK_INFORMASI == 1"><span></span> Konstruksi</a>
+    <a ui-sref-active="active" ui-sref=".komponenbangunan" ng-show="fdBTB.LOCK_KONSTRUKSI == 1"><span></span> Komponen Bangunan</a>
+    <a ui-sref-active="active" ui-sref=".biayalainlain" ng-show="fdBTB.LOCK_NILAI_BANGUNAN_PERMETER == 1"><span></span> Biaya Lain-lain</a>
+    <a ui-sref-active="active" ui-sref=".penyusutan" ng-show="fdBTB.LOCK_BIAYA_TIDAK_LANGSUNG == 1"><span></span> Penyusutan</a>
+    <a ui-sref-active="active" ui-sref=".nilaipasarbangunan" ng-show="fdBTB.LOCK_PENYUSUTAN == 1"><span></span> Nilai Pasar Bangunan</a>
+</div>

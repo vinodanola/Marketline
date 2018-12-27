@@ -1,0 +1,99 @@
+<div class="col-md-6 col-padding-110">
+<!--    <div class="form-group">
+        <label>Golongan</label>
+        <select class="form-control" ng-model="formDataProspekCreate.MS_GOLONGAN_INDIVIDU_ID">
+            <option></option>
+        </select>
+    </div>-->
+    <div class="form-group">
+        <label>Jenis Pembiayaan *</label>
+        <select class="form-control" ng-model="formDataProspekCreate.MS_JENIS_PEMBIAYAAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_pembiayaan | filter:filterJenisPembiayaan" ng-change="detectJP(formDataProspekCreate.MS_JENIS_PEMBIAYAAN_ID)">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Nama Panggilan *</label>
+        <input type="text" class="form-control" ng-model="formDataProspekCreate.PR_NAMA_PANGGILAN"/>
+    </div>
+    <div class="form-group">
+        <label>Nama Lengkap *</label>
+        <input type="text" class="form-control" ng-model="formDataProspekCreate.PR_NAMA_LENGKAP" />
+    </div>
+    <div class="form-group">
+        <label>Jenis Identitas *</label>
+        <select class="form-control" ng-model="formDataProspekCreate.MS_JENIS_IDENTITAS_ID">
+            <option></option>
+            <option ng-repeat="x in $root.jns_identitas" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>
+        </select>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Masa Berlaku *</label>
+        <div class="pull-right">
+            <input type="checkbox" ng-model="formDataProspekCreate.masa_berlaku_identitas_seumur_hidup"> Seumur hidup
+        </div>
+        <div ng-hide="formDataProspekCreate.masa_berlaku_identitas_seumur_hidup">
+            <md-datepicker md-placeholder="Tanggal masa berlaku"  md-open-on-focus ng-model="dtMB" ng-change="formDataProspekCreate.PR_MASA_BERLAKU_IDENTITAS = dtMB.toISOString()"></md-datepicker>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Nomor identitas *</label>
+        <input type="text" class="form-control" ng-model="formDataProspekCreate.PR_NO_IDENTITAS" maxlength="20"/>
+    </div>
+    <div class="form-group">
+        <label>Tempat Lahir *</label>
+        <input type="text" class="form-control" ng-model="formDataProspekCreate.PR_TEMPAT_LAHIR"/>
+    </div>
+    <div class="form-group">
+        <label>Tanggal Lahir *</label>
+        <div>
+            <md-datepicker md-placeholder="Masukan Tanggal Lahir" md-open-on-focus ng-model="dtTL" ng-change="formDataProspekCreate.PR_TGL_LAHIR = dtTL.toISOString()"></md-datepicker>
+        </div>
+    </div>
+</div>
+<div class="col-md-12 no-padding">
+    <hr>
+</div>
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label class="small">Wilayah</label>
+        <select placeholder="Wilayah" class="form-control" ng-model="formDataProspekCreate.MS_WILAYAH_ID" ng-options="x.MS_WILAYAH_ID as (x.MS_WILAYAH) for x in $root.wilayah" ng-change="cb(formDataProspekCreate.MS_WILAYAH_ID); formDataProspekCreate.MS_KODE_CABANG=''; formDataProspekCreate.MS_KODE_UNIT='';"  ng-disabled="$storage.SESSION_LOGIN.POSISI_NAMA!='SUPERADMIN'">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group" ng-show="formDataProspekCreate.MS_WILAYAH_ID">
+        <label class="small">Cabang</label>
+        <select placeholder="Cabang" class="form-control" ng-model="formDataProspekCreate.MS_KODE_CABANG" ng-options="x.MS_CABANG_KODE as (x.MS_CABANG_DESKRIPSI) for x in $root.cabang" ng-change="un(formDataProspekCreate.MS_KODE_CABANG); formDataProspekCreate.MS_KODE_UNIT='';" ng-disabled="$storage.SESSION_LOGIN.POSISI_NAMA!='SUPERADMIN'">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group" ng-show="formDataProspekCreate.MS_KODE_CABANG">
+        <label class="small">Unit</label>
+        <select placeholder="Unit" class="form-control"  ng-model="formDataProspekCreate.MS_KODE_UNIT" ng-options="x.MS_UNIT_KODE as (x.MS_UNIT_DESKRIPSI) for x in $root.unit" ng-disabled="$storage.SESSION_LOGIN.POSISI_NAMA!='SUPERADMIN'">
+            <option></option>
+        </select>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Nama AOM</label>
+        <input type="text" class="form-control" ng-model="formDataProspekCreate.DB_NAMA_AOM" ng-init="formDataProspekCreate.DB_NAMA_AOM = $storage.SESSION_LOGIN.NAMA" disabled/>
+    </div>
+    <div class="form-group">
+        <label>ID SDM AOM</label>
+        <input type="text" class="form-control" ng-model="formDataProspekCreate.DB_ID_SDM_AOM" ng-init="formDataProspekCreate.DB_ID_SDM_AOM = $storage.SESSION_LOGIN.ID_SDM" disabled/>
+    </div>
+    <div class="form-group">
+        <label>NIP AOM</label>
+        <input type="text" class="form-control" ng-model="formDataProspekCreate.DB_NIP_AOM" ng-init="formDataProspekCreate.DB_NIP_AOM = $storage.SESSION_LOGIN.NIK" disabled/>
+    </div>
+</div>
+<div class="form-group form-group-btn-step">
+    <a ui-sref="prospekcreate.2" class="btn btn-primary btn-next no-right">
+        <span class="ion ion-ios-arrow-right"></span>
+    </a>
+</div>
+
+
+

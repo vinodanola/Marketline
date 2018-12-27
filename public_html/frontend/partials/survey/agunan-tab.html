@@ -1,0 +1,23 @@
+<div class="step step-1" ng-class="{ 0 : 'step-5' , 1 : 'step-9' , 2 : 'step-4' , 99 : 'step-1'}[jao]">
+    <a ng-init="tabChange(1)" ng-click="tabChange(1)" ng-class="{1 : 'active'}[tab]"><span></span> Index</a>
+    <ng-show ng-show="jao==0 || jao==1" >
+        <a ng-click="tabChange(2)" ng-class="{2 : 'active'}[tab]" class="animated fadeInRight"><span></span> Tanah dan Bangunan</a>
+        <a ng-click="tabChange(3)" ng-class="{3 : 'active'}[tab]" class="animated fadeInRight"><span></span> AJB</a>
+        <a ng-click="tabChange(4)" ng-class="{4 : 'active'}[tab]" class="animated fadeInRight"><span></span> Alamat</a>
+        <a ng-click="tabChange(5)" ng-class="{5 : 'active'}[tab]" class="animated fadeInRight"><span></span> Keadaan tanah & Status Penghunian </a>
+    </ng-show>
+    <ng-show ng-show="jao==1">
+        <a ng-click="tabChange(6)" ng-class="{6 : 'active'}[tab]" class="animated fadeInRight"><span></span> Fasilitas</a>
+        <a ng-click="tabChange(7)" ng-class="{7 : 'active'}[tab]" class="animated fadeInRight"><span></span> Keadaan Bangunan</a>
+        <a ng-click="tabChange(8)" ng-class="{8 : 'active'}[tab]" class="animated fadeInRight"><span></span> Konstruksi Bangunan</a>
+        <a ng-click="tabChange(9)" ng-class="{9 : 'active'}[tab]" class="animated fadeInRight"><span></span> Tata Ruang</a>
+    </ng-show>	
+	<ng-show ng-show="jao==2">
+		<a ng-click="tabChange(11)" ng-class="{11 : 'active'}[tab]" class="animated fadeInRight"><span></span> Kios</a>
+		<a ng-click="tabChange(4)" ng-class="{4 : 'active'}[tab]" class="animated fadeInRight"><span></span> Alamat</a>
+		<a ng-click="tabChange(12)" ng-class="{12 : 'active'}[tab]" class="animated fadeInRight"><span></span> Keadaan Kios</a>        
+	</ng-show>	
+<!--    <ng-show ng-show="jao==0 || jao==1" >
+        <a ng-click="tabChange(10)" ng-class="{10 : 'active'}[tab]" class="animated fadeInRight"><span></span> Penilaian</a>
+    </ng-show>-->
+</div>

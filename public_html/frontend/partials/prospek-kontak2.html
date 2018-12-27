@@ -1,0 +1,75 @@
+
+<div class="col-md-12 col-no-padding">
+    <div class="col-md-6 col-has-border-right" ng-hide="PROSPEK_SUBMITED == 2" menu-alias="M-16">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+                <label>Jenis Kontak *</label>
+                <select class="form-control" ng-model="formDataIdentitasIndividuKontak.MS_TIPE_KONTAK"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_kontak">
+                    <option></option>
+                    <!--<option ng-repeat="x in $root.jns_kontak" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>-->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Kontak *</label>
+                <input type="text" class="form-control" ng-model="formDataIdentitasIndividuKontak.PR_KONTAK"  no-hp/> 
+            </div>
+            <div class="form-group">
+                <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formDataIdentitasIndividuKontak.PR_KONTAK_UTAMA"/> 
+                Kontak Utama
+            </div>
+            <div class="form-group" menu-alias="M-2">
+                <a class="btn btn-success btn-sm" ng-click="postKontak()">Simpan</a>
+                <a class="btn btn-warning btn-sm" ng-click="formDataIdentitasIndividuKontak = {}">Reset</a>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-no-padding-right" ng-class="PROSPEK_SUBMITED!=2 ? 'col-md-6' : 'col-md-12'">
+        <table wt-responsive-table class="table small">
+<!--            <ul class="thead thead-action list-inline">
+                <li>
+                    <input type="text" placeholder="Cari"/>
+                </li>
+                <li>
+                    Page: {{currentPage}} / {{numPages}}
+                </li>
+                <li class="right">
+                    <ul uib-pagination total-items="totalItems"
+                        ng-model="currentPage"
+                        ng-change="pageChanged(currentPage)"
+                        max-size="maxSize" 
+                        class="pagination-sm" 
+                        boundary-links="true" 
+                        num-pages="numPages"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                    ></ul>
+                </li>
+            </ul>-->
+            <tr class="thead">
+                <th>Detail Kontak</th>
+                <th>#</th>
+            </tr>
+            <tr ng-repeat="x in kontakList">
+                <td>
+                    <h4>{{x.MS_TIPE_KONTAK_DESKRIPSI}} <small class="text-info">{{(x.PR_KONTAK_UTAMA == 1) ? 'Kontak utama' : ''}}</small></h4>
+                    <span>{{x.PR_KONTAK}}</span>
+                </td>
+                <td>
+                    <a ng-click="viewKontak(x.PR_INDIVIDU_KONTAK_ID)">View</a>
+                    <ng-if ng-if="$root.DATA_STATUS_FOR_SUBMIT < 1">
+                        <a ng-click="editKontak(x.PR_INDIVIDU_KONTAK_ID)" menu-alias="M-16">Edit</a>
+                        <a ng-click="deleteKontak(x)" menu-alias="M-22">Delete</a>
+                    </ng-if>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group form-group-btn-step">
+        <a ui-sref="prospek.identitasindividu.informasipribadi" class="btn btn-primary btn-prev left-mx">
+            <span class="ion ion-ios-arrow-left"></span>
+        </a>
+        <a ui-sref="prospek.identitasindividu.alamat" class="btn btn-primary btn-next right-mx">
+            <span class="ion ion-ios-arrow-right"></span>
+        </a>
+    </div>
+</div>

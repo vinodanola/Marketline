@@ -1,0 +1,62 @@
+<table wt-responsive-table class="table table-hidden-overflow small">
+    <ul class="thead thead-action list-inline">
+        <li ng-show="SURVEY_LOCK != 'YES'" menu-alias="M-47">
+            <a class="btn btn-success btn-sm" ng-click="$root.fdJUS={}; modalJUS()">Tambah</a>
+        </li>
+        <li>
+            <input type="text" placeholder="Cari" ng-model="SEARCH_JENIS_USAHA"/>
+        </li>
+        <li>
+            <select class="form-control" ng-model="fdPL.LIMIT" ng-options="x as (x) for x in $root.tableItemPerPage">
+                <option></option>
+            </select>
+        </li>
+        <li>
+            Page: {{fdPL.PAGE}} / {{fdPL.NUM_PAGES}}
+        </li>
+        <li>
+            Total : {{fdPL.TOTAL_ITEMS}} record(s)
+        </li>
+        <li class="right">
+            <ul uib-pagination 
+                total-items="fdPL.TOTAL_ITEMS" 
+                items-per-page= "fdPL.LIMIT"
+                ng-model="fdPL.PAGE" 
+                max-size="fdPL.MAX_SIZE"
+                num-pages="fdPL.NUM_PAGES"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                boundary-links="true" 
+                class="pagination-sm"
+            ></ul>
+        </li>
+    </ul>
+    <tr class="thead">
+        <th ng-show="SURVEY_LOCK != 'YES'">Usaha Utama</th>
+        <!--<th>Bentuk Usaha</th>-->
+        <th>Jenis Usaha</th>
+        <th>Lama Usaha</th>
+        <th>Omset Perhari</th>
+        <th>Nama Usaha</th>
+		<th ng-show="KELENGKAPAN_DATA.PERCENTAGE.DETAIL.JENIS_USAHA.TOTAL.toFixed(0) < 98 " >Ket</th>
+        <!--<th>Status Tempat Usaha</th>-->
+        <th>#</th>
+    </tr>
+    <tr ng-repeat="x in listJUS | filter:SEARCH_JENIS_USAHA | limitTo:(fdPL.LIMIT):((fdPL.PAGE*fdPL.LIMIT)-fdPL.LIMIT)">
+        <td class="text-center" ng-show="SURVEY_LOCK != 'YES'">
+            <input type="radio" name="radiojnsusahautama" value="1" ng-model="x.PR_PRIORITY_USAHA" ng-click="postJUSUtama(x.PR_INDIVIDU_USAHA_ID)" />
+        </td>
+        <!--<td></td>-->
+        <td>{{x.MS_JENIS_USAHA}}</td>
+        <td>{{x.PR_LAMA_USAHA}}</td>
+        <td class="text-right">{{x.PR_OMSET_HARIAN | number:2}}</td>
+        <td>{{x.PR_NAMA_USAHA}}</td>
+        <td ng-show="KELENGKAPAN_DATA.PERCENTAGE.DETAIL.JENIS_USAHA[x].DETAIL.SV_USAHA.percentage_fill.toFixed(0) < 98 " >			
+            <p style="color:red"><span class="glyphicon glyphicon-exclamation-sign"></span> Data Belum Lengkap</p>			
+        </td>
+        <td>
+            <a ng-click="viewJUS(x.PR_INDIVIDU_USAHA_ID)">View</a>
+            <a ng-show="SURVEY_LOCK != 'YES'" ng-click="editJUS(x.PR_INDIVIDU_USAHA_ID)" menu-alias="M-48">Edit</a>
+            <a ng-show="SURVEY_LOCK != 'YES' && x.PR_PRIORITY_USAHA != 1" ng-click="deleteJUS(x)" menu-alias="M-49">Delete</a>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,24 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-body container-first">
+    <div class="col-md-12 col-fit-mobile">
+        <div class="page-header page-header-cdp">
+            <h1 class="text-center">{{PR_NAMA_LENGKAP}}</h1>
+        </div>
+    </div>
+    <div class="col-md-12 col-fit-mobile">
+        
+    </div>
+    <div class="col-md-12 col-fit-mobile">
+        <div class="panel panel-default panel-app panel-cdp">
+            <div class="panel-body no-padding">
+                <ul class="nav nav-tabs nav-center nav-cdp">
+                    <li ui-sref-active="active" ui-sref="calondebiturprofile.prospek({id : DB_PROSPEK_ID})"><a>Prospek</a></li>
+                    <li ui-sref-active="active" ui-sref="calondebiturprofile.survey({id : DB_PROSPEK_ID})"><a>Survey</a></li>
+                </ul>
+                <ui-view></ui-view>
+            </div>
+        </div>
+    </div>
+</div>
+
+

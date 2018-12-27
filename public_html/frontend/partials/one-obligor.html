@@ -1,0 +1,100 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first container-first-two-nav page-header page-header-form no-padding">
+    <div class="col-md-12 col-no-padding">
+        <ng-include src=" 'partials/subnav.html' "></ng-include>
+    </div>
+</div>
+
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="page-body">
+            <div class="panel panel-default panel-app">
+                <div class="panel-heading text-center">
+                    <div class="row hor-mod">
+                        <div class="col-md-12 text-center">
+                            <h4>Cek One Obligor</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body ui-view">
+<!--                    <div class="col-md-12">
+                        <div class="panel panel-app">
+                            <div class="panel-body">-->
+                                <div class="col-md-6 col-has-border-right">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label>Nama Panggilan</label>
+                                            <input type="text" class="form-control" placeholder="" ng-model="fdOOB.PR_NAMA_PANGGILAN" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nama Lengkap</label>
+                                            <input type="text" class="form-control" placeholder="" ng-model="fdOOB.PR_NAMA_LENGKAP" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tanggal Lahir</label>
+                                            <input type="text" class="form-control" placeholder="" ng-model="fdOOB.PR_TGL_LAHIR" disabled/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label>Tempat Lahir</label>
+                                            <input type="text" class="form-control" placeholder="" ng-model="fdOOB.PR_TEMPAT_LAHIR" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>No KK</label>
+                                            <input type="text" class="form-control" placeholder="" ng-model="fdOOB.PR_NO_KK" disabled/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Jenis Kelamin</label>
+                                            <input type="text" class="form-control" placeholder="" ng-model="fdOOB.MS_JENIS_KELAMIN_ID_DESKRIPSI" disabled/>
+                                        </div>
+                                    </div>
+                                </div>
+<!--                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-md-12">
+                        <hr>
+                        <table wt-responsive-table class="table table-hidden-overflow small">
+                            <tr class="thead">
+                                <th>CABANG</th>
+                                <th>UNIT</th>
+                                <th>NO IDENTITAS</th>
+                                <th>JENIS IDENTITAS</th>
+                                <th>NAMA LENGKAP</th>
+                                <th>TGL LAHIR</th>
+                                <th>TEMPAT LAHIR</th>
+                                <th>PRODUK</th>
+                                <th>PLAFOND</th>
+                                <th>RELASI</th>
+                                <th>NO_KK</th>
+                            </tr>
+                            <tr ng-repeat="x in fdOOB.LIST_ONE_OBLIGOR">
+                                <td>{{x.PR_OOB_MS_CABANG_ID}}</td>
+                                <td>{{x.PR_OOB_MS_UNIT_ID}}</td>
+                                <td>{{x.PR_OOB_PR_NO_IDENTITAS}}</td>
+                                <td>{{x.PR_OOB_JENIS_IDENTITAS_ID}}</td>
+                                <td>{{x.PR_OOB_NAMA_LENGKAP}}</td>
+                                <td>{{x.PR_OOB_TGL_LAHIR}}</td>
+                                <td>{{x.PR_OOB_TEMPAT_LAHIR}}</td>
+                                <td>{{x.PR_OOB_DB_PRODUK_ID}}</td>
+                                <td>{{x.PR_OOB_DB_PLAFOND}}</td>
+                                <td>{{x.PR_OOB_RELASI}}</td>
+                                <td>{{x.PR_OOB_NO_KK}}</td>
+                            </tr>
+                            <tr ng-show="fdOOB.LIST_ONE_OBLIGOR.length == 0">
+                                <td colspan="100" class="text-center">No data.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    <button class="btn btn-success btn-sm" ng-click="postOOB()" menu-alias="M-13">Cek One Obligor</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

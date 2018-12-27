@@ -1,0 +1,35 @@
+<div class="modal-header">
+<!--    <h4>List Taksasi Agunan ID# {{AGUNAN_ID_SELECTED}}</h4>-->
+    <h4>Daftar BTB Agunan ID# {{AGUNAN_ID_SELECTED}}</h4>
+</div>
+<div class="modal-body">
+    <ul class="thead thead-action list-inline">
+        <li ng-show="SURVEY_LOCK!='YES'">
+            <a class="btn btn-success btn-sm" ng-click="$root.fdBTB={}; modalBTB($root.AGUNAN_ID_SELECTED,'N'); ">Tambah</a>
+        </li>
+    </ul>
+    <table wt-responsive-table class="table table-hidden-overflow small">
+        <tr class="thead">
+            <th>Informasi ID</th>
+            <!--<th>Agunan ID</th>-->
+            <th>Tgl Penilaian</th>
+            <th>#</th>
+        </tr>
+        <tr ng-repeat="x in listBTB">
+            <td>{{x.INFORMASI_ID}}</td>
+            <!--<td>{{x.AGUNAN_ID}}</td>-->
+            <td>{{x.TANGGAL_PENILAIAN}}</td>
+            <td>
+                <!--<a ng-click="viewPNL(x.DB_INDIVIDU_NILAI_AGUNAN_ID)">View</a>-->
+                <ng-if ng-if="SURVEY_LOCK!='YES'">
+                    <a ng-click="modalBTB($root.AGUNAN_ID_SELECTED,x.INFORMASI_ID); ">Edit</a>
+                    <a ng-click="deleteBTB(x)">Delete</a>					
+                </ng-if>
+				<a ng-click="printBTB($root.AGUNAN_ID_SELECTED,x.INFORMASI_ID)">Print</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="modal-footer">	
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalBTBList()">Tutup</a>
+</div>

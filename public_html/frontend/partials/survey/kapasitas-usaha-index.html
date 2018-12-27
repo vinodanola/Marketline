@@ -1,0 +1,60 @@
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <div class="form-group">
+        <label>Pekerjaan *</label>
+        <select ng-disabled="(SURVEY_LOCK!='YES') ? false : true" class="form-control" ng-model="fdKU.MS_PEKERJAAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.pekerjaan">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Harta Benda yang Dimiliki *</label>
+        <div>
+            <ul class="list-unstyled"  >
+                <li ng-repeat="x in $root.MS_HARTA_ID">
+                    <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="checkbox" ng-model="fdKU.MS_HARTA_ID[$index]" ng-true-value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-false-value=""/> {{x.MS_DESKRIPSI}}
+                </li>
+           </ul>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Lama Bekerja (bulan) *</label>
+        <div class="input-group">
+            <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="number" string-to-number class="form-control" ng-model="fdKU.MS_LAMA_KERJA_DEBITUR" restrict="reject" mask="9999"/>
+            <span class="input-group-addon">Bulan</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Jenis Rekening</label>
+        <select ng-disabled="(SURVEY_LOCK!='YES') ? false : true" class="form-control" ng-model="fdKU.MS_JENIS_REKENING_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_REKENING_ID">
+            <option></option>
+            <!--<option ng-repeat="x in $root.MS_JENIS_REKENING_ID" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Tahun Rekening</label>
+        <input ng-disabled="(SURVEY_LOCK!='YES') ? false : true" type="number" string-to-number class="form-control" ng-model="fdKU.MS_TAHUN_REKENING_BANK" restrict="reject" mask="9999"/>
+<!--        <select class="form-control" ng-model="fdKU.MS_TAHUN_REKENING_BANK">
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
+        </select>
+        <md-datepicker md-placeholder="xxxx"  md-open-on-focus ng-model="dtTR" ng-change="fdKU.MS_TAHUN_REKENING_BANK = dtTR.toISOString()"></md-datepicker>-->
+<!--        <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup="yyyy" ng-model="fdKU.MS_TAHUN_REKENING_BANK" is-open="popup1.opened" 
+                datepicker-options="{
+                    dateDisabled: disabled,
+                    formatYear: 'yy',
+                    maxDate: new Date(2020, 5, 22),
+                    minDate: new Date(),
+                    startingDay: 1
+                }" 
+            ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="popup1.opened = true;"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </p>-->
+    </div>
+</div>
+

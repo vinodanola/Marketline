@@ -1,0 +1,56 @@
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Jenis Kelamin *</label>
+        <ul class="list-inline">
+            <li ng-repeat="x in $root.jns_kelamin">
+                <input type="radio" name="jeniskelamin" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-model="formDataProspekCreate.MS_JENIS_KELAMIN_ID"/>
+                <label>{{x.MS_DESKRIPSI}}</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Status Perkawinan *</label>
+        <select class="form-control" ng-model="formDataProspekCreate.MS_STATUS_KAWIN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.perkawinan">
+            <option></option>
+            <!--<option ng-repeat="x in $root.perkawinan" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Jenis Alamat *</label>
+        <select class="form-control" ng-model="formDataProspekCreate.MS_JENIS_ALAMAT_ID">
+            <option></option>
+             <option ng-hide = "x.MS_PARA_GLOBAL_DETAIL_ID == 166" ng-repeat="x in $root.jns_alamat" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option> <!-- hide id 166 oleh TYW-->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Alamat *</label>
+        <textarea class="form-control" ng-model="formDataProspekCreate.PR_ALAMAT"></textarea>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Nomor Handphone *</label>
+        <input type="text" class="form-control" ng-model="formDataProspekCreate.PR_KONTAK" restrict="reject" mask="9999999999999" no-hp/>
+    </div>
+
+    <div class="form-group">
+        <label>Nama Ibu Kandung *</label>
+        <input type="text" class="form-control" ng-model="formDataProspekCreate.PR_NAMA_IBU_KANDUNG"/>
+    </div>
+    <div class="form-group">
+        <label>Jenis Usaha *</label>
+        <select class="form-control" ng-model="formDataProspekCreate.MS_JENIS_USAHA_ID">
+            <option></option>
+            <option ng-repeat="x in $root.jns_usaha" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>
+        </select>
+    </div>
+</div>
+
+<div class="form-group form-group-btn-step">
+    <a ui-sref="prospekcreate.1" class="btn btn-primary btn-prev no-left">
+        <span class="ion ion-ios-arrow-left"></span>
+    </a>
+    <a ui-sref="prospekcreate.3" class="btn btn-primary btn-next no-right">
+        <span class="ion ion-ios-arrow-right"></span>
+    </a>
+</div>

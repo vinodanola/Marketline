@@ -1,0 +1,40 @@
+<ul class="thead thead-action list-inline">
+    <li ng-hide="PROSPEK_SUBMITED == 2" menu-alias="M-14">
+        <a class="btn btn-success btn-sm" ng-click="modalAK(); $root.fdKIA={};">Tambah</a>
+    </li>
+<!--    <li>
+        <input type="text" placeholder="Cari"/>
+    </li>
+    <li>
+        Page: {{currentPage}} / {{numPages}}
+    </li>
+    <li class="right">
+        <ul uib-pagination total-items="totalItems"
+            ng-model="currentPage"
+            ng-change="pageChanged(currentPage)"
+            max-size="maxSize" 
+            class="pagination-sm" 
+            boundary-links="true" 
+            num-pages="numPages"
+            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+        ></ul>
+    </li>-->
+</ul>
+<table wt-responsive-table class="table table-hidden-overflow small">
+    <tr class="thead">
+        <th>Tanggal</th>
+        <th>Keterangan</th>
+        <th>#</th>
+    </tr>
+    <tr ng-repeat="x in listKIA">
+        <td>{{x.PR_TGL_REALISASI_KUNJUNGAN}}</td>
+        <td>{{x.PR_KETERANGAN_KUNJUNGAN}}</td>
+        <td>
+            <a ng-click="viewKIA(x.PR_INDIVIDU_KUNJUNGAN_DEBITUR_ID)">View</a>
+            <ng-if ng-hide="PROSPEK_SUBMITED == 2">
+                <a ng-click="editKIA(x.PR_INDIVIDU_KUNJUNGAN_DEBITUR_ID)" menu-alias="M-28">Edit</a>
+                <!--<a ng-click="deleteKIA(x)">Delete</a>-->
+            </ng-if>
+        </td>
+    </tr>
+</table>

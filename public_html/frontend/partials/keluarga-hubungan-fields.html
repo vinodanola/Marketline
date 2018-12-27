@@ -1,0 +1,101 @@
+<div class="panel-body" >
+    <div class="col-md-6 col-has-border-right col-no-padding" ng-hide="PROSPEK_SUBMITED == 2"  menu-alias="M-18">
+        <div class="col-md-12 col-padding-110 ">
+            <div class="form-group">
+                <label>Status Hubungan Keluarga*</label>
+                <select class="form-control" ng-model="formDataKeluargaDetail.MS_STATUS_HUBUNGAN_KELUARGA_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.hub_keluarga">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nama lengkap*</label>
+                <input type="text" class="form-control" ng-model="formDataKeluargaDetail.PR_NAMA_LENGKAP" />
+            </div>
+            <div class="form-group has-min-height">
+                <label>Jenis Kelamin*</label>
+                <ul class="list-inline">
+                    <li ng-repeat="x in $root.jns_kelamin">
+                        <input type="radio" name="jeniskelamin" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-model="formDataKeluargaDetail.MS_JENIS_KELAMIN_ID"/>
+                        <label>{{x.MS_DESKRIPSI}}</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <label>Jenis Identitas*</label>
+                <select class="form-control" ng-model="formDataKeluargaDetail.MS_JENIS_IDENTITAS_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_identitas">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nomor Identitas*</label>
+                <input type="text" class="form-control" ng-model="formDataKeluargaDetail.PR_NO_IDENTITAS" restrict="reject" mask="999999999999999999999999999"/>
+            </div>
+            <div class="form-group">
+                <label>Masa Berlaku*</label>
+                <div class="pull-right">
+                    <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formDataKeluargaDetail.masa_berlaku_identitas_seumur_hidup"> Seumur hidup
+                </div>
+                <div ng-hide="formDataKeluargaDetail.masa_berlaku_identitas_seumur_hidup==1">
+                    <md-datepicker md-placeholder="Masukkan masa berlaku"  md-open-on-focus ng-model="dtFDMB" ng-change="formDataKeluargaDetail.PR_MASA_BERLAKU_IDENTITAS = dtFDMB.toISOString()"></md-datepicker>
+                </div>
+            </div>
+<!--        </div>
+        <div class="col-md-6 ">-->
+            
+<!--            <div class="form-group fg-date">
+                <label>Masa Berlaku</label>
+                <input type="date" class="form-control" ng-model="formDataKeluargaDetail.masa_berlaku"/>
+                <md-datepicker md-placeholder="Masukkan masa berlaku"  md-open-on-focus ng-model="dtFDMB" ng-change="formDataKeluargaDetail.PR_MASA_BERLAKU_IDENTITAS = dtFDMB.toISOString()"></md-datepicker>
+            </div>-->
+            
+            <div class="form-group">
+                <label>Tempat Lahir*</label>
+                <input type="text" class="form-control" ng-model="formDataKeluargaDetail.PR_TEMPAT_LAHIR"/>
+            </div>
+            <div class="form-group fg-date">
+                <label>Tanggal Lahir*</label>
+                <!--<input type="text" class="form-control" ng-model="formDataKeluargaDetail.tanggal_lahir"/>-->
+                <md-datepicker md-placeholder="Masukkan tanggal lahir"  md-open-on-focus ng-model="dtFDTL" ng-change="formDataKeluargaDetail.PR_TANGGAL_LAHIR = dtFDTL.toISOString()"></md-datepicker>
+            </div>
+            <div class="form-group">
+                <label>Pekerjaan*</label>
+                <select class="form-control" ng-model="formDataKeluargaDetail.MS_PEKERJAAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.pekerjaan">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nomor Handphone</label>
+                <input type="text" class="form-control" ng-model="formDataKeluargaDetail.PR_NO_HP" restrict="reject" mask="999999999999999"/>
+            </div>
+            <div class="form-group">
+                <label>Nomor Telepon</label>
+                <input type="text" class="form-control" ng-model="formDataKeluargaDetail.PR_NO_TELP" restrict="reject" mask="999999999999999"/>
+            </div>
+            <div class="form-group" menu-alias="M-7">
+                <button class="btn btn-success btn-sm" ng-click="processDetailKeluarga()">Simpan</button>
+                <a class="btn btn-warning btn-sm" ng-click="resetFormDataKeluargaDetail()">Reset</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-no-padding-right" ng-class="PROSPEK_SUBMITED!=2 ? 'col-md-6' : 'col-md-12'">
+        <table wt-responsive-table class="table small">
+            <tr class="thead">
+                <th>Identitas</th>
+                <th>#</th>
+            </tr>
+            <tr ng-repeat="x in detailKeluargaList">
+                <td>
+                    <h4 class="text-left">{{x.PR_NAMA_LENGKAP}}</h4>
+                    <span>{{x.MS_JENIS_STATUS_HUBUNGAN_KELUARGA}}</span>
+                </td>
+                <td>
+                    <a ng-click="viewDetailKeluarga(x.PR_INDIVIDU_KELUARGA_ID)">View</a>
+                    <ng-if ng-hide="PROSPEK_SUBMITED == 2">
+                        <a ng-click="editDetailKeluarga(x.PR_INDIVIDU_KELUARGA_ID)" menu-alias="M-18">Edit</a>
+                        <a ng-click="deleteDetailKeluarga(x)" menu-alias="M-24">Delete</a>
+                    </ng-if>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

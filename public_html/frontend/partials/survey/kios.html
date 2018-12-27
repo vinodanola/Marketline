@@ -1,0 +1,46 @@
+
+<div class="col-md-6 col-padding-110 ">    
+    <div class="form-group hide">
+        <label>Legalitas Jaminan *</label>
+        <select class="form-control" ng-model="fdAS.MS_LEGALITAS_JAMINAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_LEGALITAS_JAMINAN">
+            <option></option>
+        </select>
+    </div>			
+	
+	<div class="form-group hide">
+        <label>Detail Legalitas Jaminan *</label>
+        <select class="form-control" ng-model="fdAS.MS_DETAIL_LEGALITAS_JAMINAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_DETAIL_LEGALITAS_JAMINAN" ng-change="dlj(fdAS.MS_LEGALITAS_JAMINAN_ID);" >
+            <option></option>
+        </select>
+    </div>
+    
+    <div class="form-group hide">
+        <label>Tanggal Jatuh Tempo</label>
+        <md-datepicker md-placeholder="xxx"  md-open-on-focus ng-model="dtTJTO" ng-change="fdAS.DB_TGL_JATUH_TEMPO = dtTJTO.toISOString()"></md-datepicker>
+    </div>
+
+    
+</div>
+
+<div class="col-md-12 col-padding-110">	
+    <div class="form-group">
+        <label>Bukti Kepemilikan Agunan *</label>
+        <select class="form-control" ng-model="fdAS.MS_BUKTI_KEPEMILIKAN_AGUNAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_BUKTI_KEPEMILIKAN_AGUNAN_ID">
+            <option></option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label>Status Kios *</label>
+        <select class="form-control" ng-model="fdAS.MS_STATUS_KIOS_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_STATUS_KIOS">
+            <option></option>
+        </select>
+    </div>
+	
+    <div class="form-group">
+        <label>Jenis Kios *</label>
+        <select class="form-control" ng-model="fdAS.MS_JENIS_KIOS_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_KIOS">
+            <option></option>
+        </select>
+    </div>	
+</div>

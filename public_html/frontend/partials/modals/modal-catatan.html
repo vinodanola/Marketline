@@ -1,0 +1,26 @@
+<div class="modal-header no-padding-top no-padding-bottom">
+    <h4>Buat Catatan Baru</h4>
+</div>
+<hr class="awesome no-margin">
+<div class="modal-body">
+    <div class="col-md-6 col-md-offset-3 col-padding-110">
+        <div class="form-group">
+            <label>Pemberi Catatan*</label>
+            <input type="text" class="form-control" ng-model="fdNTE.SV_PEMBERI_NOTE"/>
+        </div>
+        <div class="form-group">
+            <label>Jenis Catatan*</label>
+            <select class="form-control" ng-model="fdNTE.MS_JENIS_CATATAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_CATATAN_ID">
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Keterangan*</label>
+            <textarea class="form-control" ng-model="fdNTE.SV_NOTE"></textarea>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="btn btn-success btn-sm" ng-click="postNTE()">Simpan</a>
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalCT()">Tutup</a>
+</div>

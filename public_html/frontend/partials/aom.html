@@ -1,0 +1,27 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first container-first-two-nav page-header page-header-form no-padding">
+    <div class="col-md-12 col-no-padding">
+        <ng-include src=" 'partials/subnav.html' "></ng-include>
+    </div>
+</div>
+
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="page-body">
+            <div class="panel panel-default panel-app">
+                <div class="panel-heading text-center">
+                    <div class="row hor-mod">
+                        <div class="col-md-2 col-first">
+                            <h1>AOM</h1>
+                        </div>
+                        <div class="col-md-10">
+                            <ng-include src=" 'partials/aom-step.html' "></ng-include>
+                        </div> 
+                    </div>
+                </div>
+                <div class="panel-body ui-view"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,130 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container container-fluid container-first page-header page-header-form no-padding has-bg-color">
+    <!--    <div class="bx-ph">
+            <h1>Daftar FDE</h1>
+        </div>
+        <hr class="awesome no-margin"/>-->
+</div>
+<div class="container container-body">
+    <div class="col-md-12">
+        <div class="panel panel-default panel-app">
+            <div class="panel-heading">
+                <div class="row hor-mod">
+                    <div class="col-md-3 col-first text-center">
+                        <h1>Daftar Report</h1>
+                    </div>
+                    <div class="col-md-9">
+                        <ul class="thead thead-action list-inline">
+                            <li>
+                                <label class="small">Wilayah</label>
+                                <select placeholder="Wilayah" class="form-control" ng-model="fdPL.MS_WILAYAH_ID" ng-options="x.MS_WILAYAH_ID as (x.MS_WILAYAH) for x in $root.wilayah" ng-change="cb(fdPL.MS_WILAYAH_ID); fdPL.MS_KODE_CABANG=''; fdPL.MS_KODE_UNIT='';" ng-disabled="$storage.SESSION_LOGIN.WILAYAH">
+                                    <option></option>
+                                </select>
+                            </li>
+                            <li ng-show="fdPL.MS_WILAYAH_ID">
+                                <label class="small">Cabang</label>
+                                <select placeholder="Cabang" class="form-control" ng-model="fdPL.MS_KODE_CABANG" ng-options="x.MS_CABANG_KODE as (x.MS_CABANG_DESKRIPSI) for x in $root.cabang" ng-change="un(fdPL.MS_KODE_CABANG); fdPL.MS_KODE_UNIT='';" ng-disabled="$storage.SESSION_LOGIN.CABANG_KODE">
+                                    <option></option>
+                                </select>
+                            </li>
+                            <li ng-show="fdPL.MS_KODE_CABANG">
+                                <label class="small">Unit</label>
+                                <select placeholder="Unit" class="form-control"  ng-model="fdPL.MS_KODE_UNIT" ng-options="x.MS_UNIT_KODE as (x.MS_UNIT_DESKRIPSI) for x in $root.unit"  ng-disabled="$storage.SESSION_LOGIN.UNIT_KODE">
+                                    <option></option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-heading">
+                <ul class="thead thead-action list-inline">
+                    <li>
+                        <!-- <input type="text" placeholder="Cari" ng-model="SEARCH_REPORT"/> -->
+                        <input type="text" placeholder="Cari" ng-model="fdPL.SEARCH"/>
+                    </li>
+                    <li>
+                        <select class="form-control" ng-model="fdPL.LIMIT" ng-options="x as (x) for x in $root.tableItemPerPage">
+                            <option></option>
+                        </select>
+                    </li>
+                    <li>
+                        Page : {{fdPL.PAGE}} / {{fdPL.NUM_PAGES}}
+                    </li>
+                    <li>
+                        Total : {{fdPL.TOTAL_ITEMS}} record(s)
+                    </li>
+                    <li class="right">
+                        <ul uib-pagination 
+                            total-items="fdPL.TOTAL_ITEMS" 
+                            items-per-page= "fdPL.LIMIT"
+                            ng-model="fdPL.PAGE" 
+                            max-size="fdPL.MAX_SIZE"
+                            num-pages="fdPL.NUM_PAGES"
+                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                            boundary-links="true" 
+                            class="pagination-sm"
+                        ></ul>
+                    </li>
+                </ul>
+            </div>
+            <div style="z-index: -99"  class="panel-body no-padding">
+                <table wt-responsive-table class="table table-striped small">
+                    <tr class="tr-head">
+                        <th>WILAYAH</th>
+                        <th>CABANG</th>
+                        <th>UNIT</th>
+                        <th>PROSPEK ID</th>
+                        <th>NAMA NASABAH</th>
+                        <th>PILIH REPORT</th>
+                        <th>ACTION</th>						
+                    </tr>
+                    <!-- <tr ng-repeat="x in listDEBITUR | filter:SEARCH_REPORT | limitTo:(fdPL.LIMIT):((fdPL.PAGE*fdPL.LIMIT)-fdPL.LIMIT) "> -->
+                    <tr ng-repeat="x in listDEBITUR ">
+                        <td>{{x.MS_WILAYAH_DESKRIPSI}}</td>
+                        <td>{{x.MS_KODE_CABANG_DESKRIPSI}}</td>
+                        <td>{{x.MS_KODE_UNIT_DESKRIPSI}}</td>
+                        <td>{{x.DB_PROSPEK_ID}}</td>
+                        <td>{{x.PR_NAMA_LENGKAP}}</td>
+                        <td class="col-md-3">
+                            <select id="reportnya{{x.DB_PROSPEK_ID}}" placeholder="Report" class="form-control input-sm">
+                                
+                                <!--Default-->
+<!--                                <option ng-if="x.DB_STATUS >= 5 " value="SP3U">Surat SP3U</option>
+                                <option ng-if="x.DB_STATUS >= 5 " value="LKKU">Laporan Kunjungan Usaha</option>
+                                <option ng-if="x.DB_STATUS >= 4 " value="MRPU">Memorandum Review Pembiayaan MRPU</option>                                    
+                                <option ng-if="x.DB_STATUS >= 4 " value="DU">Memorandum Review Pembiayaan DU</option>
+                                <option ng-if="x.DB_STATUS >= 4 " value="AS">Memorandum Review Pembiayaan AS</option>
+                                <option ng-if="x.DB_STATUS >= 5 " value="PERSETUJUAN">Memo Persetujuan Pembiayaan</option>
+                                <option ng-if="x.DB_STATUS >= 5 " value="SCORING">Scoring Pembiayaan Mikro</option>
+                                <option ng-if="x.DB_STATUS >= 5 " value="EXAM">Executive Summary Pengajuan Pembiayaan</option>
+                                <option ng-if="x.DB_STATUS >= 5 " value="IDI">Informasi Debitur Internal</option>-->
+                                
+                                <option  value="SP3U">Surat SP3U</option>
+                                <option  value="LKKU">Laporan Kunjungan Usaha</option>
+                                <option  value="MRPU">Memorandum Review Pembiayaan MRPU</option>                                    
+                                <option  value="DU">Memorandum Review Pembiayaan DU</option>
+                                <option  value="AS">Memorandum Review Pembiayaan AS</option>
+                                <option  value="PERSETUJUAN">Memo Persetujuan Pembiayaan</option>
+                                <option  value="SCORING">Scoring Pembiayaan Mikro</option>
+                                <option  value="EXAM">Executive Summary Pengajuan Pembiayaan</option>
+                                <option  value="IDI">Informasi Debitur Internal</option>
+                                
+                            </select>
+                        </td>
+                        <td class="col-md-1">
+							&nbsp&nbsp
+                            <a ng-click="$root.PROSPEK_ID = x.DB_PROSPEK_ID; modalRPT(x.DB_PROSPEK_ID);">View</a>                        
+                        </td>
+                    </tr>  
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+        vertical-align: middle;
+    }
+</style>

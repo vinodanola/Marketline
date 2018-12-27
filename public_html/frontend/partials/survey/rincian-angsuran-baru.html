@@ -1,0 +1,110 @@
+<ng-include src="'partials/survey/rincian-angsuran-step.html'"></ng-include>
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <div class="form-group">
+        <label>Plafond</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdASBR.MS_PLAFOND" ui-number-mask="0" disabled/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Tenor</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdASBR.MS_TENOR" ui-number-mask="0" disabled/>
+            <span class="input-group-addon"> Bulan</span>
+        </div>
+    </div>
+	<div class="form-group">
+        <label>Bunga</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdASBR.MS_BUNGA_PERBULAN" ui-number-mask="2" disabled/>
+            <span class="input-group-addon">% / Bulan</span>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Calculation Type</label>
+        <select class="form-control" ng-model="fdASBR.calctype">
+            <option value=""></option>
+            <option value="1">Flat</option>
+            <option value="2">Anuitas</option>
+            <option value="3">Bunga Efektif</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Start Date</label>
+        <md-datepicker md-placeholder="Tanggal mulai peminjaman"  md-open-on-focus ng-model="dtSDate" ng-change="fdASBR.sdate = dtSDate.toISOString()"></md-datepicker>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-12">Grace Period</label>
+        <div class="col-md-6">
+            <select class="form-control" ng-model="fdASBR.qtygp">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <select class="form-control" ng-model="fdASBR.gpmethod">
+                <option value="1">Awal Angsuran</option>
+                <option value="2">Akhir Angsuran</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <a class="btn btn-success btn-sm" ng-click="buatjadwal()">Buat Jadwal</a>
+    </div>
+</div>
+<div class="col-md-12">
+<!--    <ul class="thead thead-action list-inline">
+        <li>
+            <input type="text" placeholder="Cari"/>
+        </li>
+        <li>
+            <select>
+                <option></option>
+            </select>
+        </li>
+        <li>
+            Page: {{currentPage}} / {{numPages}}
+        </li>
+        <li class="right">
+            <ul uib-pagination total-items="totalItems"
+                ng-model="currentPage"
+                ng-change="pageChanged(currentPage)"
+                max-size="maxSize" 
+                class="pagination-sm" 
+                boundary-links="true" 
+                num-pages="numPages"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+            ></ul>
+        </li>
+    </ul>-->
+	<table wt-responsive-table class="table table-hidden-overflow small">
+            <tr class="thead">
+                <th>Rekening Lama</th>
+                <th>Tanggal</th>
+                <th>Angsuran Ke</th>
+                <th>Pokok</th>
+                <th>Bunga</th>
+                <th>Total</th>
+            </tr>
+            <tr ng-repeat="x in listJA">
+                <td>{{x.NO_REKENING_DIPERBAIKI}}</td>
+                <td>{{x.TANGGAL}}</td>
+                <td>{{x.ANGSURAN}}</td>
+                <td class="text-right">{{x.POKOK | number:2}}</td>
+                <td class="text-right">{{x.BUNGA | number:2}}</td>
+                <td class="text-right">{{PokokBunga(x.POKOK,x.BUNGA) | number:2}}</td>
+            </tr>
+            <tr class="text-success">
+                <td colspan="3">Total</td>
+                <td class="text-right">{{ listJA | sumByColumn: 'POKOK' | number:2}}</td>
+                <td class="text-right">{{ listJA | sumByColumn: 'BUNGA' | number:2}}</td>
+                <td class="text-right">{{PokokBunga(listJA | sumByColumn: 'POKOK',listJA | sumByColumn: 'BUNGA') | number:2}}</td>
+            </tr>
+	</table>
+</div>
