@@ -11043,6 +11043,7 @@ App.controller('reviewAnalisaSensitivitasCtrl',function(){
     $scope.$watch('DASE', function(dataLoaded) {
         if (dataLoaded) {
             $scope.fdRCR = $scope.DASE.RCR;
+            $scope.fdRCR.PENJUALAN_PER_BULAN = $scope.DASE.RCR.RV_PENJUALAN_PERBULAN_SKENARIO_1;
             $scope.fdRCR.HPP = $scope.DASE.RCR.RV_HPP_SKENARIO_1;
             $scope.fdRCR.TOTAL_BIAYA_OPERASIONAL_USAHA = $scope.DASE.RCR.RV_TOTAL_BIAYA_OPERASIONAL_USAHA_SKENARIO_1;
             $scope.fdRCR.USAHA_LAINNYA_1 = $scope.DASE.RCR.RV_USAHA_LAINNYA_1_SKENARIO_1;

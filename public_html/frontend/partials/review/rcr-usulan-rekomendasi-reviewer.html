@@ -10,7 +10,25 @@
         </tr>
         <tr>
             <td>Penjualan / bln</td>
-            <td class="text-right"><b>({{SK1_SKENARIO_PERCENTAGE}}%)</b> <span>{{SK1_PENJUALAN_PER_BULAN | number:2}}</span></td>
+            <!--<td class="text-right"><b>({{SK1_SKENARIO_PERCENTAGE}}%)</b> <span>{{SK1_PENJUALAN_PER_BULAN | number:2}}</span></td>-->
+            <td class="text-right no-padding">
+                <table style="width: -webkit-fill-available; ">
+                    <tr>
+                        <td class="text-right">
+                            <b>({{SK1_SKENARIO_PERCENTAGE}}%)</b>
+                        </td>
+                        <td style="width:200px;padding-left: 10px;">
+                            <div class="form-group form-group-sm form-group-on-td">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Rp</span>
+                                    <input type="text" class="form-control text-right"  ng-model="fdRCR.PENJUALAN_PER_BULAN" ui-number-mask="2" ng-keyup="CALCULATE()" />
+                                </div>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                </table>
+            </td>
             <td class="text-right"><b>({{SK2_SKENARIO_PERCENTAGE}}%)</b> {{SK2_PENJUALAN_PER_BULAN | number:2}}</td>
             <!--<td class="text-right"><b>({{SK3_SKENARIO_PERCENTAGE}}%)</b> {{SK3_PENJUALAN_PER_BULAN | number:2}}</td>-->
             <td class="text-right no-padding">
