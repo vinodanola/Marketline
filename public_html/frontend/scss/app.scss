@@ -416,6 +416,10 @@ code {
                     line-height: 10px;
                 }
             }
+            
+            &.no-padding {
+                padding: 0px;
+            }
         }
     }
     
@@ -2136,6 +2140,27 @@ code {
         }
     }
     
+    &.form-group-on-td {
+        margin: 0;
+        
+        .form-control {
+            height: 33px;
+            border: none;
+            border-radius: 0;
+            background: #ebf4ff;
+            
+            &:hover, &:focus {
+                border-radius: 0;
+            }
+        }
+        .input-group-addon {
+            padding: 4px 12px;
+            border-radius: 0;
+            border: none;
+            background: #e4f0e1;
+        }
+    }
+    
 }
 
 /* FORM */
@@ -2181,6 +2206,7 @@ code {
             font-size: 12px;
         }
     }
+    
 }
 
 /* MD-DATEPICKER */

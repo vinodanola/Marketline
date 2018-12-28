@@ -194,6 +194,8 @@ code.code-response {
       height: 10px; }
       .table tr td .progress .progress-bar {
         line-height: 10px; }
+    .table tr td.no-padding {
+      padding: 0px; }
   .table .thead {
     background: #63a8c1;
     color: #fff; }
@@ -1370,6 +1372,20 @@ code.code-response {
     margin: 0; }
     .form-group md-datepicker .md-datepicker-input-container .md-datepicker-input {
       width: 100%; }
+  .form-group.form-group-on-td {
+    margin: 0; }
+    .form-group.form-group-on-td .form-control {
+      height: 33px;
+      border: none;
+      border-radius: 0;
+      background: #ebf4ff; }
+      .form-group.form-group-on-td .form-control:hover, .form-group.form-group-on-td .form-control:focus {
+        border-radius: 0; }
+    .form-group.form-group-on-td .input-group-addon {
+      padding: 4px 12px;
+      border-radius: 0;
+      border: none;
+      background: #e4f0e1; }
 
 /* FORM */
 .form-awesome {

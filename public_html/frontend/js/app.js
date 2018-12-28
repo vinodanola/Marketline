@@ -36,6 +36,8 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
     
     /* ROUTE */
     
+    $urlRouterProvider.when('/review/:id/analisa-sensitivitas/rcr-usulan-&-rcr-rekomendasi', '/review/:id/analisa-sensitivitas/rcr-usulan-&-rcr-rekomendasi/reviewer');
+    
     $stateProvider
     
         /* APPS */
@@ -1218,10 +1220,24 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.analisasensitivitas.rcrusulanrekomendasi',{
             url: '/rcr-usulan-&-rcr-rekomendasi',
+            template: '<ui-view></ui-view>'
+        })
+        
+        .state('review.analisasensitivitas.rcrusulanrekomendasi.lkku',{
+            url: '/lkku',
             templateUrl: 'partials/review/rcr-usulan-rekomendasi.html',
             controller: 'reviewAsRcrCtrl',
             data: {
-                pageTitle: 'RCR Usulan & RCR Rekomendasi'
+                pageTitle: 'RCR Usulan & RCR Rekomendasi LKKU'
+            }
+        })
+        
+        .state('review.analisasensitivitas.rcrusulanrekomendasi.reviewer',{
+            url: '/reviewer',
+            templateUrl: 'partials/review/rcr-usulan-rekomendasi-reviewer.html',
+            controller: 'reviewAsRcrReviewerCtrl',
+            data: {
+                pageTitle: 'RCR Usulan & RCR Rekomendasi Reviewer'
             }
         })
         
@@ -11010,7 +11026,279 @@ App.controller('reviewAnalisaSensitivitasCtrl',function(){
             gl      : true,
             api     : apiBase+'review/post_alldata',
             data    : $scope.fdRCR,
-            scope   : $scope
+            scope   : $scope,
+            fd      : 'fdSCR',
+            dataType: 'multidimensional',
+        });
+    };
+    
+})
+
+.controller('reviewAsRcrReviewerCtrl',function($scope,apiData,apiBase,$rootScope,$scope,$stateParams){
+    
+    apiData.get_DASE();
+	
+    $scope.fdRCR = {};
+    
+    $scope.$watch('DASE', function(dataLoaded) {
+        if (dataLoaded) {
+            $scope.fdRCR = $scope.DASE.RCR;
+            $scope.fdRCR.HPP = $scope.DASE.RCR.RV_HPP_SKENARIO_1;
+            $scope.fdRCR.TOTAL_BIAYA_OPERASIONAL_USAHA = $scope.DASE.RCR.RV_TOTAL_BIAYA_OPERASIONAL_USAHA_SKENARIO_1;
+            $scope.fdRCR.USAHA_LAINNYA_1 = $scope.DASE.RCR.RV_USAHA_LAINNYA_1_SKENARIO_1;
+            $scope.fdRCR.USAHA_LAINNYA_2 = $scope.DASE.RCR.RV_USAHA_LAINNYA_2_SKENARIO_1;
+            $scope.fdRCR.GAJI_SUAMI_ISTRI = $scope.DASE.RCR.RV_GAJI_SUAMI_ISTRI_SKENARIO_1;
+            $scope.fdRCR.TOTAL_BIAYA_RM_TANGGA = $scope.DASE.RCR.RV_TOTAL_BIAYA_RUMAH_TANGGA_SKENARIO_1;
+            $scope.fdRCR.RCR_USULAN_PINJAMAN_YANG_DIUSULKAN = $scope.DASE.RCR.RV_PINJAMAN_YANG_DIUSULKAN;
+            $scope.fdRCR.RCR_USULAN_BUNGA = $scope.DASE.RCR.RV_BUNGA_YANG_DIUSULKAN;
+            $scope.fdRCR.RCR_USULAN_TENOR = $scope.DASE.RCR.RV_TENOR_YANG_DIUSULKAN;
+            $scope.fdRCR.RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI = $scope.DASE.RCR.RV_ANGSURAN_PINJAMAN_SAAT_INI_SKENARIO_1;
+        }
+    });
+    
+    $scope.Math = window.Math;
+    
+    $scope.CALCULATE = function(){
+        
+        $scope.$watchGroup([
+            'GBL_RCR_USULAN_TENOR',
+            'GBL_RCR_REKOMENDASI_TENOR',
+            'fdRCR',
+            'GBL_RCR_REKOMENDASI_PINJAMAN_YANG_DI_REKOMENDASIKAN',
+            'GBL_RCR_REKOMENDASI_BUNGA_PERCEN',
+            'GBL_RCR_REKOMENDASI_TENOR',
+            'SK3_SKENARIO_PERCENTAGE'
+        ], function(newValues, oldValues, scope) {
+            if (newValues) {
+
+                $scope.GBL_RCR_USULAN_PINJAMAN_YANG_DI_USULKAN = parseInt($scope.fdRCR.RCR_USULAN_PINJAMAN_YANG_DIUSULKAN);
+                $scope.GBL_RCR_USULAN_POKOK = $scope.Math.ceil($scope.GBL_RCR_USULAN_PINJAMAN_YANG_DI_USULKAN / $scope.GBL_RCR_USULAN_TENOR);
+                $scope.GBL_RCR_USULAN_BUNGA_PERCEN = parseFloat($scope.fdRCR.RCR_USULAN_BUNGA);
+                $scope.GBL_RCR_USULAN_BUNGA_RUPIAH = $scope.Math.ceil(($scope.GBL_RCR_USULAN_PINJAMAN_YANG_DI_USULKAN * ( $scope.GBL_RCR_USULAN_BUNGA_PERCEN / 100 )));
+                $scope.GBL_RCR_USULAN_TENOR = parseInt($scope.fdRCR.RCR_USULAN_TENOR);
+                $scope.GBL_RCR_USULAN_TOTAL_ANGSURAN = $scope.Math.ceil((($scope.GBL_RCR_USULAN_POKOK + $scope.GBL_RCR_USULAN_BUNGA_RUPIAH) / 50 )) * 50;
+
+                $scope.GBL_RCR_REKOMENDASI_PINJAMAN_YANG_DI_REKOMENDASIKAN = parseInt($scope.fdRCR.RCR_REKOMENDASI_PINJAMAN_YANG_DIREOMENDASI);
+                $scope.GBL_RCR_REKOMENDASI_POKOK = $scope.Math.ceil($scope.GBL_RCR_REKOMENDASI_PINJAMAN_YANG_DI_REKOMENDASIKAN / $scope.GBL_RCR_REKOMENDASI_TENOR);
+                $scope.GBL_RCR_REKOMENDASI_BUNGA_PERCEN = parseFloat($scope.fdRCR.RCR_REKOMENDASI_BUNGA);
+                $scope.GBL_RCR_REKOMENDASI_BUNGA_RUPIAH = $scope.Math.ceil(($scope.GBL_RCR_REKOMENDASI_PINJAMAN_YANG_DI_REKOMENDASIKAN * ( $scope.GBL_RCR_REKOMENDASI_BUNGA_PERCEN / 100 )));
+                $scope.GBL_RCR_REKOMENDASI_TENOR = parseInt($scope.fdRCR.RCR_REKOMENDASI_TENOR);
+                $scope.GBL_RCR_REKOMENDASI_TOTAL_ANGSURAN = $scope.Math.ceil((($scope.GBL_RCR_REKOMENDASI_POKOK + $scope.GBL_RCR_REKOMENDASI_BUNGA_RUPIAH) / 50 )) * 50;
+                
+                $scope.GBL_TOP_UP_RCR_USULAN_PINJAMAN_YANG_DI_USULKAN = 
+                    $scope.Math.ceil((
+                        (
+                            $scope.Math.ceil(parseInt($scope.fdRCR.TOP_UP.RCR_USULAN_PINJAMAN_YANG_DIUSULKAN) / parseInt($scope.fdRCR.TOP_UP.RCR_USULAN_TENOR))
+                            + $scope.Math.ceil((parseInt($scope.fdRCR.TOP_UP.RCR_USULAN_PINJAMAN_YANG_DIUSULKAN) * ( parseFloat($scope.fdRCR.TOP_UP.RCR_USULAN_BUNGA) / 100 )))    
+                        ) / 50
+                    )) * 50;
+                
+                $scope.RCR_SENSITIVITAS_STATUS = function(A,X){
+                    
+                    var B,C;
+                    
+                    if (A>=0 && A<30){
+                        B = 'Low Risk';
+                        C = 'label-success';
+                    } else if (A>=30 && A<70) {
+                        B = 'Moderat Risk';
+                        C = 'label-info';
+                    } else if (A>=70 && A<100) {
+                        B = 'High Risk';
+                        C = 'label-warning';
+                    } else if (A<0 || A>=100) {
+                        B = 'Very High Risk';
+                        C = 'label-danger';
+                    } else {
+                        B = 'Out of Range';
+                        C = 'label-danger';
+                    }
+                    
+                    // $scope.GBL_RCR_USULAN_SENSITIVITAS_COLOR = C;
+                    // $scope.GBL_RCR_REKOMENDASI_SENSITIVITAS_COLOR = C;		
+					/*FZL tambahan parameter X*/
+					if (X=='COLOR')
+					return C;
+					else						                    
+                    return B;
+                };
+
+                /* Skenario-1 */
+
+                $scope.SK1_PENJUALAN_PER_BULAN = parseInt($scope.fdRCR.PENJUALAN_PER_BULAN);
+                $scope.SK1_SKENARIO_PERCENTAGE = 100;
+                $scope.SK1_HPP = parseInt($scope.fdRCR.HPP);
+                $scope.SK1_LABA_KOTOR = $scope.SK1_PENJUALAN_PER_BULAN - $scope.SK1_HPP;
+                $scope.SK1_TOTAL_BIAYA_OPERASIONAL_USAHA = parseInt($scope.fdRCR.TOTAL_BIAYA_OPERASIONAL_USAHA);
+                $scope.SK1_LABA_OPERASI = $scope.SK1_LABA_KOTOR - $scope.SK1_TOTAL_BIAYA_OPERASIONAL_USAHA;
+                $scope.SK1_USAHA_LAINNYA_1 = parseInt($scope.fdRCR.USAHA_LAINNYA_1);
+                $scope.SK1_USAHA_LAINNYA_2 = parseInt($scope.fdRCR.USAHA_LAINNYA_2);
+                $scope.SK1_GAJI_SUAMI_OR_ISTRI = parseInt($scope.fdRCR.GAJI_SUAMI_ISTRI);
+                $scope.SK1_JUMLAH_PENGHASILAN_LAINNYA = $scope.SK1_USAHA_LAINNYA_1 + $scope.SK1_USAHA_LAINNYA_2 + $scope.SK1_GAJI_SUAMI_OR_ISTRI;
+                $scope.SK1_PENGHASILAN_SEBELUM_BIAYA_RT = $scope.SK1_LABA_OPERASI + $scope.SK1_JUMLAH_PENGHASILAN_LAINNYA;
+                $scope.SK1_TOTAL_BIAYA_RUMAH_TANGGA = parseInt($scope.fdRCR.TOTAL_BIAYA_RM_TANGGA);
+                $scope.SK1_SISA_PENGHASILAN_SEBELUM_ANGSURAN = $scope.SK1_PENGHASILAN_SEBELUM_BIAYA_RT - $scope.SK1_TOTAL_BIAYA_RUMAH_TANGGA;
+
+                $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI = parseInt($scope.fdRCR.RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI);
+                $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU = $scope.GBL_RCR_USULAN_TOTAL_ANGSURAN;
+                $scope.SK1_RCR_USULAN_TOTAL_ANGSURAN = $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI + $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU;
+                $scope.SK1_RCR_USULAN_DISPOSABLE_INCOME = $scope.SK1_SISA_PENGHASILAN_SEBELUM_ANGSURAN - $scope.SK1_RCR_USULAN_TOTAL_ANGSURAN;
+
+                $scope.SK1_RCR_USULAN_RCR_A_PINJAMAN_BARU = $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU / ($scope.SK1_SISA_PENGHASILAN_SEBELUM_ANGSURAN - $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI) * 100 ;
+                $scope.SK1_RCR_USULAN_RCR_B_SEMUA_PINJAMAN = (($scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI + $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU) / $scope.SK1_SISA_PENGHASILAN_SEBELUM_ANGSURAN) * 100;
+                $scope.SK1_RCR_USULAN_OPM_RATIO = ($scope.SK1_RCR_USULAN_DISPOSABLE_INCOME / ($scope.SK1_PENJUALAN_PER_BULAN + $scope.SK1_JUMLAH_PENGHASILAN_LAINNYA)) * 100;
+
+                $scope.SK1_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI = $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI;
+                $scope.SK1_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU = $scope.GBL_RCR_REKOMENDASI_TOTAL_ANGSURAN;
+                $scope.SK1_RCR_REKOMENDASI_TOTAL_ANGSURAN = $scope.SK1_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI + $scope.SK1_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU;
+                $scope.SK1_RCR_REKOMENDASI_DISPOSABLE_INCOME = $scope.SK1_SISA_PENGHASILAN_SEBELUM_ANGSURAN - $scope.SK1_RCR_REKOMENDASI_TOTAL_ANGSURAN;
+
+                $scope.SK1_RCR_REKOMENDASI_RCR_A_PINJAMAN_BARU = ( $scope.SK1_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU / ($scope.SK1_SISA_PENGHASILAN_SEBELUM_ANGSURAN - $scope.SK1_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI) )* 100;
+                $scope.SK1_RCR_REKOMENDASI_RCR_B_SEMUA_PINJAMAN = ( $scope.SK1_RCR_REKOMENDASI_TOTAL_ANGSURAN / $scope.SK1_SISA_PENGHASILAN_SEBELUM_ANGSURAN ) * 100;
+                $scope.SK1_RCR_REKOMENDASI_OPM_RATIO = ( $scope.SK1_RCR_REKOMENDASI_DISPOSABLE_INCOME / ($scope.SK1_PENJUALAN_PER_BULAN + $scope.SK1_JUMLAH_PENGHASILAN_LAINNYA) ) * 100;
+
+                /* Skenario-2 */
+
+                $scope.SK2_SKENARIO_PERCENTAGE = 80;
+                $scope.SK2_PENJUALAN_PER_BULAN = $scope.SK1_PENJUALAN_PER_BULAN * ( $scope.SK2_SKENARIO_PERCENTAGE / 100 );
+                $scope.SK2_HPP = $scope.SK1_HPP * ( $scope.SK2_SKENARIO_PERCENTAGE / 100 );
+                $scope.SK2_LABA_KOTOR = $scope.SK2_PENJUALAN_PER_BULAN - $scope.SK2_HPP;
+                $scope.SK2_TOTAL_BIAYA_OPERASIONAL_USAHA = ((70/100) * $scope.SK1_TOTAL_BIAYA_OPERASIONAL_USAHA) + ((30/100) * $scope.SK1_TOTAL_BIAYA_OPERASIONAL_USAHA * ($scope.SK2_SKENARIO_PERCENTAGE / 100)) ;
+                $scope.SK2_LABA_OPERASI = $scope.SK2_LABA_KOTOR - $scope.SK2_TOTAL_BIAYA_OPERASIONAL_USAHA;
+                $scope.SK2_USAHA_LAINNYA_1 = ($scope.SK2_SKENARIO_PERCENTAGE / 100) * $scope.SK1_USAHA_LAINNYA_1;
+                $scope.SK2_USAHA_LAINNYA_2 = ($scope.SK2_SKENARIO_PERCENTAGE / 100) * $scope.SK1_USAHA_LAINNYA_2;
+                $scope.SK2_GAJI_SUAMI_OR_ISTRI = $scope.SK1_GAJI_SUAMI_OR_ISTRI;
+                $scope.SK2_JUMLAH_PENGHASILAN_LAINNYA = $scope.SK2_USAHA_LAINNYA_1 + $scope.SK2_USAHA_LAINNYA_2 + $scope.SK2_GAJI_SUAMI_OR_ISTRI;
+                $scope.SK2_PENGHASILAN_SEBELUM_BIAYA_RT = $scope.SK2_LABA_OPERASI + $scope.SK2_JUMLAH_PENGHASILAN_LAINNYA;
+                $scope.SK2_TOTAL_BIAYA_RUMAH_TANGGA = $scope.SK1_TOTAL_BIAYA_RUMAH_TANGGA;
+                $scope.SK2_SISA_PENGHASILAN_SEBELUM_ANGSURAN = $scope.SK2_PENGHASILAN_SEBELUM_BIAYA_RT - $scope.SK2_TOTAL_BIAYA_RUMAH_TANGGA;
+
+                $scope.SK2_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI = $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI;
+                $scope.SK2_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU = $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU;
+                $scope.SK2_RCR_USULAN_TOTAL_ANGSURAN = $scope.SK2_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI + $scope.SK2_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU;
+                $scope.SK2_RCR_USULAN_DISPOSABLE_INCOME = $scope.SK2_SISA_PENGHASILAN_SEBELUM_ANGSURAN - $scope.SK2_RCR_USULAN_TOTAL_ANGSURAN;
+
+                $scope.SK2_RCR_USULAN_RCR_A_PINJAMAN_BARU = 0;
+                $scope.SK2_RCR_USULAN_RCR_B_SEMUA_PINJAMAN = (($scope.SK2_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI + $scope.SK2_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU) / $scope.SK2_SISA_PENGHASILAN_SEBELUM_ANGSURAN) * 100;
+                $scope.SK2_RCR_USULAN_OPM_RATIO = ($scope.SK2_RCR_USULAN_DISPOSABLE_INCOME / ($scope.SK2_PENJUALAN_PER_BULAN + $scope.SK2_JUMLAH_PENGHASILAN_LAINNYA)) * 100;
+
+
+                $scope.SK2_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI = $scope.SK1_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI;
+                $scope.SK2_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU = $scope.SK1_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU;
+                $scope.SK2_RCR_REKOMENDASI_TOTAL_ANGSURAN = $scope.SK2_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI + $scope.SK2_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU;
+                $scope.SK2_RCR_REKOMENDASI_DISPOSABLE_INCOME = $scope.SK2_SISA_PENGHASILAN_SEBELUM_ANGSURAN - $scope.SK2_RCR_REKOMENDASI_TOTAL_ANGSURAN;
+
+                $scope.SK2_RCR_REKOMENDASI_RCR_A_PINJAMAN_BARU = '';
+                $scope.SK2_RCR_REKOMENDASI_RCR_B_SEMUA_PINJAMAN = ($scope.SK2_RCR_REKOMENDASI_TOTAL_ANGSURAN / $scope.SK2_SISA_PENGHASILAN_SEBELUM_ANGSURAN) * 100;
+                $scope.SK2_RCR_REKOMENDASI_OPM_RATIO = ($scope.SK2_RCR_REKOMENDASI_DISPOSABLE_INCOME / ( $scope.SK2_PENJUALAN_PER_BULAN + $scope.SK2_JUMLAH_PENGHASILAN_LAINNYA)) * 100;
+
+
+                /* Skenario-3 */
+
+                $scope.SK3_SKENARIO_PERCENTAGE = parseFloat($scope.fdRCR.SK3_SKENARIO_PERCENTAGE);
+                $scope.SK3_PENJUALAN_PER_BULAN = $scope.SK1_PENJUALAN_PER_BULAN * ($scope.SK3_SKENARIO_PERCENTAGE / 100);
+                $scope.SK3_HPP = ($scope.SK3_SKENARIO_PERCENTAGE / 100) * $scope.SK1_HPP;
+                $scope.SK3_LABA_KOTOR = $scope.SK3_PENJUALAN_PER_BULAN - $scope.SK3_HPP;
+                $scope.SK3_TOTAL_BIAYA_OPERASIONAL_USAHA = ((70/100) * $scope.SK1_TOTAL_BIAYA_OPERASIONAL_USAHA) + ((30/100) * $scope.SK1_TOTAL_BIAYA_OPERASIONAL_USAHA * ($scope.SK3_SKENARIO_PERCENTAGE)/100);
+                $scope.SK3_LABA_OPERASI = $scope.SK3_LABA_KOTOR - $scope.SK3_TOTAL_BIAYA_OPERASIONAL_USAHA;
+                $scope.SK3_USAHA_LAINNYA_1 = ($scope.SK3_SKENARIO_PERCENTAGE) / 100 * $scope.SK1_USAHA_LAINNYA_1;
+                $scope.SK3_USAHA_LAINNYA_2 = ($scope.SK3_SKENARIO_PERCENTAGE / 100) * $scope.SK1_USAHA_LAINNYA_2;
+                $scope.SK3_GAJI_SUAMI_OR_ISTRI = $scope.SK1_GAJI_SUAMI_OR_ISTRI;
+                $scope.SK3_JUMLAH_PENGHASILAN_LAINNYA = $scope.SK3_USAHA_LAINNYA_1 + $scope.SK3_USAHA_LAINNYA_2 + $scope.SK3_GAJI_SUAMI_OR_ISTRI;
+                $scope.SK3_PENGHASILAN_SEBELUM_BIAYA_RT = $scope.SK3_LABA_OPERASI + $scope.SK3_JUMLAH_PENGHASILAN_LAINNYA;
+                $scope.SK3_TOTAL_BIAYA_RUMAH_TANGGA = parseInt($scope.SK1_TOTAL_BIAYA_RUMAH_TANGGA);
+                $scope.SK3_SISA_PENGHASILAN_SEBELUM_ANGSURAN = $scope.SK3_PENGHASILAN_SEBELUM_BIAYA_RT - $scope.SK3_TOTAL_BIAYA_RUMAH_TANGGA;
+
+                $scope.SK3_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI = $scope.SK2_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI;
+                $scope.SK3_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU = $scope.SK2_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU;
+                $scope.SK3_RCR_USULAN_TOTAL_ANGSURAN =  $scope.SK3_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI + $scope.SK3_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU;
+                $scope.SK3_RCR_USULAN_DISPOSABLE_INCOME = $scope.SK3_SISA_PENGHASILAN_SEBELUM_ANGSURAN - $scope.SK3_RCR_USULAN_TOTAL_ANGSURAN;
+
+                $scope.SK3_RCR_USULAN_RCR_A_PINJAMAN_BARU = '';
+                $scope.SK3_RCR_USULAN_RCR_B_SEMUA_PINJAMAN = '';
+                $scope.SK3_RCR_USULAN_OPM_RATIO = '';
+
+
+                $scope.SK3_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI = $scope.SK2_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI;
+                $scope.SK3_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU = $scope.SK2_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU;
+                $scope.SK3_RCR_REKOMENDASI_TOTAL_ANGSURAN = $scope.SK3_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI + $scope.SK3_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU;
+                $scope.SK3_RCR_REKOMENDASI_DISPOSABLE_INCOME = $scope.SK3_SISA_PENGHASILAN_SEBELUM_ANGSURAN - $scope.SK3_RCR_REKOMENDASI_TOTAL_ANGSURAN;
+
+                $scope.SK3_RCR_REKOMENDASI_RCR_A_PINJAMAN_BARU = '';
+                $scope.SK3_RCR_REKOMENDASI_RCR_B_SEMUA_PINJAMAN = ($scope.SK3_RCR_REKOMENDASI_TOTAL_ANGSURAN / $scope.SK3_SISA_PENGHASILAN_SEBELUM_ANGSURAN) * 100;
+                $scope.SK3_RCR_REKOMENDASI_OPM_RATIO = ( $scope.SK3_RCR_REKOMENDASI_DISPOSABLE_INCOME / ($scope.SK3_PENJUALAN_PER_BULAN + $scope.SK3_JUMLAH_PENGHASILAN_LAINNYA) ) * 100;
+
+
+                /* TOP UP */
+                
+                $scope.TUP_SKENARIO_PERCENTAGE = $scope.fdRCR.TOP_UP.SK3_SKENARIO_PERCENTAGE;
+                $scope.TUP_PENJUALAN_PER_BULAN = $scope.fdRCR.TOP_UP.PENJUALAN_PER_BULAN;
+                $scope.TUP_HPP = $scope.fdRCR.TOP_UP.HPP;
+                $scope.TUP_LABA_KOTOR = $scope.TUP_PENJUALAN_PER_BULAN - $scope.TUP_HPP;
+                $scope.TUP_TOTAL_BIAYA_OPERASIONAL_USAHA = $scope.fdRCR.TOP_UP.TOTAL_BIAYA_OPERASIONAL_USAHA;
+                $scope.TUP_LABA_OPERASI = $scope.TUP_LABA_KOTOR - $scope.TUP_TOTAL_BIAYA_OPERASIONAL_USAHA;
+                $scope.TUP_USAHA_LAINNYA_1 = $scope.fdRCR.TOP_UP.USAHA_LAINNYA_1;
+                $scope.TUP_USAHA_LAINNYA_2 = $scope.fdRCR.TOP_UP.USAHA_LAINNYA_2;
+                $scope.TUP_GAJI_SUAMI_OR_ISTRI = $scope.fdRCR.TOP_UP.GAJI_SUAMI_ISTRI;
+				
+				// $scope.TUP_JUMLAH_PENGHASILAN_LAINNYA = $scope.TUP_USAHA_LAINNYA_1 + $scope.TUP_USAHA_LAINNYA_2 + $scope.TUP_GAJI_SUAMI_OR_ISTRI;
+                // $scope.TUP_PENGHASILAN_SEBELUM_BIAYA_RT = $scope.TUP_LABA_OPERASI + $scope.TUP_JUMLAH_PENGHASILAN_LAINNYA;				
+				
+                $scope.TUP_JUMLAH_PENGHASILAN_LAINNYA = ($scope.TUP_USAHA_LAINNYA_1 * 1) + ($scope.TUP_USAHA_LAINNYA_2 * 1) + ($scope.TUP_GAJI_SUAMI_OR_ISTRI * 1);
+                $scope.TUP_PENGHASILAN_SEBELUM_BIAYA_RT = ($scope.TUP_LABA_OPERASI * 1) + ($scope.TUP_JUMLAH_PENGHASILAN_LAINNYA * 1);
+				
+                $scope.TUP_TOTAL_BIAYA_RUMAH_TANGGA = $scope.fdRCR.TOP_UP.TOTAL_BIAYA_RM_TANGGA;
+                $scope.TUP_SISA_PENGHASILAN_SEBELUM_ANGSURAN = $scope.TUP_PENGHASILAN_SEBELUM_BIAYA_RT - $scope.TUP_TOTAL_BIAYA_RUMAH_TANGGA;
+                
+                $scope.TUP_RCR_USULAN_PINJAMAN_YANG_DI_USULKAN = $scope.fdRCR.TOP_UP.RCR_USULAN_PINJAMAN_YANG_DIUSULKAN;
+                $scope.TUP_RCR_USULAN_BUNGA_PERCEN = $scope.fdRCR.TOP_UP.RCR_USULAN_BUNGA;
+                $scope.TUP_RCR_USULAN_TENOR = $scope.fdRCR.TOP_UP.RCR_USULAN_TENOR;
+                
+                $scope.TUP_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI = $scope.fdRCR.TOP_UP.RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI;
+                $scope.TUP_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU = $scope.GBL_TOP_UP_RCR_USULAN_PINJAMAN_YANG_DI_USULKAN;
+				
+                // $scope.TUP_RCR_USULAN_TOTAL_ANGSURAN = $scope.TUP_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI + $scope.TUP_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU;
+				
+				$scope.TUP_RCR_USULAN_TOTAL_ANGSURAN = ($scope.TUP_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI * 1) + ($scope.TUP_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU * 1);
+				
+                $scope.TUP_RCR_USULAN_DISPOSABLE_INCOME = $scope.TUP_SISA_PENGHASILAN_SEBELUM_ANGSURAN - $scope.TUP_RCR_USULAN_TOTAL_ANGSURAN;
+
+                $scope.TUP_RCR_USULAN_RCR_A_PINJAMAN_BARU = '';
+                $scope.TUP_RCR_USULAN_RCR_B_SEMUA_PINJAMAN = (($scope.TUP_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI + $scope.TUP_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU) / $scope.TUP_SISA_PENGHASILAN_SEBELUM_ANGSURAN) * 100;
+                $scope.TUP_RCR_USULAN_OPM_RATIO = ( $scope.TUP_RCR_USULAN_DISPOSABLE_INCOME / $scope.TUP_PENJUALAN_PER_BULAN ) * 100;
+
+
+                $scope.TUP_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI = '';
+                $scope.TUP_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_ULAMM_BARU = '';
+                $scope.TUP_RCR_REKOMENDASI_TOTAL_ANGSURAN = '';
+                $scope.TUP_RCR_REKOMENDASI_DISPOSABLE_INCOME = '';
+
+                $scope.TUP_RCR_REKOMENDASI_RCR_A_PINJAMAN_BARU = '';
+                $scope.TUP_RCR_REKOMENDASI_RCR_B_SEMUA_PINJAMAN = '';
+                $scope.TUP_RCR_REKOMENDASI_OPM_RATIO = '';
+                
+                $scope.GBL_RCR_USULAN_SENSITIVITAS = $scope.RCR_SENSITIVITAS_STATUS($scope.SK2_RCR_USULAN_RCR_B_SEMUA_PINJAMAN,'');
+                $scope.GBL_RCR_REKOMENDASI_SENSITIVITAS = $scope.RCR_SENSITIVITAS_STATUS($scope.SK2_RCR_REKOMENDASI_RCR_B_SEMUA_PINJAMAN,'');
+				
+                $scope.GBL_RCR_USULAN_SENSITIVITAS_COLOR = $scope.RCR_SENSITIVITAS_STATUS($scope.SK2_RCR_USULAN_RCR_B_SEMUA_PINJAMAN,'COLOR');
+                $scope.GBL_RCR_REKOMENDASI_SENSITIVITAS_COLOR = $scope.RCR_SENSITIVITAS_STATUS($scope.SK2_RCR_REKOMENDASI_RCR_B_SEMUA_PINJAMAN,'COLOR'); 	
+
+            }
+        });
+        
+    };
+    
+    $scope.CALCULATE();
+    
+    $scope.postRCR = function(){
+        $scope.fdRCR.DB_PROSPEK_ID = $stateParams.id;
+        apiData.post({
+            gl      : true,
+            api     : apiBase+'review/post_alldata',
+            data    : $scope.fdRCR,
+            scope   : $scope,
+            fd      : 'fdSCR',
+            dataType: 'multidimensional',
         });
     };
     
@@ -11125,6 +11413,7 @@ App.controller('reviewAnalisaSensitivitasCtrl',function(){
             data    : $scope.fdAMK,
             scope   : $scope,
             fd      : 'fdAMK',
+            dataType: 'multidimensional',
             callback: function(){
                 if (!$scope.fdAMK.RV_ID)
                     $scope.loadDASE();

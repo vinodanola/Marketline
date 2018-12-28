@@ -1,50 +1,8 @@
-<div class="col-md-3 col-no-padding-left col-has-border-right">
-    <div class="form-group">
-        <label>Penjualan / bulan (Skenario-3) *</label>
-        <div class="input-group">
-            <input type="text" class="form-control" ng-model="fdRCR.SK3_SKENARIO_PERCENTAGE" ui-number-mask="2" ng-keyup="CALCULATE()" />
-            <span class="input-group-addon">%</span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label>RCR (B)-Semua Pinjaman</label>
-        <div class="input-group">
-            <span class="code">{{SK3_RCR_REKOMENDASI_RCR_B_SEMUA_PINJAMAN | number:2}} %</span>
-        </div>
-    </div>
-    <hr>
-    <div class="form-group">
-        <label>Pinjaman yang direkomendasi *</label>
-        <div class="input-group">
-            <span class="input-group-addon">Rp</span>
-            <input type="text" class="form-control" ng-model="fdRCR.RCR_REKOMENDASI_PINJAMAN_YANG_DIREOMENDASI" ui-number-mask="0" ng-keyup="CALCULATE()" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label>Bunga *</label>
-        <div class="input-group">
-            <input type="text" class="form-control" ng-model="fdRCR.RCR_REKOMENDASI_BUNGA" ng-keyup="CALCULATE()" ui-number-mask="2" />
-            <span class="input-group-addon">%</span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label>Tenor *</label>
-        <div class="input-group">
-            <input type="text" class="form-control" ng-model="fdRCR.RCR_REKOMENDASI_TENOR" ui-number-mask="0" ng-keyup="CALCULATE()" />
-            <span class="input-group-addon">Bulan</span>
-        </div>
-    </div>
-    <hr>
-    <div class="form-group">
-        <div class="input-group">
-            <a class="btn btn-success btn-sm" ng-click="postRCR()" ng-if="REVIEW_SUBMITED == 1" menu-alias="M-92">Simpan</a>
-        </div>
-    </div>
-</div>
-<div class="col-md-9 col-no-padding-right">
-    <table wt-responsive-table class="table table-hidden-overflow small">
+<ng-include src="'partials/review/rcr-usulan-rekomendasi-step.html'"></ng-include>
+<div class="col-md-12 col-no-padding">
+    <table wt-responsive-table class="table table-hidden-overflow small table-bordered">
         <tr class="thead">
-            <th></th>
+            <th><b style="color: #ffe0ab; font-size: 15px;">BASE ON REVIEWER</b></th>
             <th>Skenario-1</th>
             <th>Skenario-2</th>
             <th>Skenario-3</th>
@@ -54,12 +12,37 @@
             <td>Penjualan / bln</td>
             <td class="text-right"><b>({{SK1_SKENARIO_PERCENTAGE}}%)</b> <span>{{SK1_PENJUALAN_PER_BULAN | number:2}}</span></td>
             <td class="text-right"><b>({{SK2_SKENARIO_PERCENTAGE}}%)</b> {{SK2_PENJUALAN_PER_BULAN | number:2}}</td>
-            <td class="text-right"><b>({{SK3_SKENARIO_PERCENTAGE}}%)</b> {{SK3_PENJUALAN_PER_BULAN | number:2}}</td>
+            <!--<td class="text-right"><b>({{SK3_SKENARIO_PERCENTAGE}}%)</b> {{SK3_PENJUALAN_PER_BULAN | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <table style="width: -webkit-fill-available; margin-right: 10px;">
+                    <tr>
+                        <td style="width:100px">
+                            <div class="form-group form-group-sm form-group-on-td">
+                                <div class="input-group">
+                                    <input type="text" class="form-control text-right"  ng-model="fdRCR.SK3_SKENARIO_PERCENTAGE" ui-number-mask="2" ng-keyup="CALCULATE()" />
+                                    <span class="input-group-addon">%</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            {{SK3_PENJUALAN_PER_BULAN | number:2}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
             <td class="text-right">{{TUP_PENJUALAN_PER_BULAN | number:2}}</td>
         </tr>
         <tr>
             <td>HPP</td>
-            <td class="text-right">{{SK1_HPP | number:2}}</td>
+            <!--<td class="text-right">{{SK1_HPP | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.HPP" ui-number-mask="2" ng-keyup="CALCULATE()" />
+                    </div>
+                </div>
+            </td>
             <td class="text-right">{{SK2_HPP | number:2}}</td>
             <td class="text-right">{{SK3_HPP | number:2}}</td>
             <td class="text-right">{{TUP_HPP | number:2}}</td>
@@ -73,7 +56,15 @@
         </tr>
         <tr>
             <td>Total Biaya Operasional Usaha</td>
-            <td class="text-right">{{SK1_TOTAL_BIAYA_OPERASIONAL_USAHA | number:2}}</td>
+            <!--<td class="text-right">{{SK1_TOTAL_BIAYA_OPERASIONAL_USAHA | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.TOTAL_BIAYA_OPERASIONAL_USAHA" ui-number-mask="2" ng-keyup="CALCULATE()" />
+                    </div>
+                </div>
+            </td>
             <td class="text-right">{{SK2_TOTAL_BIAYA_OPERASIONAL_USAHA | number:2}}</td>
             <td class="text-right">{{SK3_TOTAL_BIAYA_OPERASIONAL_USAHA | number:2}}</td>
             <td class="text-right">{{TUP_TOTAL_BIAYA_OPERASIONAL_USAHA | number:2}}</td>
@@ -90,21 +81,45 @@
         </tr>
         <tr>
             <td>1. Usaha Lainnya 1 (sebutkan)</td>
-            <td class="text-right">{{SK1_USAHA_LAINNYA_1 | number:2}}</td>
+            <!--<td class="text-right">{{SK1_USAHA_LAINNYA_1 | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.USAHA_LAINNYA_1" ui-number-mask="2" ng-keyup="CALCULATE()" />
+                    </div>
+                </div>
+            </td>
             <td class="text-right">{{SK2_USAHA_LAINNYA_1 | number:2}}</td>
             <td class="text-right">{{SK3_USAHA_LAINNYA_1 | number:2}}</td>
             <td class="text-right">{{TUP_USAHA_LAINNYA_1 | number:2}}</td>
         </tr>
         <tr>
             <td>2. Usaha Lainnya 2 (sebutkan)</td>
-            <td class="text-right">{{SK1_USAHA_LAINNYA_2 | number:2}}</td>
+            <!--<td class="text-right">{{SK1_USAHA_LAINNYA_2 | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.USAHA_LAINNYA_2" ui-number-mask="2" ng-keyup="CALCULATE()" />
+                    </div>
+                </div>
+            </td>
             <td class="text-right">{{SK2_USAHA_LAINNYA_2 | number:2}}</td>
             <td class="text-right">{{SK3_USAHA_LAINNYA_2 | number:2}}</td>
             <td class="text-right">{{TUP_USAHA_LAINNYA_2 | number:2}}</td>
         </tr>
         <tr>
             <td>3. Gaji suami/istri</td>
-            <td class="text-right">{{SK1_GAJI_SUAMI_OR_ISTRI | number:2}}</td>
+            <!--<td class="text-right">{{SK1_GAJI_SUAMI_OR_ISTRI | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.GAJI_SUAMI_ISTRI" ui-number-mask="2" ng-keyup="CALCULATE()" />
+                    </div>
+                </div>
+            </td>
             <td class="text-right">{{SK2_GAJI_SUAMI_OR_ISTRI | number:2}}</td>
             <td class="text-right">{{SK3_GAJI_SUAMI_OR_ISTRI | number:2}}</td>
             <td class="text-right">{{TUP_GAJI_SUAMI_OR_ISTRI | number:2}}</td>
@@ -117,7 +132,7 @@
             <td class="text-right">{{TUP_JUMLAH_PENGHASILAN_LAINNYA | number:2}}</td>
         </tr>
         <tr>
-            <td class="text-center">Penghasilan Sblm Biaya RT</td>
+            <td class="text-center"><b>Penghasilan Sblm Biaya RT</b></td>
             <td class="text-right">{{SK1_PENGHASILAN_SEBELUM_BIAYA_RT | number:2}}</td>
             <td class="text-right">{{SK2_PENGHASILAN_SEBELUM_BIAYA_RT | number:2}}</td>
             <td class="text-right">{{SK3_PENGHASILAN_SEBELUM_BIAYA_RT | number:2}}</td>
@@ -128,13 +143,21 @@
         </tr>
         <tr>
             <td>Total Biaya Rm. Tangga</td>
-            <td class="text-right">{{SK1_TOTAL_BIAYA_RUMAH_TANGGA | number:2}}</td>
+            <!--<td class="text-right">{{SK1_TOTAL_BIAYA_RUMAH_TANGGA | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.TOTAL_BIAYA_RM_TANGGA" ui-number-mask="2" ng-keyup="CALCULATE()" />
+                    </div>
+                </div>
+            </td>
             <td class="text-right">{{SK2_TOTAL_BIAYA_RUMAH_TANGGA | number:2}}</td>
             <td class="text-right">{{SK3_TOTAL_BIAYA_RUMAH_TANGGA | number:2}}</td>
             <td class="text-right">{{TUP_TOTAL_BIAYA_RUMAH_TANGGA | number:2}}</td>
         </tr>
         <tr class="text-center">
-            <td>Sisa Penghasilan Sblm Angs.</td>
+            <td><b>Sisa Penghasilan Sblm Angs.</b></td>
             <td class="text-right">{{SK1_SISA_PENGHASILAN_SEBELUM_ANGSURAN | number:2}}</td>
             <td class="text-right">{{SK2_SISA_PENGHASILAN_SEBELUM_ANGSURAN | number:2}}</td>
             <td class="text-right">{{SK3_SISA_PENGHASILAN_SEBELUM_ANGSURAN | number:2}}</td>
@@ -144,22 +167,46 @@
             <td colspan="5"></td>
         </tr>
         <tr>
-            <td>Pinjaman yang di usulkan</td>
-            <td class="text-right">{{GBL_RCR_USULAN_PINJAMAN_YANG_DI_USULKAN | number:2}}</td>
+            <td>Pinjaman yang diusulkan</td>
+            <!--<td class="text-right">{{GBL_RCR_USULAN_PINJAMAN_YANG_DI_USULKAN | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.RCR_USULAN_PINJAMAN_YANG_DIUSULKAN" ui-number-mask="2" ng-keyup="CALCULATE()" />
+                    </div>
+                </div>
+            </td>
             <td>Pokok</td>
             <td class="text-right">{{GBL_RCR_USULAN_POKOK | number:2}}</td>
             <td class="text-right"></td>
         </tr>
         <tr>
             <td>Bunga</td>
-            <td class="text-right">{{GBL_RCR_USULAN_BUNGA_PERCEN | number:2}} %</td>
+            <!--<td class="text-right">{{GBL_RCR_USULAN_BUNGA_PERCEN | number:2}} %</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.RCR_USULAN_BUNGA" ui-number-mask="2" ng-keyup="CALCULATE()" />
+                        <span class="input-group-addon">%</span>
+                    </div>
+                </div>
+            </td>
             <td>Bunga / Margin</td>
             <td class="text-right">{{GBL_RCR_USULAN_BUNGA_RUPIAH | number:2}}</td>
             <td class="text-right"></td>
         </tr>
         <tr>
             <td>Tenor</td>
-            <td class="text-right">{{GBL_RCR_USULAN_TENOR | number:2}}</td>
+            <!--<td class="text-right">{{GBL_RCR_USULAN_TENOR | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.RCR_USULAN_TENOR" ui-number-mask="0" ng-keyup="CALCULATE()" />
+                        <span class="input-group-addon">Bulan</span>
+                    </div>
+                </div>
+            </td>
             <td>Total Angsuran</td>
             <td class="text-right">{{GBL_RCR_USULAN_TOTAL_ANGSURAN | number:2}}</td>
             <td class="text-right"></td>
@@ -169,7 +216,15 @@
         </tr>
         <tr>
             <td>Angs. Pinjaman saat ini</td>
-            <td class="text-right">{{SK1_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
+            <!--<td class="text-right">{{SK1_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI" ui-number-mask="2" ng-keyup="CALCULATE()" />
+                    </div>
+                </div>
+            </td>
             <td class="text-right">{{SK2_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
             <td class="text-right">{{SK3_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
             <td class="text-right">{{TUP_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
@@ -236,21 +291,45 @@
         </tr>
         <tr>
             <td>Pinjaman yang direkomendasi</td>
-            <td class="text-right">{{GBL_RCR_REKOMENDASI_PINJAMAN_YANG_DI_REKOMENDASIKAN | number:2}}</td>
+            <!--<td class="text-right">{{GBL_RCR_REKOMENDASI_PINJAMAN_YANG_DI_REKOMENDASIKAN | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.RCR_REKOMENDASI_PINJAMAN_YANG_DIREOMENDASI" ui-number-mask="0" ng-keyup="CALCULATE()" />
+                    </div>
+                </div>
+            </td>
             <td>Pokok</td>
             <td class="text-right">{{GBL_RCR_REKOMENDASI_POKOK | number:2}}</td>
             <td class="text-right"></td>
         </tr>
         <tr>
             <td>Bunga</td>
-            <td class="text-right">{{GBL_RCR_REKOMENDASI_BUNGA_PERCEN | number:2}} %</td>
+            <!--<td class="text-right">{{GBL_RCR_REKOMENDASI_BUNGA_PERCEN | number:2}} %</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.RCR_REKOMENDASI_BUNGA" ng-keyup="CALCULATE()" ui-number-mask="2" />
+                        <span class="input-group-addon">%</span>
+                    </div>
+                </div>
+            </td>
             <td>Bunga / Margin</td>
             <td class="text-right">{{GBL_RCR_REKOMENDASI_BUNGA_RUPIAH | number:2}}</td>
             <td class="text-right"></td>
         </tr>
         <tr>
             <td>Tenor</td>
-            <td class="text-right">{{GBL_RCR_REKOMENDASI_TENOR | number:2}}</td>
+            <!--<td class="text-right">{{GBL_RCR_REKOMENDASI_TENOR | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.RCR_REKOMENDASI_TENOR" ui-number-mask="0" ng-keyup="CALCULATE()" />
+                        <span class="input-group-addon">Bulan</span>
+                    </div>
+                </div>
+            </td>
             <td>Total Angsuran</td>
             <td class="text-right">{{GBL_RCR_REKOMENDASI_TOTAL_ANGSURAN | number:2}}</td>
             <td class="text-right"></td>
@@ -260,7 +339,15 @@
         </tr>
         <tr>
             <td>Angs. Pinjaman saat ini</td>
-            <td class="text-right">{{SK1_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
+            <!--<td class="text-right">{{SK1_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdRCR.RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI" ui-number-mask="2" ng-keyup="CALCULATE()" />
+                    </div>
+                </div>
+            </td>
             <td class="text-right">{{SK2_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
             <td class="text-right">{{SK3_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
             <td class="text-right">{{TUP_RCR_REKOMENDASI_ANGSURAN_PINJAMAN_SAAT_INI | number:2}}</td>
@@ -317,4 +404,7 @@
             <td class="text-right"></td>
         </tr>
     </table>
+</div>
+<div class="col-md-12 col-no-padding">
+    <a class="btn btn-success btn-sm" ng-click="postRCR()" ng-if="REVIEW_SUBMITED == 1" menu-alias="M-92">Simpan</a>
 </div>
