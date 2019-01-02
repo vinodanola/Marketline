@@ -17,7 +17,9 @@
     <tr ng-repeat="x in listRVAG">
         <td>{{$index + 1}}</td>
         <td>{{x.MS_JENIS_AGUNAN_DESKRIPSI}}</td>
-        <td class="text-right">{{x.NILAI_PASAR | number:2}}</td>	
+        <td class="text-right">{{x.NILAI_PASAR | number:2}}
+			<br><br>Harga Tanah <br> {{x.NILAI_PASAR_TANAH/x.DB_LUAS_TANAH_PER_METER_PERSEGI | number:2 }}	M<sup>2</sup>		
+		</td>	
         <td class="text-right">{{x.NILAI_LIKUIDASI | number:2}}</td>
         <td class="text-right">{{x.NILAI_LIKUIDASI_SEBELUMNYA | number:2}}</td>
         <td class="text-right">{{x.NILAI_PASAR_VALIDATOR | number:2}}</td>		

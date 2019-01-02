@@ -86,9 +86,11 @@
                         <th>PROGRESS</th>
                         <th>SCORING</th>
                         <th>#</th>
+						<th></th>
                     </tr>
                     <!--<tr ng-repeat="x in listSL | filter:SEARCH_SURVEY | limitTo:(fdPL.LIMIT):((fdPL.PAGE*fdPL.LIMIT)-fdPL.LIMIT)">-->
-                    <tr ng-repeat="x in listSL_">
+                    <!--tr ng-repeat="x in listSL_"-->
+                    <tr ng-repeat-start="x in listSL_">
                         <td>{{(fdPL.PAGE - 1) * fdPL.LIMIT + ($index+1)}}</td>
                         <td>{{x.MS_WILAYAH_ID == 1 ? 'BARAT' : 'TIMUR'}}</td>
                         <td>{{x.MS_KODE_CABANG}}</td>
@@ -123,7 +125,23 @@
                         <td>
                             <a ui-sref="survey.informasi.index({id:{{x.DB_PROSPEK_ID}}})">View</a>
                         </td>
+						<td ng-if="x.DB_PROSPEK_ID_MAIN">
+							<button ng-click="x.expanded = false">-</button>
+							<!--button ng-click="expandSelected(x)">+</button-->
+						</td>
                     </tr>
+					<tr ng-repeat-end="" ng-if="x.DB_PROSPEK_ID_MAIN">
+						<td>
+							<tr>
+								<td colspan="4" class="text-center"></td>
+								<td >{{y}}</td>
+								<td colspan="5"></td>
+								<td>
+									<a ui-sref="survey.informasi.index({id:{{y}}})">View</a>
+								</td>
+							</tr>
+						</td>
+					</tr>
                 </table>
             </div>
         </div>

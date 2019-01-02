@@ -1,4 +1,5 @@
-<div class="col-md-3 col-has-border-right">
+<ng-include src="'partials/review/analisa-modal-kerja-step.html'"></ng-include>
+<div class="col-md-3 col-has-border-right hide">
     <div class="form-group">
         <label>Pertumbuhan omset 1 th terakhir</label>
         <div class="input-group">
@@ -42,10 +43,22 @@
         </div>
     </div>
 </div>
-<div class="col-md-9">
-    <table wt-responsive-table class="table table-hidden-overflow small">
+<div class="col-md-6 col-no-padding">
+    <table wt-responsive-table class="table table-bordered table-hidden-overflow small">
+        <tr>
+            <td>Pertumbuhan omset 1 th terakhir</td>
+            <td class="text-right">{{fdAMK.AMK_PERTUMBUHAN_OMSET_SATU_TAHUN_TERAKHIR}} %</td>
+        </tr>
+        <tr>
+            <td>Proyeksi pertumbuhan omset *</td>
+            <td class="text-right">{{fdAMK.AMK_PROYEKSI_PERTUMBUHAN_OMSET}} %</td>
+        </tr>
+    </table>
+</div>
+<div class="col-md-12 col-no-padding">
+    <table wt-responsive-table class="table table-hidden-overflow small table-bordered">
         <tr class="thead">
-            <th></th>
+            <th><b style="color: #ffe0ab; font-size: 15px;">BASE ON LKKU</b></th>
             <th>DOH - Ver</th>
             <th>Saat ini</th>
             <th></th>

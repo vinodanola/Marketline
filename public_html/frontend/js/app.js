@@ -38,6 +38,8 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
     
     $urlRouterProvider.when('/review/:id/analisa-sensitivitas/rcr-usulan-&-rcr-rekomendasi', '/review/:id/analisa-sensitivitas/rcr-usulan-&-rcr-rekomendasi/reviewer');
     
+    $urlRouterProvider.when('/review/:id/analisa-sensitivitas/analisa-modal-kerja', '/review/:id/analisa-sensitivitas/analisa-modal-kerja/reviewer');
+    
     $stateProvider
     
         /* APPS */
@@ -1243,10 +1245,24 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.analisasensitivitas.analisamodalkerja',{
             url: '/analisa-modal-kerja',
+            template: '<ui-view></ui-view>'
+        })
+        
+        .state('review.analisasensitivitas.analisamodalkerja.lkku',{
+            url: '/lkku',
             templateUrl: 'partials/review/analisa-modal-kerja.html',
             controller: 'reviewAsAmkCtrl',
             data: {
-                pageTitle: 'Analisa Modal Kerja'
+                pageTitle: 'Analisa Modal Kerja LKKU'
+            }
+        })
+        
+        .state('review.analisasensitivitas.analisamodalkerja.reviewer',{
+            url: '/reviewer',
+            templateUrl: 'partials/review/analisa-modal-kerja-reviewer.html',
+            controller: 'reviewAsAmkReviewerCtrl',
+            data: {
+                pageTitle: 'Analisa Modal Kerja Reviewer'
             }
         })
         
@@ -6434,6 +6450,14 @@ App.controller('listSurveyCtrl',function($rootScope,$scope,apiData,apiBase,$stat
     $scope.pageChanged = function(p){
         $scope.fdPL.PAGE = p;
     };
+	
+	$scope.expandSelected=function(person){
+		$scope.people.forEach(function(val){
+		  val.expanded=false;
+		});
+		person.expanded=true;    
+	}
+	
     
 });
 
@@ -11405,6 +11429,121 @@ App.controller('reviewAnalisaSensitivitasCtrl',function(){
     };
     
     $scope.CALCULATE_ANALISA_MODAL_KERJA();
+    
+    $scope.postAMK = function(){
+        $scope.fdAMK.DB_PROSPEK_ID = $stateParams.id;
+        apiData.post({
+            gl      : true,
+            api     : apiBase+'review/post_alldata',
+            data    : $scope.fdAMK,
+            scope   : $scope,
+            fd      : 'fdAMK',
+            dataType: 'multidimensional',
+            callback: function(){
+                if (!$scope.fdAMK.RV_ID)
+                    $scope.loadDASE();
+            }
+        });
+    };
+    
+})
+
+.controller('reviewAsAmkReviewerCtrl',function($scope,apiData,apiBase,$stateParams){
+    
+    $scope.loadDASE = function(){
+        apiData.get_DASE();
+    };
+    $scope.loadDASE();
+    
+    $scope.$watch('DASE',function(dataLoaded) {
+        if (dataLoaded) {
+            $scope.fdRCR = $scope.DASE.RCR;
+            $scope.fdRCR.PENJUALAN_PER_BULAN = $scope.DASE.RCR.RV_PENJUALAN_PERBULAN_SKENARIO_1;
+            $scope.fdRCR.HPP = $scope.DASE.RCR.RV_HPP_SKENARIO_1;
+            
+            $scope.fdAMK = $scope.DASE.ANALISA_MODAL_KERJA;
+            
+            $scope.fdAMK.AMK_PERSEDIAAN_SAAT_INI = parseFloat($scope.DASE.ANALISA_MODAL_KERJA.RV_AMK_PERSEDIAAN_SAAT_INI);
+            $scope.fdAMK.AMK_PIUTANG_DAGANG_SAAT_INI = parseFloat($scope.DASE.ANALISA_MODAL_KERJA.RV_AMK_PIUTANG_DAGANG_SAAT_INI);
+            $scope.fdAMK.AMK_HUTANG_DAGANG_SAAT_INI = parseFloat($scope.DASE.ANALISA_MODAL_KERJA.RV_AMK_HUTANG_DAGANG_SAAT_INI);
+            $scope.fdAMK.AMK_PERTUMBUHAN_OMSET_SATU_TAHUN_TERAKHIR = parseFloat($scope.DASE.ANALISA_MODAL_KERJA.RV_AMK_PERTUMBUHAN_OMSET_SATU_TAHUN_TERAKHIR);
+            
+            $scope.CALCULATE_ANALISA_MODAL_KERJA();
+            
+        }
+    });
+    
+    $scope.Math = window.Math;
+    
+    $scope.CALCULATE_ANALISA_MODAL_KERJA = function(){
+        
+        $scope.$watchGroup([
+            'fdRCR',
+            'fdAMK',
+            'fdAMK.AMK_PERSEDIAAN_DOH_PROJ',
+            'fdAMK.AMK_PIUTANG_DAGANG_DOH_PROJ',
+            'fdAMK.AMK_HUTANG_DAGANG_DOH_PROJ',
+            'fdAMK.AMK_PERTUMBUHAN_OMSET_SATU_TAHUN_TERAKHIR',
+            'fdAMK.AMK_PROYEKSI_PERTUMBUHAN_OMSET',
+            'fdAMK.AMK_PERSEDIAAN_SAAT_INI',
+            'fdAMK.AMK_PIUTANG_DAGANG_SAAT_INI',
+            'fdAMK.AMK_HUTANG_DAGANG_SAAT_INI'
+        ], function(newValues, oldValues, scope) {
+            if (newValues) {
+                
+                $scope.SK1_PENJUALAN_PER_BULAN = $scope.fdRCR.PENJUALAN_PER_BULAN;
+                $scope.SK1_HPP = $scope.fdRCR.HPP;
+                
+                $scope.PERTUMBUHAN_OMSET_SATU_TAHUN_TERAKHIR = $scope.fdAMK.AMK_PERTUMBUHAN_OMSET_SATU_TAHUN_TERAKHIR;
+                $scope.PROYEKSI_PERTUMBUHAN_OMSET = $scope.fdAMK.AMK_PROYEKSI_PERTUMBUHAN_OMSET;
+                
+                if ($scope.fdAMK.AMK_PERSEDIAAN_DOH_PROJ)
+                    $scope.PERSEDIAAN_DOH_PROJ = $scope.fdAMK.AMK_PERSEDIAAN_DOH_PROJ;
+                else
+                    $scope.PERSEDIAAN_DOH_PROJ = $scope.PERSEDIAAN_DOH_VER;
+
+                if ($scope.fdAMK.AMK_PIUTANG_DAGANG_DOH_PROJ)
+                    $scope.PIUTANG_DAGANG_DOH_PROJ = $scope.fdAMK.AMK_PIUTANG_DAGANG_DOH_PROJ;
+                else
+                    $scope.PIUTANG_DAGANG_DOH_PROJ = $scope.PIUTANG_DAGANG_DOH_VER;            
+
+                if ($scope.fdAMK.AMK_HUTANG_DAGANG_DOH_PROJ)
+                    $scope.HUTANG_DAGANG_DOH_PROJ = $scope.fdAMK.AMK_HUTANG_DAGANG_DOH_PROJ;
+                else
+                    $scope.HUTANG_DAGANG_DOH_PROJ = $scope.HUTANG_DAGANG_DOH_VER;
+                
+                $scope.PERSEDIAAN_SAAT_INI = $scope.fdAMK.AMK_PERSEDIAAN_SAAT_INI;
+                $scope.PERSEDIAAN_DOH_VER = ($scope.PERSEDIAAN_SAAT_INI / $scope.SK1_HPP) * 30;
+//                $scope.PERSEDIAAN_DOH_PROJ = $scope.fdAMK.AMK_PERSEDIAAN_DOH_PROJ;
+//                $scope.PERSEDIAAN_DOH_PROJ = $scope.PERSEDIAAN_DOH_VER;
+                $scope.PERSEDIAAN_PROYEKSI = ($scope.PERSEDIAAN_DOH_PROJ / 30) * $scope.SK1_HPP * (1 + ($scope.PROYEKSI_PERTUMBUHAN_OMSET / 100) );
+                $scope.PERSEDIAAN_KETERANGAN = '';
+                
+                $scope.PIUTANG_DAGANG_SAAT_INI = $scope.fdAMK.AMK_PIUTANG_DAGANG_SAAT_INI;
+                $scope.PIUTANG_DAGANG_DOH_VER = ($scope.PIUTANG_DAGANG_SAAT_INI / $scope.SK1_PENJUALAN_PER_BULAN) * 30;
+//                $scope.PIUTANG_DAGANG_DOH_PROJ = $scope.fdAMK.AMK_PIUTANG_DAGANG_DOH_PROJ;
+//                $scope.PIUTANG_DAGANG_DOH_PROJ = $scope.PIUTANG_DAGANG_DOH_VER;
+                $scope.PIUTANG_DAGANG_PROYEKSI = ($scope.PIUTANG_DAGANG_DOH_PROJ / 30) * $scope.SK1_PENJUALAN_PER_BULAN * (1 + ($scope.PROYEKSI_PERTUMBUHAN_OMSET / 100) );
+                $scope.PIUTANG_DAGANG_KETERANGAN = '';
+                
+                $scope.HUTANG_DAGANG_SAAT_INI = $scope.fdAMK.AMK_HUTANG_DAGANG_SAAT_INI;
+                $scope.HUTANG_DAGANG_DOH_VER = ($scope.HUTANG_DAGANG_SAAT_INI / $scope.SK1_HPP) * 30;
+//                $scope.HUTANG_DAGANG_DOH_PROJ = $scope.fdAMK.AMK_HUTANG_DAGANG_DOH_PROJ;
+//                $scope.HUTANG_DAGANG_DOH_PROJ = $scope.HUTANG_DAGANG_DOH_VER;
+                $scope.HUTANG_DAGANG_PROYEKSI = ($scope.HUTANG_DAGANG_DOH_PROJ / 30) * $scope.SK1_HPP * (1 + ($scope.PROYEKSI_PERTUMBUHAN_OMSET / 100) );
+                $scope.HUTANG_DAGANG_KETERANGAN = '';
+
+                $scope.MODAL_KERJA_BERSIH_SAAT_INI = $scope.PERSEDIAAN_SAAT_INI + $scope.PIUTANG_DAGANG_SAAT_INI - $scope.HUTANG_DAGANG_SAAT_INI;
+                $scope.MODAL_KERJA_BERSIH_PROYEKSI = $scope.PERSEDIAAN_PROYEKSI + $scope.PIUTANG_DAGANG_PROYEKSI - $scope.HUTANG_DAGANG_PROYEKSI;
+                $scope.TAMBAHAN_MODAL_KERJA_YANG_DIPERLUKAN_PROYEKSI = $scope.Math.abs($scope.MODAL_KERJA_BERSIH_PROYEKSI - $scope.MODAL_KERJA_BERSIH_SAAT_INI);
+                $scope.PEMBIAYAAN_MODAL_KERJA_MAKS_PROYEKSI = 0.7 * $scope.MODAL_KERJA_BERSIH_PROYEKSI;
+            
+            }
+        });
+
+    };
+    
+    
     
     $scope.postAMK = function(){
         $scope.fdAMK.DB_PROSPEK_ID = $stateParams.id;

@@ -1,0 +1,156 @@
+<ng-include src="'partials/review/analisa-modal-kerja-step.html'"></ng-include>
+<!--<div class="col-md-3 col-has-border-right">
+    <div class="form-group">
+        <label>Pertumbuhan omset 1 th terakhir</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdAMK.AMK_PERTUMBUHAN_OMSET_SATU_TAHUN_TERAKHIR" ui-number-mask="2" disabled="disabled" ng-keyup="CALCULATE_ANALISA_MODAL_KERJA()" />
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Proyeksi pertumbuhan omset *</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdAMK.AMK_PROYEKSI_PERTUMBUHAN_OMSET" ui-number-mask="2" ng-keyup="CALCULATE_ANALISA_MODAL_KERJA()"/>
+            <span class="input-group-addon">%</span>
+        </div>
+    </div>
+</div>-->
+<div class="col-md-6 col-no-padding">
+    <table wt-responsive-table class="table table-bordered table-hidden-overflow small">
+        <tr>
+            <td>Pertumbuhan omset 1 th terakhir</td>
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-right" ng-model="fdAMK.AMK_PERTUMBUHAN_OMSET_SATU_TAHUN_TERAKHIR" ui-number-mask="2" ng-keyup="CALCULATE_ANALISA_MODAL_KERJA()" />
+                        <span class="input-group-addon">%</span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Proyeksi pertumbuhan omset *</td>
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-right" ng-model="fdAMK.AMK_PROYEKSI_PERTUMBUHAN_OMSET" ui-number-mask="2" ng-keyup="CALCULATE_ANALISA_MODAL_KERJA()" />
+                        <span class="input-group-addon">%</span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="col-md-12 col-no-padding">
+    <table wt-responsive-table class="table table-bordered table-hidden-overflow small">
+        <tr class="thead">
+            <th><b style="color: #ffe0ab; font-size: 15px;">BASE ON REVIEWER</b></th>
+            <th>DOH - Ver</th>
+            <th>Saat ini</th>
+            <th></th>
+            <th>DOH - Proj.</th>
+            <th>Proyeksi</th>
+        </tr>
+        <tr class="text-right">
+            <td>Persediaan</td>
+            <td class="text-right">{{PERSEDIAAN_DOH_VER | number:2}}</td>
+            <!--<td class="text-right">{{PERSEDIAAN_SAAT_INI | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdAMK.AMK_PERSEDIAAN_SAAT_INI" ui-number-mask="2" ng-keyup="CALCULATE_ANALISA_MODAL_KERJA()" />
+                    </div>
+                </div>
+            </td>
+            <td></td>
+            <!--<td>{{PERSEDIAAN_DOH_PROJ | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-right" ng-model="fdAMK.AMK_PERSEDIAAN_DOH_PROJ" ui-number-mask="0" ng-keyup="CALCULATE_ANALISA_MODAL_KERJA()" />
+                        <span class="input-group-addon">hari</span>
+                    </div>
+                </div>
+            </td>
+            <td>{{PERSEDIAAN_PROYEKSI | number:2}}</td>
+        </tr>
+        <tr class="text-right">
+            <td>Piutang Dagang</td>
+            <td class="text-right">{{PIUTANG_DAGANG_DOH_VER | number:2}}</td>
+            <!--<td class="text-right">{{PIUTANG_DAGANG_SAAT_INI | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdAMK.AMK_PIUTANG_DAGANG_SAAT_INI" ui-number-mask="2" ng-keyup="CALCULATE_ANALISA_MODAL_KERJA()" />
+                    </div>
+                </div>
+            </td>
+            <td></td>
+            <!--<td>{{PIUTANG_DAGANG_DOH_PROJ | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-right" ng-model="fdAMK.AMK_PIUTANG_DAGANG_DOH_PROJ" ui-number-mask="0" ng-keyup="CALCULATE_ANALISA_MODAL_KERJA()" />
+                        <span class="input-group-addon">hari</span>
+                    </div>
+                </div>
+            </td>
+            <td>{{PIUTANG_DAGANG_PROYEKSI | number:2}}</td>
+        </tr>
+        <tr class="text-right">
+            <td>Hutang Dagang</td>
+            <td class="text-right">{{HUTANG_DAGANG_DOH_VER | number:2}}</td>
+            <!--<td class="text-right">{{HUTANG_DAGANG_SAAT_INI | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <span class="input-group-addon">Rp</span>
+                        <input type="text" class="form-control text-right" ng-model="fdAMK.AMK_HUTANG_DAGANG_SAAT_INI" ui-number-mask="2" ng-keyup="CALCULATE_ANALISA_MODAL_KERJA()" />
+                    </div>
+                </div>
+            </td>
+            <td></td>
+            <!--<td>{{HUTANG_DAGANG_DOH_PROJ | number:2}}</td>-->
+            <td class="text-right no-padding">
+                <div class="form-group form-group-sm form-group-on-td">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-right" ng-model="fdAMK.AMK_HUTANG_DAGANG_DOH_PROJ" ui-number-mask="0" ng-keyup="CALCULATE_ANALISA_MODAL_KERJA()" />
+                        <span class="input-group-addon">hari</span>
+                    </div>
+                </div>
+            </td>
+            <td>{{HUTANG_DAGANG_PROYEKSI | number:2}}</td>
+        </tr>
+        <tr>
+            <td>Modal Kerja Bersih (MKB)</td>
+            <td></td>
+            <td class="text-right">{{MODAL_KERJA_BERSIH_SAAT_INI | number:2}}</td>
+            <td></td>
+            <td></td>
+            <td class="text-right">{{MODAL_KERJA_BERSIH_PROYEKSI | number:2}}</td>
+        </tr>
+        <tr>
+            <td>Tambahan Modal Kerja Yang Diperlukan</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="text-right">{{TAMBAHAN_MODAL_KERJA_YANG_DIPERLUKAN_PROYEKSI | number:2}}</td>
+        </tr>
+        <tr>
+            <td>Pembiayaan Modal Kerja (Maks.)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="text-right">{{PEMBIAYAAN_MODAL_KERJA_MAKS_PROYEKSI | number:2}}</td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <div class="input-group">
+            <a class="btn btn-success btn-sm" ng-click="postAMK()" ng-if="REVIEW_SUBMITED == 1" menu-alias="M-93">Simpan</a>
+        </div>
+    </div>
+</div>
