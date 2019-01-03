@@ -38,6 +38,8 @@
                 </div>
                 
             </div>
+								
+			
             <div class="panel-heading">
                 <ul class="thead thead-action list-inline">
                     <li>
@@ -71,8 +73,8 @@
                 </ul>
             </div>
             <div class="panel-body no-padding">
-                <table wt-responsive-table class="table table-striped small">
-                    <tr class="tr-head">
+                <table wt-responsive-table class="table table-hover table-striped small">					
+                    <tr class="tr-head">							
                         <th>NO</th>
                         <th>WILAYAH</th>
                         <th>CABANG</th>
@@ -85,63 +87,71 @@
                         <th>STATUS</th>
                         <th>PROGRESS</th>
                         <th>SCORING</th>
-                        <th>#</th>
-						<th></th>
-                    </tr>
+                        <th>#</th>							
+                    </tr>					
                     <!--<tr ng-repeat="x in listSL | filter:SEARCH_SURVEY | limitTo:(fdPL.LIMIT):((fdPL.PAGE*fdPL.LIMIT)-fdPL.LIMIT)">-->
                     <!--tr ng-repeat="x in listSL_"-->
-                    <tr ng-repeat-start="x in listSL_">
-                        <td>{{(fdPL.PAGE - 1) * fdPL.LIMIT + ($index+1)}}</td>
-                        <td>{{x.MS_WILAYAH_ID == 1 ? 'BARAT' : 'TIMUR'}}</td>
-                        <td>{{x.MS_KODE_CABANG}}</td>
-                        <td>{{x.MS_KODE_UNIT}}</td>
-                        <td>{{x.DB_PROSPEK_ID}}</td>
-                        <!--<td>{{x.PR_INDIVIDU_ID}}</td>-->
-                        <td>{{x.PR_NAMA_LENGKAP}}</td>
-                        <td>{{x.PR_NAMA_PANGGILAN}}</td>
-<!--                        <td>
-                            {{x.PR_NAMA_REFERENSI}}
-                            <br>
-                            {{x.PR_NO_HP_REFERENSI}}
-                        </td>-->
-                        <!-- <td>{{x.DB_STATUS >= 2 ? 'Submited' : ((x.REQUEST_PENJAMIN == 1 && x.DB_STATUS < 2) ? 'Request penjamin' : 'On Progress')}}</td> -->
-                        <td>
-                            {{ 
-                                (x.DB_STATUS >= 3 && x.DB_SUB_STATUS == 3) ? 'Request Dokumen'
-                                : (x.DB_STATUS >= 3 && x.DB_SUB_STATUS == 2) ? 'LKKU Ulang' 
-                                : (x.DB_STATUS >= 3 && x.DB_SUB_STATUS == 1) ? 'Diteruskan' 
-                                : x.DB_STATUS >= 4 ? 'Diteruskan' 
-                                : x.DB_STATUS >= 2 ? 'Approved' 
-                                : x.DB_STATUS >= 1 && x.DB_SUB_STATUS == 1 ? 'Need Approval' 
-                                : ((x.REQUEST_PENJAMIN == 1 && x.DB_STATUS < 2) ? 'Request penjamin' 
-                                : x.DB_STATUS >= 1 && x.DB_SUB_STATUS==2 ? 'Rejected' 
-                                : 'On Progress')
-                            }}
-                        </td>
-                        <td>
-                            <uib-progressbar max="100" value="x.DB_PERCENT_SURVEY" type="{{$root.progressType(x.DB_PERCENT_SURVEY)}}"><span>{{x.DB_PERCENT_SURVEY}}%</span></uib-progressbar>
-                        </td>
-                        <td>{{x.SCORING_RESULT}}</td>
-                        <td>
-                            <a ui-sref="survey.informasi.index({id:{{x.DB_PROSPEK_ID}}})">View</a>
-                        </td>
-						<td ng-if="x.DB_PROSPEK_ID_MAIN">
-							<button ng-click="x.expanded = false">-</button>
-							<!--button ng-click="expandSelected(x)">+</button-->
-						</td>
-                    </tr>
-					<tr ng-repeat-end="" ng-if="x.DB_PROSPEK_ID_MAIN">
-						<td>
-							<tr>
-								<td colspan="4" class="text-center"></td>
-								<td >{{y}}</td>
-								<td colspan="5"></td>
-								<td>
-									<a ui-sref="survey.informasi.index({id:{{y}}})">View</a>
-								</td>
-							</tr>
-						</td>
-					</tr>
+                    <tbody data-ng-repeat="x in listSL_">
+                        <tr title="Klik untuk buka/tutup list prospek id lkku ulang." ng-click="selectTableRow($index, x.DB_PROSPEK_ID)">
+                            <td>{{(fdPL.PAGE - 1) * fdPL.LIMIT + ($index+1)}}</td>
+                            <td>{{x.MS_WILAYAH_ID == 1 ? 'BARAT' : 'TIMUR'}}</td>
+                            <td>{{x.MS_KODE_CABANG}}</td>
+                            <td>{{x.MS_KODE_UNIT}}</td>
+                            <td>{{x.DB_PROSPEK_ID}}</td>
+                            <!--<td>{{x.PR_INDIVIDU_ID}}</td>-->
+                            <td>{{x.PR_NAMA_LENGKAP}}</td>
+                            <td>{{x.PR_NAMA_PANGGILAN}}</td>
+    <!--                        <td>
+                                {{x.PR_NAMA_REFERENSI}}
+                                <br>
+                                {{x.PR_NO_HP_REFERENSI}}
+                            </td>-->
+                            <!-- <td>{{x.DB_STATUS >= 2 ? 'Submited' : ((x.REQUEST_PENJAMIN == 1 && x.DB_STATUS < 2) ? 'Request penjamin' : 'On Progress')}}</td> -->
+                            <td>
+                                {{ 
+                                    (x.DB_STATUS >= 3 && x.DB_SUB_STATUS == 3) ? 'Request Dokumen'
+                                    : (x.DB_STATUS >= 3 && x.DB_SUB_STATUS == 2) ? 'LKKU Ulang' 
+                                    : (x.DB_STATUS >= 3 && x.DB_SUB_STATUS == 1) ? 'Diteruskan' 
+                                    : x.DB_STATUS >= 4 ? 'Diteruskan' 
+                                    : x.DB_STATUS >= 2 ? 'Approved' 
+                                    : x.DB_STATUS >= 1 && x.DB_SUB_STATUS == 1 ? 'Need Approval' 
+                                    : ((x.REQUEST_PENJAMIN == 1 && x.DB_STATUS < 2) ? 'Request penjamin' 
+                                    : x.DB_STATUS >= 1 && x.DB_SUB_STATUS==2 ? 'Rejected' 
+                                    : 'On Progress')
+                                }}
+                            </td>
+                            <td>
+                                <uib-progressbar max="100" value="x.DB_PERCENT_SURVEY" type="{{$root.progressType(x.DB_PERCENT_SURVEY)}}"><span>{{x.DB_PERCENT_SURVEY}}%</span></uib-progressbar>
+                            </td>
+                            <td>{{x.SCORING_RESULT}}</td>
+                            <td>
+                                <a ui-sref="survey.informasi.index({id:{{x.DB_PROSPEK_ID}}})">View</a>
+                            </td>							
+                        </tr>
+                        <tr ng-show="DataCollapse[$index] && x.DB_PROSPEK_ID_MAIN" >
+                            <td colspan="4">&nbsp;</td>
+                            <td colspan="8">
+                                <table class="table table-condensed table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th >PROSPEK ID</th>
+                                            <th >STATUS</th>
+                                            <th >#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="y in listSL_[$index].PROSPEK_ID_PARENT">                                                
+                                            <td>{{y.PARENT}}</td>                                                
+                                            <td>LKKU ULANG</td>                                                
+                                            <td>
+                                                <a ui-sref="survey.informasi.index({id:{{y.PARENT}}})">View</a>
+                                            </td>	                                                
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

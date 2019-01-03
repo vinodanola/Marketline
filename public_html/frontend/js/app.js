@@ -3216,6 +3216,8 @@ App.directive('iframeDirective', ['$sce', function($sce) {
     };
 }]);
  
+
+ 
 /*====================== SERVICES ============================*/
     
 App.service('postDokumen',function ($http,globalFunction,apiBase,getKelengkapanDataById,$rootScope) {
@@ -6427,8 +6429,57 @@ App.controller('listSurveyCtrl',function($rootScope,$scope,apiData,apiBase,$stat
             type    : 'tolist',
             callbacksuccess : function(R){
 //                $scope.fdPL.TOTAL_ITEMS = $scope.listSL.length;
-                $scope.listSL_ = R.data.data;
-                $scope.fdPL.TOTAL_ITEMS = R.data.len;
+                $scope.listSL_ = R.data.data;	
+                $scope.fdPL.TOTAL_ITEMS = R.data.len;	
+				
+				/*FZL start*/
+				$scope.tableRowExpanded = true;
+				$scope.tableRowIndexCurrExpanded = "";
+				$scope.tableRowIndexPrevExpanded = "";
+				$scope.storeIdExpanded = "";
+				$scope.DataCollapse = [false ,false ,false ,false ,false ,false ,false ,false ,false ,false];
+
+				$scope.DataCollapseFn = function () {
+					for (var i = 0; 10 - 1; i += 1) {						
+						$scope.DataCollapse.append('true');
+					}
+				};
+
+				$scope.selectTableRow = function (index, storeId) {
+					
+					console.log('selectTableRow',index,storeId);	
+					if ($scope.DataCollapse === 'undefined') {						
+						$scope.DataCollapse = $scope.DataCollapseFn();
+					} else {
+						console.log('$scope.tableRowExpanded=',$scope.tableRowExpanded)
+						console.log('$scope.tableRowIndexCurrExpanded=',$scope.tableRowIndexCurrExpanded)
+						console.log('$scope.storeIdExpanded=',$scope.storeIdExpanded);
+						if ($scope.tableRowExpanded === false && $scope.tableRowIndexCurrExpanded === "" && $scope.storeIdExpanded === "") {
+							console.log('masuk if 1');
+							$scope.tableRowIndexPrevExpanded = "";
+							$scope.tableRowExpanded = true;
+							$scope.tableRowIndexCurrExpanded = index;
+							$scope.storeIdExpanded = storeId;
+							$scope.DataCollapse[index] = false;
+						} else if ($scope.tableRowExpanded === true) {
+							if ($scope.tableRowIndexCurrExpanded === index && $scope.storeIdExpanded === storeId) {
+								console.log('masuk if 2');
+								$scope.tableRowExpanded = true;
+								$scope.tableRowIndexCurrExpanded = "";
+								$scope.storeIdExpanded = "";
+								$scope.DataCollapse[index] = false;
+							} else {
+								console.log('masuk if 3');
+								$scope.tableRowIndexPrevExpanded = $scope.tableRowIndexCurrExpanded;
+								$scope.tableRowIndexCurrExpanded = index;
+								$scope.storeIdExpanded = storeId;
+								$scope.DataCollapse[$scope.tableRowIndexPrevExpanded] = false;
+								$scope.DataCollapse[$scope.tableRowIndexCurrExpanded] = true;
+							}
+						}
+					}
+				};
+				/*FZL end*/
             }
         });
     };
@@ -6450,15 +6501,7 @@ App.controller('listSurveyCtrl',function($rootScope,$scope,apiData,apiBase,$stat
     $scope.pageChanged = function(p){
         $scope.fdPL.PAGE = p;
     };
-	
-	$scope.expandSelected=function(person){
-		$scope.people.forEach(function(val){
-		  val.expanded=false;
-		});
-		person.expanded=true;    
-	}
-	
-    
+	    
 });
 
 /* Informasi Survey */

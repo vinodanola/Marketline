@@ -11,10 +11,10 @@ class AppsList extends CI_Controller {
         
         $J = [
                 [
-                    'name' => 'Market Line',
+                    'name' => 'MarketLine',
                     'url' => 'http://10.61.3.49:8089/#/login',
                     'logo' => '',
-                    'description' => 'Prospek, Survey, Review, Sync to MMS'
+                    'description' => ''
                 ],
                 [
                     'name' => 'Manajemen Produk & BWMP',
@@ -41,10 +41,10 @@ class AppsList extends CI_Controller {
                     'description' => ''
                 ],
                 [
-                    'name' => 'Agunan',
+                    'name' => 'Mangan',
                     'url' => 'http://192.168.10.180/Agunan',
                     'logo' => '',
-                    'description' => 'Mutasi Agunan, Pinjam Agunan, Pelepasan Agunan, Retaksasi Agunan, Stock Opname'
+                    'description' => ''
                 ],
         ];
         

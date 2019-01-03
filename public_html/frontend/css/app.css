@@ -77,6 +77,14 @@ code.code-response {
   height: 100%; }
   .container.container-hm2 .col-hm2lg {
     height: 100%; }
+  .container.container-hm2 .div-hm2-header {
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    margin-top: 0;
+    background-image: url("../images/header2.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%; }
 
 /* COLOUMN */
 .col-no-padding {
@@ -689,13 +697,13 @@ code.code-response {
   border: none; }
   .panel.panel-ds-tp .panel-heading {
     background-image: none;
-    border-bottom-color: #015f36;
-    background: #368764;
+    border-bottom-color: #fdfdfd;
+    background: #0b60ab;
     border-radius: 0; }
     .panel.panel-ds-tp .panel-heading .thead.thead-action {
       color: #fff; }
   .panel.panel-ds-tp .panel-body .table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: #f5fffb; }
+    background-color: #fdfdf2; }
 
 /* LIST GROUP */
 .list-group.list-group-hm2 {

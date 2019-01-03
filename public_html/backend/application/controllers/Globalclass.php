@@ -38,7 +38,7 @@ class Globalclass extends CI_Controller {
 	
     public function get_reviewer(){
         
-        get_api($this->config->item('baseBWMPApi').'koordinator/'.$this->input->get('id_krw'));
+        get_api($this->config->item('baseBWMPApi').'cluster_reviewer/'.$this->input->get('id_krw'));
         
     }	
     

@@ -217,6 +217,16 @@ code {
         .col-hm2lg {
             height: 100%;
         }
+        
+        .div-hm2-header{
+            width: 100%; 
+            height: 300px; 
+            text-align: center; 
+            margin-top : 0;
+            background-image: url('../images/header2.png');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
     }
     
 }
@@ -1109,8 +1119,8 @@ code {
         border: none;
         .panel-heading {
             background-image: none;
-            border-bottom-color: #015f36;
-            background: #368764;
+            border-bottom-color: #fdfdfd;
+            background: #0b60ab;
             border-radius: 0;
             .thead {
                 &.thead-action {
@@ -1120,7 +1130,7 @@ code {
         }
         .panel-body {
             .table-striped>tbody>tr:nth-of-type(odd) {
-                background-color: #f5fffb;
+                background-color: #fdfdf2;
             }
         }
     }

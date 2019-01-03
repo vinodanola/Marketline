@@ -84,7 +84,7 @@
             $scope.fdBTB.INFLASI_ID = 1;
             $scope.fdBTB.INFLASI = 1.09755832251893;
             $scope.fdBTB.INFLASI_MATERIAL_PENDUKUNG = 1.15243623864488;
-            $scope.fdBTB.TAHUN_PENILAIAN = '2018';
+            $scope.fdBTB.TAHUN_PENILAIAN = '2019';
 //            $scope.fdBTB.INDEX_KEMAHALAN = 1;
 //            $scope.fdBTB.INDEX_KEMAHALAN_ID = 1;
 //            $scope.fdBTB.KONSTRUKSI_HARGA_TOTAL = 0;

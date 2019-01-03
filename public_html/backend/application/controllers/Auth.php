@@ -251,8 +251,8 @@ class Auth extends CI_Controller {
         
         $R = [];
 				        
-        if ($role == 'REVIEWER' || $role == 'KRW'){
-            $D = json_decode(get_api($this->config->item('baseBWMPApi').'listreviewer/'.$idsdm, '', 'RTN'));					
+        if ($role == 'REVIEWER' || $role == 'KRW' || $role == 'SUPERADMIN'){
+            $D = json_decode(get_api($this->config->item('baseBWMPApi').'cluster/'.$idsdm, '', 'RTN'));					
 //            $R['CABANG'] = ['AMB','ADP','DMY'];
 
             // if (is_array($D) && count($D) > 0)
@@ -260,11 +260,13 @@ class Auth extends CI_Controller {
             // else
                 // $R['CABANG'] = ['NO_BRANCH'];						
 			
-			if (is_object($D) && count($D) > 0) {
-				$R['CABANG'] = $D->cabang;
+			if (is_object($D) && count($D) > 0) {				
+				$R['CABANG'] = $D->cabang;	
+				$R['WILAYAH'] = $D->wilayah;										
 				$R['KRW'] = $D->krw;
 			}else{
 				$R['CABANG'] = ['NO_BRANCH'];
+				$R['WILAYAH'] = ['NO_WILAYAH'];
 				$R['KRW'] = false;
 			}
 				

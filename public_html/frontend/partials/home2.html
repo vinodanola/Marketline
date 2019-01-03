@@ -14,9 +14,9 @@
         </div>
     </div>-->
     
-	<div style="text-align: center; margin-top : 0;" >
-            <img src="images/header.png" width="100%" class="">
-	</div>
+    <div class="div-hm2-header">
+        
+    </div>
 
 	
 <!--    <div class="col-md-5 col-no-padding col-hm2lg">
@@ -136,6 +136,9 @@
                 <li>
                     Total : {{fdPL.TOTAL_ITEMS}} record(s)
                 </li>
+                <li>
+                    Last Update : {{listDATP[0].CREATED_DATE}}
+                </li>
                 <li class="right">
                     <ul uib-pagination 
                         total-items="fdPL.TOTAL_ITEMS" 
@@ -154,29 +157,30 @@
         <div class="panel-body no-padding">
             <table wt-responsive-table class="table table-striped small" ng-init="getDashboardTotalProspek()">
                 <tr>
-                    <th>No</th>
+                    <th>NO</th>
                     <th>TANGGAL LIVE</th>
                     <!--<th>KODE CABANG</th>-->
                     <th>CABANG</th>
                     <!--<th>KODE UNIT</th>-->
                     <th>UNIT</th>
-                    <th>TOTAL PROPOSAL</th>
-                    <th ><span uib-tooltip="On Prospek">C1</span></th>
-                    <th ><span uib-tooltip="Prospek oleh AOM">C2</span></th>
-                    <th ><span uib-tooltip="">C3</span></th>
-                    <th ><span uib-tooltip="">C4</span></th>
-                    <th ><span uib-tooltip="">C5</span></th>
-                    <th ><span uib-tooltip="">C6</span></th>
-                    <th ><span uib-tooltip="">C7</span></th>
-                    <th ><span uib-tooltip="">C8</span></th>
-                    <th ><span uib-tooltip="">C9</span></th>
-                    <th ><span uib-tooltip="">C10</span></th>
-                    <th ><span uib-tooltip="">C11</span></th>
-                    <th ><span uib-tooltip="">C12</span></th>
-                    <th ><span uib-tooltip="">C13</span></th>
-                    <th ><span uib-tooltip="">C14</span></th>
-                    <th ><span uib-tooltip="">C15</span></th>
-                    <th ><span uib-tooltip="">C16</span></th>
+                    <th class="text-center">TOTAL PROPOSAL</th>
+                    <th class="text-center"><span uib-tooltip="TOTAL PEMBIAYAAN BARU">BARU</span></th>
+                    <th class="text-center"><span uib-tooltip="TOTAL PEMBIAYAAN TOP UP">TOP UP</span></th>
+                    <th class="text-center"><span uib-tooltip="TOTAL PEMBIAYAAN 3R">3R</span></th>
+                    <th><span uib-tooltip="SEDANG PROSPEK">P1</span></th>
+                    <th><span uib-tooltip="PROSPEK OLEH AOM">P2</span></th>
+                    <th><span uib-tooltip="PROSPEK DITOLAK">P3</span></th>
+                    <th><span uib-tooltip="PROSPEK DISETUJUI">P4</span></th>
+                    <th><span uib-tooltip="SEDANG LKKU">P5</span></th>
+                    <th><span uib-tooltip="LKKU DITOLAK">P6</span></th>
+                    <th><span uib-tooltip="PROSES SCORING">P7</span></th>
+                    <th><span uib-tooltip="LKKU DISETUJUI">P8</span></th>
+                    <th><span uib-tooltip="SELESAI SCORING">P9</span></th>
+                    <th><span uib-tooltip="PROPOSAL DREVIEWER">P10</span></th>
+                    <th><span uib-tooltip="PROPOSAL SEDANG PROSES PERSETUJUAN">P11</span></th>
+                    <th><span uib-tooltip="PROPOSAL YANG BELUM SYNC TO MMS">P12</span></th>
+                    <th><span uib-tooltip="PROPOSAL SELESAI SYNC TO MMS">P13</span></th>
+                    
                 </tr>
                 <!--<tr ng-repeat="x in listDATP">-->
                 <tr ng-repeat="x in listDATP | limitTo:(fdPL.LIMIT):((fdPL.PAGE*fdPL.LIMIT)-fdPL.LIMIT)">
@@ -186,7 +190,10 @@
                     <td>{{x.CABANG}}</td>
                     <!--<td>{{x.KODE_UNIT}}</td>-->
                     <td>{{x.UNIT}}</td>
-                    <td>{{x.TOTAL_PROSPEK}}</td>
+                    <td class="text-center">{{x.TOTAL_PROSPEK}}</td>
+                    <td class="text-center">{{x.JENIS_PEMBIAYAAN_BARU}}</td>
+                    <td class="text-center">{{x.JENIS_PEMBIAYAAN_TOP_UP}}</td>
+                    <td class="text-center">{{x.JENIS_PEMBIAYAAN_3R}}</td>
                     <td>{{x.CREATE_PROSPEK}}</td>
                     <td>{{x.SUBMIT_PROSPEK_OLEH_AOM}}</td>
                     <td>{{x.REJECT_PROSPEK}}</td>
@@ -200,9 +207,7 @@
                     <td>{{x.SELESAI_REVIEWER}}</td>
                     <td>{{x.SELESAI_SIMAPAN}}</td>
                     <td>{{x.SELESAI_SYNC_TO_MMS}}</td>
-                    <td>{{x.JENIS_PEMBIAYAAN_BARU}}</td>
-                    <td>{{x.JENIS_PEMBIAYAAN_TOP_UP}}</td>
-                    <td>{{x.JENIS_PEMBIAYAAN_3R}}</td>
+                    
                 </tr>
             </table>
         </div>
