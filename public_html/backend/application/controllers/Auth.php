@@ -251,7 +251,7 @@ class Auth extends CI_Controller {
         
         $R = [];
 				        
-        if ($role == 'REVIEWER' || $role == 'KRW' || $role == 'SUPERADMIN'){
+        if ($role == 'REVIEWER' || $role == 'KRW'){
             $D = json_decode(get_api($this->config->item('baseBWMPApi').'cluster/'.$idsdm, '', 'RTN'));					
 //            $R['CABANG'] = ['AMB','ADP','DMY'];
 

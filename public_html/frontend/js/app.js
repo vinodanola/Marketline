@@ -9215,13 +9215,13 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
             $scope.fdPNL = {};
         $scope.fdPNL.DB_INDIVIDU_AGUNAN_ID  = $rootScope.AGUNAN_ID_SELECTED;
         
-        /*if ($scope.fdPNL.MS_JENIS_PENILAIAN == 1134)
-            $scope.fdPNL.NILAI_PASAR_VALIDATOR = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;
+        if ($scope.fdPNL.MS_JENIS_PENILAIAN == 1134)
+            $scope.fdPNL.NILAI_PASAR_VALIDATOR = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER;
         else
             $scope.fdPNL.NILAI_PASAR_VALIDATOR = 0;
 		
         if ($rootScope.jenis_agunan_id == 58)
-            $scope.fdPNL.MS_JENIS_PENILAIAN = 1134;*/
+            $scope.fdPNL.MS_JENIS_PENILAIAN = 1134;
         
         console.log($scope.fdPNL);
 
