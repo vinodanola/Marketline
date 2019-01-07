@@ -1271,7 +1271,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             templateUrl: 'partials/review/agunan-dan-scr.html',
             controller: 'reviewAsAgScrCtrl',
             data: {
-                pageTitle: 'Agunan dan SCR'
+                pageTitle: 'Agunan dan CCR'
             }
         })
         
@@ -4133,6 +4133,23 @@ App.controller('home2Ctrl', function($scope,$http,$rootScope,globalFunction,apiB
             globalFunction.ag('danger',[R]); 
         });
     };
+    
+    $scope.getDashboardBestAOM = function(){
+        $http({
+            method   : "GET",
+            url      : apiBase+'globalclass/get_dashboard_best_aom',
+            dataType : 'json',
+            headers  : { 'Content-Type':'application/json' },
+        }).then(function mySuccess(R) {
+
+            $scope.listDBA = R.data;
+
+        }, function myError(R) { 
+            console.log(R.statusText);
+            globalFunction.ag('danger',[R]); 
+        });
+    };
+    $scope.getDashboardBestAOM();
     
 });
 
@@ -11628,9 +11645,7 @@ App.controller('reviewAsAgScrCtrl',function($scope,$rootScope,apiData,apiBase,$s
                     if ($scope.fdSCR_2.NILAI_PASAR_TANAH_DIREKOMENDASIKAN == undefined)
                         $scope.fdSCR_2.NILAI_PASAR_TANAH_DIREKOMENDASIKAN = [];
                     $scope.fdSCR_2.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[R.data[i].DB_INDIVIDU_AGUNAN_ID] = R.data[i].DB_NILAI_PASAR_DIREKOMENDASIKAN_SP;
-                    
-                    
-                    
+                                                           
                 }
                 if (typeof($scope.fdSCR) != 'undefined' && typeof($scope.fdSCR_2) != 'undefined' )
                     $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN = $scope.fdSCR_2.NILAI_PASAR_TANAH_DIREKOMENDASIKAN;
@@ -11689,8 +11704,12 @@ App.controller('reviewAsAgScrCtrl',function($scope,$rootScope,apiData,apiBase,$s
             for (var i=0; i<listRVAG.length; i++){                
                 $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] = $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN_PER_METER_PERSEGI[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] * listRVAG[i].DB_LUAS_TANAH_PER_METER_PERSEGI;
                 
-                $scope.fdSCR.TOTAL_NILAI_LIKUIDASI_DIREKOMENDASIKAN = $scope.fdSCR.TOTAL_NILAI_LIKUIDASI_DIREKOMENDASIKAN + ( $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] * listRVAG[i].DB_PERSENTASE_LIKUIDASI / 100 ) + listRVAG[i].NILAI_PASAR_BANGUNAN;
-            }
+                $scope.fdSCR.TOTAL_NILAI_LIKUIDASI_DIREKOMENDASIKAN = $scope.fdSCR.TOTAL_NILAI_LIKUIDASI_DIREKOMENDASIKAN + ( $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] * listRVAG[i].DB_PERSENTASE_LIKUIDASI / 100 ) + listRVAG[i].DB_NILAI_LIKUIDASI_BANGUNAN;
+				
+				console.log('$scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG['+i+'].DB_INDIVIDU_AGUNAN_ID.toString()]',$scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()]);
+				console.log('$scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG['+i+'].DB_INDIVIDU_AGUNAN_ID.toString()]',listRVAG[i].DB_PERSENTASE_LIKUIDASI);
+				console.log('listRVAG['+i+'].DB_NILAI_LIKUIDASI_BANGUNAN',listRVAG[i].DB_NILAI_LIKUIDASI_BANGUNAN);
+            }			
             console.log('TOTAL_NILAI_LIKUIDASI_DIREKOMENDASIKAN ',$scope.fdSCR.TOTAL_NILAI_LIKUIDASI_DIREKOMENDASIKAN);
             console.log('listRVAG ',$scope.listRVAG);
         }		        

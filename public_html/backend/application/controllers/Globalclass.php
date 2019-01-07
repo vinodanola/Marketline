@@ -70,4 +70,10 @@ class Globalclass extends CI_Controller {
         
     }
     
+    public function get_dashboard_best_aom(){
+        
+        get_api($this->config->item('baseAPI').'globalclass/get_best_aom_dashboard');
+        
+    }
+    
 }

@@ -15,7 +15,22 @@
     </div>-->
     
     <div class="div-hm2-header">
-        
+        <div class="bx col-md-6 col-md-offset-3">
+            <div class="col-md-12 col-head">
+                <h4 class="head">TOP {{listDBA.length}} AOM on MarketLine</h4>
+                <hr>
+            </div>
+            <div class="col-md-4 col-sub-bx" ng-repeat="x in listDBA">
+                <div class="sub-bx">
+                    <div class="photo">
+                        <img ng-src="{{x.FOTO_AOM}}" />
+                    </div>
+                    <div class="jumb">
+                        {{x.DB_NAMA_AOM}}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 	

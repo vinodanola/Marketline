@@ -36,7 +36,7 @@
 			</br>
             Total {{fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[x.DB_INDIVIDU_AGUNAN_ID.toString()] | number:2}}
         </td>
-        <td class="text-right">{{( (fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[x.DB_INDIVIDU_AGUNAN_ID.toString()] * x.DB_PERSENTASE_LIKUIDASI / 100) + x.NILAI_PASAR_BANGUNAN) | number:2}}</td>        
+        <td class="text-right">{{( (fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[x.DB_INDIVIDU_AGUNAN_ID.toString()] * x.DB_PERSENTASE_LIKUIDASI / 100) + x.DB_NILAI_LIKUIDASI_BANGUNAN) | number:2}}</td>        
     </tr>
     <tr>
         <td colspan="2">Total</td>
@@ -48,7 +48,7 @@
 </table>
 
 <div class="panel-body">
-    <p>Security Coverage Ratio (SCR)</p>	
+    <p>Collateral Coverage Ratio (CCR)</p>	
     <div class="col-md-6">
         <dl class="dl-horizontal dt-left">		
             <dt>Plafon Usulan </dt>
@@ -74,10 +74,10 @@
     <div class="col-md-6">
         <dl class="dl-horizontal">
             <!--<dd>{{fdSCR.SCR_USULAN}}</dd>-->
-            <dt>SCR Usulan </dt>
+            <dt>CCR Usulan </dt>
             <!--<dd>{{fdSCR.SCR_USULAN}}</dd>-->			
             <dd>{{ (listRVAG | sumByColumn: 'NILAI_LIKUIDASI') / (fdSCR.SCR_PLAFON_USULAN * 1 + fdSCR.SCR_OS_ONE_OBLIGOR * 1) * 100 | number:2 }} %</dd>
-            <dt>SCR - Rekomendasi</dt>
+            <dt>CCR - Rekomendasi</dt>
             <!--<dd>{{fdSCR.SCR_REKOMENDASI}}</dd>-->
             <dd>{{ fdSCR.TOTAL_NILAI_LIKUIDASI_DIREKOMENDASIKAN / (fdSCR.SCR_PLAFON_DIREKOMENDASIKAN * 1 + fdSCR.SCR_OS_ONE_OBLIGOR * 1) * 100 | number:2}} %</dd>
         </dl>
