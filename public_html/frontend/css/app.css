@@ -984,7 +984,9 @@ code.code-response {
         padding: 0;
         width: 430px;
         background: #fff;
-        border-radius: 0 0 3px 3px; }
+        border-radius: 0 0 3px 3px;
+        max-height: 400px;
+        overflow-y: auto; }
         .ap-navbar .navbar-nav.navbar-dsp > li.dropdown .dropdown-menu .dropdown-menu-head {
           position: relative;
           float: left;

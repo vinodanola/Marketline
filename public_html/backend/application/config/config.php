@@ -28,17 +28,35 @@ date_default_timezone_set('Asia/Bangkok');
 
 $config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/backend/';
 
-//$config['baseAPI'] = 'http://182.23.52.249/PNM/api/v1/';
-//$config['baseAPI'] = 'http://192.168.10.137/PNM/api/v1/';
-//$config['baseAPI'] = 'http://10.61.3.49/PNM/api/v1/';
 $config['baseAPI'] = 'http://192.168.10.137/PNM/api/v1/';
 
-//$config['baseSSOApi'] = 'http://182.23.52.249/WebService/';
-//$config['baseSSOApi'] = 'http://192.168.10.137/WebService/';
 $config['baseSSOApi'] = 'http://182.23.52.249/WebService/';
 
 $config['baseBWMPApi'] = 'http://10.61.3.49:82/api/';
 
+/*
+|--------------------------------------------------------------------------
+| Alfresco
+|--------------------------------------------------------------------------
+|
+| Config for alfresco.
+|
+*/
+
+$config['baseAlfresco'] = 'http://10.61.3.246:8080/alfresco/';
+$config['alfrescoUsername'] = 'admin';
+$config['alfrescoPassword'] = 'admin';
+
+/*
+|--------------------------------------------------------------------------
+| Qnap
+|--------------------------------------------------------------------------
+|
+| Config for qnap.
+|
+*/
+
+$config['qnapBase'] = 'ftp://10.61.3.16/SyncToQnapTest/';
 
 /*
 |--------------------------------------------------------------------------
@@ -249,7 +267,7 @@ $config['log_threshold'] = [1,2];
 | application/logs/ directory. Use a full server path with trailing slash.
 |
 */
-$config['log_path'] = '/var/log/ci_logs/';
+$config['log_path'] = 'application/logs/';
 
 /*
 |--------------------------------------------------------------------------

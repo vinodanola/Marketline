@@ -32,8 +32,8 @@
                     <tr ng-repeat="y in x.DOKUMEN">
                         <td>
                             {{$index+1}}.
-                            <a href="{{$root.FILE_BASE}}{{y.PR_PATH_DOKUMEN}}" target="_blank">View</a> &middot;
-                            <a href="{{$root.FILE_BASE}}{{y.PR_PATH_DOKUMEN}}" download>Download</a><br>
+                            <a href="{{$root.FILE_BASE}}{{y.NODE_ID}}&dok={{y.PR_PATH_DOKUMEN}}" target="_blank">View</a> &middot;
+                            <a href="{{$root.FILE_BASE}}{{y.NODE_ID}}&dok={{y.PR_PATH_DOKUMEN}}" download>Download</a><br>
                         </td>
                         <td>
                             <input type="checkbox" ng-true-value="{{y.PR_INDIVIDU_DOKUMEN_ID}}" ng-false-value="" ng-model="fdDCK.CHECKDATA_CABANG[y.PR_INDIVIDU_DOKUMEN_ID]" ng-init="fdDCK.CHECKDATA_CABANG[y.PR_INDIVIDU_DOKUMEN_ID] = y.CHECKDATA_CABANG[y.PR_INDIVIDU_DOKUMEN_ID]"/> 

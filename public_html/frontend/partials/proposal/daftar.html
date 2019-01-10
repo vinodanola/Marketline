@@ -99,6 +99,9 @@
                                     <li>
                                         <a ui-sref="proposal.tracking({id:{{x.DB_PROSPEK_ID}}})">Tracking</a>
                                     </li>
+                                    <li ng-controller="syncDocQNAPCtrl">
+                                        <a ng-click="sync(x.DB_PROSPEK_ID)">Sync Dokumen ke QNAP</a>
+                                    </li>
                                 </ul>
                             </span>
                         </td>

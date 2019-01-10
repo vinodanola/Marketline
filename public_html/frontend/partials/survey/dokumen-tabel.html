@@ -7,7 +7,7 @@
         <td>
             <h4>{{x.MS_JENIS_DOKUMEN}}</h4>
             <span>{{x.PR_NOMOR_DOKUMEN}}</span> 
-            <a ng-show="x.PR_PATH_DOKUMEN" href="{{$root.FILE_BASE}}{{x.PR_PATH_DOKUMEN}}" class="" target="_blank" uib-tooltip="{{$root.FILE_BASE}}{{x.PR_PATH_DOKUMEN}}">View</a>
+            <a ng-show="x.PR_PATH_DOKUMEN" href="{{$root.FILE_BASE}}{{x.NODE_ID}}&dok={{x.PR_PATH_DOKUMEN}}" class="" target="_blank" uib-tooltip="{{$root.FILE_BASE}}{{x.NODE_ID}}&dok={{x.PR_PATH_DOKUMEN}}">View</a>
         </td>
         <td>
             <a ng-click="viewDokumen(x.PR_INDIVIDU_DOKUMEN_ID)">View</a>

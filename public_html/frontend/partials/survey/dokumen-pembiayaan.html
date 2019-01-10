@@ -16,7 +16,7 @@
 	</div>
 	<div class="form-group">
 		<label>File (.jpg, .jpeg, .pdf) *</label>
-		<a ng-show="fdPDKDP.PR_PATH_DOKUMEN" href="{{$root.FILE_BASE}}{{fdPDKDP.PR_PATH_DOKUMEN}}" class="pull-right" target="_blank" uib-tooltip="{{$root.FILE_BASE}}{{fdPDKDP.PR_PATH_DOKUMEN}}">View</a>
+		<a ng-show="fdPDKDP.PR_PATH_DOKUMEN" href="{{$root.FILE_BASE}}{{fdPDKDP.NODE_ID}}&dok={{fdPDKDP.PR_PATH_DOKUMEN}}" class="pull-right" target="_blank" uib-tooltip="{{$root.FILE_BASE}}{{fdPDKDP.PR_PATH_DOKUMEN}}">View</a>
 		<input type="file" class="form-control"  file-model="fdPDKDP.PR_DOKUMEN" />
 	</div>
     <!--

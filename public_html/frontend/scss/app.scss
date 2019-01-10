@@ -1529,6 +1529,8 @@ code {
                     width: 430px;
                     background: #fff;
                     border-radius: 0 0 3px 3px;
+                    max-height: 400px;
+                    overflow-y: auto;
                     
                     .dropdown-menu-head {
                         position: relative;

@@ -30,7 +30,8 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
     $provide.value("apiBase", "http://" + window.location.hostname + ':' + window.location.port + "/backend/");
     $provide.value("webServiceBase", "http://192.168.10.137/PNM/api/v1/");  
-    $provide.value("fileBase", "ftp://10.61.3.16/");
+//    $provide.value("fileBase", "ftp://10.61.3.16/");
+    $provide.value("fileBase", "http://" + window.location.hostname + ':' + window.location.port + "/backend/globalclass/get_file_alfresco/?NODE_ID=");
     $provide.value("jasperBase", "http://reportserver.pnm.co.id/jasperserver/rest_v2/reports/reports/MIS/");
     $provide.value("simapanBase", "http://10.61.3.49/simapan3.1/public/");
     
@@ -1383,7 +1384,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         })
 		
 		
-		/* ==================================================================================
+        /* ==================================================================================
          * ################################ PORTOFOLIO ################################
          * ==================================================================================*/
 
@@ -6016,7 +6017,7 @@ App.controller('dokumenCtrl', function(modalService,$scope,$stateParams,apiData,
                 { k : 'Jenis Dokumen', v : $scope.formDataDokumen.MS_JENIS_DOKUMEN },
                 { k : 'Kategori Dokumen', v : $scope.formDataDokumen.DB_HEADER },
                 { k : 'Nomor Dokumen', v : $scope.formDataDokumen.PR_NOMOR_DOKUMEN },
-                { k : 'File', v : $scope.formDataDokumen.PR_PATH_DOKUMEN, t : 'file' }
+                { k : 'File', v : $scope.formDataDokumen.NODE_ID, t : 'file', d : $scope.formDataDokumen.PR_PATH_DOKUMEN }
             ];
         });
     };
@@ -7084,7 +7085,7 @@ App.controller('profileDanKarakterSurveyCtrl',function($scope, apiData,apiBase,$
 //                { k : 'Id', v : $scope.fdPDKDP.PR_INDIVIDU_DOKUMEN_ID },
                 { k : 'Jenis Dokumen', v : $scope.fdPDKDP.MS_JENIS_DOKUMEN },
                 { k : 'Nomor Dokumen', v : $scope.fdPDKDP.PR_NOMOR_DOKUMEN },
-                { k : 'File', v : $scope.fdPDKDP.PR_PATH_DOKUMEN, t : 'file' }
+                { k : 'File', v : $scope.fdPDKDP.NODE_ID, t : 'file', d : $scope.fdPDKDP.PR_PATH_DOKUMEN }
             ];
         });
     };
@@ -8381,7 +8382,7 @@ App.controller('kebutuhanModalKerjaCtrl',function($scope,apiData,apiBase,globalF
             $rootScope.ROW_VIEW = [
 //                { k : 'Id', v : $scope.fdDRAB.PR_INDIVIDU_DOKUMEN_ID },
                 { k : 'Jenis Dokumen', v : $scope.fdDRAB.MS_JENIS_DOKUMEN },
-                { k : 'File', v : $scope.fdDRAB.PR_PATH_DOKUMEN, t : 'file' }
+                { k : 'File', v : $scope.fdDRAB.NODE_ID, t : 'file', d : $scope.fdDRAB.PR_PATH_DOKUMEN }
             ];
         });
     };
@@ -9419,7 +9420,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 { k : 'Nomor Kepemilikan / Sertifikat', v : $scope.fdDAS.PR_NOMOR_DOKUMEN },
                 { k : 'Jenis Dokumen', v : $scope.fdDAS.MS_JENIS_DOKUMEN },
                 { k : 'Pemilik Dokumen', v : $scope.fdDAS.MS_PEMILIK_DOKUMEN },
-                { k : 'File', v : $scope.fdDAS.PR_PATH_DOKUMEN, t : 'file' }
+                { k : 'File', v : $scope.fdDAS.NODE_ID, t : 'file', d : $scope.fdDAS.PR_PATH_DOKUMEN }
             ];
         });
     };
@@ -9754,7 +9755,7 @@ App.controller('dokumenSurveyCtrl', function(modalService,$scope,$stateParams,ap
                 // { k : 'Id', v : $scope.formDataSurveyDokumen.PR_INDIVIDU_DOKUMEN_ID },
                 { k : 'Jenis Dokumen', v : $scope.formDataSurveyDokumen.MS_JENIS_DOKUMEN },
                 { k : 'Nomor Dokumen', v : $scope.formDataSurveyDokumen.PR_NOMOR_DOKUMEN },
-                { k : 'File', v : $scope.formDataSurveyDokumen.PR_PATH_DOKUMEN, t : 'file' }
+                { k : 'File', v : $scope.formDataSurveyDokumen.NODE_ID, t : 'file', d : $scope.formDataSurveyDokumen.PR_PATH_DOKUMEN }
             ];
         });
     };
@@ -12400,6 +12401,29 @@ App.controller('proposalTrackingCtrl',function($scope,globalFunction,$filter,$st
             m.close();
         };
     }; 
+    
+});
+
+App.controller('syncDocQNAPCtrl',function($scope,globalFunction,$filter,$stateParams,apiData,apiBase,$rootScope,modalService){
+    
+    $scope.fdSNCQ = {};
+    
+    $scope.sync = function(id){
+        modalService.showModal({}, {
+            closeButtonText: 'Batal',
+            actionButtonText: 'Sync',
+            headerText: 'Sync FIle QNap',
+            bodyText: 'Apakah anda yakin sync file proposal dengan id '+id+' ke Qnap ?'
+        }).then(function (result) {
+            $scope.fdSNCQ.DB_PROSPEK_ID = id;
+            apiData.post({
+                gl      : true,
+                api     : apiBase+'globalclass/sync_doc_to_qnap',
+                data    : $scope.fdSNCQ,
+                scope   : $scope
+            });
+        });
+    };
     
 });
 
