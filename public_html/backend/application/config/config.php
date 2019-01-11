@@ -56,7 +56,12 @@ $config['alfrescoPassword'] = 'admin';
 |
 */
 
-$config['qnapBase'] = 'ftp://10.61.3.16/SyncToQnapTest/';
+//$config['qnapBase'] = 'ftp://10.61.3.16/SyncToQnapTest/';
+//$config['qnapBase'] = 'itd:pnm123#@10.61.4.110/MARKETLINE/DEVELOPMENT_2/';
+$config['qnapBase'] = 'MARKETLINE/DEVELOPMENT_2/';
+$config['server'] = '10.61.4.110';
+$config['username'] = 'itd';
+$config['password'] = 'pnm123#';
 
 /*
 |--------------------------------------------------------------------------

@@ -131,6 +131,10 @@ class Globalclass extends CI_Controller {
         $p = $this->input->post();
         $qB = $this->config->item('qnapBase');
         
+        $ftp_server = $this->config->item('server');
+        $ftp_user = $this->config->item('username');
+        $ftp_pass =$this->config->item('password');
+        
         $R = [
             'status' => FALSE,
             'error' => []
@@ -138,41 +142,59 @@ class Globalclass extends CI_Controller {
         
         $D = json_decode(get_api($this->config->item('baseAPI').'qnap/documents/'.$p['DB_PROSPEK_ID'], '', 'RTN'));
         
-        for ($i=0; $i<count($D); $i++) {
+        // set up a connection or die
+        $conn_id = ftp_connect($ftp_server) or $R['message'] = "Couldn't connect to $ftp_server";
         
-            $node_id    = $D[$i]->NODE_ID;
-            $dok        = $D[$i]->PR_PATH_DOKUMEN;
-            $prospek_id = $D[$i]->DB_PROSPEK_ID;
-            $kode_cabang= $D[$i]->MS_KODE_CABANG;
-            $cabang_des = $D[$i]->MS_CABANG_DESKRIPSI;
-            $kode_unit  = $D[$i]->MS_KODE_UNIT;
-            $unit_des   = $D[$i]->MS_UNIT_DESKRIPSI;
-            $wilayah    = $D[$i]->MS_WILAYAH;
-            
-            $pd         = explode('/', $dok);
-            $ticket_alf = $this->get_ticket_alfresco();
-            
-            if ($node_id)
-                $a = $this->config->item('baseAlfresco').'s/slingshot/node/content/workspace/SpacesStore/'.$node_id.'/?a=true&alf_ticket='.$ticket_alf.'&format=json';
-            else
-                $a = $dok;
-            
-            $fN = end($pd);
-            
-            $dir = $qB.$wilayah.'/'.$kode_cabang.' - ('.$cabang_des.')'.'/'.$kode_unit.' - ('.$unit_des.')'.'/'.$prospek_id.'/';
+        if (@ftp_login($conn_id, $ftp_user, $ftp_pass)) {
+        
+            for ($i=0; $i<count($D); $i++) {
 
-            $fL = $dir.$fN;
+                $node_id    = $D[$i]->NODE_ID;
+                $dok        = $D[$i]->PR_PATH_DOKUMEN;
+                $prospek_id = $D[$i]->DB_PROSPEK_ID;
+                $kode_cabang= $D[$i]->MS_KODE_CABANG;
+                $cabang_des = $D[$i]->MS_CABANG_DESKRIPSI;
+                $kode_unit  = $D[$i]->MS_KODE_UNIT;
+                $unit_des   = $D[$i]->MS_UNIT_DESKRIPSI;
+                $wilayah    = $D[$i]->MS_WILAYAH;
 
-            if (!file_exists($dir))
-                mkdir($dir, 0777, true);
+                $pd         = explode('/', $dok);
+                $ticket_alf = $this->get_ticket_alfresco();
 
-            if (file_exists($fL)) unlink($fL);
+                if ($node_id)
+                    $a = $this->config->item('baseAlfresco').'s/slingshot/node/content/workspace/SpacesStore/'.$node_id.'/?a=true&alf_ticket='.$ticket_alf.'&format=json';
+                else
+                    $a = $dok;
 
-            if (file_put_contents($fL, fopen($a, 'r')) !== false) {} else {
-                array_push($R['error'],$i."-".$a."-".$fL);
+                $fN = end($pd);
+
+                $dir = $qB.$wilayah.'/'.$kode_cabang.' - ('.$cabang_des.')'.'/'.$kode_unit.' - ('.$unit_des.')'.'/'.$prospek_id.'/';
+
+                $fL = $dir.$fN;
+
+//                if (!file_exists($dir))
+//                    mkdir($dir, 0777, true);
+//
+//                if (file_exists($fL)) unlink($fL);
+//
+//                if (file_put_contents($fL, fopen($a, 'r')) !== false) {} else {
+//                    array_push($R['error'],$i."-".$a."-".$fL);
+//                }
+                $aPath = explode('/',$dir);
+                $homeDir = str_repeat('../', count($aPath) - 1);
+                ftp_chdir($conn_id, $homeDir);
+                
+                if (ftp_mksubdirs($conn_id,'',$dir)) {
+                    if (ftp_put($conn_id, $fN, $a , FTP_ASCII)) {} else {
+                        array_push($R['error'],$i."-".$a."-".$fL);
+                    }
+                }
             }
-        
+        } else {
+            $R['message'] = "Couldn't connect as $ftp_user\n";
         }
+        
+        ftp_close($conn_id);
         
         $R['status'] = TRUE;
         
@@ -182,6 +204,47 @@ class Globalclass extends CI_Controller {
         }
         
         echo json_encode($R);
+        
+    }
+    
+    public function tes_qnap(){
+        
+        $ftp_server = "10.61.4.110";
+        $ftp_user = "itd";
+        $ftp_pass = "pnm123#";
+        $dir = 'MARKETLINE/www';
+
+        // set up a connection or die
+        $conn_id = ftp_connect($ftp_server) or die("Couldn't connect to $ftp_server"); 
+
+        // try to login
+        if (@ftp_login($conn_id, $ftp_user, $ftp_pass)) {
+            if (ftp_mkdir($conn_id, $dir)) {
+                echo "successfully created $dir\n";
+            } else {
+             echo "There was a problem while creating $dir\n";
+            }
+            
+            $file = "http://10.61.3.246:8080/alfresco/s/slingshot/node/content/workspace/SpacesStore/7f911f33-0340-4406-9b91-aac19df09ab4/?a=true&alf_ticket=TICKET_ce1539cdd2083b2a7e1957a579dfd1a0a03b577b&format=json";
+            
+//            $file = 'license.txt';
+            // upload file
+            if (ftp_put($conn_id, "MARKETLINE/2.txt", $file, FTP_ASCII))
+            {
+                echo "Successfully uploaded $file.";
+            }
+            else
+            {
+                echo "Error uploading $file.";
+            }
+            
+            echo "Connected as $ftp_user@$ftp_server\n";
+        } else {
+            echo "Couldn't connect as $ftp_user\n";
+        }
+
+        // close the connection
+        ftp_close($conn_id);
         
     }
     

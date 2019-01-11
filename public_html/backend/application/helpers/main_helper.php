@@ -288,4 +288,38 @@ if (!function_exists('array_group_by')) {
     }
 }
 
+if (!function_exists('ftp_is_dir')) 
+{
+    function ftp_is_dir($ftp, $dir)
+    {
+        $pushd = ftp_pwd($ftp);
+
+        if ($pushd !== false && @ftp_chdir($ftp, $dir))
+        {
+            ftp_chdir($ftp, $pushd);   
+            return true;
+        }
+
+        return false;
+    } 
+}
+
+if (!function_exists('ftp_mksubdirs')) 
+{
+    function ftp_mksubdirs($ftpcon,$ftpbasedir,$ftpath)
+    {
+       @ftp_chdir($ftpcon, $ftpbasedir); 
+       $parts = array_filter(explode('/',$ftpath)); 
+       foreach($parts as $part){
+            if(!@ftp_chdir($ftpcon, $part)){
+                ftp_mkdir($ftpcon, $part);
+                ftp_chmod($ftpcon, 0777, $part);
+                ftp_chdir($ftpcon, $part);
+            }
+       }
+       return true;
+    }
+}
+
+
 
