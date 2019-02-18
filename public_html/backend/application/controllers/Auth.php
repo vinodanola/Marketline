@@ -12,7 +12,7 @@ class Auth extends CI_Controller {
         $u = $this->input->post('USERNAME');
         $p = $this->input->post('PASSWORD');
         
-        if (($u == "AOM" || $u == "KAM" || $u == "KKU" || $u == "REVIEWER") && $_SERVER['HTTP_HOST'] != '127.0.0.1:8099'){
+        if (($u == "AOM" || $u == "KAM" || $u == "KKU" || $u == "REVIEWER" || $u == "KRW") && $_SERVER['HTTP_HOST'] != '127.0.0.1:8099'){
             
             $a = $this->config->item('base_url').'auth/get_login_for_dummy/'.$u;
             
@@ -89,6 +89,8 @@ class Auth extends CI_Controller {
         $Rf['WILAYAH'] = $Rf['CABANG_KODE'] ? $this->get_wilayah($Rf['CABANG_KODE']) : '';
         
         $Rf['CLUSTER'] = $this->get_custom_cluster($Rf['POSISI_NAMA'],$Rf['ID_SDM']);
+		
+		$Rf['RANGKAP_USER'] = $this->cek_rangkap_posisi_user($R->login[0]->data[0]->username);
         
         // if (strtoupper($Rf['USERNAME']) == 'AWICAKSONO0123')
             // $Rf['UNIT_KODE'] = 'PLIT';	
@@ -177,6 +179,12 @@ class Auth extends CI_Controller {
         return json_decode(get_api($this->config->item('baseAPI').'user_management/user_posisi?USERNAME='.$A,'','RTN'))[0]->MS_POSISI;       
         
     }	
+
+    public function cek_rangkap_posisi_user($A){
+		        
+        return json_decode(get_api($this->config->item('baseAPI').'user_management/user_rangkap_posisi?USERNAME='.$A,'','RTN'));
+        
+    }		
     
     public function get_my_pembiayaan_id($A){
         
@@ -206,6 +214,12 @@ class Auth extends CI_Controller {
             $unit = "Unit Dummy";
         } else if ($username == "REVIEWER"){
             $posisi_nama = "Officer Reviewer Cabang Dummy";
+            $kode_cabang = "DMY";
+            $cabang = "Cabang Dummy";
+            $kode_unit = "";
+            $unit = "";
+        } else if ($username == "KRW"){
+            $posisi_nama = "Koordinator Review Wilayah Dummy";
             $kode_cabang = "DMY";
             $cabang = "Cabang Dummy";
             $kode_unit = "";
@@ -276,6 +290,27 @@ class Auth extends CI_Controller {
         
         return $R;
         
+    }
+	
+	public function get_posisi_nama_rangkap(){			
+		
+		$R = ['STATUS' => FALSE]; 
+		
+		$posisi_nama = $this->input->get('POSISI_NAMA');
+        
+        if ($this->session->login['STATUS'] == TRUE){
+            $R = $this->session->login;
+			
+			$R['POSISI_NAMA'] = $posisi_nama;
+			
+			$this->session->login = $R;
+			
+        } 		
+		
+		echo json_encode([
+			'status' => true,
+			'desc' => 'success'
+		]);
     }
     
 }

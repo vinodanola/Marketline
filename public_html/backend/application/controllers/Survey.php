@@ -487,6 +487,12 @@ class Survey extends CI_Controller {
         
     }
     
+    public function get_agunanlamalist(){
+        
+        get_api($this->config->item('baseAPI').'survey/get_agunan_lama_list/?DB_PROSPEK_ID='.$this->input->get('id'));
+        
+    }
+    
     /* Penilaian Agunan */
     
     public function post_penilaian(){

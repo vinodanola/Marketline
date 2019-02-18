@@ -153,10 +153,15 @@ class Globalclass extends CI_Controller {
                 $dok        = $D[$i]->PR_PATH_DOKUMEN;
                 $prospek_id = $D[$i]->DB_PROSPEK_ID;
                 $kode_cabang= $D[$i]->MS_KODE_CABANG;
-                $cabang_des = $D[$i]->MS_CABANG_DESKRIPSI;
+                $cabang_des = trim($D[$i]->MS_CABANG_DESKRIPSI);
                 $kode_unit  = $D[$i]->MS_KODE_UNIT;
-                $unit_des   = $D[$i]->MS_UNIT_DESKRIPSI;
+                $unit_des   = trim($D[$i]->MS_UNIT_DESKRIPSI);
                 $wilayah    = $D[$i]->MS_WILAYAH;
+                $tahun      = $D[$i]->TAHUN_PROPOSAL;
+                $bulan      = $D[$i]->BULAN_PROPOSAL;
+                $nama_nasabah = $D[$i]->PR_NAMA_LENGKAP;
+                $id_nasabah = $D[$i]->PR_INDIVIDU_ID;
+                $mrg_dok_des = $D[$i]->MRG_DOKUMEN_HEADER_DESKRIPSI;
 
                 $pd         = explode('/', $dok);
                 $ticket_alf = $this->get_ticket_alfresco();
@@ -168,7 +173,7 @@ class Globalclass extends CI_Controller {
 
                 $fN = end($pd);
 
-                $dir = $qB.$wilayah.'/'.$kode_cabang.' - ('.$cabang_des.')'.'/'.$kode_unit.' - ('.$unit_des.')'.'/'.$prospek_id.'/';
+                $dir = $qB.$wilayah.'/'.$cabang_des.' ('.$kode_cabang.')'.'/'.$unit_des.' ('.$kode_unit.')'.'/'.$tahun.'/'.$bulan.'/'.$nama_nasabah.' ('.$id_nasabah.')/'.$mrg_dok_des.'/';
 
                 $fL = $dir.$fN;
 
@@ -198,10 +203,10 @@ class Globalclass extends CI_Controller {
         
         $R['status'] = TRUE;
         
-        if (count($R['error']) > 0){
-            $R['status'] = FALSE;
-            $R['message'] = 'Sync error';
-        }
+//        if (count($R['error']) > 0){
+//            $R['status'] = FALSE;
+//            $R['message'] = 'Sync error';
+//        }
         
         echo json_encode($R);
         

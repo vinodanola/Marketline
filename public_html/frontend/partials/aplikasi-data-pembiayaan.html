@@ -6,12 +6,18 @@
         </select>
     </div>
     <div class="form-group">
+        <label>Business Type *</label>
+        <select class="form-control" ng-disabled="(PROSPEK_LOCK != 'YES') ? false : true" ng-model="formDataAplikasi.MS_JENIS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PRODUK_ID">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
         <label>Rencana Product *</label>
 <!--        <select class="form-control" ng-model="formDataAplikasi.MS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.produk">
             <option></option>
         </select>-->
         <!--<select ng-disabled="(PROSPEK_SUBMITED!=2) ? false : true" class="form-control" ng-model="formDataAplikasi.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list" ng-change="getDetailProduk(formDataAplikasi.MS_PRODUK_ID)" convert-to-number>-->
-        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataAplikasi.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list" ng-change="getCalculateProdukProgram({'id_produk' : formDataAplikasi.MS_PRODUK_ID, 'id_pembiayaan' : formDataAplikasi.MS_JENIS_PEMBIAYAAN_ID })" convert-to-number>    
+        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataAplikasi.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list | filter : { tipe : formDataAplikasi.MS_JENIS_PRODUK_ID }" ng-change="getCalculateProdukProgram({'id_produk' : formDataAplikasi.MS_PRODUK_ID, 'id_pembiayaan' : formDataAplikasi.MS_JENIS_PEMBIAYAAN_ID })" convert-to-number>    
             <option></option>
         </select>
         

@@ -33,6 +33,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
 //    $provide.value("fileBase", "ftp://10.61.3.16/");
     $provide.value("fileBase", "http://" + window.location.hostname + ':' + window.location.port + "/backend/globalclass/get_file_alfresco/?NODE_ID=");
     $provide.value("jasperBase", "http://reportserver.pnm.co.id/jasperserver/rest_v2/reports/reports/MIS/");
+	$provide.value("jasperBaseV2", "http://reportserver.pnm.co.id/MIS/?REPORT=REPORT/DEV/");
     $provide.value("simapanBase", "http://10.61.3.49/simapan3.1/public/");
     
     /* ROUTE */
@@ -1441,7 +1442,7 @@ App.run(['$sessionStorage','$location', '$rootScope', '$stateParams', 'apiData',
         
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
             
-            /* Check auth */
+            /* Check auth */			
             apiData.checkauth();
             
             $rootScope.$storage = $sessionStorage;
@@ -1515,8 +1516,15 @@ App.run(['$sessionStorage','$location', '$rootScope', '$stateParams', 'apiData',
             };
 
             $rootScope.submitSurvey = function(id){
-                if (!id) id = $stateParams.id;
-                postSurveyStatus.e(id);
+                getDataStatusCekSlik.e($stateParams.id);
+                console.log($rootScope.STATUS_SLIK);
+
+				if ($rootScope.STATUS_SLIK >= 2){
+					if (!id) id = $stateParams.id;
+					postSurveyStatus.e(id);
+                }else{
+                        globalFunction.ag('danger',['Hasil pengecekan SLIK masih On Progress']);
+                }				
             };
 
             $rootScope.submitProspekToApproval = function(id){				
@@ -1533,8 +1541,15 @@ App.run(['$sessionStorage','$location', '$rootScope', '$stateParams', 'apiData',
 
                         /*tambahan FZL*/
             $rootScope.submitSurveyToApproval = function(id){
-                if (!id) id = $stateParams.id;
-                postDbIndividuStatus.e(id,1,1);
+				getDataStatusCekSlik.e($stateParams.id);
+                console.log($rootScope.STATUS_SLIK);
+				
+				if ($rootScope.STATUS_SLIK >= 2){
+					if (!id) id = $stateParams.id;
+					postDbIndividuStatus.e(id,1,1);
+                }else{
+                        globalFunction.ag('danger',['Hasil pengecekan SLIK masih On Progress']);
+                }
             };
 
             $rootScope.rejectProspek = function(id){
@@ -1899,7 +1914,7 @@ App.factory("apiData", function ($sessionStorage, $http, globalFunction, $rootSc
                         });
                     }
                     
-                    if (d['callbacksuccess']) d['callbacksuccess']();
+                    if (d['callbacksuccess']) d['callbacksuccess'](R.data);
                     
                     if (d['resetdate']) {
                         for (var i=0; i < d['resetdate'].length; i++) {
@@ -2497,8 +2512,9 @@ App.factory("apiData", function ($sessionStorage, $http, globalFunction, $rootSc
                     $rootScope.myFilterUnit = function(e) {
                         if (typeof ($rootScope.$storage.SESSION_LOGIN.CLUSTER.UNIT) !== 'undefined')
                             return $rootScope.$storage.SESSION_LOGIN.CLUSTER.UNIT.indexOf(e.MS_UNIT_KODE) !== -1;
-                    };
-                }
+                    };					
+                }						
+			
                 
             }, function myError(R) { 
                 console.log(R.statusText);  
@@ -2683,12 +2699,15 @@ App.factory("apiData", function ($sessionStorage, $http, globalFunction, $rootSc
                         
                         d['scope'][d['sn']]['MS_CCR'] = parseInt(R.data.ccr);
                         
-                        
-                        for(var jp=0; jp<$rootScope.MS_JENIS_PRODUK_ID.length; jp++){
-                            if ($rootScope.MS_JENIS_PRODUK_ID[jp].MS_PARA_GLOBAL_DETAIL_ID == parseInt(R.data.tipe)) {
-                                d['scope'][d['sn']]['MS_JENIS_PRODUK_ID_DESKRIPSI'] = $rootScope.MS_JENIS_PRODUK_ID[jp].MS_DESKRIPSI;
+                        $rootScope.$watch('MS_JENIS_PRODUK_ID',function(nV){
+                            if (nV){
+                                for(var jp=0; jp<$rootScope.MS_JENIS_PRODUK_ID.length; jp++){
+                                    if ($rootScope.MS_JENIS_PRODUK_ID[jp].MS_PARA_GLOBAL_DETAIL_ID == parseInt(R.data.tipe)) {
+                                        d['scope'][d['sn']]['MS_JENIS_PRODUK_ID_DESKRIPSI'] = $rootScope.MS_JENIS_PRODUK_ID[jp].MS_DESKRIPSI;
+                                    }
+                                }
                             }
-                        }
+                        });
                         
                         if (parseInt(R.data.tipe) != 474)
                             d['scope'][d['sn']]['MS_JENIS_TOP_UP_ID'] = null;
@@ -2820,13 +2839,17 @@ App.factory('globalFunction',function($rootScope,$uibModal){
                 if (Aa.indexOf(A[i].MS_JAWABAN_ID) <= -1)
                     Aa[i] = A[i].MS_JAWABAN_ID;
             }
-
-            for (var i=0; i<$rootScope[d['PERTANYAAN']].length; i++){
-                if (Aa.indexOf($rootScope[d['PERTANYAAN']][i].MS_PARA_GLOBAL_DETAIL_ID) > -1) {
-                    Aaa[i] =$rootScope[d['PERTANYAAN']][i].MS_PARA_GLOBAL_DETAIL_ID;
-                } else
-                    Aaa[i] = '';    
-            }    
+            $rootScope.$watch(d['PERTANYAAN'],function(nV){
+                if (nV){
+                    for (var i=0; i<$rootScope[d['PERTANYAAN']].length; i++){
+                        if (Aa.indexOf($rootScope[d['PERTANYAAN']][i].MS_PARA_GLOBAL_DETAIL_ID) > -1) {
+                            Aaa[i] =$rootScope[d['PERTANYAAN']][i].MS_PARA_GLOBAL_DETAIL_ID;
+                        } else
+                            Aaa[i] = '';    
+                    }
+                }
+            });
+                
             console.log(Aaa);
             return Aaa;
             
@@ -3942,6 +3965,12 @@ App.service('getNilaiPasarValidator',function($http,apiBase,globalFunction){
             console.log(R);
             if (typeof (R.data[0].NILAI_PASAR_TANAH_VALIDATOR) != undefined)
                 scope[sn]['NILAI_PASAR_VALIDATOR_MASTER'] = R.data[0].NILAI_PASAR_TANAH_VALIDATOR;
+            
+            scope[sn]['DB_LUAS_TANAH'] = R.data[0].DB_LUAS_TANAH;
+            scope[sn]['DB_LUAS_BANGUNAN'] = R.data[0].DB_LUAS_BANGUNAN;
+			
+			if (scope.jenis_agunan_id==58)
+				scope[sn]['DB_LUAS_TANAH_PER_METER_PERSEGI'] = R.data[0].DB_LUAS_TANAH;
                     
         }, function myError(R) {  
             console.log(R.statusText); 
@@ -3986,7 +4015,8 @@ App.filter('offset', function() {
 
 App.filter('jasperfile', function() {
     return function(input) {
-        return input.substr(0,72).toLowerCase()+input.substr(72,100);
+		var inputsplit = input.split('#')[1];
+        return inputsplit.substr(0,67).toLowerCase()+inputsplit.substr(67,100);
     };
 }); 
 
@@ -4022,11 +4052,29 @@ App.filter('unique', function() {
 
 /* Global Controller */
 
-App.controller('menuCtrl', function($scope){
+App.controller('menuCtrl', function($scope,$rootScope,apiData,apiBase ){
     
     $scope.menuShow = 'primary';
-    console.log($scope.menuShow);
+    console.log($scope.menuShow);				
+				
+	$scope.settingRangkap =  function(d){
+        apiData.get({
+            gl      : true,
+            api     : apiBase+'auth/get_posisi_nama_rangkap?POSISI_NAMA='+d,
+            scope   : $scope,
+			callbacksuccess : function(R){
+				
+				window.location.href="http://" + window.location.hostname + ':' + window.location.port + "/#/login";
+			}
+        });
+	};		
+	
+	
+			
+
 });
+
+
 
 /* Apps Page */
 
@@ -4240,12 +4288,12 @@ App.controller('prospekCreate',function($scope,$http,globalFunction,apiData,$loc
             for (var i=0; i<$rootScope.jns_pembiayaan.length; i++){
                 if ($rootScope.jns_pembiayaan[i]['MS_PARA_GLOBAL_DETAIL_ID'] == v) {
                     var r = $rootScope.jns_pembiayaan[i]['MS_DESKRIPSI'];
-                    if (r == 'TOP UP' || r == '3R')
+                    if (r == 'TOP UP' || r == 'RESTRUKTUR')
                         $rootScope.btncreate = false;
                     else
                         $rootScope.btncreate = true;
                     
-                    if (r == '3R')
+                    if (r == 'RESTRUKTUR')
                         $rootScope.btnGunakanhave3R = true; 
                     else
                         $rootScope.btnGunakanhave3R = false; 
@@ -6049,7 +6097,7 @@ App.controller('aomInfoCtrl', function($scope,$stateParams,apiData,globalFunctio
         $scope.getAOM($stateParams.id);
     })
 
-    .controller('aomKunjunganCtrl',function($scope,$rootScope,globalFunction,$http,apiBase,$stateParams,apiData){
+    .controller('aomKunjunganCtrl',function($scope,$rootScope,globalFunction,$http,apiBase,$stateParams,apiData,modalService){
         
         $scope.modalAK = function(){
             var m = globalFunction.openModal('partials/modals/modal-aom-kunjungan.html','modal-form modal-form-50 modal-aom-kunjungan','modalAomKunjunganCtrl');
@@ -6081,14 +6129,23 @@ App.controller('aomInfoCtrl', function($scope,$stateParams,apiData,globalFunctio
         };
 
         $scope.deleteKIA = function(d){
-            apiData.post({
+			
+			modalService.showModal({}, {
+            closeButtonText: 'Batal',
+            actionButtonText: 'Hapus',
+            headerText: 'Hapus Kunjungan Usaha',
+            bodyText: 'Apakah anda yakin menghapus kunjungan usaha ini ?'
+			}).then(function (result) {
+				apiData.post({					
                 gl      : true,
-                api     : apiBase+'prospek/delete_aom_kunjungan',
+                api     : apiBase+'prospek/delete_aomkunjungan',
                 data    : d,
                 scope   : $rootScope,
                 type    : 'tolist',
-                reload  : 'getlistKIA'
-            });
+                reload  : 'getlistKIA'								
+				});			
+			});
+						
         };
         
         $scope.viewKIA = function(id){
@@ -6862,7 +6919,7 @@ App.controller('profileDanKarakterSurveyCtrl',function($scope, apiData,apiBase,$
 			});		
 		}	
 		
-		if ($rootScope.thisState == 'survey.profilekarakter.sumberinformasireputasi'){
+		// if ($rootScope.thisState == 'survey.profilekarakter.sumberinformasireputasi'){
 			
 			console.log('TOTAL ITEM',$scope.fdPDK.TOTAL_ITEMS);		
 			if ($scope.fdPDK.TOTAL_ITEMS >= 3 ){
@@ -6879,7 +6936,7 @@ App.controller('profileDanKarakterSurveyCtrl',function($scope, apiData,apiBase,$
 						{ fn : 'TOTAL_ITEMS_SIR',  fk : 'Sumber Informasi Reputasi Kurang dari 3 ' }					
                 ]
 			});	
-		}
+		// }
 
 		
         return e;
@@ -7639,6 +7696,9 @@ App.controller('keuanganSurveyCtrl', function($scope,$rootScope,globalFunction,a
 						if ($scope.DS.KEUANGAN.KEUANGAN_DATA_PINJAMAN.hasOwnProperty(k)) {
 							$scope.DS.KEUANGAN.KEUANGAN_DATA_PINJAMAN[k] = $scope.fdKS[k];
 						}
+                                                if ($scope.DS.INFORMASI_SURVEY.INFORMASI_SURVEY_INDEX.hasOwnProperty(k)) {
+							$scope.DS.INFORMASI_SURVEY.INFORMASI_SURVEY_INDEX[k] = $scope.fdKS[k];
+						}
 					}
 				}
 			});
@@ -7889,8 +7949,9 @@ App.controller('rincianAngsuranCtrl',function($scope,globalFunction,$state,apiDa
 App.controller('rincianAngsuranBaruCtrl', function($scope,$http,$state,$rootScope,globalFunction,apiData,apiBase,postJadwal,globalFunction,$stateParams){
     
     $scope.fdASBR = {};
-    $scope.fdASBR.sdate = new Date();
-    $scope.dtSDate = new Date($scope.fdASBR.sdate);
+    var dt = new Date();
+    $scope.fdASBR.sdate = dt.toISOString();
+    $scope.dtSDate = dt;
     
     $scope.$watch('fdKS', function(dataLoaded) {
         if (dataLoaded){
@@ -8628,8 +8689,10 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
 	
     $scope.modalAS = function(t){
         
-        if (t=='N')
+        if (t=='N'){
             $scope.fdAS = {};
+            $scope.fdAS.GUNAKAN_DATA_LAMA = 'TIDAK';
+        }
         
         $scope.fdAS.NUM_NAMA_PEMILIK = [0];
         
@@ -8670,8 +8733,8 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
         var m = globalFunction.openModal('partials/modals/modal-btb.html','modal-btb modal-form modal-full-screen','',$scope);
         
         $rootScope.closemodalBTB = function(){
-			getKelengkapanDataById.e({scope : $rootScope,id : $stateParams.id,type : 'survey'});                
-			console.log('getKelengkapanDataById',$stateParams.id);
+            getKelengkapanDataById.e({scope : $rootScope,id : $stateParams.id,type : 'survey'});                
+            console.log('getKelengkapanDataById',$stateParams.id);
             m.close();			
         };
         
@@ -8717,11 +8780,11 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
             type    : 'object',
             alamat  : true,
             setdate : [
-                        { k : 'dtTKST', v : 'DB_TGL_KELUAR_SURAT_TANAH' },
-                        { k : 'dtTTI', v : 'DB_TGL_IMB' },
-                        { k : 'dtAJB', v : 'DB_TGL_AJB' },
-                        { k : 'dtTJTO', v : 'DB_TGL_JATUH_TEMPO' }
-                    ],
+                { k : 'dtTKST', v : 'DB_TGL_KELUAR_SURAT_TANAH' },
+                { k : 'dtTTI', v : 'DB_TGL_IMB' },
+                { k : 'dtAJB', v : 'DB_TGL_AJB' },
+                { k : 'dtTJTO', v : 'DB_TGL_JATUH_TEMPO' }
+            ],
             callbacksuccess : function(R){
                     $scope.fdAS.DB_BANJIR = R.data.DB_BANJIR;
                 
@@ -8741,6 +8804,11 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                         $scope.fdAS.jalan_akses = 1;
                     
                     $scope.SET_NAMA_PEMILIK_PART();
+                    
+//                    if ($scope.fdAS.AGUNAN_LAMA_ID)
+//                        $scope.fdAS.GUNAKAN_DATA_LAMA = 'YA';
+//                    else 
+//                        $scope.fdAS.GUNAKAN_DATA_LAMA = 'TIDAK';
                     
             }
         });
@@ -8892,8 +8960,8 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
     
 	
 })
-.controller('modalFormAgunanCtrl',function($scope,apiData,apiBase,$stateParams, $rootScope,globalFunction){    
-	
+.controller('modalFormAgunanCtrl',function($scope,apiData,apiBase,$stateParams, $rootScope,globalFunction){   
+    	
     apiData.get_masterData('jns_agunan');
     apiData.alamatExe($scope);
 	
@@ -8921,7 +8989,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                R = JU[i].MS_DESKRIPSI; 
         }
         
-		$scope.jnsagunan=R;/*FZL*/
+        $scope.jnsagunan=R;/*FZL*/
 		
         if ( R === 'TANAH' ){
             $scope.jao = 0;
@@ -8929,8 +8997,8 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
         } else if ( R === 'TANAH DAN BANGUNAN' ) {
             $scope.jao = 1;
             // $scope.dtTTI = new Date();
-		} else if ( R === 'KIOS' ) {	
-			$scope.jao = 2;
+        } else if ( R === 'KIOS' ) {	
+            $scope.jao = 2;
         } else {
             $scope.jao = 99;
 //            $location.url('/agunan/index');
@@ -8944,121 +9012,121 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
 //        if ($scope.fdAS == undefined)
 //            $scope.fdAS = {};
 
-		if ($scope.formValid()){ /*FZL penambahan validasi*/
-				$scope.fdAS.DB_PROSPEK_ID = $stateParams.id;
-				apiData.post({
-					gl      : true,
-					api     : apiBase+'survey/post_agunan',
-					data    : $scope.fdAS,
-					scope   : $scope,
-					type    : 'tolist',
-					reloadp : { k : 'getlistAS', v : $stateParams.id },
-					ag      : 'on-modal',
-					cm      : 'closemodalAS'
-				});
-		};
+        if ($scope.formValid()){ /*FZL penambahan validasi*/
+            $scope.fdAS.DB_PROSPEK_ID = $stateParams.id;
+            apiData.post({
+                gl      : true,
+                api     : apiBase+'survey/post_agunan',
+                data    : $scope.fdAS,
+                scope   : $scope,
+                type    : 'tolist',
+                reloadp : { k : 'getlistAS', v : $stateParams.id },
+                ag      : 'on-modal',
+                cm      : 'closemodalAS'
+            });
+        };
     };
 	
 	
 	/*FZL agunan 10/4/2018*/
-	$scope.formValid = function(){	
-			/*console.log($scope.jnsagunan);*/
-			if ($scope.jnsagunan==='TANAH'){
-				var e = globalFunction.formValidation({				
-					scope : $scope,
-					form  : 'fdAS',
-					field : [
-						{ fn : 'MS_BUKTI_KEPEMILIKAN_AGUNAN_ID',  fk : 'Bukti Kepemilikan Agunan' },
-						{ fn : 'MS_PERUNTUKAN_LOKASI_ID',  fk : 'Peruntukan Lokasi' },
-						{ fn : 'MS_JALAN_DILALUI_ID',  fk : 'Jalan Yang Dilalui' },
-						{ fn : 'MS_BENTUK_TANAH_ID',  fk : 'Bentuk Tanah' },
-						{ fn : 'DB_LUAS_TANAH',  fk : 'Luas Tanah' },
-						{ fn : 'MS_KONDISI_PERMUKAAN_ID',  fk : 'Kondisi Permukaan Tanah' },
-						{ fn : 'MS_PENGGUNAAN_TANAH_ID',  fk : 'Penggunaan Tanah' },
-						{ fn : 'DB_BANJIR',  fk : 'Bahaya Banjir' },
-						{ fn : 'MS_BATAS_UTARA_ID',  fk : 'Batas Utara' },
-						{ fn : 'MS_BATAS_SELATAN_ID',  fk : 'Batas Selatan' },
-						{ fn : 'MS_BATAS_BARAT_ID',  fk : 'Batas Barat' },
-						{ fn : 'MS_BATAS_TIMUR_ID',  fk : 'Batas Timur' },
-						{ fn : 'MS_STATUS_TANAH_ID',  fk : 'Status Tanah' },
-                                                { fn : 'DB_JARAK_AGUNAN',  fk : 'Jarak Agunan' }
-						]						
-				});	
-			} else if($scope.jnsagunan==='TANAH DAN BANGUNAN'){
-				var e = globalFunction.formValidation({				
-					scope : $scope,
-					form  : 'fdAS',
-					field : [
-						{ fn : 'MS_BUKTI_KEPEMILIKAN_AGUNAN_ID',  fk : 'Bukti Kepemilikan Agunan' },
-						{ fn : 'MS_PERUNTUKAN_LOKASI_ID',  fk : 'Peruntukan Lokasi' },
-						{ fn : 'MS_JALAN_DILALUI_ID',  fk : 'Jalan Yang Dilalui' },
-						{ fn : 'MS_BENTUK_TANAH_ID',  fk : 'Bentuk Tanah' },
-						{ fn : 'DB_LUAS_TANAH',  fk : 'Luas Tanah' },
-						{ fn : 'MS_KONDISI_PERMUKAAN_ID',  fk : 'Kondisi Permukaan Tanah' },
-						{ fn : 'MS_PENGGUNAAN_TANAH_ID',  fk : 'Penggunaan Tanah' },
-						{ fn : 'DB_BANJIR',  fk : 'Bahaya Banjir' },
-						{ fn : 'MS_BATAS_UTARA_ID',  fk : 'Batas Utara' },
-						{ fn : 'MS_BATAS_SELATAN_ID',  fk : 'Batas Selatan' },
-						{ fn : 'MS_BATAS_BARAT_ID',  fk : 'Batas Barat' },
-						{ fn : 'MS_BATAS_TIMUR_ID',  fk : 'Batas Timur' },
-						{ fn : 'MS_STATUS_TANAH_ID',  fk : 'Status Tanah' },
-						{ fn : 'DB_LISTRIK',  fk : 'Kapasitas Listrik(Watt)' },
-						{ fn : 'DB_TELEPON_YN',  fk : 'Saluran Telepon' },
-						{ fn : 'MS_AIR_ID',  fk : 'Saluran Air' },
-						{ fn : 'DB_ANGKUTAN_UMUM',  fk : 'Tersedia Angkutan Umum' },
-						{ fn : 'DB_SEKOLAH',  fk : 'Tersedia Sekolah' },
-						{ fn : 'DB_RUMAH_SAKIT',  fk : 'Tersedia Rumah Sakit' },
-						{ fn : 'MS_PONDASI_ID',  fk : 'Pondasi' },
-						{ fn : 'MS_LANTAI_ID',  fk : 'Lantai' },
-						{ fn : 'MS_DINDING_ID',  fk : 'Dinding' },
-						{ fn : 'MS_PLAFON_ID',  fk : 'Plafon' },
-						{ fn : 'MS_KUSEN_ID',  fk : 'Kusen' },
-						{ fn : 'MS_ATAP_ID',  fk : 'Atap' },
-						{ fn : 'MS_PINTU_ID',  fk : 'Pintu' },
-						{ fn : 'MS_JENDELA_ID',  fk : 'Jendela' },
-                                                { fn : 'DB_JARAK_AGUNAN',  fk : 'Jarak Agunan' }
-						]
-				});	
-			} else if($scope.jnsagunan==='KIOS'){
-				var e = globalFunction.formValidation({				
-					scope : $scope,
-					form  : 'fdAS',
-					field : [
-						{ fn : 'MS_JENIS_AGUNAN_ID',  fk : 'Jenis Agunan' },
-						{ fn : 'MS_STATUS_KEPEMILIKAN_ID',  fk : 'Status Kepemilikan' },
+    $scope.formValid = function(){	
+        /*console.log($scope.jnsagunan);*/
+        if ($scope.jnsagunan==='TANAH'){
+            var e = globalFunction.formValidation({				
+                scope : $scope,
+                form  : 'fdAS',
+                field : [
+                    { fn : 'MS_BUKTI_KEPEMILIKAN_AGUNAN_ID',  fk : 'Bukti Kepemilikan Agunan' },
+                    { fn : 'MS_PERUNTUKAN_LOKASI_ID',  fk : 'Peruntukan Lokasi' },
+                    { fn : 'MS_JALAN_DILALUI_ID',  fk : 'Jalan Yang Dilalui' },
+                    { fn : 'MS_BENTUK_TANAH_ID',  fk : 'Bentuk Tanah' },
+                    { fn : 'DB_LUAS_TANAH',  fk : 'Luas Tanah' },
+                    { fn : 'MS_KONDISI_PERMUKAAN_ID',  fk : 'Kondisi Permukaan Tanah' },
+                    { fn : 'MS_PENGGUNAAN_TANAH_ID',  fk : 'Penggunaan Tanah' },
+                    { fn : 'DB_BANJIR',  fk : 'Bahaya Banjir' },
+                    { fn : 'MS_BATAS_UTARA_ID',  fk : 'Batas Utara' },
+                    { fn : 'MS_BATAS_SELATAN_ID',  fk : 'Batas Selatan' },
+                    { fn : 'MS_BATAS_BARAT_ID',  fk : 'Batas Barat' },
+                    { fn : 'MS_BATAS_TIMUR_ID',  fk : 'Batas Timur' },
+                    { fn : 'MS_STATUS_TANAH_ID',  fk : 'Status Tanah' },
+                    { fn : 'DB_JARAK_AGUNAN',  fk : 'Jarak Agunan' }
+                ]						
+            });	
+        } else if($scope.jnsagunan==='TANAH DAN BANGUNAN'){
+            var e = globalFunction.formValidation({				
+                scope : $scope,
+                form  : 'fdAS',
+                field : [
+                    { fn : 'MS_BUKTI_KEPEMILIKAN_AGUNAN_ID',  fk : 'Bukti Kepemilikan Agunan' },
+                    { fn : 'MS_PERUNTUKAN_LOKASI_ID',  fk : 'Peruntukan Lokasi' },
+                    { fn : 'MS_JALAN_DILALUI_ID',  fk : 'Jalan Yang Dilalui' },
+                    { fn : 'MS_BENTUK_TANAH_ID',  fk : 'Bentuk Tanah' },
+                    { fn : 'DB_LUAS_TANAH',  fk : 'Luas Tanah' },
+                    { fn : 'MS_KONDISI_PERMUKAAN_ID',  fk : 'Kondisi Permukaan Tanah' },
+                    { fn : 'MS_PENGGUNAAN_TANAH_ID',  fk : 'Penggunaan Tanah' },
+                    { fn : 'DB_BANJIR',  fk : 'Bahaya Banjir' },
+                    { fn : 'MS_BATAS_UTARA_ID',  fk : 'Batas Utara' },
+                    { fn : 'MS_BATAS_SELATAN_ID',  fk : 'Batas Selatan' },
+                    { fn : 'MS_BATAS_BARAT_ID',  fk : 'Batas Barat' },
+                    { fn : 'MS_BATAS_TIMUR_ID',  fk : 'Batas Timur' },
+                    { fn : 'MS_STATUS_TANAH_ID',  fk : 'Status Tanah' },
+                    { fn : 'DB_LISTRIK',  fk : 'Kapasitas Listrik(Watt)' },
+                    { fn : 'DB_TELEPON_YN',  fk : 'Saluran Telepon' },
+                    { fn : 'MS_AIR_ID',  fk : 'Saluran Air' },
+                    { fn : 'DB_ANGKUTAN_UMUM',  fk : 'Tersedia Angkutan Umum' },
+                    { fn : 'DB_SEKOLAH',  fk : 'Tersedia Sekolah' },
+                    { fn : 'DB_RUMAH_SAKIT',  fk : 'Tersedia Rumah Sakit' },
+                    { fn : 'MS_PONDASI_ID',  fk : 'Pondasi' },
+                    { fn : 'MS_LANTAI_ID',  fk : 'Lantai' },
+                    { fn : 'MS_DINDING_ID',  fk : 'Dinding' },
+                    { fn : 'MS_PLAFON_ID',  fk : 'Plafon' },
+                    { fn : 'MS_KUSEN_ID',  fk : 'Kusen' },
+                    { fn : 'MS_ATAP_ID',  fk : 'Atap' },
+                    { fn : 'MS_PINTU_ID',  fk : 'Pintu' },
+                    { fn : 'MS_JENDELA_ID',  fk : 'Jendela' },
+                    { fn : 'DB_JARAK_AGUNAN',  fk : 'Jarak Agunan' }
+                ]
+            });	
+        } else if($scope.jnsagunan==='KIOS'){
+            var e = globalFunction.formValidation({				
+                scope : $scope,
+                form  : 'fdAS',
+                field : [
+                    { fn : 'MS_JENIS_AGUNAN_ID',  fk : 'Jenis Agunan' },
+                    { fn : 'MS_STATUS_KEPEMILIKAN_ID',  fk : 'Status Kepemilikan' },
 //						{ fn : 'MS_LEGALITAS_JAMINAN_ID',  fk : 'Legalitas Jaminan' },
 //						{ fn : 'MS_DETAIL_LEGALITAS_JAMINAN_ID',  fk : 'Detail Legalitas Jaminan' },
-						{ fn : 'MS_STATUS_KIOS_ID',  fk : 'Status Kios' },
-						{ fn : 'MS_JENIS_KIOS_ID',  fk : 'Jenis Kios' },
-						
-						{ fn : 'MS_BATAS_UTARA_ID',  fk : 'Batas Utara' },
-						{ fn : 'MS_BATAS_SELATAN_ID',  fk : 'Batas Selatan' },
-						{ fn : 'MS_BATAS_BARAT_ID',  fk : 'Batas Barat' },
-						{ fn : 'MS_BATAS_TIMUR_ID',  fk : 'Batas Timur' },
-						
-						{ fn : 'DB_ALAMAT',  fk : 'Alamat' },
-						{ fn : 'DB_RT',  fk : 'RT' },
-						{ fn : 'DB_RW',  fk : 'RW' },
-						{ fn : 'MS_PROVINSI_ID',  fk : 'Provinsi' },
-						{ fn : 'MS_KODE_POS_ID',  fk : 'Kode Pos' },
-						{ fn : 'MS_PERUNTUKAN_LOKASI_ID',  fk : 'Peruntukan Lokasi' },
-						{ fn : 'MS_JALAN_DILALUI_ID',  fk : 'Jalan dilalui' },
-						
-						{ fn : 'DB_LUAS_BANGUNAN',  fk : 'Luas Bangunan' },
-						{ fn : 'DB_TAHUN_BANGUNAN',  fk : 'Tahun Bangunan' },
-						{ fn : 'DB_BANJIR',  fk : 'Bahaya banjir' }						
-						]
-				});																
-			} else {
-				var e = globalFunction.formValidation({				
-					scope : $scope,
-					form  : 'fdAS',
-					field : [
-						{ fn : 'MS_JENIS_AGUNAN_ID',  fk : 'Jenis Agunan' },
-						{ fn : 'MS_STATUS_KEPEMILIKAN_ID',  fk : 'Status Kepemilikan' }
-					]
-				});
-			};
+                    { fn : 'MS_STATUS_KIOS_ID',  fk : 'Status Kios' },
+                    { fn : 'MS_JENIS_KIOS_ID',  fk : 'Jenis Kios' },
+
+                    { fn : 'MS_BATAS_UTARA_ID',  fk : 'Batas Utara' },
+                    { fn : 'MS_BATAS_SELATAN_ID',  fk : 'Batas Selatan' },
+                    { fn : 'MS_BATAS_BARAT_ID',  fk : 'Batas Barat' },
+                    { fn : 'MS_BATAS_TIMUR_ID',  fk : 'Batas Timur' },
+
+                    { fn : 'DB_ALAMAT',  fk : 'Alamat' },
+                    { fn : 'DB_RT',  fk : 'RT' },
+                    { fn : 'DB_RW',  fk : 'RW' },
+                    { fn : 'MS_PROVINSI_ID',  fk : 'Provinsi' },
+                    { fn : 'MS_KODE_POS_ID',  fk : 'Kode Pos' },
+                    { fn : 'MS_PERUNTUKAN_LOKASI_ID',  fk : 'Peruntukan Lokasi' },
+                    { fn : 'MS_JALAN_DILALUI_ID',  fk : 'Jalan dilalui' },
+
+                    { fn : 'DB_LUAS_BANGUNAN',  fk : 'Luas Bangunan' },
+                    { fn : 'DB_TAHUN_BANGUNAN',  fk : 'Tahun Bangunan' },
+                    { fn : 'DB_BANJIR',  fk : 'Bahaya banjir' }						
+                ]
+            });																
+        } else {
+            var e = globalFunction.formValidation({				
+                scope : $scope,
+                form  : 'fdAS',
+                field : [
+                    { fn : 'MS_JENIS_AGUNAN_ID',  fk : 'Jenis Agunan' },
+                    { fn : 'MS_STATUS_KEPEMILIKAN_ID',  fk : 'Status Kepemilikan' }
+                ]
+            });
+        };
         return e;
     };
     
@@ -9092,19 +9160,91 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
     });	
 	
     $scope.$watchGroup(['fdAS.PR_LAMA_MENEMPATI_TAHUN','fdAS.PR_LAMA_MENEMPATI_BULAN'],function(nV){
-		if (nV){
-			$scope.fdAS.DB_WAKTU_SEWA = parseInt( $scope.fdAS.PR_LAMA_MENEMPATI_TAHUN * 12 ) + parseInt($scope.fdAS.PR_LAMA_MENEMPATI_BULAN);
-		}
-	});
+        if (nV){
+            $scope.fdAS.DB_WAKTU_SEWA = parseInt( $scope.fdAS.PR_LAMA_MENEMPATI_TAHUN * 12 ) + parseInt($scope.fdAS.PR_LAMA_MENEMPATI_BULAN);
+        }
+    });
 	
 //    $scope.$watchGroup(['fdAS.MS_LEGALITAS_JAMINAN_ID'], function(newValue,oldValue) {
 //        if(newValue) {    
 //            apiData.kiosExe($scope);                    
 //            $scope.dlj($scope.fdAS.MS_LEGALITAS_JAMINAN_ID); 
 //        }
-//    });	
+//    });
+
     
+
+    $scope.getListAgunanLama = function(){
+        apiData.get({
+            gl      : false,
+            api     : apiBase+'survey/get_agunanlamalist/?id='+$stateParams.id,
+            scope   : $scope,
+            sn      : 'listAgunanLama',
+            type    : 'tolist',
+            callbacksuccess : function(){
+                
+            }
+        });
+    };
     
+    $scope.getListAgunanLama();
+    
+    $scope.getDetailAgunanLama = function(id){
+        $scope.fdAS = {};
+        apiData.get({
+            gl      : false,
+            api     : apiBase+'survey/get_agunanid/?id='+id,
+            scope   : $scope,
+            sn      : 'fdAS',
+            type    : 'object',
+            alamat  : true,
+            setdate : [
+                        { k : 'dtTKST', v : 'DB_TGL_KELUAR_SURAT_TANAH' },
+                        { k : 'dtTTI', v : 'DB_TGL_IMB' },
+                        { k : 'dtAJB', v : 'DB_TGL_AJB' },
+                        { k : 'dtTJTO', v : 'DB_TGL_JATUH_TEMPO' }
+                    ],
+            callbacksuccess : function(R){
+                
+                    console.log('get agunan lama',R);
+                    
+                    $scope.fdAS.AGUNAN_LAMA_ID = R.data.DB_INDIVIDU_AGUNAN_ID;
+                
+                    $scope.fdAS.DB_INDIVIDU_AGUNAN_ID = '';
+                    $scope.fdAS.DB_PROSPEK_ID = $stateParams.id;
+                    
+                    
+                    if ($scope.fdAS.AGUNAN_LAMA_ID)
+                        $scope.fdAS.GUNAKAN_DATA_LAMA = 'YA';
+                    else 
+                        $scope.fdAS.GUNAKAN_DATA_LAMA = 'TIDAK';
+                    
+                    $scope.fdAS.DB_BANJIR = R.data.DB_BANJIR;
+                
+                    if ($scope.fdAS.DB_TELEPON)
+                        $scope.fdAS.DB_TELEPON_YN = 1;
+                    else	
+                        $scope.fdAS.DB_TELEPON_YN = 0;
+
+                    $scope.fdAS.PR_LAMA_MENEMPATI_TAHUN = Math.floor(parseInt(R.data.DB_WAKTU_SEWA) / 12);
+                    $scope.fdAS.PR_LAMA_MENEMPATI_BULAN = parseInt(R.data.DB_WAKTU_SEWA) % 12; 	
+                    
+                    if ($scope.fdAS.DB_LEBAR_JALAN)
+                        $scope.fdAS.jalan_akses = 0;
+                    else
+                        $scope.fdAS.jalan_akses = 1;
+                    
+                    $scope.SET_NAMA_PEMILIK_PART();
+                     
+            }
+        });
+    };
+    
+    $scope.resetfdAS = function(){
+        $scope.fdAS = {
+            GUNAKAN_DATA_LAMA : 'TIDAK'
+        };
+    };
     
 })
 .controller('asListPenilaianModalCtrl',function(modalService,$scope,globalFunction,$rootScope,$stateParams,apiData,apiBase,getNilaiPasarValidator){
@@ -9115,6 +9255,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
         if (id){
             $rootScope.AGUNAN_ID_SELECTED = id;	
             getNilaiPasarValidator.e($rootScope,'fdPNL',$rootScope.AGUNAN_ID_SELECTED);
+			
         }
         
         var m = globalFunction.openModal('partials/modals/modal-survey-penilaian.html','modal-survey-penilaian modal-form','asPenilaianModalCtrl');
@@ -9132,26 +9273,27 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
             scope   : $scope,
             sn      : 'listPNL',
             type    : 'tolist',
-                callbacksuccess : function(R){
-                    console.log(R.data);				
-                    $rootScope.AGUNAN_ID_SELECTED_ALL = R.data;
+            callbacksuccess : function(R){
+                console.log(R.data);														
+                $rootScope.AGUNAN_ID_SELECTED_ALL = R.data;
 
-                    $scope.TotalPenilaian = function(){ //FZL
-                            var total = 0;
-                            var penilaian = 0;
-                            for(var i = 0; i < R.data.length; i++){
-                                    penilaian = parseInt(R.data[i].DB_NILAI_PASAR);
-                                    total = total+penilaian;
-                            }
-                            return total;
-                    };
+                $scope.TotalPenilaian = function(){ //FZL
+                        var total = 0;
+                        var penilaian = 0;
+                        for(var i = 0; i < R.data.length; i++){
+                                penilaian = parseInt(R.data[i].DB_NILAI_PASAR);
+                                total = total+penilaian;
+                        }
+                        return total;
+                };
 					
             }
         });
     };
     $scope.getlistPNL($rootScope.AGUNAN_ID_SELECTED);
 
-    $scope.editPNL = function(id){
+    $scope.editPNL = function(id){					
+		
         apiData.get({
             gl      : true,
             api     : apiBase+'survey/get_penilaianid/?id='+id,
@@ -9166,9 +9308,10 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 $scope.fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_2 / $scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI );
                 $scope.fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_3 / $scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI );
                 $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR / $scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI );
+                $scope.modalPNL();
             }
         });
-        $scope.modalPNL();
+        
     };
 
     $scope.deletePNL = function(d){
@@ -10564,6 +10707,9 @@ App.controller('reviewCtrl',function(apiData,$scope,$stateParams,$rootScope,apiB
         }
         
     });
+    
+    $scope.fdPLBWMP = {};
+    $scope.fdPLBWMPDeviasi = {};
 		
     $scope.getBWMP = function(d){
         apiData.get({
@@ -10572,7 +10718,9 @@ App.controller('reviewCtrl',function(apiData,$scope,$stateParams,$rootScope,apiB
             scope   : $scope,
             sn      : 'listBWMP',
             type    : 'tolist',
-            callbacksuccess : function(){
+            callbacksuccess : function(R){
+                
+                $scope.fdPLBWMP.TOTAL_ITEMS = R.data.length;
                 $scope.getBWMPDeviasi(d);
                 $scope.modalBWMP();
             }
@@ -10586,7 +10734,9 @@ App.controller('reviewCtrl',function(apiData,$scope,$stateParams,$rootScope,apiB
             scope   : $scope,
             sn      : 'listBWMPDeviasi',
             type    : 'tolist',
-            callbacksuccess : function(){
+            callbacksuccess : function(R){
+                console.log('listBWMPDeviasi',R);
+                $scope.fdPLBWMPDeviasi.TOTAL_ITEMS = R.data.length;
 //                $scope.modalBWMP();
             }
         });
@@ -10671,18 +10821,20 @@ App.controller('modalListReviewerCtrl',function($scope,modalService,apiData,apiB
 
 App.controller('modalChangeBWMPCtrl',function($scope,modalService,apiData,apiBase,$stateParams,$rootScope,$filter){
     
-    $scope.fdPLBWMP = {};
+    
     $scope.listRV = [];
     $scope.fdPLBWMP.PAGE = 1;
     $scope.fdPLBWMP.MAX_SIZE = 5;
     $scope.fdPLBWMP.LIMIT = 10;
+
     
     //Deviasi
-    $scope.fdPLBWMPDeviasi = {};
+    
     $scope.listRV = [];
     $scope.fdPLBWMPDeviasi.PAGE = 1;
     $scope.fdPLBWMPDeviasi.MAX_SIZE = 5;
     $scope.fdPLBWMPDeviasi.LIMIT = 10;
+    
     
     $scope.postBWMP = function(d){
         var e = {
@@ -11126,19 +11278,19 @@ App.controller('reviewAnalisaSensitivitasCtrl',function(){
     $scope.fdRCR = {};
     
     $scope.$watch('DASE', function(dataLoaded) {
-        if (dataLoaded) {
+        if (dataLoaded) {					
             $scope.fdRCR = $scope.DASE.RCR;
             $scope.fdRCR.PENJUALAN_PER_BULAN = $scope.DASE.RCR.RV_PENJUALAN_PERBULAN_SKENARIO_1;
-            $scope.fdRCR.HPP = $scope.DASE.RCR.RV_HPP_SKENARIO_1;
+            $scope.fdRCR.HPP = parseInt($scope.DASE.RCR.RV_HPP_SKENARIO_1);
             $scope.fdRCR.TOTAL_BIAYA_OPERASIONAL_USAHA = $scope.DASE.RCR.RV_TOTAL_BIAYA_OPERASIONAL_USAHA_SKENARIO_1;
-            $scope.fdRCR.USAHA_LAINNYA_1 = $scope.DASE.RCR.RV_USAHA_LAINNYA_1_SKENARIO_1;
-            $scope.fdRCR.USAHA_LAINNYA_2 = $scope.DASE.RCR.RV_USAHA_LAINNYA_2_SKENARIO_1;
-            $scope.fdRCR.GAJI_SUAMI_ISTRI = $scope.DASE.RCR.RV_GAJI_SUAMI_ISTRI_SKENARIO_1;
+            $scope.fdRCR.USAHA_LAINNYA_1 = parseInt($scope.DASE.RCR.RV_USAHA_LAINNYA_1_SKENARIO_1);			
+			$scope.fdRCR.USAHA_LAINNYA_2 = parseInt($scope.DASE.RCR.RV_USAHA_LAINNYA_2_SKENARIO_1);			
+            $scope.fdRCR.GAJI_SUAMI_ISTRI = parseInt($scope.DASE.RCR.RV_GAJI_SUAMI_ISTRI_SKENARIO_1);
             $scope.fdRCR.TOTAL_BIAYA_RM_TANGGA = $scope.DASE.RCR.RV_TOTAL_BIAYA_RUMAH_TANGGA_SKENARIO_1;
             $scope.fdRCR.RCR_USULAN_PINJAMAN_YANG_DIUSULKAN = $scope.DASE.RCR.RV_PINJAMAN_YANG_DIUSULKAN;
             $scope.fdRCR.RCR_USULAN_BUNGA = $scope.DASE.RCR.RV_BUNGA_YANG_DIUSULKAN;
             $scope.fdRCR.RCR_USULAN_TENOR = $scope.DASE.RCR.RV_TENOR_YANG_DIUSULKAN;
-            $scope.fdRCR.RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI = $scope.DASE.RCR.RV_ANGSURAN_PINJAMAN_SAAT_INI_SKENARIO_1;
+            $scope.fdRCR.RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI = parseInt($scope.DASE.RCR.RV_ANGSURAN_PINJAMAN_SAAT_INI_SKENARIO_1);
         }
     });
     
@@ -11213,19 +11365,19 @@ App.controller('reviewAnalisaSensitivitasCtrl',function(){
 
                 $scope.SK1_PENJUALAN_PER_BULAN = parseInt($scope.fdRCR.PENJUALAN_PER_BULAN);
                 $scope.SK1_SKENARIO_PERCENTAGE = 100;
-                $scope.SK1_HPP = parseInt($scope.fdRCR.HPP);
+                $scope.SK1_HPP = $scope.fdRCR.HPP;
                 $scope.SK1_LABA_KOTOR = $scope.SK1_PENJUALAN_PER_BULAN - $scope.SK1_HPP;
                 $scope.SK1_TOTAL_BIAYA_OPERASIONAL_USAHA = parseInt($scope.fdRCR.TOTAL_BIAYA_OPERASIONAL_USAHA);
                 $scope.SK1_LABA_OPERASI = $scope.SK1_LABA_KOTOR - $scope.SK1_TOTAL_BIAYA_OPERASIONAL_USAHA;
-                $scope.SK1_USAHA_LAINNYA_1 = parseInt($scope.fdRCR.USAHA_LAINNYA_1);
-                $scope.SK1_USAHA_LAINNYA_2 = parseInt($scope.fdRCR.USAHA_LAINNYA_2);
-                $scope.SK1_GAJI_SUAMI_OR_ISTRI = parseInt($scope.fdRCR.GAJI_SUAMI_ISTRI);
+                $scope.SK1_USAHA_LAINNYA_1 = $scope.fdRCR.USAHA_LAINNYA_1;
+                $scope.SK1_USAHA_LAINNYA_2 = $scope.fdRCR.USAHA_LAINNYA_2;
+                $scope.SK1_GAJI_SUAMI_OR_ISTRI = $scope.fdRCR.GAJI_SUAMI_ISTRI;
                 $scope.SK1_JUMLAH_PENGHASILAN_LAINNYA = $scope.SK1_USAHA_LAINNYA_1 + $scope.SK1_USAHA_LAINNYA_2 + $scope.SK1_GAJI_SUAMI_OR_ISTRI;
                 $scope.SK1_PENGHASILAN_SEBELUM_BIAYA_RT = $scope.SK1_LABA_OPERASI + $scope.SK1_JUMLAH_PENGHASILAN_LAINNYA;
                 $scope.SK1_TOTAL_BIAYA_RUMAH_TANGGA = parseInt($scope.fdRCR.TOTAL_BIAYA_RM_TANGGA);
                 $scope.SK1_SISA_PENGHASILAN_SEBELUM_ANGSURAN = $scope.SK1_PENGHASILAN_SEBELUM_BIAYA_RT - $scope.SK1_TOTAL_BIAYA_RUMAH_TANGGA;
 
-                $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI = parseInt($scope.fdRCR.RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI);
+                $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI = $scope.fdRCR.RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI;
                 $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU = $scope.GBL_RCR_USULAN_TOTAL_ANGSURAN;
                 $scope.SK1_RCR_USULAN_TOTAL_ANGSURAN = $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI + $scope.SK1_RCR_USULAN_ANGSURAN_PINJAMAN_ULAMM_BARU;
                 $scope.SK1_RCR_USULAN_DISPOSABLE_INCOME = $scope.SK1_SISA_PENGHASILAN_SEBELUM_ANGSURAN - $scope.SK1_RCR_USULAN_TOTAL_ANGSURAN;
@@ -12393,7 +12545,7 @@ App.controller('proposalTrackingCtrl',function($scope,globalFunction,$filter,$st
     };
 	
 	/*FZL*/
-	$scope.modalTracking = function (prospekid) {         
+    $scope.modalTracking = function (prospekid) {         
 
         var m = globalFunction.openModal('partials/modals/modal-tracking-proposal.html', 'modal-form', 'modalTrackingCtrl');           
 
@@ -12420,10 +12572,29 @@ App.controller('syncDocQNAPCtrl',function($scope,globalFunction,$filter,$statePa
                 gl      : true,
                 api     : apiBase+'globalclass/sync_doc_to_qnap',
                 data    : $scope.fdSNCQ,
-                scope   : $scope
+                scope   : $scope,
+                callbacksuccess : function(R){
+                    console.log(R.error);
+                    $scope.fdSNCQ.ERROR_DESC = R.error;
+                    $scope.modalSyncToQnapResponse();
+                }
             });
         });
     };
+    
+    $scope.modalSyncToQnapResponse = function () {         
+
+        var m = globalFunction.openModal('partials/modals/modal-sync-doc-to-qnap-response.html', 'modal-form', 'modalSyncToQnapResponseCtrl',$scope);           
+
+        $rootScope.closemodalSyncToQnapResponse = function () {
+            m.close();
+        };
+    }; 
+    
+})
+.controller('modalSyncToQnapResponseCtrl', function (){
+    
+    
     
 });
 

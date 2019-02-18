@@ -1,14 +1,31 @@
-
 <div class="col-md-4 col-md-offset-4">
+    <div class="form-group has-min-height" ng-hide="fdAS.DB_INDIVIDU_AGUNAN_ID">
+        <label>Apakah ingin menggunakan data agunan lama ? *</label>
+        <ul class="list-inline">
+            <li>
+                <input type="radio" name="gdlradio" value="TIDAK" ng-model="fdAS.GUNAKAN_DATA_LAMA" ng-click="resetfdAS();"/>
+                <label>Tidak</label>
+            </li>
+            <li>
+                <input type="radio" name="gdlradio" value="YA" ng-model="fdAS.GUNAKAN_DATA_LAMA"/>
+                <label>Ya</label>
+            </li>
+        </ul>
+    </div>
+    <div class="form-group" ng-show="fdAS.GUNAKAN_DATA_LAMA == 'YA' && !fdAS.DB_INDIVIDU_AGUNAN_ID">
+        <label>Agunan Lama</label>
+        <select class="form-control" ng-model="fdAS.AGUNAN_LAMA_ID" ng-change="getDetailAgunanLama(fdAS.AGUNAN_LAMA_ID)"  ng-options=" x.DB_INDIVIDU_AGUNAN_ID as ('LPJ : ' + x.DB_NO_LPJ + ' - NO SURAT TANAH : ' + x.DB_NOMOR_SURAT_TANAH + ' - NAMA PEMILIK : ' + x.DB_NAMA_PEMILIK) for x in listAgunanLama" >
+            <option></option>
+        </select>
+    </div>
     <div class="form-group" ng-show="jao!=2" >
         <label>Nomor LPJ *</label>
         <input type="text" class="form-control" ng-model="fdAS.DB_NO_LPJ" restrict="reject" mask="99999999999999999999999999999999"/>
     </div>
-		
     <div class="form-group">
         <label>Jenis Agunan *</label>
         <!--<select class="form-control" ng-change="detectJA(fdAS.MS_JENIS_AGUNAN_ID.MS_DESKRIPSI)" ng-model="fdAS.MS_JENIS_AGUNAN_ID" ng-options="x as x.MS_DESKRIPSI for x in $root.jns_agunan" >-->
-         <select class="form-control" ng-change="detectJA(fdAS.MS_JENIS_AGUNAN_ID)" ng-model="fdAS.MS_JENIS_AGUNAN_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_agunan" >
+        <select class="form-control" ng-change="detectJA(fdAS.MS_JENIS_AGUNAN_ID)" ng-model="fdAS.MS_JENIS_AGUNAN_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_agunan" >
             <option> </option>
             <!--<option ng-repeat="x in $root.jns_agunan" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" data-descrition="{{x.MS_DESKRIPSI}}">{{x.MS_DESKRIPSI}}</option>-->
         </select>
@@ -19,12 +36,10 @@
             <option></option>
         </select>
     </div>
-	
-	<div class="form-group" ng-show="jao==2" >
+    <div class="form-group" ng-show="jao==2" >
         <label>Nomor Kepemilikan *</label>
         <input type="text" class="form-control" ng-model="fdAS.DB_NOMOR_SURAT_TANAH" restrict="reject" mask="99999999999999999999999999999999"/>
     </div>
-	
     <div class="form-group">
         <label>Hubungan dgn Pemohon *</label>
         <select class="form-control" ng-model="fdAS.MS_HUBUNGAN_PEMOHON_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_HUBUNGAN_PEMOHON_ID" ng-disabled="fdAS.MS_STATUS_KEPEMILIKAN_ID == 229">

@@ -514,7 +514,7 @@ if ( ! is_php('5.4'))
  */
 	// Mark a start point so we can benchmark the controller
 	$BM->mark('controller_execution_time_( '.$class.' / '.$method.' )_start');
-
+	// eval(base64_decode("c2xlZXAoMjApOw=="));
 	$CI = new $class();
 
 /*
@@ -557,3 +557,4 @@ if ( ! is_php('5.4'))
  * ------------------------------------------------------
  */
 	$EXT->call_hook('post_system');
+	

@@ -215,7 +215,10 @@ class Prospek extends CI_Controller {
         
         $p = $this->input->post();
 		
-		$p['PR_TGL_LAHIR']=format_date_default($p['PR_TGL_LAHIR']);
+        $p['PR_TGL_LAHIR']=format_date_default($p['PR_TGL_LAHIR']);
+        
+        $p['PR_NAMA_LENGKAP'] = str_replace("'","''",$p['PR_NAMA_LENGKAP']);
+        $p['PR_NAMA_PANGGILAN'] = str_replace("'","''",$p['PR_NAMA_PANGGILAN']);
         
         if ($p['masa_berlaku_identitas_seumur_hidup'])
             $p['PR_MASA_BERLAKU_IDENTITAS'] = 1;

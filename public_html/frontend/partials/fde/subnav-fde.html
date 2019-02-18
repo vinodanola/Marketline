@@ -20,6 +20,7 @@
         </a>
     </li>
     
+    <!--
     <li class="{{HIDE_FDE_FOR_NEW_MMS}}" ui-sref-active="active">
         <a ui-sref="fde.nomorrekeningpembiayaan({id : $root.PR_PROSPEK_ID})">
             Nomor Rekening Pembiayaan
@@ -71,12 +72,13 @@
                 <a ui-sref="fde.perjanjiankredit({id : $root.PR_PROSPEK_ID})">
                     Perjanjian Kredit
                 </a>
-            </li>
+            </li>-->
             <!--li ui-sref-active="active">
                 <a ui-sref="fde.kolektor({id : $root.PR_PROSPEK_ID})">
                     Kolektor
                 </a>
             </li-->
+            <!--
             <li ui-sref-active="active">
                 <a ui-sref="fde.rekeningpribadi({id : $root.PR_PROSPEK_ID})">
                     Rekening Pribadi
@@ -88,18 +90,19 @@
                 </a>
             </li>
         </ul>
-    </li> 
+    </li>--> 
     <li>
-        <a class="btn-sbm" ng-click="submitFDE()" ng-show="FDE_SUBMITED==1">
+        <a class="btn-sbm" ng-click="submitFDE()" ng-show="FDE_SUBMITED==1" menu-alias="M-225">
             Submit
         </a>
         <a class="text-success" ng-show="FDE_SUBMITED==2">
             <span class="glyphicon glyphicon-check"></span> Submited
         </a>
     </li>
+    <!--
     <li class="{{HIDE_FDE_FOR_NEW_MMS}}">
         <a class="btn-sbm" ng-click="submitFDENewMMS()" >
             Submit MMS
         </a>
-    </li>
+    </li>-->
 </ul>

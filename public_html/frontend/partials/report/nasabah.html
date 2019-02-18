@@ -77,7 +77,7 @@
                         <th>PROSPEK ID</th>
                         <th>NAMA NASABAH</th>
                         <th>PILIH REPORT</th>
-                        <th>ACTION</th>						
+                        <th>ACTION</th>						                        
                     </tr>
                     <!-- <tr ng-repeat="x in listDEBITUR | filter:SEARCH_REPORT | limitTo:(fdPL.LIMIT):((fdPL.PAGE*fdPL.LIMIT)-fdPL.LIMIT) "> -->
                     <tr ng-repeat="x in listDEBITUR ">
@@ -106,16 +106,17 @@
                                 <option  value="DU">Memorandum Review Pembiayaan DU</option>
                                 <option  value="AS">Memorandum Review Pembiayaan AS (LKKU)</option>
                                 <option  value="ASR">Memorandum Review Pembiayaan AS (REVIEWER)</option>
-                                <option  value="PERSETUJUAN">Memo Persetujuan Pembiayaan</option>
+                                <option  value="MPPU">Memo Persetujuan Pembiayaan</option>
                                 <option  value="SCORING">Scoring Pembiayaan Mikro</option>
                                 <option  value="EXAM">Executive Summary Pengajuan Pembiayaan</option>
                                 <option  value="IDI">Informasi Debitur Internal</option>
                                 
                             </select>
                         </td>
-                        <td class="col-md-1">
+                        <td >
 							&nbsp&nbsp
                             <a ng-click="$root.PROSPEK_ID = x.DB_PROSPEK_ID; modalRPT(x.DB_PROSPEK_ID);">View</a>                        
+							<!--a ng-click="$root.PROSPEK_ID = x.DB_PROSPEK_ID; reportPDF(x.DB_PROSPEK_ID);">PDF</a-->                        
                         </td>
                     </tr>  
                 </table>

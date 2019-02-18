@@ -1,16 +1,22 @@
 <div class="col-md-6 col-padding-110 col-has-border-right">
     <div class="form-group">
-        <label>Produk * <ng-show ng-show="fdKS.MS_PRODUK_ID">({{fdKS.MS_PRODUK_ID}} - {{fdKS.MS_PRODUK_ID_DESKRIPSI}})</ng-show></label>
-<!--        <select class="form-control" ng-model="fdKS.MS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PRODUK_ID">
-            <option></option>
-        </select>-->
-        <!--<select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list" ng-change="getDetailProduk(fdKS.MS_PRODUK_ID); fdKS.MS_ANGSURAN_PERBULAN = null" convert-to-number>-->
-        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list" ng-change="getCalculateProdukProgram({'id_produk' : fdKS.MS_PRODUK_ID, 'id_program' : fdKS.MS_PROGRAM_ID, 'id_pembiayaan' : fdKS.MS_JENIS_PEMBIAYAAN_ID })" convert-to-number>
+        <label>Business Type *</label>
+        <select class="form-control" ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" ng-model="fdKS.MS_JENIS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PRODUK_ID">
             <option></option>
         </select>
     </div>
     <div class="form-group">
-        <label>Program * <ng-show ng-show="fdKS.MS_PROGRAM_ID">({{fdKS.MS_PROGRAM_ID}} - {{fdKS.MS_PROGRAM_ID_DESKRIPSI}})</ng-show></label>
+        <label>Produk * </label>
+<!--        <select class="form-control" ng-model="fdKS.MS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PRODUK_ID">
+            <option></option>
+        </select>-->
+        <!--<select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list" ng-change="getDetailProduk(fdKS.MS_PRODUK_ID); fdKS.MS_ANGSURAN_PERBULAN = null" convert-to-number>-->
+        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list | filter : { tipe : fdKS.MS_JENIS_PRODUK_ID }" ng-change="getCalculateProdukProgram({'id_produk' : fdKS.MS_PRODUK_ID, 'id_program' : fdKS.MS_PROGRAM_ID, 'id_pembiayaan' : fdKS.MS_JENIS_PEMBIAYAAN_ID })" convert-to-number>
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Program *</label>
 <!--        <select class="form-control" ng-model="fdKS.MS_PROGRAM_ID"  ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_PROGRAM_ID">
             <option></option>
         </select>-->
@@ -42,6 +48,8 @@
         </div>
         <span></span>
     </div>
+    
+	
     <div class="form-group">
         <label>Bunga / Margin *</label>
         <div class="input-group">
@@ -50,16 +58,9 @@
         </div>
     </div>
 	
-	<div class="form-group">
-        <label>Count Restruktur(3R)</label>
-        <div class="input-group">
-            <input ng-disabled="true" type="text" class="form-control" ng-model="fdKS.DB_COUNT_RESTRUKTUR" />
-            <span class="input-group-addon"></span>
-        </div>
-    </div>
-	
 </div>
 <div class="col-md-6 col-padding-110">
+    
     <div class="form-group">
         <label>CCR</label>
         <div class="input-group">
@@ -96,12 +97,7 @@
         </select>
     </div>-->
 
-    <div class="form-group">
-        <label>Business Type *</label>
-        <select class="form-control" disabled ng-model="fdKS.MS_JENIS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PRODUK_ID">
-            <option></option>
-        </select>
-    </div>
+    
 
     <div class="form-group" ng-show="fdKS.MS_JENIS_PRODUK_ID == 474">
         <label>Jenis Top Up *</label>
@@ -114,6 +110,13 @@
         <label>Last BWMP Restruktur(3R)</label>
         <div class="input-group">
             <input ng-disabled="true" type="text" class="form-control" ng-model="fdKS.DB_BWMP_RESTRUKTUR"/>
+            <span class="input-group-addon"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Count Restruktur(3R)</label>
+        <div class="input-group">
+            <input ng-disabled="true" type="text" class="form-control" ng-model="fdKS.DB_COUNT_RESTRUKTUR" />
             <span class="input-group-addon"></span>
         </div>
     </div>

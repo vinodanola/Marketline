@@ -3,7 +3,7 @@
         <ul class="nav navbar-nav">
             <li class="brand">
                 <a href="#">
-                    <img src="images/logopnm.png" /> <small>v1.0.0</small>
+                    <img src="images/logopnm.png" /> <small>v1.1.0</small>
                 </a>
             </li>
 <!--            <li>
@@ -30,7 +30,7 @@
             </form>
         </div>-->
 
-        <ul class="nav navbar-nav navbar-right navbar-dsp">
+        <ul class="nav navbar-nav navbar-right navbar-dsp" ng-controller="menuCtrl">
 <!--            <li class="dropdown" uib-dropdown on-toggle="toggled(open)" is-open="isopen" auto-close="outsideClick" ng-controller="menuCtrl">
                 <a uib-dropdown-toggle>
                     <span class="glyphicon glyphicon-globe"></span>
@@ -56,7 +56,7 @@
                     <span class="text-danger small" ng-show="{{$storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT == 1}}">&middot; Unit Close Landing</span>
                 </a>
             </li>
-            <li class="dropdown" uib-dropdown on-toggle="toggled(open)" is-open="isopen" auto-close="outsideClick" ng-controller="menuCtrl">
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)" is-open="isopen" auto-close="outsideClick" >
                 <a uib-dropdown-toggle>
                     Menu <span class="ion ion-ios-arrow-down"></span>
                     <span class="caret-menu"></span>
@@ -183,9 +183,29 @@
                     </ng-show>
                 </ul>
             </li>
-            <li class="hide-on-mobile">
-                <a>{{$storage.SESSION_LOGIN.NAMA}} - {{$storage.SESSION_LOGIN.POSISI_NAMA}}</a>
-            </li>
+            <li class="hide-on-mobile" >				
+                <a>{{$storage.SESSION_LOGIN.NAMA}} - {{$storage.SESSION_LOGIN.POSISI_NAMA}}</a>				
+				<li ng-show="$storage.SESSION_LOGIN.RANGKAP_USER.RANGKAP == 1" class="dropdown" uib-dropdown on-toggle="toggled(open)" is-open="yesopen" auto-close="outsideClick" >
+					<a uib-dropdown-toggle>
+						Jabatan <span class="ion ion-ios-arrow-down"></span>
+						<span class="caret-menu"></span>
+				</a>
+					<ul class="dropdown-menu dropdown-menu-navbar-ap" uib-dropdown-menu aria-labelledby="simple-dropdown" >
+                         <li class="list">
+							<ng-show ng-show="$storage.SESSION_LOGIN.RANGKAP_USER.KKU == 1">
+                            <a ng-click="settingRangkap('KKU')" >KKU</a>
+							</ng-show>
+							<ng-show ng-show="$storage.SESSION_LOGIN.RANGKAP_USER.KAM == 1">
+							<a ng-click="settingRangkap('KAM')">KAM</a>
+							</ng-show>
+							<ng-show ng-show="$storage.SESSION_LOGIN.RANGKAP_USER.AOM == 1">
+							<a ng-click="settingRangkap('AOM')">AOM</a>
+							</ng-show>
+                        </li>
+					</ul>
+				</li>
+            </li>								
+			
             <li>
                 <a ui-sref="login" ng-click="$root.logout();">Sign out</a>
             </li>

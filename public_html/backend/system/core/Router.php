@@ -140,6 +140,7 @@ class CI_Router {
 		}
 
 		log_message('info', 'Router Class Initialized');
+		
 	}
 
 	// --------------------------------------------------------------------

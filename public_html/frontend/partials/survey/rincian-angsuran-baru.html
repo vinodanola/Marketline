@@ -14,7 +14,7 @@
             <span class="input-group-addon"> Bulan</span>
         </div>
     </div>
-	<div class="form-group">
+    <div class="form-group">
         <label>Bunga</label>
         <div class="input-group">
             <input type="text" class="form-control" ng-model="fdASBR.MS_BUNGA_PERBULAN" ui-number-mask="2" disabled/>
@@ -30,6 +30,7 @@
             <option value="1">Flat</option>
             <option value="2">Anuitas</option>
             <option value="3">Bunga Efektif</option>
+            <option value="4">Anuitas Top Up Syariah Multifasilitas</option>
         </select>
     </div>
     <div class="form-group">
@@ -54,7 +55,47 @@
             </select>
         </div>
     </div>
-    <div class="form-group">
+</div>
+<ng-show ng-show="fdKS.MS_JENIS_PRODUK_ID == 474 && fdKS.MS_JENIS_PEMBIAYAAN_ID == 110">
+    <div class="col-md-12 col-padding-110" >
+        <hr>
+        <h5 class="text-center">Dibawah adalah tambahan field jika permbiayaan Top up syariah multifasilitas</h5>
+        <hr>
+    </div>
+    <div class="col-md-6 col-padding-110 col-has-border-right" >
+        <!-- Start Field tambahan top up syariah -->
+        <div class="form-group">
+            <label>Plafond pembiayaan sebelumnya</label>
+            <div class="input-group">
+                <span class="input-group-addon">Rp</span>
+                <input type="text" class="form-control" ng-model="fdASBR.prevplafond" ui-number-mask="2" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Bunga pembiayaan sebelumnya</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="fdASBR.prevint" ui-number-mask="2" />
+                <span class="input-group-addon">% / Bulan</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-padding-110">
+        <div class="form-group">
+            <label>Tenor pembiayaan sebelumnya</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="fdASBR.prevtenor" ui-number-mask="0" />
+                <span class="input-group-addon">Bulan</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Top Up pada angsuran ke</label>
+            <input type="text" class="form-control" ng-model="fdASBR.topuptime" ui-number-mask="0" />
+        </div>
+        <!-- End Field tambahan top up syariah -->
+    </div>
+</ng-show>
+<div class="col-md-12 col-padding-110">
+    <div class="form-group" ng-if="SURVEY_LOCK != 'YES'">
         <a class="btn btn-success btn-sm" ng-click="buatjadwal()">Buat Jadwal</a>
     </div>
 </div>
@@ -85,7 +126,7 @@
     </ul>-->
 	<table wt-responsive-table class="table table-hidden-overflow small">
             <tr class="thead">
-                <th>Rekening Lama</th>
+                <!--<th>Rekening Lama</th>-->
                 <th>Tanggal</th>
                 <th>Angsuran Ke</th>
                 <th>Pokok</th>
@@ -93,7 +134,7 @@
                 <th>Total</th>
             </tr>
             <tr ng-repeat="x in listJA">
-                <td>{{x.NO_REKENING_DIPERBAIKI}}</td>
+                <!--<td>{{x.NO_REKENING_DIPERBAIKI}}</td>-->
                 <td>{{x.TANGGAL}}</td>
                 <td>{{x.ANGSURAN}}</td>
                 <td class="text-right">{{x.POKOK | number:2}}</td>
@@ -101,7 +142,7 @@
                 <td class="text-right">{{PokokBunga(x.POKOK,x.BUNGA) | number:2}}</td>
             </tr>
             <tr class="text-success">
-                <td colspan="3">Total</td>
+                <td colspan="2">Total</td>
                 <td class="text-right">{{ listJA | sumByColumn: 'POKOK' | number:2}}</td>
                 <td class="text-right">{{ listJA | sumByColumn: 'BUNGA' | number:2}}</td>
                 <td class="text-right">{{PokokBunga(listJA | sumByColumn: 'POKOK',listJA | sumByColumn: 'BUNGA') | number:2}}</td>

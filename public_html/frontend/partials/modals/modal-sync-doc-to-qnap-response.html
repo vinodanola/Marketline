@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <span class="h4">Detail Sync</span>
+</div>
+<div class="modal-body">
+    <div class="col-md-12">
+        <code class="code-response col-md-12">
+            <ul>
+                <li ng-repeat="x in fdSNCQ.ERROR_DESC">
+                    {{x}}
+                </li>
+            </ul>
+        </code>
+    </div>
+</div>
+<div class="modal-footer text-right">
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalSyncToQnapResponse()">Tutup</a>
+</div>

@@ -71,27 +71,29 @@ App.controller('reportNasabahCtrl', function (apiData, $scope, apiBase, $statePa
     
     $scope.modalRPT = function (prospekid) { 
         
-        $rootScope.namaREPORT = document.getElementById('reportnya' + prospekid).value;				
-		
-		if ($rootScope.namaREPORT == 'SP3U'){
+        $rootScope.namaREPORT = document.getElementById('reportnya' + prospekid).value;
+
+		if ($rootScope.namaREPORT == 'SP3U'){					
 			$rootScope.PROSPEK_ID = prospekid;
 			var m = globalFunction.openModal('partials/modals/modal-report-note-sp3u.html', 'modal-report modal-form', 'modalReportSp3uCtrl');           
-		}else{		
-			var m = globalFunction.openModal('partials/modals/modal-report.html', 'modal-report modal-form', 'modalReportCtrl');           
-		}
-		
-		$rootScope.modalReport = m;
-
-        $rootScope.closemodalRPT = function () {
-            m.close();
-        };
-
+			
+			$rootScope.closemodalRPT_SP3U = function () {
+				m.close();
+			};
+		}else{
+			var m = globalFunction.openModal('partials/modals/modal-report.html', 'modal-report modal-form', 'modalReportCtrl');           						
+			
+			$rootScope.closemodalRPT = function () {
+				m.close();
+			};
+		};		     
     };    
 });
 
 App.controller('modalReportCtrl', function ($sce, $rootScope, $scope, $stateParams, apiData, apiBase, $sessionStorage, jasperBase) {   
+
          
-    $scope.URL = jasperBase+$rootScope.namaREPORT+'.html?DB_PROSPEK_ID='+$rootScope.PROSPEK_ID;	
+    $scope.URL = jasperBase+$rootScope.namaREPORT+'.html?DB_PROSPEK_ID='+$rootScope.PROSPEK_ID;
 
     $scope.trustedUrl = $sce.trustAsResourceUrl($scope.URL);
 
@@ -109,7 +111,7 @@ App.controller('modalReportCtrl', function ($sce, $rootScope, $scope, $statePara
 
         window.location = jasperBase+$rootScope.namaREPORT+ext+'?DB_PROSPEK_ID=' +$rootScope.PROSPEK_ID;
 
-        $scope.reportHistory = {			
+        $scope.reportHistory = {
             REPORT_NAME: $rootScope.namaREPORT,
             DB_PROSPEK_ID: $rootScope.PROSPEK_ID,
             USERID: $sessionStorage.SESSION_LOGIN.USERNAME,
@@ -144,13 +146,14 @@ App.controller('modalReportSp3uCtrl', function ($sce, $rootScope, $scope, $state
 	});
 	
 	
-	$rootScope.viewModalRPT_SP3U = function () {
-		var m = globalFunction.openModal('partials/modals/modal-report.html', 'modal-report modal-form', 'modalReportCtrl');           		
-		console.log('modalRPT_SP3U',$rootScope.namaREPORT);	
+	$rootScope.viewModalRPT_SP3U = function () {			
+				
+		var m = globalFunction.openModal('partials/modals/modal-report.html', 'modal-report modal-form', 'modalReportCtrl');           
 		
-		$rootScope.modalReport.close();
-		
-		$rootScope.modalReport = m;
+		$rootScope.closemodalRPT = function () {
+				m.close();
+		};
+        
 	}
          
 	$rootScope.simpanModalRPT_SP3U = function () {

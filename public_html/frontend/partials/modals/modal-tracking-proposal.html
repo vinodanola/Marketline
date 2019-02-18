@@ -17,7 +17,7 @@
     <tr ng-repeat="x in listTrackingProposal">
         <td>{{x.INISIAL}}</td>
         <td>{{x.NAMA}}</td>
-        <td class="text-right">{{x.REKOMENDASI_PLAFOND | number:2}}</td>
+        <td class="text-right">{{x.REKOMENDASI_PLAFOND}}</td>
         <td class="text-right">{{x.REKOMENDASI_SUKU_BUNGA}}</td>
         <td class="text-right">{{x.REKOMENDASI_TENOR}}</td>            
         <td><a ng-click="modalLPC(x.NOTE);">View</a></td>

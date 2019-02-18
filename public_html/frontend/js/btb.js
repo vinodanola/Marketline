@@ -1,4 +1,5 @@
 /**
+/**
  * @author vdp
  * created on 2018
  */
@@ -114,11 +115,12 @@
             $scope.fdBTB.LOCK_BIAYA_TIDAK_LANGSUNG = 0;
             $scope.fdBTB.LOCK_PENYUSUTAN = 0;
             $scope.fdBTB.LOCK_NILAI_PASAR_BANGUNAN = 0;
-            
-            
+                        
+			// $rootScope.arrayke = 0;			
         
             $scope.addForm = function(d){
                 $scope[d.formName].push(window.Math.max.apply(null, $scope[d.formName]) + 1);
+				// $rootScope.arrayke = $scope[d.formName].length-1;
             };
         
             $scope.removeForm = function(d){
@@ -132,6 +134,7 @@
                     
                     delete $scope.fdBTB[d.objectName][d.id];
                 }
+				// $rootScope.arrayke = $scope[d.formName].length-1;
             };
             
                         
@@ -1001,29 +1004,69 @@
                 $scope.dtTP = new Date($scope.fdBTB.TANGGAL_PENILAIAN);
         
         })
-        .controller('btbKonstruksiCtrl', function($scope){
-        
-            
-        
+        .controller('btbKonstruksiCtrl', function($scope,globalFunction,$rootScope){	
+
+			$scope.validasi = function(d){
+				
+				// console.log('d',$scope.fdBTB[d['MODEL']]);
+				var volume=0;				
+				for (var x in $scope.fdBTB[d['MODEL']]){
+					 volume = volume+$scope.fdBTB[d['MODEL']][x].VOL;					 
+				}						
+				
+				if (volume>100){
+					globalFunction.ag('danger',['Jumlah volume tidak boleh besar dari 100%']);						
+					for (var x in $scope.fdBTB[d['MODEL']]){
+						$scope.fdBTB[d['MODEL']][x].VOL = 0;
+					}
+				}												
+				// console.log('volume',volume);				
+			};
+				
+			$scope.$watch('fdBTB.KONSTRUKSI', function () { $scope.validasi({MODEL:'KONSTRUKSI'}) },true);			
+			$scope.$watch('fdBTB.BASEMENT', function () { $scope.validasi({MODEL:'BASEMENT'}) },true);			
+									 				        
         })
-        .controller('btbKomponenBangunanCtrl', function($scope){
+        .controller('btbKomponenBangunanCtrl', function($scope,globalFunction,$rootScope){
         
-            
+            $scope.validasi = function(d){
+				
+				// console.log('d',$scope.fdBTB[d['MODEL']]);
+				var volume=0;				
+				for (var x in $scope.fdBTB[d['MODEL']]){
+					 volume = volume+$scope.fdBTB[d['MODEL']][x].VOL;					 
+				}						
+				
+				if (volume>100){
+					globalFunction.ag('danger',['Jumlah volume tidak boleh besar dari 100%']);						
+					for (var x in $scope.fdBTB[d['MODEL']]){
+						$scope.fdBTB[d['MODEL']][x].VOL = 0;
+					}
+				}												
+				// console.log('volume',volume);				
+			};
+				
+			$scope.$watch('fdBTB.RANGKA_ATAP', function () { $scope.validasi({MODEL:'RANGKA_ATAP'}) },true);			
+			$scope.$watch('fdBTB.PENUTUP_ATAP', function () { $scope.validasi({MODEL:'PENUTUP_ATAP'}) },true);			
+			$scope.$watch('fdBTB.DINDING_MATERIAL_UTAMA', function () { $scope.validasi({MODEL:'DINDING_MATERIAL_UTAMA'}) },true);			
+			$scope.$watch('fdBTB.DINDING_MATERIAL_PENDUKUNG', function () { $scope.validasi({MODEL:'DINDING_MATERIAL_PENDUKUNG'}) },true);			
+			$scope.$watch('fdBTB.PINTU_JENDELA', function () { $scope.validasi({MODEL:'PINTU_JENDELA'}) },true);			
+			$scope.$watch('fdBTB.LANGIT_LANGIT', function () { $scope.validasi({MODEL:'LANGIT_LANGIT'}) },true);			
+			$scope.$watch('fdBTB.LANTAI', function () { $scope.validasi({MODEL:'LANTAI'}) },true);			
+			$scope.$watch('fdBTB.SANITASI', function () { $scope.validasi({MODEL:'SANITASI'}) },true);			
+			$scope.$watch('fdBTB.INSTALASI_LISTRIK', function () { $scope.validasi({MODEL:'INSTALASI_LISTRIK'}) },true);			
         
         })
         .controller('btbBiayaLainlainCtrl', function($scope){
-        
-            
+										           
         
         })
         .controller('btbPenyusutanCtrl', function($scope){
-        
-            
-        
+						
+                           
         })
         .controller('btbNilaiPasarBangunanCtrl', function($scope){
-        
-            
+                    
         
         });
         

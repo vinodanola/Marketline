@@ -265,6 +265,9 @@ code.code-response {
 .table-striped > tbody > tr.tr-head:nth-of-type(odd) {
   background-color: #0066b2; }
 
+.table > tbody + tbody {
+  border-top: 1px solid #bebebe; }
+
 .thead.thead-action {
   margin: 0;
   padding: 5px 0;

@@ -39,7 +39,8 @@
 <div class="col-md-6">
     <h4>
         Basement
-        <a class="pull-right" ng-hide="fdBTB.LOCK_KONSTRUKSI == 1" ng-click="formBasement.push({id: formBasement.length + 1})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>
+        <!--a class="pull-right" ng-hide="fdBTB.LOCK_KONSTRUKSI == 1" ng-click="formBasement.push({id: formBasement.length + 1})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a-->
+        <a class="pull-right" ng-hide="fdBTB.LOCK_KONSTRUKSI == 1" ng-click="addForm({formName : 'formBasement'})" uib-tooltip="Tambah"><span class="glyphicon glyphicon-plus-sign" ></span></a>
     </h4>
     <hr>
     <form ng-repeat="x in formBasement">
