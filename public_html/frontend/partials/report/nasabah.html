@@ -76,6 +76,7 @@
                         <th>UNIT</th>
                         <th>PROSPEK ID</th>
                         <th>NAMA NASABAH</th>
+                        <th>STATUS PROPOSAL</th>
                         <th>PILIH REPORT</th>
                         <th>ACTION</th>						                        
                     </tr>
@@ -86,6 +87,19 @@
                         <td>{{x.MS_KODE_UNIT_DESKRIPSI}}</td>
                         <td>{{x.DB_PROSPEK_ID}}</td>
                         <td>{{x.PR_NAMA_LENGKAP}}</td>
+						<td>
+                                {{ 
+                                    (x.DB_STATUS >= 3 && x.DB_SUB_STATUS == 3) ? 'Request Dokumen dari Reviewer'
+                                    : (x.DB_STATUS >= 3 && x.DB_SUB_STATUS == 2) ? 'LKKU Ulang' 
+                                    : (x.DB_STATUS >= 3 && x.DB_SUB_STATUS == 1) ? 'Diteruskan ke Reviewer' 
+                                    : x.DB_STATUS >= 4 ? 'Diteruskan ke Reviewer' 
+                                    : x.DB_STATUS >= 2 ? 'Approved Survey' 
+                                    : x.DB_STATUS >= 1 && x.DB_SUB_STATUS == 1 ? 'Need Approval Survey' 
+                                    : ((x.REQUEST_PENJAMIN == 1 && x.DB_STATUS < 2) ? 'Request penjamin Survey' 
+                                    : x.DB_STATUS >= 1 && x.DB_SUB_STATUS==2 ? 'Rejected' 
+                                    : 'On Progress Survey/Prospek')
+                                }}
+                        </td>
                         <td class="col-md-3">
                             <select id="reportnya{{x.DB_PROSPEK_ID}}" placeholder="Report" class="form-control input-sm">
                                 

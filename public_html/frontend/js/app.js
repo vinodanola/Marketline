@@ -8786,6 +8786,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 { k : 'dtTJTO', v : 'DB_TGL_JATUH_TEMPO' }
             ],
             callbacksuccess : function(R){
+                    
                     $scope.fdAS.DB_BANJIR = R.data.DB_BANJIR;
                 
                     if ($scope.fdAS.DB_TELEPON)
@@ -9011,9 +9012,10 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
     $scope.postAS = function(){
 //        if ($scope.fdAS == undefined)
 //            $scope.fdAS = {};
-
+        
         if ($scope.formValid()){ /*FZL penambahan validasi*/
             $scope.fdAS.DB_PROSPEK_ID = $stateParams.id;
+            $scope.fdAS.DB_NOMOR_SURAT_TANAH = $scope.fdAS.DB_NOMOR_SURAT_TANAH_ORI;
             apiData.post({
                 gl      : true,
                 api     : apiBase+'survey/post_agunan',
@@ -11611,7 +11613,12 @@ App.controller('reviewAnalisaSensitivitasCtrl',function(){
             if (newValues) {
                 
                 $scope.PERSEDIAAN_SAAT_INI = $scope.fdAMK.AMK_PERSEDIAAN_SAAT_INI;
-                $scope.PERSEDIAAN_DOH_VER = ($scope.PERSEDIAAN_SAAT_INI / $scope.SK1_HPP) * 30;
+				
+				if ($scope.SK1_HPP==0){
+					$scope.PERSEDIAAN_DOH_VER = 0;
+				}else{
+					$scope.PERSEDIAAN_DOH_VER = ($scope.PERSEDIAAN_SAAT_INI / $scope.SK1_HPP) * 30;				
+				}
 //                $scope.PERSEDIAAN_DOH_PROJ = $scope.fdAMK.AMK_PERSEDIAAN_DOH_PROJ;
 //                $scope.PERSEDIAAN_DOH_PROJ = $scope.PERSEDIAAN_DOH_VER;
                 $scope.PERSEDIAAN_PROYEKSI = ($scope.PERSEDIAAN_DOH_PROJ / 30) * $scope.SK1_HPP * (1 + ($scope.PROYEKSI_PERTUMBUHAN_OMSET / 100) );

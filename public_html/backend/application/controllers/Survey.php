@@ -463,6 +463,8 @@ class Survey extends CI_Controller {
         $p['DB_TGL_IMB'] = format_date_default($p['DB_TGL_IMB']);
         $p['DB_TGL_AJB'] = format_date_default($p['DB_TGL_AJB']);
         
+        log_message('ERROR',json_encode($p));
+        
         post_api($this->config->item('baseAPI').'survey/set_agunan',$p);
         
     }
