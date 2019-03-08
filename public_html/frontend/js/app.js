@@ -516,8 +516,8 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             }
         })
         .state('survey.informasi.index',{
-            url: '/index',
-            templateUrl: 'partials/survey/informasi-survey-index.html',
+            url: '/index',	
+            templateUrl: 'partials/survey/informasi-survey-index.html',        
             data: {
                 pageTitle: 'Informasi Survey Index'
             }
@@ -2906,7 +2906,7 @@ App.factory('globalFunction',function($rootScope,$uibModal){
             }
             
         },
-        
+				
         VDPmultiselect : function(scope){
             
             scope.moveItem = function(type, items, from, to) {
@@ -3622,7 +3622,7 @@ App.service('postProspekStatus',function($http,globalFunction,apiBase,$statePara
         }).success(function(R){
             if ( R.status == 'Success') {
                 globalFunction.ag('success',['Data berhasil disimpan']);
-                $state.go('survey.informasi.index', { id: $stateParams.id });
+                $state.go('survey.informasi.alamat', { id: $stateParams.id });
                 getDataStatusSubmit.e();
             } else {
                 globalFunction.ag('danger',['Data gagal disimpan']);
@@ -3969,9 +3969,10 @@ App.service('getNilaiPasarValidator',function($http,apiBase,globalFunction){
             scope[sn]['DB_LUAS_TANAH'] = R.data[0].DB_LUAS_TANAH;
             scope[sn]['DB_LUAS_BANGUNAN'] = R.data[0].DB_LUAS_BANGUNAN;
 			
-			if (scope.jenis_agunan_id==58)
-				scope[sn]['DB_LUAS_TANAH_PER_METER_PERSEGI'] = R.data[0].DB_LUAS_TANAH;
-                    
+//            if (scope.jenis_agunan_id==58){
+//                scope[sn]['DB_LUAS_TANAH_PER_METER_PERSEGI'] = R.data[0].DB_LUAS_TANAH;
+//                scope[sn]['DB_LUAS_PER_PENILAIAN'] = R.data[0].DB_LUAS_TANAH;
+//            } 
         }, function myError(R) {  
             console.log(R.statusText); 
             globalFunction.ag('danger',[R]); 
@@ -6619,7 +6620,7 @@ App.controller('informasiSurveyCtrl',function($scope, apiData, apiBase,$statePar
     $scope.fdISAL = {};
     
     $scope.postISAL = function(){					
-		if ($scope.formValid()){ /*FZL tambah validasi*/
+		if ($scope.formValid()){ /*FZL tambah validasi*/					
 				$scope.fdISAL.DB_PROSPEK_ID = $stateParams.id;
 				apiData.post({
 					gl      : true,
@@ -6648,10 +6649,11 @@ App.controller('informasiSurveyCtrl',function($scope, apiData, apiBase,$statePar
                 { fn : 'MS_STATUS_TEMPAT_ID',  fk : 'Status Tempat' },
                 { fn : 'PR_JARAK_ALAMAT',  fk : 'Jarak ke unit' }
             ]
-        });
-        return e;
-    };
-	
+        });							
+				
+		return e;		
+    };	
+			
     
     $scope.getlistISAL = function(id){
         apiData.get({
@@ -9282,10 +9284,19 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 $scope.TotalPenilaian = function(){ //FZL
                         var total = 0;
                         var penilaian = 0;
+						var penyusutan = 0;
                         for(var i = 0; i < R.data.length; i++){
+								if (R.data[i].MS_JENIS_PENILAIAN==1135){
+									penyusutan = (R.data[i].DB_NILAI_PASAR * R.data[i].DB_NILAI_PENYUSUTAN) / 100;																	
+								}else{
+									penyusutan = 0;
+								}								
                                 penilaian = parseInt(R.data[i].DB_NILAI_PASAR);
                                 total = total+penilaian;
                         }
+						// console.log('total',total);
+						// console.log('penyusutan',penyusutan);
+						total = total - penyusutan;
                         return total;
                 };
 					
@@ -9306,10 +9317,10 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 if ($scope.fdPNL.NILAI_PASAR_OVERWRITE == null)
                     $scope.fdPNL.NILAI_PASAR_OVERWRITE = 0;
                 
-                $scope.fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_1 / $scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI );
-                $scope.fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_2 / $scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI );
-                $scope.fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_3 / $scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI );
-                $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR / $scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI );
+                $scope.fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_1 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
+                $scope.fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_2 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
+                $scope.fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_3 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
+                $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
                 $scope.modalPNL();
             }
         });
@@ -9352,7 +9363,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 { k : 'Tgl Penilaian', v : $scope.fdPNL.DB_TGL_PENILAIAN },
                 { k : 'Nama Penilai', v : $scope.fdPNL.DB_NAMA_PENILAI },
                 { k : 'Jabatan', v : $scope.fdPNL.DB_JABATAN },
-                { k : 'Luas Tanah', v : $scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI, t : 'number' },
+                { k : 'Luas Tanah', v : $scope.fdPNL.DB_LUAS_PER_PENILAIAN, t : 'number' },
                 { k : 'Nilai Pasar (DNPT)', v : $scope.fdPNL.NILAI_PASAR_VALIDATOR, t : 'number' },
                 { k : 'Nilai Pasar 1(Sesuai NJOP)', v : $scope.fdPNL.DB_NILAI_PASAR_1, t : 'number' },
                 { k : 'Nilai Pasar 2', v : $scope.fdPNL.DB_NILAI_PASAR_2, t : 'number' },
@@ -9366,10 +9377,21 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
     
 })
 .controller('asPenilaianModalCtrl',function($scope,$rootScope,apiData,apiBase,globalFunction,$http){
+	
+    // $scope.$watchGroup(['fdPNL.DB_NILAI_PASAR','fdPNL.DB_PERSENTASE_LIKUIDASI'],function(dataLoaded){
+        // if (dataLoaded){
+            // $scope.fdPNL.DB_NILAI_LIKUIDASI = ($scope.fdPNL.DB_NILAI_PASAR * $scope.fdPNL.DB_PERSENTASE_LIKUIDASI) / 100;
+        // }
+    // });	
     
-    $scope.$watchGroup(['fdPNL.DB_NILAI_PASAR','fdPNL.DB_PERSENTASE_LIKUIDASI'],function(dataLoaded){
+    $scope.$watchGroup(['fdPNL.DB_NILAI_PASAR','fdPNL.DB_PERSENTASE_LIKUIDASI','fdPNL.DB_NILAI_PENYUSUTAN'],function(dataLoaded){
         if (dataLoaded){
-            $scope.fdPNL.DB_NILAI_LIKUIDASI = ($scope.fdPNL.DB_NILAI_PASAR * $scope.fdPNL.DB_PERSENTASE_LIKUIDASI) / 100;
+			if (typeof $scope.fdPNL.DB_NILAI_PENYUSUTAN == 'undefined') {
+				$scope.fdPNL.DB_NILAI_LIKUIDASI = ($scope.fdPNL.DB_NILAI_PASAR * $scope.fdPNL.DB_PERSENTASE_LIKUIDASI) / 100;
+			}else{
+				$scope.fdPNL.DB_NILAI_LIKUIDASI = ($scope.fdPNL.DB_NILAI_PASAR * $scope.fdPNL.DB_PERSENTASE_LIKUIDASI) / 100;
+				$scope.fdPNL.DB_NILAI_LIKUIDASI = $scope.fdPNL.DB_NILAI_LIKUIDASI - (($scope.fdPNL.DB_NILAI_LIKUIDASI * $scope.fdPNL.DB_NILAI_PENYUSUTAN) / 100);
+			}            
         }
     });
         
@@ -9416,7 +9438,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                         { fn : 'DB_NILAI_PASAR',  fk : 'Nilai Pasar' },
                         { fn : 'DB_PERSENTASE_LIKUIDASI',  fk : 'Presentase Likuidasi' },
                         { fn : 'DB_NILAI_LIKUIDASI',  fk : 'Nilai Likuidasi' },
-                        { fn : 'DB_LUAS_TANAH_PER_METER_PERSEGI',  fk : 'Luas Tanah' },
+                        { fn : 'DB_LUAS_PER_PENILAIAN',  fk : 'Luas Tanah' },
                         /*{ fn : 'NILAI_PASAR_VALIDATOR',  fk : 'Nilai Pasar Tanah (DNPT)' }*/
                 ]
             });
@@ -9443,7 +9465,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 globalFunction.ag('danger',['Nilai Pasar tidak boleh kecil dari DNPT']);
                 $scope.fdPNL.DB_NILAI_PASAR = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;
                
-                $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR / $scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI );
+                $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
             }
         }
     };
@@ -9452,7 +9474,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
             if ($scope.fdPNL.DB_NILAI_PASAR_1 > $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2) {
                 globalFunction.ag('danger',['Nilai Pasar 1 tidak boleh kecil dari DNPT']);
                 $scope.fdPNL.DB_NILAI_PASAR_1 = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;
-                $scope.fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_1 / $scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI );
+                $scope.fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_1 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
                 
             }
         }
@@ -9462,7 +9484,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
             if ($scope.fdPNL.DB_NILAI_PASAR_2 > $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2) {
                 globalFunction.ag('danger',['Nilai Pasar 2 tidak boleh kecil dari DNPT']);
                 $scope.fdPNL.DB_NILAI_PASAR_2 = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;
-                $scope.fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_2 / $scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI );
+                $scope.fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_2 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
                 
             }
         }
@@ -9472,29 +9494,29 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
             if ($scope.fdPNL.DB_NILAI_PASAR_3 > $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2) {
                 globalFunction.ag('danger',['Nilai Pasar 3 tidak boleh kecil dari DNPT']);
                 $scope.fdPNL.DB_NILAI_PASAR_3 = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;
-                $scope.fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_3 / $scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI );
+                $scope.fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_3 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
             }
         }
     };
     */
-    $scope.$watchGroup(['fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI'],function(dataLoaded){
+    $scope.$watchGroup(['fdPNL.DB_LUAS_PER_PENILAIAN'],function(dataLoaded){
         if (dataLoaded){
-           $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2  = ($scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI * $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER);
+           $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2  = ($scope.fdPNL.DB_LUAS_PER_PENILAIAN * $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER);
         }
     });
     
     $scope.$watchGroup([
-        'fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI',
+        'fdPNL.DB_LUAS_PER_PENILAIAN',
         'fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI',
         'fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI',
         'fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI',
         'fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI'
     ],function(dataLoaded){
         if (dataLoaded){
-           $scope.fdPNL.DB_NILAI_PASAR_1  = ($scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI * $scope.fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI);
-           $scope.fdPNL.DB_NILAI_PASAR_2  = ($scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI * $scope.fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI);
-           $scope.fdPNL.DB_NILAI_PASAR_3  = ($scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI * $scope.fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI);
-           $scope.fdPNL.DB_NILAI_PASAR  = ($scope.fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI * $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI);
+           $scope.fdPNL.DB_NILAI_PASAR_1  = ($scope.fdPNL.DB_LUAS_PER_PENILAIAN * $scope.fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI);
+           $scope.fdPNL.DB_NILAI_PASAR_2  = ($scope.fdPNL.DB_LUAS_PER_PENILAIAN * $scope.fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI);
+           $scope.fdPNL.DB_NILAI_PASAR_3  = ($scope.fdPNL.DB_LUAS_PER_PENILAIAN * $scope.fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI);
+           $scope.fdPNL.DB_NILAI_PASAR  = ($scope.fdPNL.DB_LUAS_PER_PENILAIAN * $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI);
         }
     });
     
@@ -11283,16 +11305,16 @@ App.controller('reviewAnalisaSensitivitasCtrl',function(){
         if (dataLoaded) {					
             $scope.fdRCR = $scope.DASE.RCR;
             $scope.fdRCR.PENJUALAN_PER_BULAN = $scope.DASE.RCR.RV_PENJUALAN_PERBULAN_SKENARIO_1;
-            $scope.fdRCR.HPP = parseInt($scope.DASE.RCR.RV_HPP_SKENARIO_1);
+            $scope.fdRCR.HPP = parseFloat($scope.DASE.RCR.RV_HPP_SKENARIO_1);
             $scope.fdRCR.TOTAL_BIAYA_OPERASIONAL_USAHA = $scope.DASE.RCR.RV_TOTAL_BIAYA_OPERASIONAL_USAHA_SKENARIO_1;
-            $scope.fdRCR.USAHA_LAINNYA_1 = parseInt($scope.DASE.RCR.RV_USAHA_LAINNYA_1_SKENARIO_1);			
-			$scope.fdRCR.USAHA_LAINNYA_2 = parseInt($scope.DASE.RCR.RV_USAHA_LAINNYA_2_SKENARIO_1);			
-            $scope.fdRCR.GAJI_SUAMI_ISTRI = parseInt($scope.DASE.RCR.RV_GAJI_SUAMI_ISTRI_SKENARIO_1);
+            $scope.fdRCR.USAHA_LAINNYA_1 = parseFloat($scope.DASE.RCR.RV_USAHA_LAINNYA_1_SKENARIO_1);			
+			$scope.fdRCR.USAHA_LAINNYA_2 = parseFloat($scope.DASE.RCR.RV_USAHA_LAINNYA_2_SKENARIO_1);			
+            $scope.fdRCR.GAJI_SUAMI_ISTRI = parseFloat($scope.DASE.RCR.RV_GAJI_SUAMI_ISTRI_SKENARIO_1);
             $scope.fdRCR.TOTAL_BIAYA_RM_TANGGA = $scope.DASE.RCR.RV_TOTAL_BIAYA_RUMAH_TANGGA_SKENARIO_1;
             $scope.fdRCR.RCR_USULAN_PINJAMAN_YANG_DIUSULKAN = $scope.DASE.RCR.RV_PINJAMAN_YANG_DIUSULKAN;
             $scope.fdRCR.RCR_USULAN_BUNGA = $scope.DASE.RCR.RV_BUNGA_YANG_DIUSULKAN;
             $scope.fdRCR.RCR_USULAN_TENOR = $scope.DASE.RCR.RV_TENOR_YANG_DIUSULKAN;
-            $scope.fdRCR.RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI = parseInt($scope.DASE.RCR.RV_ANGSURAN_PINJAMAN_SAAT_INI_SKENARIO_1);
+            $scope.fdRCR.RCR_USULAN_ANGSURAN_PINJAMAN_SAAT_INI = parseFloat($scope.DASE.RCR.RV_ANGSURAN_PINJAMAN_SAAT_INI_SKENARIO_1);
         }
     });
     
@@ -11851,8 +11873,8 @@ App.controller('reviewAsAgScrCtrl',function($scope,$rootScope,apiData,apiBase,$s
     $scope.nilaiPasarTanahRekomendasiPermeterPersegi = function(listRVAG){
         if (typeof(listRVAG) != 'undefined'){
             for (var i=0; i<listRVAG.length; i++){
-                $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN_PER_METER_PERSEGI[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] = $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] / listRVAG[i].DB_LUAS_TANAH_PER_METER_PERSEGI;
-				console.log('NILAI PASAR TANAH PER METER PERSEGI', $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] ,'  ', listRVAG[i].DB_LUAS_TANAH_PER_METER_PERSEGI );
+                $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN_PER_METER_PERSEGI[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] = $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] / listRVAG[i].DB_LUAS_PER_PENILAIAN;
+				console.log('NILAI PASAR TANAH PER METER PERSEGI', $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] ,'  ', listRVAG[i].DB_LUAS_PER_PENILAIAN );
             }
         }		        
     };
@@ -11862,7 +11884,7 @@ App.controller('reviewAsAgScrCtrl',function($scope,$rootScope,apiData,apiBase,$s
         $scope.fdSCR.TOTAL_NILAI_LIKUIDASI_DIREKOMENDASIKAN = 0;
         if (typeof(listRVAG) != 'undefined'){
             for (var i=0; i<listRVAG.length; i++){                
-                $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] = $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN_PER_METER_PERSEGI[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] * listRVAG[i].DB_LUAS_TANAH_PER_METER_PERSEGI;
+                $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] = $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN_PER_METER_PERSEGI[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] * listRVAG[i].DB_LUAS_PER_PENILAIAN;
                 
                 $scope.fdSCR.TOTAL_NILAI_LIKUIDASI_DIREKOMENDASIKAN = $scope.fdSCR.TOTAL_NILAI_LIKUIDASI_DIREKOMENDASIKAN + ( $scope.fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[listRVAG[i].DB_INDIVIDU_AGUNAN_ID.toString()] * listRVAG[i].DB_PERSENTASE_LIKUIDASI / 100 ) + listRVAG[i].DB_NILAI_LIKUIDASI_BANGUNAN;
 				

@@ -71,7 +71,7 @@ App.controller('reportNasabahCtrl', function (apiData, $scope, apiBase, $statePa
     
     $scope.modalRPT = function (prospekid) { 
         
-        $rootScope.namaREPORT = document.getElementById('reportnya' + prospekid).value;
+        $rootScope.namaREPORT = document.getElementById('reportnya' + prospekid).value;		
 
 		if ($rootScope.namaREPORT == 'SP3U'){					
 			$rootScope.PROSPEK_ID = prospekid;

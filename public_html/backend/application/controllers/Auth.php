@@ -303,6 +303,8 @@ class Auth extends CI_Controller {
 			
 			$R['POSISI_NAMA'] = $posisi_nama;
 			
+			$R['ROLE_MENU'] = $this->get_role($R['POSISI_NAMA']);
+			
 			$this->session->login = $R;
 			
         } 		
