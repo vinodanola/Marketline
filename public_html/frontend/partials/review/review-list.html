@@ -59,7 +59,7 @@
                 <ul class="thead thead-action list-inline">
                     <li>
                         <!--<input type="text" placeholder="Cari" ng-model="SEARCH_REVIEW"/>-->
-                        <input type="text" placeholder="Cari" ng-model="fdPL.SEARCH"/>
+                        <input type="text" placeholder="Cari" ng-model="fdPL.SEARCH" ng-model-options="{ debounce: 1000 }" />
                     </li>
                     <li>
                         <select class="form-control" ng-model="fdPL.LIMIT" ng-options="x as (x) for x in $root.tableItemPerPage">

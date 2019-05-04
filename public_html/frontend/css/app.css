@@ -889,7 +889,16 @@ code.code-response {
     padding: 10px;
     font-size: 0;
     width: 400px;
-    overflow: hidden; }
+    overflow: hidden;
+    /*                &:before{
+                        content: "";
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        background: #000;
+                    }*/ }
     .ap-navbar .navbar-nav > li > .dropdown-menu-navbar-ap li {
       padding: 10px;
       text-align: center;
@@ -946,6 +955,18 @@ code.code-response {
           padding: 10px; }
           .ap-navbar .navbar-nav > li > .dropdown-menu-navbar-ap li.list .media .media-body p {
             margin: 0; }
+        .ap-navbar .navbar-nav > li > .dropdown-menu-navbar-ap li.list.sy {
+          border-left: 5px solid #3dac38;
+          background: #eeffee;
+          cursor: default; }
+          .ap-navbar .navbar-nav > li > .dropdown-menu-navbar-ap li.list.sy a:hover {
+            background: #eeffee; }
+        .ap-navbar .navbar-nav > li > .dropdown-menu-navbar-ap li.list.kv {
+          border-left: 5px solid #3a7dc4;
+          background: #f2f3fe;
+          cursor: default; }
+          .ap-navbar .navbar-nav > li > .dropdown-menu-navbar-ap li.list.kv a:hover {
+            background: #f2f3fe; }
   .ap-navbar .navbar-nav > li.dropdown.open
   > .dropdown-toggle .caret-menu {
     position: absolute;
@@ -989,7 +1010,10 @@ code.code-response {
         background: #fff;
         border-radius: 0 0 3px 3px;
         max-height: 400px;
-        overflow-y: auto; }
+        overflow-y: auto;
+        -webkit-box-shadow: 0px 10000px 0px 10000px rgba(0, 0, 0, 0.59);
+        -moz-box-shadow: 0px 10000px 0px 10000px rgba(0, 0, 0, 0.59);
+        box-shadow: 0px 10000px 0px 10000px rgba(0, 0, 0, 0.59); }
         .ap-navbar .navbar-nav.navbar-dsp > li.dropdown .dropdown-menu .dropdown-menu-head {
           position: relative;
           float: left;
@@ -2236,5 +2260,73 @@ hr.no-margin {
   width: 100%;
   height: 100%;
   background: transparent; }
+
+.c-dropdown__outer {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  padding-top: 6px;
+  -webkit-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  z-index: 10; }
+
+.c-category-navbar__backdrop {
+  display: inline-block;
+  position: fixed;
+  top: 43px;
+  left: 50%;
+  height: 100%;
+  width: 100%;
+  border-radius: 0;
+  background-color: #000;
+  opacity: .32;
+  right: 0;
+  z-index: 9;
+  overflow: hidden; }
+
+/* Syariah Theme */
+html.sy {
+  background: #f8fffa; }
+  html.sy a {
+    color: #189577; }
+    html.sy a.btn {
+      color: #fff; }
+      html.sy a.btn.btn-default {
+        color: #333; }
+  html.sy .ap-navbar {
+    border-bottom: 1px solid #049d48;
+    background: #0aa176; }
+    html.sy .ap-navbar .navbar-nav > li > a, html.sy .ap-navbar .navbar-nav > li a:focus {
+      color: #fff;
+      font-weight: bold;
+      text-shadow: none; }
+  html.sy .subnav > li.active > a, html.sy .subnav > li.active > a:hover, html.sy .subnav > li.active > a:focus {
+    color: #a6ce37; }
+  html.sy .table .thead {
+    background: #19b487;
+    color: #fff; }
+    html.sy .table .thead th {
+      border-top-color: #19b487; }
+  html.sy .table-striped > tbody > tr.tr-head:nth-of-type(odd) {
+    background-color: #16a57c; }
+  html.sy .pagination > .active > a, html.sy .pagination > .active > span {
+    background-color: #16a57c;
+    border-color: transparent; }
+  html.sy .step a > span {
+    background: #16a57c; }
+  html.sy .step a.active > span {
+    background: #a6ce37; }
+  html.sy .panel.panel-ds-tp .panel-heading {
+    background: #f8fffa; }
+    html.sy .panel.panel-ds-tp .panel-heading .thead.thead-action {
+      color: #189577; }
+    html.sy .panel.panel-ds-tp .panel-heading .panel-body .table-striped > tbody > tr:nth-of-type(odd) {
+      background-color: #f8fffa; }
+  html.sy .container.container-hm2 .div-hm2-header {
+    background-image: url("../images/header-sy.png");
+    padding-top: 90px; }
 
 /*# sourceMappingURL=app.css.map */

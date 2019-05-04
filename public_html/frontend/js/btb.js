@@ -717,9 +717,11 @@
                 // Nilai Pasar Bangunan (Rp)	: Biaya Reproduksi Total - Penyusutan(Final)
 
                 $scope.fdBTB.NILAI_PASAR_BANGUNAN_BIAYA_REPRODUKSI = 
-                        ($scope.fdBTB.TOTAL_HARGA_BANGUNAN_PER_METER_PERSEGI +
-                        $scope.fdBTB.TOTAL_BIAYA_LANGSUNG +
-                        $scope.fdBTB.TOTAL_BIAYA_TIDAK_LANGSUNG) * 1000;
+                        (Math.round(
+                            ($scope.fdBTB.TOTAL_HARGA_BANGUNAN_PER_METER_PERSEGI +
+                            $scope.fdBTB.TOTAL_BIAYA_LANGSUNG +
+                            $scope.fdBTB.TOTAL_BIAYA_TIDAK_LANGSUNG) * 1000 * 0.1) / 0.1) 
+                        ;
                 
                 $scope.fdBTB.NILAI_PASAR_BANGUNAN_BIAYA_REPRODUKSI_TOTAL =
                         $scope.fdBTB.DB_LUAS_BANGUNAN * $scope.fdBTB.NILAI_PASAR_BANGUNAN_BIAYA_REPRODUKSI;
@@ -1009,9 +1011,9 @@
 			$scope.validasi = function(d){
 				
 				// console.log('d',$scope.fdBTB[d['MODEL']]);
-				var volume=0;				
+				var volume=parseFloat(0);				
 				for (var x in $scope.fdBTB[d['MODEL']]){
-					 volume = volume+$scope.fdBTB[d['MODEL']][x].VOL;					 
+					 volume = volume+parseFloat($scope.fdBTB[d['MODEL']][x].VOL);					 
 				}						
 				
 				if (volume>100){
@@ -1032,9 +1034,9 @@
             $scope.validasi = function(d){
 				
 				// console.log('d',$scope.fdBTB[d['MODEL']]);
-				var volume=0;				
+				var volume=parseFloat(0);			
 				for (var x in $scope.fdBTB[d['MODEL']]){
-					 volume = volume+$scope.fdBTB[d['MODEL']][x].VOL;					 
+					 volume = volume+parseFloat($scope.fdBTB[d['MODEL']][x].VOL);					 
 				}						
 				
 				if (volume>100){
@@ -1049,7 +1051,7 @@
 			$scope.$watch('fdBTB.RANGKA_ATAP', function () { $scope.validasi({MODEL:'RANGKA_ATAP'}) },true);			
 			$scope.$watch('fdBTB.PENUTUP_ATAP', function () { $scope.validasi({MODEL:'PENUTUP_ATAP'}) },true);			
 			$scope.$watch('fdBTB.DINDING_MATERIAL_UTAMA', function () { $scope.validasi({MODEL:'DINDING_MATERIAL_UTAMA'}) },true);			
-			$scope.$watch('fdBTB.DINDING_MATERIAL_PENDUKUNG', function () { $scope.validasi({MODEL:'DINDING_MATERIAL_PENDUKUNG'}) },true);			
+			// $scope.$watch('fdBTB.DINDING_MATERIAL_PENDUKUNG', function () { $scope.validasi({MODEL:'DINDING_MATERIAL_PENDUKUNG'}) },true);			
 			$scope.$watch('fdBTB.PINTU_JENDELA', function () { $scope.validasi({MODEL:'PINTU_JENDELA'}) },true);			
 			$scope.$watch('fdBTB.LANGIT_LANGIT', function () { $scope.validasi({MODEL:'LANGIT_LANGIT'}) },true);			
 			$scope.$watch('fdBTB.LANTAI', function () { $scope.validasi({MODEL:'LANTAI'}) },true);			

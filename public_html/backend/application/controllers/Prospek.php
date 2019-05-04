@@ -200,8 +200,13 @@ class Prospek extends CI_Controller {
         $MS_KODE_UNIT   = $this->session->login['UNIT_KODE'] ? $this->session->login['UNIT_KODE'] : $g['MS_KODE_UNIT'];
         
         $search = $g['SEARCH'] ? base64_encode($g['SEARCH']) : '';
+		
+		$cluster_cabang = $this->session->login['CLUSTER']['CABANG'] ? implode(',',$this->session->login['CLUSTER']['CABANG']) : '';						
+		if ($this->session->login['POSISI_NAMA'] == 'REVIEWER') {
+           $MS_KODE_CABANG = $g['MS_KODE_CABANG'];
+	    }
         
-        get_api($this->config->item('baseAPI').'prospek/get_wizard/?DB_ID_SDM_AOM='.$ID_SDM.'&PAGE='.$g['PAGE'].'&LIMIT='.$g['LIMIT'].'&MS_WILAYAH_ID='.$MS_WILAYAH_ID.'&MS_KODE_CABANG='.$MS_KODE_CABANG.'&MS_KODE_UNIT='.$MS_KODE_UNIT.'&SEARCH='.$search);
+        get_api($this->config->item('baseAPI').'prospek/get_wizard/?DB_ID_SDM_AOM='.$ID_SDM.'&PAGE='.$g['PAGE'].'&LIMIT='.$g['LIMIT'].'&MS_WILAYAH_ID='.$MS_WILAYAH_ID.'&MS_KODE_CABANG='.$MS_KODE_CABANG.'&MS_KODE_UNIT='.$MS_KODE_UNIT.'&SEARCH='.$search.'&CLUSTER_CABANG='.$cluster_cabang);
         
     }
     

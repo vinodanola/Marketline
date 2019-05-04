@@ -18,7 +18,8 @@
         <td>{{$index + 1}}</td>
         <td>{{x.MS_JENIS_AGUNAN_DESKRIPSI}}</td>
         <td class="text-right">{{x.NILAI_PASAR | number:2}}
-			<br><br>Harga Tanah <br> {{x.NILAI_PASAR_TANAH/x.DB_LUAS_TANAH_PER_METER_PERSEGI | number:2 }}	M<sup>2</sup>		
+			<!--br><br>Harga Tanah <br> {{x.NILAI_PASAR_TANAH/x.DB_LUAS_TANAH_PER_METER_PERSEGI | number:2 }}	M<sup>2</sup-->		
+			<br><br>Harga Tanah <br> {{x.NILAI_PASAR_TANAH/x.DB_LUAS_PER_PENILAIAN | number:2 }}	M<sup>2</sup>								
 		</td>	
         <td class="text-right">{{x.NILAI_LIKUIDASI | number:2}}</td>
         <td class="text-right">{{x.NILAI_LIKUIDASI_SEBELUMNYA | number:2}}</td>
@@ -32,7 +33,8 @@
                 </div>
             </div>
             <input type="text" class="form-control hide" ui-number-mask="0" ng-model="fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[x.DB_INDIVIDU_AGUNAN_ID.toString()]" />
-			Luas Tanah {{x.DB_LUAS_TANAH_PER_METER_PERSEGI}} M<sup>2</sup>
+			<!--Luas Tanah {{x.DB_LUAS_TANAH_PER_METER_PERSEGI}} M<sup>2</sup-->
+			Luas Tanah {{x.DB_LUAS_PER_PENILAIAN}} M<sup>2</sup>
 			</br>
             Total {{fdSCR.NILAI_PASAR_TANAH_DIREKOMENDASIKAN[x.DB_INDIVIDU_AGUNAN_ID.toString()] | number:2}}
         </td>

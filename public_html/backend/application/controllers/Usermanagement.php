@@ -53,6 +53,55 @@ class Usermanagement extends CI_Controller {
         get_api($this->config->item('baseAPI').'user_management/group_available');
         
     }
+	
+	
+    #user alternate
+	
+    public function get_alternate_list(){        
+		
+        $g = $this->input->get();
+
+        // var_dump($g);die();
+        
+        $MS_KODE_CABANG = $this->session->login['CABANG_KODE'] ? $this->session->login['CABANG_KODE'] : $g['MS_KODE_CABANG'];
+        $MS_KODE_UNIT   = $this->session->login['UNIT_KODE'] ? $this->session->login['UNIT_KODE'] : $g['MS_KODE_UNIT'];
+        
+        $search = $g['SEARCH'] ? base64_encode($g['SEARCH']) : '';
+        
+        get_api($this->config->item('baseAPI').'user_management/alternate_list?PAGE='.$g['PAGE'].'&LIMIT='.$g['LIMIT'].'&MS_KODE_CABANG='.$MS_KODE_CABANG.'&MS_KODE_UNIT='.$MS_KODE_UNIT.'&SEARCH='.$search);
+        
+    }
+    
+    public function get_sso_list(){        
+		
+        $g = $this->input->get();
+
+        // var_dump($g);die();
+        
+        $MS_KODE_CABANG = $this->session->login['CABANG_KODE'] ? $this->session->login['CABANG_KODE'] : $g['MS_KODE_CABANG'];
+        $MS_KODE_UNIT   = $this->session->login['UNIT_KODE'] ? $this->session->login['UNIT_KODE'] : $g['MS_KODE_UNIT'];
+        
+        $search = $g['SEARCH'] ? base64_encode($g['SEARCH']) : '';
+        
+        get_api($this->config->item('baseAPI').'user_management/user_sso_list?PAGE='.$g['PAGE'].'&LIMIT='.$g['LIMIT'].'&MS_KODE_CABANG='.$MS_KODE_CABANG.'&MS_KODE_UNIT='.$MS_KODE_UNIT.'&SEARCH='.$search);
+        
+    }
+	
+    public function set_user_alternate(){
+        
+        $p = $this->input->post();				
+        
+        post_api($this->config->item('baseAPI').'user_management/set_user_alternate',$p);
+        
+    }
+	
+    public function delete_user_alternate(){
+        
+        $p = $this->input->post();				
+        
+        post_api($this->config->item('baseAPI').'user_management/delete_user_alternate',$p);
+        
+    }	
     
 }
 

@@ -30,7 +30,7 @@
     <div class="form-group" ng-show="fdAS.jalan_akses==0">
         <label>Jika Ada(Lebar Jalan) *</label>
         <div class="input-group">
-            <input type="text" class="form-control" ng-model="fdAS.DB_LEBAR_JALAN"/>
+            <input type="text" class="form-control" ng-model="fdAS.DB_LEBAR_JALAN" restrict="reject" mask="999999"/>
             <span class="input-group-addon">M</span>
         </div>
 			

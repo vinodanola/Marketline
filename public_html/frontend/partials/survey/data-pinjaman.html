@@ -1,7 +1,7 @@
 <div class="col-md-6 col-padding-110 col-has-border-right">
     <div class="form-group">
         <label>Business Type *</label>
-        <select class="form-control" ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" ng-model="fdKS.MS_JENIS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PRODUK_ID">
+        <select class="form-control" ng-disabled="$root.$storage.SESSION_LOGIN.POSISI_NAMA!='SUPERADMIN'" ng-model="fdKS.MS_JENIS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PRODUK_ID">
             <option></option>
         </select>
     </div>
@@ -51,7 +51,7 @@
     
 	
     <div class="form-group">
-        <label>Bunga / Margin *</label>
+        <label>{{fdKS.MS_JENIS_PRODUK_ID == 474 ? 'Margin' : 'Bunga'}} *</label>
         <div class="input-group">
             <input ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" type="text" class="form-control" ng-model="fdKS.MS_BUNGA_PERBULAN" ui-number-mask="2" ng-change="fdKS.MS_ANGSURAN_PERBULAN = null"/>
             <span class="input-group-addon">% / Bulan</span>
@@ -99,7 +99,7 @@
 
     
 
-    <div class="form-group" ng-show="fdKS.MS_JENIS_PRODUK_ID == 474">
+    <div class="form-group" ng-show="fdKS.MS_JENIS_PRODUK_ID == 474 && fdKS.MS_JENIS_PEMBIAYAAN_ID == 110">
         <label>Jenis Top Up *</label>
         <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_JENIS_TOP_UP_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_TOP_UP_ID">
             <option></option>

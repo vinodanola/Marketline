@@ -38,7 +38,7 @@ class Auth extends CI_Controller {
         if (strtoupper($R->login[0]->data[0]->username) == strtoupper('aprabowo0708'))
             $R->login[0]->data[0]->posisi_nama = 'SUPERADMIN';
 		
-		if (strtoupper($R->login[0]->data[0]->username) == strtoupper('fzainal0707'))
+        if (strtoupper($R->login[0]->data[0]->username) == strtoupper('fzainal0707'))
             $R->login[0]->data[0]->posisi_nama = 'ADMIN-MRG';
         
         $Rf = [
@@ -80,9 +80,10 @@ class Auth extends CI_Controller {
                 ],
                 "message" => "Data tidak ditemukan."
             ],
-            'MY_PEMBIAYAAN' => $this->get_my_pembiayaan_id($R->login[0]->data[0]->idsdm) ? $this->get_my_pembiayaan_id($R->login[0]->data[0]->idsdm) : [],
+//            'MY_PEMBIAYAAN' => $this->get_my_pembiayaan_id($R->login[0]->data[0]->idsdm) ? $this->get_my_pembiayaan_id($R->login[0]->data[0]->idsdm) : [],
             
         ];
+		
         
         $Rf['ROLE_MENU'] = $this->get_role($Rf['POSISI_NAMA']);
         
@@ -90,7 +91,11 @@ class Auth extends CI_Controller {
         
         $Rf['CLUSTER'] = $this->get_custom_cluster($Rf['POSISI_NAMA'],$Rf['ID_SDM']);
 		
-		$Rf['RANGKAP_USER'] = $this->cek_rangkap_posisi_user($R->login[0]->data[0]->username);
+        $Rf['RANGKAP_USER'] = $this->cek_rangkap_posisi_user($R->login[0]->data[0]->username);
+
+        $Rf['ACCESS_UPDATE'] = $this->cek_user_update($Rf['POSISI_NAMA'],$Rf['ROLE_MENU']);
+        
+        $Rf['BUSINESS_TYPE'] = $this->cek_detail_unit($Rf['UNIT_KODE'])[0]->MS_BUSINESS_TYPE;
         
         // if (strtoupper($Rf['USERNAME']) == 'AWICAKSONO0123')
             // $Rf['UNIT_KODE'] = 'PLIT';	
@@ -274,15 +279,15 @@ class Auth extends CI_Controller {
             // else
                 // $R['CABANG'] = ['NO_BRANCH'];						
 			
-			if (is_object($D) && count($D) > 0) {				
-				$R['CABANG'] = $D->cabang;	
-				$R['WILAYAH'] = $D->wilayah;										
-				$R['KRW'] = $D->krw;
-			}else{
-				$R['CABANG'] = ['NO_BRANCH'];
-				$R['WILAYAH'] = ['NO_WILAYAH'];
-				$R['KRW'] = false;
-			}
+            if (is_object($D) && count($D) > 0) {				
+                $R['CABANG'] = $D->cabang;	
+                $R['WILAYAH'] = $D->wilayah;										
+                $R['KRW'] = $D->krw;
+            } else {
+                $R['CABANG'] = ['NO_BRANCH'];
+                $R['WILAYAH'] = ['NO_WILAYAH'];
+                $R['KRW'] = false;
+            }
 				
         } else {
             $R = false;
@@ -292,27 +297,50 @@ class Auth extends CI_Controller {
         
     }
 	
-	public function get_posisi_nama_rangkap(){			
+    public function get_posisi_nama_rangkap(){			
 		
-		$R = ['STATUS' => FALSE]; 
+        $R = ['STATUS' => FALSE]; 
+
+        $posisi_nama = $this->input->get('POSISI_NAMA');
 		
-		$posisi_nama = $this->input->get('POSISI_NAMA');
+        $kode_unit = $this->input->get('UNIT_KODE');
+        
+        $nama_unit = $this->input->get('UNIT_NAMA');
+        
+        $business_type = $this->input->get('BUSINESS_TYPE');
         
         if ($this->session->login['STATUS'] == TRUE){
             $R = $this->session->login;
 			
-			$R['POSISI_NAMA'] = $posisi_nama;
+            $R['POSISI_NAMA'] = $posisi_nama;
 			
-			$R['ROLE_MENU'] = $this->get_role($R['POSISI_NAMA']);
-			
-			$this->session->login = $R;
+            $R['UNIT_KODE'] = $kode_unit;
+            
+            $R['UNIT_NAMA'] = $nama_unit;
+            
+            $R['BUSINESS_TYPE'] = $business_type;
+
+            $R['ROLE_MENU'] = $this->get_role($R['POSISI_NAMA']);
+
+            $this->session->login = $R;
 			
         } 		
 		
-		echo json_encode([
-			'status' => true,
-			'desc' => 'success'
-		]);
+        echo json_encode([
+            'status' => true,
+            'desc' => 'success'
+        ]);
+    }
+		
+    public function cek_user_update($role,$menu){				
+        foreach ($menu as $val){
+            $status = $val=='AU-1' ? 1 : 0;
+        }		
+        return $status;
+    }
+    
+    public function cek_detail_unit($A){
+        return json_decode(get_api($this->config->item('baseAPI').'user_management/get_detail_unit/?MS_KODE_UNIT='.$A,'','RTN')); 
     }
     
 }

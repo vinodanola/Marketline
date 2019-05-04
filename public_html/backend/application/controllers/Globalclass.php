@@ -107,7 +107,12 @@ class Globalclass extends CI_Controller {
         
         $ticket_alf = $this->get_ticket_alfresco();
         
-        $a = $this->config->item('baseAlfresco').'s/slingshot/node/content/workspace/SpacesStore/'.$get['NODE_ID'].'/?a=true&alf_ticket='.$ticket_alf.'&format=json';
+        if ($get['NODE_ID'])
+        {
+            $a = $this->config->item('baseAlfresco').'s/slingshot/node/content/workspace/SpacesStore/'.$get['NODE_ID'].'/?a=true&alf_ticket='.$ticket_alf.'&format=json';
+        } else {
+            $a = $this->config->item('ftpDoc') . $get['dok'];
+        }
         $b = fopen($a, 'rb');
         
         $pd = explode('.', $get['dok']);

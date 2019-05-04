@@ -56,6 +56,9 @@
                     <span class="text-danger small" ng-show="{{$storage.SESSION_LOGIN.PAR_NPL_MARKETING.data[0].IS_CL_UNIT == 1}}">&middot; Unit Close Landing</span>
                 </a>
             </li>
+            <li class="hide-on-mobile" >				
+                <a>{{$storage.SESSION_LOGIN.NAMA}} - {{$storage.SESSION_LOGIN.UNIT_NAMA}} ({{$storage.SESSION_LOGIN.POSISI_NAMA}})</a>	
+            </li>
             <li class="dropdown" uib-dropdown on-toggle="toggled(open)" is-open="isopen" auto-close="outsideClick" >
                 <a uib-dropdown-toggle>
                     Menu <span class="ion ion-ios-arrow-down"></span>
@@ -100,7 +103,7 @@
                         </li>
                         <li class="list">
                             <a ui-sref="usermanagement.group.setting" menu-alias="M-98">Setting</a>
-                        </li>
+                        </li>						
                     </ng-show>
                     <ng-show ng-show="menuShow == 'prospek'">
                         <li class="list tit">
@@ -183,29 +186,23 @@
                     </ng-show>
                 </ul>
             </li>
-            <li class="hide-on-mobile" >				
-                <a>{{$storage.SESSION_LOGIN.NAMA}} - {{$storage.SESSION_LOGIN.POSISI_NAMA}}</a>				
-				<li ng-show="$storage.SESSION_LOGIN.RANGKAP_USER.RANGKAP == 1" class="dropdown" uib-dropdown on-toggle="toggled(open)" is-open="yesopen" auto-close="outsideClick" >
-					<a uib-dropdown-toggle>
-						Jabatan <span class="ion ion-ios-arrow-down"></span>
-						<span class="caret-menu"></span>
-				</a>
-					<ul class="dropdown-menu dropdown-menu-navbar-ap" uib-dropdown-menu aria-labelledby="simple-dropdown" >
-                         <li class="list">
-							<ng-show ng-show="$storage.SESSION_LOGIN.RANGKAP_USER.KKU == 1">
-                            <a ng-click="settingRangkap('KKU')" >KKU</a>
-							</ng-show>
-							<ng-show ng-show="$storage.SESSION_LOGIN.RANGKAP_USER.KAM == 1">
-							<a ng-click="settingRangkap('KAM')">KAM</a>
-							</ng-show>
-							<ng-show ng-show="$storage.SESSION_LOGIN.RANGKAP_USER.AOM == 1">
-							<a ng-click="settingRangkap('AOM')">AOM</a>
-							</ng-show>
-                        </li>
-					</ul>
-				</li>
+            <li ng-show="$storage.SESSION_LOGIN.RANGKAP_USER.RANGKAP == 1" class="dropdown" is-open="{{$root.dropdownUnitChoice}}" uib-dropdown on-toggle="$root.dropdownUnitChoiceToggle()" auto-close="outsideClick" >
+                <a uib-dropdown-toggle>
+                    Unit & Jabatan <span class="ion ion-ios-arrow-down"></span>
+                    <span class="caret-menu"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-navbar-ap" uib-dropdown-menu aria-labelledby="simple-dropdown" >
+                    <li class="list" ng-repeat="(k,v) in $storage.SESSION_LOGIN.RANGKAP_USER.ROLE" ng-class="v.BUSINESS_TYPE == 'SY' ? 'sy' : v.BUSINESS_TYPE == 'KV' ? 'kv' : ''">								
+                        <a>
+                            <b>{{v.UNIT_NAMA}} - {{k}}</b>
+                            <button ng-repeat="xP in v.POSISI" ng-click="settingRangkap({nama_unit:v.UNIT_NAMA, posisi:xP, kode_unit:k, business_type:v.BUSINESS_TYPE})" class="btn btn-default" style="margin-left: 5px;">{{xP}}</button>
+                            <br>
+                            <small>{{v.BUSINESS_TYPE == 'SY' ? 'Syariah' : v.BUSINESS_TYPE == 'KV' ? 'Konvensional' : 'Business Type Undefined'}}</small>
+                        </a>																	
+                    </li>
+                    <!--<div class="c-category-navbar__backdrop c-dropdown__outer u-display-inline-block" style="visibility: visible;"></div>-->
+                </ul>	
             </li>								
-			
             <li>
                 <a ui-sref="login" ng-click="$root.logout();">Sign out</a>
             </li>

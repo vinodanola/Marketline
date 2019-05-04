@@ -47,7 +47,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         /* APPS */
         .state('apps', {
             url: '/',
-            templateUrl: 'partials/global/apps.html',
+            templateUrl: 'partials/global/apps.html?UNIQID='+Math.random(),
             controller: 'appsCtrl',
             data: {
                 pageTitle: 'MarketLine'
@@ -57,7 +57,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         /* LOGIN */
         .state('login', {
             url: '/login',
-            templateUrl: 'partials/login.html',
+            templateUrl: 'partials/login.html?UNIQID='+Math.random(),
             controller: 'loginCtrl',
             data: {
                 pageTitle: 'Login'
@@ -67,7 +67,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         /* HOME */
         .state('home', {
             url: '/home',
-            templateUrl: 'partials/home.html',
+            templateUrl: 'partials/home.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Home'
             }
@@ -76,7 +76,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         /* HOME (HOME2) */
         .state('home_', {
             url: '/home_',
-            templateUrl: 'partials/home2.html',
+            templateUrl: 'partials/home2.html?UNIQID='+Math.random(),
             controller : 'home2Ctrl',
             data: {
                 pageTitle: 'Home'
@@ -89,7 +89,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('usermanagement', {
             url: '/user-management',
-            templateUrl: 'partials/user_management/user-management.html',
+            templateUrl: 'partials/user_management/user-management.html?UNIQID='+Math.random(),
 //            controller: 'userManagementCtrl',
             data: {
                 pageTitle: 'Manajemen Pengguna'
@@ -98,7 +98,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('usermanagement.group', {
             url: '/group',
-            templateUrl: 'partials/user_management/user-management-group.html',
+            templateUrl: 'partials/user_management/user-management-group.html?UNIQID='+Math.random(),
 //            controller: 'userManagementGroupCtrl',
             data: {
                 pageTitle: 'Manajemen Pengguna - Group'
@@ -107,12 +107,21 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('usermanagement.group.setting', {
             url: '/setting',
-            templateUrl: 'partials/user_management/user-management-group-setting.html',
+            templateUrl: 'partials/user_management/user-management-group-setting.html?UNIQID='+Math.random(),
             controller: 'userManagementSettingCtrl',
             data: {
                 pageTitle: 'Group - Setting'
             }
         })
+		
+		.state('usermanagement.group.alternate', {
+            url: '/alternate',
+            templateUrl: 'partials/user_management/user-management-alternate.html?UNIQID='+Math.random(),
+            controller: 'userAlternateSettingCtrl',
+            data: {
+                pageTitle: 'User - Alternate'
+            }
+        })		
         
         
         /* ==================================================================================
@@ -121,7 +130,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek', {
             url: '/prospek/:id',
-            templateUrl: 'partials/prospek-index.html',
+            templateUrl: 'partials/prospek-index.html?UNIQID='+Math.random(),
             controller: 'prospekCtrl',
             data: {
                 pageTitle: 'Prospek'
@@ -132,12 +141,12 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('identitasindividu.mandatory', {
             url: '/identitas-individu-mandatory',
-            templateUrl: 'partials/prospek-mandatory.html',
+            templateUrl: 'partials/prospek-mandatory.html?UNIQID='+Math.random(),
             controller: 'prospekCreate'
         })
         .state('identitasindividu.kategori', {
             url: '/identitas-individu-kategori',
-            templateUrl: 'partials/prospek-kategori.html'
+            templateUrl: 'partials/prospek-kategori.html?UNIQID='+Math.random()
         })
         
         /* =================== IDENTITAS INDIVIDU ====================== */
@@ -155,21 +164,21 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek.identitasindividu.informasipribadi', {
             url: '/identitas-individu-informasi-pribadi',
-            templateUrl: 'partials/prospek-informasi-pribadi.html',
+            templateUrl: 'partials/prospek-informasi-pribadi.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Informasi Pribadi'
             }
         })
         .state('prospek.identitasindividu.dokumenidentitas', {
             url: '/identitas-individu-dokumen-identitas',
-            templateUrl: 'partials/prospek-dokumen-identitas.html',
+            templateUrl: 'partials/prospek-dokumen-identitas.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Dokumen Identitas'
             }
         })
         .state('prospek.identitasindividu.kontak', {
             url: '/identitas-individu-kontak',
-            templateUrl: 'partials/prospek-kontak2.html',
+            templateUrl: 'partials/prospek-kontak2.html?UNIQID='+Math.random(),
             controller: 'identitasIndividuKontakCtrl',
             data: {
                 pageTitle: 'Kontak'
@@ -177,7 +186,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         })
         .state('prospek.identitasindividu.referensi', {
             url: '/identitas-individu-referensi',
-            templateUrl: 'partials/identitas-individu-referensi.html',
+            templateUrl: 'partials/identitas-individu-referensi.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Referensi'
             }
@@ -187,7 +196,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek.identitasindividu.alamat', {
             url: '/identitas-individu-alamat',
-            templateUrl: 'partials/prospek-alamat.html',
+            templateUrl: 'partials/prospek-alamat.html?UNIQID='+Math.random(),
             controller: 'identitasIndividuAlamatCtrl',
             data: {
                 pageTitle: 'Alamat'
@@ -195,21 +204,21 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         })
         .state('prospek.identitasindividu.alamat.ktp', {
             url: '/identitas-individu-alamat-ktp',
-            templateUrl: 'partials/prospek-alamat-ktp.html',
+            templateUrl: 'partials/prospek-alamat-ktp.html?UNIQID='+Math.random(),
             params : {
                 adrstype : 'ktp'
             }
         })
         .state('prospek.identitasindividu.alamat.domisili', {
             url: '/identitas-individu-alamat-domisili',
-            templateUrl: 'partials/prospek-alamat-domisili.html',
+            templateUrl: 'partials/prospek-alamat-domisili.html?UNIQID='+Math.random(),
             params : {
                 adrstype : 'domisili'
             }
         })
         .state('prospek.identitasindividu.alamat.tempatusaha', {
             url: '/identitas-individu-alamat-tempat-usaha',
-            templateUrl: 'partials/prospek-alamat-tempat-usaha.html',
+            templateUrl: 'partials/prospek-alamat-tempat-usaha.html?UNIQID='+Math.random(),
             params : {
                 adrstype : 'tempatusaha'
             }
@@ -219,28 +228,28 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek.identitasindividu.statuspekerjaan', {
             url: '/identitas-individu-status-pekerjaan',
-            templateUrl: 'partials/prospek-status-pekerjaan.html',
+            templateUrl: 'partials/prospek-status-pekerjaan.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Status Pekerjaan'
             }
         })
         .state('prospek.identitasindividu.pendidikan', {
             url: '/identitas-individu-pendidikan',
-            templateUrl: 'partials/prospek-pendidikan.html',
+            templateUrl: 'partials/prospek-pendidikan.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Pendidikan'
             }
         })
         .state('prospek.identitasindividu.submit', {
             url: '/identitas-individu-submit',
-            templateUrl: 'partials/prospek-submit.html'
+            templateUrl: 'partials/prospek-submit.html?UNIQID='+Math.random()
         })
         
         /* LAINNYA */
         
         .state('prospek.identitasindividu.lainnya', {
             url: '/identitas-individu-lainnya',
-            templateUrl: 'partials/prospek-identitas-individu-lainnya.html',
+            templateUrl: 'partials/prospek-identitas-individu-lainnya.html?UNIQID='+Math.random(),
             controller : '',
             data: {
                 pageTitle: 'Lainnya'
@@ -251,12 +260,12 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek.keluarga', {
             url: '/keluarga',
-            templateUrl: 'partials/keluarga.html',
+            templateUrl: 'partials/keluarga.html?UNIQID='+Math.random(),
             controller: 'keluargaCtrl'
         })
         .state('prospek.keluarga.data', {
             url: '/keluarga-data',
-            templateUrl: 'partials/keluarga-data.html',
+            templateUrl: 'partials/keluarga-data.html?UNIQID='+Math.random(),
             controller: 'keluargaData',
             data: {
                 pageTitle: 'Data Keluarga'
@@ -264,15 +273,15 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         })
         .state('prospek.keluarga.hubungan', {
             url: '/keluarga-hubungan',
-            templateUrl: 'partials/keluarga-hubungan.html'
+            templateUrl: 'partials/keluarga-hubungan.html?UNIQID='+Math.random()
         })
         .state('prospek.keluarga.hubunganlain', {
             url: '/keluarga-hubungan-lain',
-            templateUrl: 'partials/keluarga-hubungan-lain.html',
+            templateUrl: 'partials/keluarga-hubungan-lain.html?UNIQID='+Math.random(),
         })
         .state('prospek.keluarga.detail', {
             url: '/keluarga-detail',
-            templateUrl: 'partials/keluarga-detail.html',
+            templateUrl: 'partials/keluarga-detail.html?UNIQID='+Math.random(),
             controller: 'keluargaDetailCtrl',
             data: {
                 pageTitle: 'Detail Keluarga'
@@ -283,7 +292,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek.aplikasi', {
             url: '/aplikasi',
-            templateUrl: 'partials/aplikasi.html',
+            templateUrl: 'partials/aplikasi.html?UNIQID='+Math.random(),
             controller: 'aplikasiCtrl',
             data: {
                 pageTitle: 'Aplikasi'
@@ -291,21 +300,21 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         })
         .state('prospek.aplikasi.informasipembiayaan', {
             url: '/aplikasi-informasi-pembiayaan',
-            templateUrl: 'partials/aplikasi-informasi-pembiayaan.html',
+            templateUrl: 'partials/aplikasi-informasi-pembiayaan.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Informsi Pembiayaan'
             }
         })
         .state('prospek.aplikasi.datapembiayaan', {
             url: '/aplikasi-data-pembiayaan',
-            templateUrl: 'partials/aplikasi-data-pembiayaan.html',
+            templateUrl: 'partials/aplikasi-data-pembiayaan.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Data Pembiayaan'
             }
         })
         .state('prospek.aplikasi.informasiusaha', {
             url: '/aplikasi-informasi-usaha',
-            templateUrl: 'partials/aplikasi-informasi-usaha.html',
+            templateUrl: 'partials/aplikasi-informasi-usaha.html?UNIQID='+Math.random(),
             controller: 'aplikasiInformasiUsahaCtrl',
             data: {
                 pageTitle: 'Informasi Usaha'
@@ -316,7 +325,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek.agunan', {
             url: '/agunan',
-            templateUrl: 'partials/agunan.html',
+            templateUrl: 'partials/agunan.html?UNIQID='+Math.random(),
             controller: 'agunanCtrl',
             data: {
                 pageTitle: 'Rencana Agunan'
@@ -327,7 +336,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
          .state('prospek.dokumen', {
             url: '/dokumen',
-            templateUrl: 'partials/dokumen.html',
+            templateUrl: 'partials/dokumen.html?UNIQID='+Math.random(),
             controller: 'dokumenCtrl',
             data: {
                 pageTitle: 'Dokumen'
@@ -338,7 +347,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek.aom', {
             url: '/aom',
-            templateUrl: 'partials/aom.html',
+            templateUrl: 'partials/aom.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'AOM'
             }
@@ -346,7 +355,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek.aom.info', {
             url: '/info',
-            templateUrl: 'partials/aom-info.html',
+            templateUrl: 'partials/aom-info.html?UNIQID='+Math.random(),
             controller: 'aomInfoCtrl',
             data: {
                 pageTitle: 'Informasi AOM'
@@ -355,7 +364,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek.aom.kunjungan', {
             url: '/kunjungan',
-            templateUrl: 'partials/aom-kunjungan.html',
+            templateUrl: 'partials/aom-kunjungan.html?UNIQID='+Math.random(),
             controller: 'aomKunjunganCtrl',
             data: {
                 pageTitle: 'Kunjungan AOM'
@@ -366,7 +375,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
 		
 		.state('prospek.penjamin',{
             url: '/penjamin',
-            templateUrl: 'partials/penjamin.html',
+            templateUrl: 'partials/penjamin.html?UNIQID='+Math.random(),
             controller: 'penjaminCtrl',
             data: {
                 pageTitle: 'Penjamin'
@@ -377,7 +386,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek.ceksid', {
             url: '/cek-sid',
-            templateUrl: 'partials/cek-sid.html',
+            templateUrl: 'partials/cek-sid.html?UNIQID='+Math.random(),
             controller: 'cekSIDCtrl',
             data: {
                 pageTitle: 'Cek SLIK'
@@ -388,7 +397,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek.oneobligor', {
             url: '/one-obligor',
-            templateUrl: 'partials/one-obligor.html',
+            templateUrl: 'partials/one-obligor.html?UNIQID='+Math.random(),
             controller: 'oneObligorCtrl',
             data: {
                 pageTitle: 'Cek One Obligor'
@@ -399,7 +408,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospekcreate', {
             url: '/prospek-create',
-            templateUrl: 'partials/prospek-create.html',
+            templateUrl: 'partials/prospek-create.html?UNIQID='+Math.random(),
             controller: 'prospekCreate',
             data: {
                 pageTitle: 'Prospek Wizard'
@@ -408,7 +417,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospekcreate.1', {
             url: '/1',
-            templateUrl: 'partials/prospek-create-1.html',
+            templateUrl: 'partials/prospek-create-1.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Prospek Wizard - Step 1'
             }
@@ -417,7 +426,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospekcreate.2', {
             url: '/2',
-            templateUrl: 'partials/prospek-create-2.html',
+            templateUrl: 'partials/prospek-create-2.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Prospek Wizard - Step 2'
             }
@@ -425,7 +434,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospekcreate.3', {
             url: '/3',
-            templateUrl: 'partials/prospek-create-3.html',
+            templateUrl: 'partials/prospek-create-3.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Prospek Wizard - Step 3'
             }
@@ -434,7 +443,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         /* =========== PROSPEK LIST =========== */
         .state('prospeklist', {
             url: '/prospek-list',
-            templateUrl: 'partials/prospek-list.html',
+            templateUrl: 'partials/prospek-list.html?UNIQID='+Math.random(),
             controller: 'prospekListCtrl',
             data: {
                 pageTitle: 'Daftar Prospek'
@@ -444,7 +453,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         /* =========== CALON DEBITUR PROFILE =========== */
         .state('calondebiturprofile', {
             url: '/calon-debitur-profile/:id',
-            templateUrl: 'partials/calon-debitur-profile_.html',
+            templateUrl: 'partials/calon-debitur-profile_.html?UNIQID='+Math.random(),
             controller: 'calonDebiturProfileCtrl',
             data: {
                 pageTitle: 'Calon Debitur Profile'
@@ -453,7 +462,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('calondebiturprofile.prospek', {
             url: '/prospek',
-            templateUrl: 'partials/calon-debitur-prospek_.html',
+            templateUrl: 'partials/calon-debitur-prospek_.html?UNIQID='+Math.random(),
             controller: '',
             data: {
                 pageTitle: 'Calon Debitur Profile - Prospek'
@@ -462,7 +471,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('calondebiturprofile.survey', {
             url: '/survey',
-            templateUrl: 'partials/calon-debitur-survey_.html',
+            templateUrl: 'partials/calon-debitur-survey_.html?UNIQID='+Math.random(),
             controller: '',
             data: {
                 pageTitle: 'Calon Debitur Profile - Survey'
@@ -473,7 +482,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('kategoriprospek', {
             url: '/kategori/:id',
-            templateUrl: 'partials/kategori.html',
+            templateUrl: 'partials/kategori.html?UNIQID='+Math.random(),
             controller: 'kategoriCtrl',
             data: {
                 pageTitle: 'Kategori Prospek'
@@ -487,7 +496,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey',{
             url: '/survey/:id',
-            templateUrl: 'partials/survey/survey.html',
+            templateUrl: 'partials/survey/survey.html?UNIQID='+Math.random(),
             controller: 'surveyCtrl',
             data: {
                 pageTitle: 'Survey'
@@ -498,7 +507,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('surveylist',{
             url: '/survey-list',
-            templateUrl: 'partials/survey/survey-list.html',
+            templateUrl: 'partials/survey/survey-list.html?UNIQID='+Math.random(),
             controller: 'listSurveyCtrl',
             data: {
                 pageTitle: 'Daftar Survey'
@@ -509,7 +518,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.informasi',{
             url: '/informasi',
-            templateUrl: 'partials/survey/informasi-survey.html',
+            templateUrl: 'partials/survey/informasi-survey.html?UNIQID='+Math.random(),
             controller: 'informasiSurveyCtrl',
             data: {
                 pageTitle: 'Informasi Survey'
@@ -517,14 +526,14 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         })
         .state('survey.informasi.index',{
             url: '/index',	
-            templateUrl: 'partials/survey/informasi-survey-index.html',        
+            templateUrl: 'partials/survey/informasi-survey-index.html?UNIQID='+Math.random(),        
             data: {
                 pageTitle: 'Informasi Survey Index'
             }
         })
         .state('survey.informasi.alamat',{
             url: '/alamat',
-            templateUrl: 'partials/survey/informasi-survey-alamat.html',
+            templateUrl: 'partials/survey/informasi-survey-alamat.html?UNIQID='+Math.random(),
             controller: 'informasiSurveyAlamatCtrl',
             data: {
                 pageTitle: 'Alamat'
@@ -532,7 +541,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         })
         .state('survey.informasi.kunjunganusaha',{
             url: '/kunjungan-usaha',
-            templateUrl: 'partials/survey/kunjungan-usaha.html',
+            templateUrl: 'partials/survey/kunjungan-usaha.html?UNIQID='+Math.random(),
             controller: 'informasiSurveyKunjunganUsahaCtrl',
             data: {
                 pageTitle: 'Kunjungan Usaha'
@@ -540,7 +549,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         })
         .state('survey.informasi.aom',{
             url: '/aom',
-            templateUrl: 'partials/survey/aom.html',
+            templateUrl: 'partials/survey/aom.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Informasi AOM'
             }
@@ -550,7 +559,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.profilekarakter',{
             url: '/karakter',
-            templateUrl: 'partials/survey/profile-dan-karakter.html',
+            templateUrl: 'partials/survey/profile-dan-karakter.html?UNIQID='+Math.random(),
             controller: 'profileDanKarakterSurveyCtrl',
             data: {
                 pageTitle: 'Profile dan Karakter'
@@ -559,7 +568,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.profilekarakter.index',{
             url: '/index',
-            templateUrl: 'partials/survey/profile-dan-karakter-index.html',
+            templateUrl: 'partials/survey/profile-dan-karakter-index.html?UNIQID='+Math.random(),
 //            controller: 'profileDanKarakterSurveyCtrl',
             data: {
                 pageTitle: 'Profile dan Karakter Index'
@@ -568,7 +577,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.profilekarakter.sumberinformasireputasi',{
             url: '/sumber-informasi-reputasi',
-            templateUrl: 'partials/survey/sumber-informasi-reputasi.html',
+            templateUrl: 'partials/survey/sumber-informasi-reputasi.html?UNIQID='+Math.random(),
             controller: 'pdkSumberInformasiReputasiCtrl',
             data: {
                 pageTitle: 'Sumber Informasi Reputasi'
@@ -577,7 +586,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.profilekarakter.dokumenpembiayaan',{
             url: '/dokumen-pembiayaan',
-            templateUrl: 'partials/survey/dokumen-pembiayaan.html',
+            templateUrl: 'partials/survey/dokumen-pembiayaan.html?UNIQID='+Math.random(),
             controller: 'pdkDokumenPembiayaanCtrl',
             data: {
                 pageTitle: 'Dokumen Pembiayaan'
@@ -586,7 +595,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.profilekarakter.executivesummarycriticalcharacter',{
             url: '/executive-summary-critical-character',
-            templateUrl: 'partials/survey/executive-summary-critical-character.html',
+            templateUrl: 'partials/survey/executive-summary-critical-character.html?UNIQID='+Math.random(),
 //            controller: 'profileDanKarakterSurveyCtrl',
             data: {
                 pageTitle: 'Executive Summary Critical Character'
@@ -597,7 +606,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.kapasitasusaha',{
             url: '/kapasitas-usaha',
-            templateUrl: 'partials/survey/kapasitas-usaha.html',
+            templateUrl: 'partials/survey/kapasitas-usaha.html?UNIQID='+Math.random(),
             controller: 'kapasitasUsahaSurveyCtrl',
             data: {
                 pageTitle: 'Kapasitas Usaha'
@@ -606,7 +615,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.kapasitasusaha.index',{
             url: '/index',
-            templateUrl: 'partials/survey/kapasitas-usaha-index.html',
+            templateUrl: 'partials/survey/kapasitas-usaha-index.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Kapasitas Usaha Index'
             }
@@ -614,7 +623,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.kapasitasusaha.aktivitasrekeningbank',{
             url: '/aktivitas-rekening-bank',
-            templateUrl: 'partials/survey/aktivitas-rekening-bank.html',
+            templateUrl: 'partials/survey/aktivitas-rekening-bank.html?UNIQID='+Math.random(),
             controller: 'kuAktifitasRekeningBankSurveyCtrl',
             data: {
                 pageTitle: 'Aktivitas Rekening Bank'
@@ -625,7 +634,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.jenisusaha',{
             url: '/jenis-usaha',
-            templateUrl: 'partials/survey/jenis-usaha.html',
+            templateUrl: 'partials/survey/jenis-usaha.html?UNIQID='+Math.random(),
             controller: 'jenisUsahaSurveyCtrl',
             data: {
                 pageTitle: 'Jenis Usaha'
@@ -633,35 +642,35 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         })
         .state('survey.jenisusaha.index',{
             url: '/index',
-            templateUrl: 'partials/survey/jenis-usaha-index.html',
+            templateUrl: 'partials/survey/jenis-usaha-index.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Jenis Usaha Index'
             }
         })
         .state('survey.jenisusaha.alamat',{
             url: '/alamat',
-            templateUrl: 'partials/survey/jenis-usaha-alamat.html',
+            templateUrl: 'partials/survey/jenis-usaha-alamat.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Jenis Usaha Alamat'
             }
         })
         .state('survey.jenisusaha.detail',{
             url: '/detail',
-            templateUrl: 'partials/survey/jenis-usaha-detail.html',
+            templateUrl: 'partials/survey/jenis-usaha-detail.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Jenis Usaha Detail'
             }
         })
         .state('survey.jenisusaha.list',{
             url: '/list',
-            templateUrl: 'partials/survey/jenis-usaha-list.html',
+            templateUrl: 'partials/survey/jenis-usaha-list.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Daftar Jenis Usaha'
             }
         })
         .state('survey.jenisusaha.pengelolaankeuangan',{
             url: '/pengelolaan-keuangan',
-            templateUrl: 'partials/survey/pengelolaan-keuangan.html',
+            templateUrl: 'partials/survey/pengelolaan-keuangan.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Pengelolaan Keuangan'
             }
@@ -671,7 +680,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.keuangan',{
             url: '/keuangan',
-            templateUrl: 'partials/survey/keuangan.html',
+            templateUrl: 'partials/survey/keuangan.html?UNIQID='+Math.random(),
             controller: 'keuanganSurveyCtrl',
             data: {
                 pageTitle: 'Keuangan'
@@ -680,7 +689,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.keuangan.index',{
             url: '/index',
-            templateUrl: 'partials/survey/keuangan-index.html',
+            templateUrl: 'partials/survey/keuangan-index.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Keuangan Index'
             }
@@ -688,7 +697,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.keuangan.datapinjaman',{
             url: '/data-pinjaman',
-            templateUrl: 'partials/survey/data-pinjaman.html',
+            templateUrl: 'partials/survey/data-pinjaman.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Data Pinjaman'
             }
@@ -696,7 +705,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.keuangan.rincianpinjaman',{
             url: '/rincian-pinjaman',
-            templateUrl: 'partials/survey/rincian-pinjaman.html',
+            templateUrl: 'partials/survey/rincian-pinjaman.html?UNIQID='+Math.random(),
             controller: 'rincianPinjamanSurveyCtrl',
             data: {
                 pageTitle: 'Rincian Pinjaman'
@@ -707,7 +716,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.kebutuhanmodalkerja',{
             url: '/kebutuhan-modal-kerja',
-            templateUrl: 'partials/survey/kebutuhan-modal-kerja.html',
+            templateUrl: 'partials/survey/kebutuhan-modal-kerja.html?UNIQID='+Math.random(),
             controller: 'kebutuhanModalKerjaCtrl',
             data: {
                 pageTitle: 'Kebutuhan Modal Kerja'
@@ -716,7 +725,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.kebutuhanmodalkerja.index',{
             url: '/index',
-            templateUrl: 'partials/survey/kebutuhan-modal-kerja-index.html',
+            templateUrl: 'partials/survey/kebutuhan-modal-kerja-index.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Kebutuhan Modal Kerja Index'
             }
@@ -724,7 +733,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.kebutuhanmodalkerja.aset',{
             url: '/aset',
-            templateUrl: 'partials/survey/aset.html',
+            templateUrl: 'partials/survey/aset.html?UNIQID='+Math.random(),
             controller: 'asetSurveyCtrl',
             data: {
                 pageTitle: 'Aset'
@@ -733,7 +742,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.kebutuhanmodalkerja.rencanaanggaranbelanja',{
             url: '/rencana-anggaran-belanja',
-            templateUrl: 'partials/survey/rencana-anggaran-belanja.html',
+            templateUrl: 'partials/survey/rencana-anggaran-belanja.html?UNIQID='+Math.random(),
             controller: 'rabSurveyCtrl',
             data: {
                 pageTitle: 'Rencana Anggaran Belanaja'
@@ -742,7 +751,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.kebutuhanmodalkerja.dokumenrencanaanggaranbelanja',{
             url: '/dokumen-rencana-anggaran-belanaja',
-            templateUrl: 'partials/survey/dokumen-rencana-anggaran-belanja.html',
+            templateUrl: 'partials/survey/dokumen-rencana-anggaran-belanja.html?UNIQID='+Math.random(),
             controller: 'dokumenRabSurveyCtrl',
             data: {
                 pageTitle: 'Dokumen Rencana Anggran Belanaja'
@@ -751,7 +760,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.kebutuhanmodalkerja.executivesummaryomset',{
             url: '/executive-summary-omset',
-            templateUrl: 'partials/survey/executive-summary-omset.html',
+            templateUrl: 'partials/survey/executive-summary-omset.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Executive Summary Omset'
             }
@@ -761,7 +770,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.keluarga',{
             url: '/keluarga',
-            templateUrl: 'partials/survey/keluarga.html',
+            templateUrl: 'partials/survey/keluarga.html?UNIQID='+Math.random(),
             controller: 'keluargaSurveyCtrl',
             data: {
                 pageTitle: 'Keluarga'
@@ -770,7 +779,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.keluarga.index',{
             url: '/index',
-            templateUrl: 'partials/survey/keluarga-index.html',
+            templateUrl: 'partials/survey/keluarga-index.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Keluarga Index'
             }
@@ -778,7 +787,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.keluarga.detail',{
             url: '/detail',
-            templateUrl: 'partials/survey/keluarga-detail.html',
+            templateUrl: 'partials/survey/keluarga-detail.html?UNIQID='+Math.random(),
             controller: 'keluargaDetailSurveyCtrl',
             data: {
                 pageTitle: 'Keluarga Detail'
@@ -789,7 +798,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan',{
             url: '/agunan',
-            templateUrl: 'partials/survey/agunan.html',
+            templateUrl: 'partials/survey/agunan.html?UNIQID='+Math.random(),
             controller: 'agunanSurveyCtrl',
             data: {
                 pageTitle: 'Agunan'
@@ -798,7 +807,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.index',{
             url: '/index',
-            templateUrl: 'partials/survey/agunan-index.html',
+            templateUrl: 'partials/survey/agunan-index.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Agunan Index'
             }
@@ -806,7 +815,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.tanahdanbangunan',{
             url: '/tanah-dan-bangunan',
-            templateUrl: 'partials/survey/tanah-dan-bangunan.html',
+            templateUrl: 'partials/survey/tanah-dan-bangunan.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Tanah dan Bangunan'
             }
@@ -814,7 +823,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.ajb',{
             url: '/ajb',
-            templateUrl: 'partials/survey/ajb.html',
+            templateUrl: 'partials/survey/ajb.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'AJB'
             }
@@ -822,7 +831,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.alamat',{
             url: '/alamat',
-            templateUrl: 'partials/survey/alamat-agunan.html',
+            templateUrl: 'partials/survey/alamat-agunan.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Alamat Agunan'
             }
@@ -830,7 +839,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.keadaantanahdanstatuspenghunian',{
             url: '/keadaan-tanah-dan-status-penghunian',
-            templateUrl: 'partials/survey/keadaan-tanah-dan-status-penghunian.html',
+            templateUrl: 'partials/survey/keadaan-tanah-dan-status-penghunian.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Keadaan Tanah dan Status Penghunian'
             }
@@ -838,7 +847,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.fasilitas',{
             url: '/fasilitas',
-            templateUrl: 'partials/survey/fasilitas.html',
+            templateUrl: 'partials/survey/fasilitas.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Fasilitas Agunan'
             }
@@ -846,7 +855,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.keadaanbangunan',{
             url: '/keadaan-bangunan',
-            templateUrl: 'partials/survey/keadaan-bangunan.html',
+            templateUrl: 'partials/survey/keadaan-bangunan.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Keadaan Bangunan'
             }
@@ -854,7 +863,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.konstruksibangunan',{
             url: '/konstruksi-bangunan',
-            templateUrl: 'partials/survey/konstruksi-bangunan.html',
+            templateUrl: 'partials/survey/konstruksi-bangunan.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Konstruksi Bangunan'
             }
@@ -862,7 +871,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.tataruang',{
             url: '/tata-ruang',
-            templateUrl: 'partials/survey/tata-ruang.html',
+            templateUrl: 'partials/survey/tata-ruang.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Tata Ruang'
             }
@@ -870,7 +879,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.penilaian',{
             url: '/penilaian',
-            templateUrl: 'partials/survey/penilaian.html',
+            templateUrl: 'partials/survey/penilaian.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Penilaian'
             }
@@ -878,7 +887,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.dokumen',{
             url: '/dokumen',
-            templateUrl: 'partials/survey/dokumen-agunan.html',
+            templateUrl: 'partials/survey/dokumen-agunan.html?UNIQID='+Math.random(),
             controller: 'dokumenAgunanCtrl',
             data: {
                 pageTitle: 'Dokumen Agunan'
@@ -887,7 +896,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.list',{
             url: '/list',
-            templateUrl: 'partials/survey/agunan-list.html',
+            templateUrl: 'partials/survey/agunan-list.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Daftar Agunan'
             }
@@ -895,7 +904,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.agunan.executivesummaryanalisaagunan',{
             url: '/executive-summary-analisa-agunan',
-            templateUrl: 'partials/survey/executive-summary-analisa-agunan.html',
+            templateUrl: 'partials/survey/executive-summary-analisa-agunan.html?UNIQID='+Math.random(),
             controller: 'exsumAgunanCtrl',
             data: {
                 pageTitle: 'Executive Summary Analisa Agunan'
@@ -906,7 +915,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.faktorkualitatif',{
             url: '/faktor-kualitatif',
-            templateUrl: 'partials/survey/faktor-kualitatif.html',
+            templateUrl: 'partials/survey/faktor-kualitatif.html?UNIQID='+Math.random(),
             controller: 'fkNoteCtrl',
             data: {
                 pageTitle: 'Faktor Kualitatif'
@@ -917,7 +926,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.keuangan.angsuran',{
             url: '/angsuran',
-            templateUrl: 'partials/survey/rincian-angsuran.html',
+            templateUrl: 'partials/survey/rincian-angsuran.html?UNIQID='+Math.random(),
             controller: 'rincianAngsuranCtrl',
             data: {
                 pageTitle: 'Angsuran'
@@ -926,16 +935,25 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.keuangan.angsuran.baru',{
             url: '/baru',
-            templateUrl: 'partials/survey/rincian-angsuran-baru.html',
+            templateUrl: 'partials/survey/rincian-angsuran-baru.html?UNIQID='+Math.random(),
             controller: 'rincianAngsuranBaruCtrl',
             data: {
                 pageTitle: 'Rincian Angsuran Baru'
             }
         })
         
+        .state('survey.keuangan.angsuran.topupsyariah',{
+            url: '/topup-syariah',
+            templateUrl: 'partials/survey/rincian-angsuran-topup-syariah.html?UNIQID='+Math.random(),
+            controller: 'rincianAngsuranTopUpSyariahCtrl',
+            data: {
+                pageTitle: 'Rincian Angsuran Top Up Syariah'
+            }
+        })
+        
         .state('survey.keuangan.angsuran.3r',{
             url: '/3r',
-            templateUrl: 'partials/survey/rincian-angsuran-3r.html',
+            templateUrl: 'partials/survey/rincian-angsuran-3r.html?UNIQID='+Math.random(),
             controller: 'rincianAngsuran3RCtrl',
             data: {
                 pageTitle: 'Rincian Angusuran 3R'
@@ -946,7 +964,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.penjamin',{
             url: '/penjamin',
-            templateUrl: 'partials/survey/penjamin.html',
+            templateUrl: 'partials/survey/penjamin.html?UNIQID='+Math.random(),
             controller: 'penjaminCtrl',
             data: {
                 pageTitle: 'Penjamin'
@@ -957,7 +975,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.dokumen', {
             url: '/dokumen',
-            templateUrl: 'partials/survey/dokumen.html',
+            templateUrl: 'partials/survey/dokumen.html?UNIQID='+Math.random(),
             controller: 'dokumenSurveyCtrl',
             data: {
                 pageTitle: 'Dokumen'
@@ -968,7 +986,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('survey.deviasi', {
             url: '/deviasi',
-            templateUrl: 'partials/survey/deviasi.html',
+            templateUrl: 'partials/survey/deviasi.html?UNIQID='+Math.random(),
             controller: 'deviasiCtrl',
             data: {
                 pageTitle: 'Deviasi'
@@ -982,7 +1000,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde',{
             url: '/fde/:id',
-            templateUrl: 'partials/fde/fde-index.html',
+            templateUrl: 'partials/fde/fde-index.html?UNIQID='+Math.random(),
             controller: 'fdeCtrl',
             data: {
                 pageTitle: 'Full Data Entry'
@@ -991,7 +1009,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fdelist',{
             url: '/list-fde',
-            templateUrl: 'partials/fde/fde-list.html',
+            templateUrl: 'partials/fde/fde-list.html?UNIQID='+Math.random(),
             controller: 'fdeListCtrl',
             data: {
                 pageTitle: 'Daftar Full Data Entry'
@@ -1000,7 +1018,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.calondebiturinfo',{
             url: '/calon-debitur-info',
-            templateUrl: 'partials/fde/calon-debitur-info.html',
+            templateUrl: 'partials/fde/calon-debitur-info.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Data Calon Debitur'
               }
@@ -1008,7 +1026,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.nomorrekeningpembiayaan',{
             url: '/nomor-rekening-pembiayaan',
-            templateUrl: 'partials/fde/nomor-rekening-pembiayaan.html',
+            templateUrl: 'partials/fde/nomor-rekening-pembiayaan.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Nomor Rekening Pembiayaan'
               }
@@ -1016,7 +1034,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.historypembiayaansebeumnya',{
             url: '/history-pembiayaan-sebeumnya',
-            templateUrl: 'partials/fde/history-pembiayaan-sebeumnya.html',
+            templateUrl: 'partials/fde/history-pembiayaan-sebeumnya.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'History Pembiayaan Sebelumnya'
               }
@@ -1024,7 +1042,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.virtualaccount',{
             url: '/virtual-account',
-            templateUrl: 'partials/fde/virtual-account.html',
+            templateUrl: 'partials/fde/virtual-account.html?UNIQID='+Math.random(),
             controller: 'fdeVirtulaAccountCtrl',
             data: {
                 pageTitle: 'Virtual Account'
@@ -1033,7 +1051,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.aplikasi',{
             url: '/aplikasi',
-            templateUrl: 'partials/fde/aplikasi.html',
+            templateUrl: 'partials/fde/aplikasi.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Aplikasi'
               }
@@ -1041,7 +1059,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.angsuran',{
             url: '/angsuran',
-            templateUrl: 'partials/fde/angsuran.html',
+            templateUrl: 'partials/fde/angsuran.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Angsuran'
               }
@@ -1049,7 +1067,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.asuransilpk',{
             url: '/asuransi-lpk',
-            templateUrl: 'partials/fde/asuransi-lpk.html',
+            templateUrl: 'partials/fde/asuransi-lpk.html?UNIQID='+Math.random(),
             controller: 'fdeAsuransiLpkCtrl',
             data: {
                 pageTitle: 'Asuransi'
@@ -1058,7 +1076,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.produkasuransi',{
             url: '/produk-asuransi',
-            templateUrl: 'partials/fde/produk-asuransi.html',
+            templateUrl: 'partials/fde/produk-asuransi.html?UNIQID='+Math.random(),
             controller: 'fdeProdukAsuransiCtrl',
             data: {
                 pageTitle: 'Produksi Asuransi'
@@ -1067,7 +1085,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.biaya',{
             url: '/biaya',
-            templateUrl: 'partials/fde/biaya.html',
+            templateUrl: 'partials/fde/biaya.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Biaya'
               }
@@ -1075,7 +1093,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.sisteminformasidebitur',{
             url: '/sistem-informasi-debitur',
-            templateUrl: 'partials/fde/sistem-informasi-debitur.html',
+            templateUrl: 'partials/fde/sistem-informasi-debitur.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Sistem Informasi Debitur'
               }
@@ -1083,7 +1101,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.perjanjiankredit',{
             url: '/perjanjian-kredit',
-            templateUrl: 'partials/fde/perjanjian-kredit.html',
+            templateUrl: 'partials/fde/perjanjian-kredit.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Perjanjian Kredit'
               }
@@ -1091,7 +1109,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.kolektor',{
             url: '/kolektor',
-            templateUrl: 'partials/fde/kolektor.html',
+            templateUrl: 'partials/fde/kolektor.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Kolektor'
               }
@@ -1099,7 +1117,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.rekeningpribadi',{
             url: '/rekening-pribadi',
-            templateUrl: 'partials/fde/rekening-pribadi.html',
+            templateUrl: 'partials/fde/rekening-pribadi.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Rekening Pribadi'
               }
@@ -1107,7 +1125,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.rekeningtujuanpencairan',{
             url: '/rekening-tujuan-pencairan',
-            templateUrl: 'partials/fde/rekening-tujuan-pencairan.html',
+            templateUrl: 'partials/fde/rekening-tujuan-pencairan.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Rekening Tujuan Pencairan'
               }
@@ -1115,7 +1133,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('fde.historyapproval',{
             url: '/history-approval',
-            templateUrl: 'partials/fde/history-approval.html',
+            templateUrl: 'partials/fde/history-approval.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'History Persetujuan'
             },
@@ -1125,7 +1143,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
 		/*FZL*/
 		.state('fde.traceapproval',{
             url: '/trace-approval',
-            templateUrl: 'partials/fde/trace-approval.html',
+            templateUrl: 'partials/fde/trace-approval.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Lacak Persetujuan'
             },
@@ -1138,7 +1156,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('reviewlist',{
             url: '/review-list',
-            templateUrl: 'partials/review/review-list.html',
+            templateUrl: 'partials/review/review-list.html?UNIQID='+Math.random(),
             controller: 'reviewListCtrl',
             data: {
                 pageTitle: 'Daftar Review'
@@ -1147,7 +1165,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review',{
             url: '/review/:id',
-            templateUrl: 'partials/review/review-index.html',
+            templateUrl: 'partials/review/review-index.html?UNIQID='+Math.random(),
             controller: 'reviewCtrl',
             data: {
                 pageTitle: 'Review'
@@ -1156,7 +1174,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.dataumum',{
             url: '/data-umum',
-            templateUrl: 'partials/review/data-umum.html',
+            templateUrl: 'partials/review/data-umum.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Data Umum'
             }
@@ -1164,7 +1182,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.datanasabah',{
             url: '/data-nasabah',
-            templateUrl: 'partials/review/data-nasabah.html',
+            templateUrl: 'partials/review/data-nasabah.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Data Nasabah'
             }
@@ -1172,7 +1190,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.datanasabah.index',{
             url: '/index',
-            templateUrl: 'partials/review/data-nasabah-index.html',
+            templateUrl: 'partials/review/data-nasabah-index.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Data Nasabah'
             }
@@ -1180,7 +1198,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.datanasabah.sisteminformasidebitur',{
             url: '/sistem-informasi-debitur',
-            templateUrl: 'partials/review/sistem-informasi-debitur.html',
+            templateUrl: 'partials/review/sistem-informasi-debitur.html?UNIQID='+Math.random(),
             controller: 'reviewAsDnSidCtrl',
             data: {
                 pageTitle: 'Sistem Informasi Debitur'
@@ -1189,7 +1207,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.comment',{
             url: '/comment',
-            templateUrl: 'partials/review/comment.html',
+            templateUrl: 'partials/review/comment.html?UNIQID='+Math.random(),
             controller: 'reviewCommentCtrl',
             data: {
                 pageTitle: 'Catatan'
@@ -1198,7 +1216,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.rekomendasi',{
             url: '/rekomendasi',
-            templateUrl: 'partials/review/rekomendasi.html',
+            templateUrl: 'partials/review/rekomendasi.html?UNIQID='+Math.random(),
             controller: 'reviewRekomendasiCtrl',
             data: {
                 pageTitle: 'Rekomendasi'
@@ -1207,7 +1225,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.analisasensitivitas',{
             url: '/analisa-sensitivitas',
-            templateUrl: 'partials/review/analisa-sensitivitas.html',
+            templateUrl: 'partials/review/analisa-sensitivitas.html?UNIQID='+Math.random(),
             data: {
                 pageTitle: 'Analisa Sensitivitas'
             }
@@ -1215,7 +1233,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.analisasensitivitas.datafasilitaslama',{
             url: '/data-fasilitas-lama',
-            templateUrl: 'partials/review/data-fasilitas-lama.html',
+            templateUrl: 'partials/review/data-fasilitas-lama.html?UNIQID='+Math.random(),
             controller: 'reviewAsFlCtrl',
             data: {
                 pageTitle: 'Data Fasilitas Lama'
@@ -1229,7 +1247,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.analisasensitivitas.rcrusulanrekomendasi.lkku',{
             url: '/lkku',
-            templateUrl: 'partials/review/rcr-usulan-rekomendasi.html',
+            templateUrl: 'partials/review/rcr-usulan-rekomendasi.html?UNIQID='+Math.random(),
             controller: 'reviewAsRcrCtrl',
             data: {
                 pageTitle: 'RCR Usulan & RCR Rekomendasi LKKU'
@@ -1238,7 +1256,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.analisasensitivitas.rcrusulanrekomendasi.reviewer',{
             url: '/reviewer',
-            templateUrl: 'partials/review/rcr-usulan-rekomendasi-reviewer.html',
+            templateUrl: 'partials/review/rcr-usulan-rekomendasi-reviewer.html?UNIQID='+Math.random(),
             controller: 'reviewAsRcrReviewerCtrl',
             data: {
                 pageTitle: 'RCR Usulan & RCR Rekomendasi Reviewer'
@@ -1252,7 +1270,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.analisasensitivitas.analisamodalkerja.lkku',{
             url: '/lkku',
-            templateUrl: 'partials/review/analisa-modal-kerja.html',
+            templateUrl: 'partials/review/analisa-modal-kerja.html?UNIQID='+Math.random(),
             controller: 'reviewAsAmkCtrl',
             data: {
                 pageTitle: 'Analisa Modal Kerja LKKU'
@@ -1261,7 +1279,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.analisasensitivitas.analisamodalkerja.reviewer',{
             url: '/reviewer',
-            templateUrl: 'partials/review/analisa-modal-kerja-reviewer.html',
+            templateUrl: 'partials/review/analisa-modal-kerja-reviewer.html?UNIQID='+Math.random(),
             controller: 'reviewAsAmkReviewerCtrl',
             data: {
                 pageTitle: 'Analisa Modal Kerja Reviewer'
@@ -1270,7 +1288,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.analisasensitivitas.agunandanscr',{
             url: '/agunan-dan-scr',
-            templateUrl: 'partials/review/agunan-dan-scr.html',
+            templateUrl: 'partials/review/agunan-dan-scr.html?UNIQID='+Math.random(),
             controller: 'reviewAsAgScrCtrl',
             data: {
                 pageTitle: 'Agunan dan CCR'
@@ -1279,7 +1297,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('review.documentcheck',{
             url: '/document-check',
-            templateUrl: 'partials/review/document-check.html',
+            templateUrl: 'partials/review/document-check.html?UNIQID='+Math.random(),
             controller: 'reviewDocCheckCtrl',
             data: {
                 pageTitle: 'Cek Kelengkapan Dokumen'
@@ -1292,7 +1310,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('produklist',{
             url: '/produk-list',
-            templateUrl: 'partials/produk/produk-list.html',
+            templateUrl: 'partials/produk/produk-list.html?UNIQID='+Math.random(),
             controller: 'produkListCtrl',
             data: {
                 pageTitle: 'Produk List'
@@ -1301,13 +1319,13 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('produk',{
             url: '/produk',
-            templateUrl: 'partials/produk/produk.html',
+            templateUrl: 'partials/produk/produk.html?UNIQID='+Math.random(),
             controller: 'produkCtrl'
         })
         
         .state('produk.kategori',{
             url: '/kategori',
-            templateUrl: 'partials/produk/produk-kategori.html',
+            templateUrl: 'partials/produk/produk-kategori.html?UNIQID='+Math.random(),
             controller: 'produkKategoriCtrl',
             data: {
                 pageTitle: 'Produk Kategori'
@@ -1316,7 +1334,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('produk.lokasi',{
             url: '/lokasi',
-            templateUrl: 'partials/produk/produk-lokasi.html',
+            templateUrl: 'partials/produk/produk-lokasi.html?UNIQID='+Math.random(),
             controller: 'produkLokasiCtrl',
             data: {
                 pageTitle: 'Produk Lokasi'
@@ -1325,7 +1343,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('produk.scoring',{
             url: '/scoring',
-            templateUrl: 'partials/produk/produk-scoring.html',
+            templateUrl: 'partials/produk/produk-scoring.html?UNIQID='+Math.random(),
             controller: 'produkScoringCtrl',
             data: {
                 pageTitle: 'Produk Scoring'
@@ -1338,7 +1356,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
 
         .state('reportnasabah', {
             url: '/reportnasabah',
-            templateUrl: 'partials/report/nasabah.html',
+            templateUrl: 'partials/report/nasabah.html?UNIQID='+Math.random(),
             controller: 'reportNasabahCtrl',
             data: {
                 pageTitle: 'Daftar Nasabah'
@@ -1347,7 +1365,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
 		
 		.state('reportsalesactivity', {
             url: '/reportsalesactivity',
-            templateUrl: 'partials/report/sales-activity.html',
+            templateUrl: 'partials/report/sales-activity.html?UNIQID='+Math.random(),
             controller: 'reportSalesActivityCtrl',
             data: {
                 pageTitle: 'Report Sales Activity'
@@ -1368,7 +1386,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('proposal.list', {
             url: '/list',
-            templateUrl: 'partials/proposal/daftar.html',
+            templateUrl: 'partials/proposal/daftar.html?UNIQID='+Math.random(),
             controller: 'proposalListCtrl',
             data: {
                 pageTitle: 'Daftar Proposal'
@@ -1377,7 +1395,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('proposal.tracking', {
             url: '/tracking/:id',
-            templateUrl: 'partials/proposal/tracking.html',
+            templateUrl: 'partials/proposal/tracking.html?UNIQID='+Math.random(),
             controller: 'proposalTrackingCtrl',
             data: {
                 pageTitle: 'Tracking Proposal'
@@ -1391,7 +1409,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
 
         .state('portofolio', {
             url: '/portofolio',
-            templateUrl: 'partials/portofolio/portofolio-list.html',
+            templateUrl: 'partials/portofolio/portofolio-list.html?UNIQID='+Math.random(),
             controller: 'portofolioListCtrl',
             data: {
                 pageTitle: 'Daftar Portofolio Account Assignment'
@@ -1452,6 +1470,8 @@ App.run(['$sessionStorage','$location', '$rootScope', '$stateParams', 'apiData',
             $rootScope.DateToday = new Date();
             
 //            $rootScope.DateToday = $rootScope.DateToday.toLocaleString(myDateConfig);
+
+            $rootScope.dropdownUnitChoice = $sessionStorage.dropdownUnitChoice;
             
         });		
             
@@ -1601,9 +1621,9 @@ App.run(['$sessionStorage','$location', '$rootScope', '$stateParams', 'apiData',
         
         $rootScope.bulan = apiData.bulan();
 		
-		apiData.get_masterData('data_master');
+        apiData.get_masterData('data_master');
 		
-		apiData.get_masterData('produk_list');
+        apiData.get_masterData('produk_list');
         apiData.get_masterData('program_list');   
         
         /*apiData.get_masterData('provinsi');
@@ -1801,6 +1821,10 @@ App.run(['$sessionStorage','$location', '$rootScope', '$stateParams', 'apiData',
         apiData.get_masterData('btb','TIPE_BANGUNAN'); */
         
         $rootScope.AKTIFITAS_REKENING_BANK_BULAN_KE = [1,2,3];
+        
+        $rootScope.dropdownUnitChoiceToggle = function(){
+            $rootScope.$storage.dropdownUnitChoice = false;
+        };
         
         console.log('ROOTSCOPE',$rootScope);
         
@@ -2534,6 +2558,7 @@ App.factory("apiData", function ($sessionStorage, $http, globalFunction, $rootSc
                 if (R.data.STATUS == true)
                     $state.go('login');
                 
+                delete $rootScope.$storage.dropdownUnitChoice;
                 delete $rootScope.$storage.SESSION_LOGIN;
                 delete $sessionStorage.SESSION_LOGIN;
                     
@@ -3969,10 +3994,12 @@ App.service('getNilaiPasarValidator',function($http,apiBase,globalFunction){
             scope[sn]['DB_LUAS_TANAH'] = R.data[0].DB_LUAS_TANAH;
             scope[sn]['DB_LUAS_BANGUNAN'] = R.data[0].DB_LUAS_BANGUNAN;
 			
-//            if (scope.jenis_agunan_id==58){
-//                scope[sn]['DB_LUAS_TANAH_PER_METER_PERSEGI'] = R.data[0].DB_LUAS_TANAH;
-//                scope[sn]['DB_LUAS_PER_PENILAIAN'] = R.data[0].DB_LUAS_TANAH;
-//            } 
+			if (scope.jenis_agunan_id==58){
+				scope[sn]['DB_LUAS_PER_PENILAIAN'] = R.data[0].DB_LUAS_TANAH;
+			}else{
+				scope[sn]['DB_LUAS_PER_PENILAIAN'] = R.data[0].DB_LUAS_BANGUNAN;
+			}
+			
         }, function myError(R) {  
             console.log(R.statusText); 
             globalFunction.ag('danger',[R]); 
@@ -4053,24 +4080,47 @@ App.filter('unique', function() {
 
 /* Global Controller */
 
-App.controller('menuCtrl', function($scope,$rootScope,apiData,apiBase ){
+App.controller('menuCtrl', function($scope,$rootScope,apiData,apiBase,globalFunction,$sessionStorage ){
     
     $scope.menuShow = 'primary';
     console.log($scope.menuShow);				
 				
+	// $scope.settingRangkap =  function(d){
 	$scope.settingRangkap =  function(d){
+        $rootScope.dropdownUnitChoiceToggle();
         apiData.get({
             gl      : true,
-            api     : apiBase+'auth/get_posisi_nama_rangkap?POSISI_NAMA='+d,
+            // api     : apiBase+'auth/get_posisi_nama_rangkap?POSISI_NAMA='+d,
+            api     : apiBase+'auth/get_posisi_nama_rangkap?POSISI_NAMA='+d.posisi+'&UNIT_KODE='+d.kode_unit+'&UNIT_NAMA='+d.nama_unit+'&BUSINESS_TYPE='+d.business_type,
             scope   : $scope,
-			callbacksuccess : function(R){
-				
-				window.location.href="http://" + window.location.hostname + ':' + window.location.port + "/#/login";
-			}
+            callbacksuccess : function(R){
+                window.location.href="http://" + window.location.hostname + ':' + window.location.port + "/#/login";
+            }
         });
 	};		
 	
+	$scope.cekPosisi =  function(unit,posisi){
+		for (key in $sessionStorage.SESSION_LOGIN.RANGKAP_USER.ROLE) {
+			if(key == unit){
+				// console.log('ok',$sessionStorage.SESSION_LOGIN.RANGKAP_USER.ROLE[key].POSISI);
+				for(var x=0; x<$sessionStorage.SESSION_LOGIN.RANGKAP_USER.ROLE[key].POSISI.length; x++){
+					if($sessionStorage.SESSION_LOGIN.RANGKAP_USER.ROLE[key].POSISI[x] == posisi){
+						return 1;
+					}
+				}
+			}
+		}
+	}
 	
+	// $scope.modalJabatan = function () {
+
+		// var m = globalFunction.openModal('partials/modals/modal-user-sso.html', 'modal-form', 'modalSSOCtrl');           
+		
+		// $rootScope.closemodalSSO = function () {
+				// m.close();
+		// };
+        
+	// }
 			
 
 });
@@ -4205,13 +4255,14 @@ App.controller('home2Ctrl', function($scope,$http,$rootScope,globalFunction,apiB
 
 /* Login */
 
-App.controller('loginCtrl',function($scope,$rootScope,apiData,apiBase,$http,globalFunction,$state,$sessionStorage){
+App.controller('loginCtrl',function($scope,$rootScope,apiData,apiBase,$http,globalFunction,$state,$sessionStorage,$window){
     
     $scope.fdLGN = {};
     
     $scope.login = function(){
         
-         $scope.fdLGN.ALERT = 'Checking ...';
+        $scope.setDropdownChoiceUnit();
+        $scope.fdLGN.ALERT = 'Checking ...';
         
         $http({
             method  : 'POST',
@@ -4221,6 +4272,7 @@ App.controller('loginCtrl',function($scope,$rootScope,apiData,apiBase,$http,glob
         }).then(function(R){
             
             if (typeof(R.data.STATUS) != 'undefined' && R.data.STATUS == true) {
+                
                 $rootScope.$storage = $sessionStorage.$default({
                     SESSION_LOGIN : R.data
                 });
@@ -4237,7 +4289,10 @@ App.controller('loginCtrl',function($scope,$rootScope,apiData,apiBase,$http,glob
         }, function myError(R){
             console.log(R);
         });
-        
+    };
+    
+    $scope.setDropdownChoiceUnit = function(){
+        $rootScope.$storage.dropdownUnitChoice = true;
     };
     
 });
@@ -4558,7 +4613,7 @@ App.controller('prospekCtrl',function($scope,$stateParams,apiData,$rootScope,get
         type    : 'prospek'
     });
     
-    $scope.PROSPEK_SUBMIT_PERSENTASE = 99;
+    $scope.PROSPEK_SUBMIT_PERSENTASE = 99.99;
     
     $scope.$watchGroup(['KELENGKAPAN_DATA','PROSPEK_SUBMIT_PERSENTASE','DATA_STATUS_FOR_SUBMIT','DATA_SUB_STATUS_FOR_SUBMIT'],function(){
         
@@ -4566,12 +4621,18 @@ App.controller('prospekCtrl',function($scope,$stateParams,apiData,$rootScope,get
             typeof($scope.KELENGKAPAN_DATA) != 'undefined' &&
             typeof($scope.PROSPEK_SUBMIT_PERSENTASE) != 'undefined' &&
             typeof($rootScope.DATA_STATUS_FOR_SUBMIT) != 'undefined'
-        ) {
+        ) {			
+			if ( $rootScope.$storage.SESSION_LOGIN.ACCESS_UPDATE==1 && $rootScope.DATA_STATUS_FOR_SUBMIT < 6 )
+			{			
+				$rootScope.DATA_STATUS_FOR_SUBMIT     = 0;
+				$rootScope.DATA_SUB_STATUS_FOR_SUBMIT = 0;
+			}			
+			
             if ($scope.KELENGKAPAN_DATA.PERCENTASE_FILL_DATA_PROSPEK > $scope.PROSPEK_SUBMIT_PERSENTASE && $rootScope.DATA_STATUS_FOR_SUBMIT < 1 && $rootScope.DATA_SUB_STATUS_FOR_SUBMIT == 2 ) {
                 $scope.PROSPEK_SUBMITED = 5; //kku approved / rejected
             } else if ($scope.KELENGKAPAN_DATA.PERCENTASE_FILL_DATA_PROSPEK > $scope.PROSPEK_SUBMIT_PERSENTASE && $rootScope.DATA_STATUS_FOR_SUBMIT < 1 && $rootScope.DATA_SUB_STATUS_FOR_SUBMIT == 1 ) {
-                $scope.PROSPEK_SUBMITED = 4; //aom submited
-				$scope.PROSPEK_LOCK = 'YES';
+                $scope.PROSPEK_SUBMITED = 4; //aom submited				
+				$scope.PROSPEK_LOCK = 'YES';				
             } else if ($scope.KELENGKAPAN_DATA.PERCENTASE_FILL_DATA_PROSPEK > $scope.PROSPEK_SUBMIT_PERSENTASE && $rootScope.DATA_STATUS_FOR_SUBMIT < 1 && $rootScope.DATA_SUB_STATUS_FOR_SUBMIT == 0){
                 $scope.PROSPEK_SUBMITED = 1; //show global submit button
             } else if ($rootScope.DATA_STATUS_FOR_SUBMIT >= 1){
@@ -4579,8 +4640,8 @@ App.controller('prospekCtrl',function($scope,$stateParams,apiData,$rootScope,get
 				$scope.PROSPEK_LOCK = 'YES';
             } else {
                 $scope.PROSPEK_SUBMITED = 3; //show percentage
-            }
-            
+            }            
+			
             console.log('PROSPEK_SUBMITED => '+$scope.PROSPEK_SUBMITED);
         }
         
@@ -5576,6 +5637,12 @@ App.controller('aplikasiCtrl', function($scope,globalFunction,$http,apiBase,$sta
                 sn      : 'formDataAplikasi',
                 type    : '',
                 callbacksuccess : function(R){
+                    if ($rootScope.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'KV')
+                        $scope.formDataAplikasi.MS_JENIS_PRODUK_ID = 475;
+                    else if ($rootScope.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY')
+                        $scope.formDataAplikasi.MS_JENIS_PRODUK_ID = 474;
+                    else
+                        $scope.formDataAplikasi.MS_JENIS_PRODUK_ID = null;
 //                    apiData.getProdukDetail({id : $scope.formDataAplikasi.MS_PRODUK_ID, scope : $scope, sn : 'formDataAplikasi'});
                     apiData.getCalculateProdukProgram({id_produk : $scope.formDataAplikasi.MS_PRODUK_ID, id_program : 304, scope : $scope, sn : 'formDataAplikasi', id_pembiayaan : $scope.formDataAplikasi.MS_JENIS_PEMBIAYAAN_ID});
                     console.log($scope.formDataAplikasi);
@@ -6337,6 +6404,56 @@ App.controller('prospekListCtrl', function($scope,$http,apiBase,globalFunction,a
 //                $scope.fdPL.TOTAL_ITEMS = $scope.prospekList.length;
                 $scope.prospekList_ = R.data.data;
                 $scope.fdPL.TOTAL_ITEMS = R.data.len;
+				
+				
+				/*FZL start*/
+				$scope.tableRowExpanded = true;
+				$scope.tableRowIndexCurrExpanded = "";
+				$scope.tableRowIndexPrevExpanded = "";
+				$scope.storeIdExpanded = "";
+				$scope.DataCollapse = [false ,false ,false ,false ,false ,false ,false ,false ,false ,false];
+
+				$scope.DataCollapseFn = function () {
+					for (var i = 0; 10 - 1; i += 1) {						
+						$scope.DataCollapse.append('true');
+					}
+				};
+
+				$scope.selectTableRow = function (index, storeId) {
+					
+					console.log('selectTableRow',index,storeId);	
+					if ($scope.DataCollapse === 'undefined') {						
+						$scope.DataCollapse = $scope.DataCollapseFn();
+					} else {
+						console.log('$scope.tableRowExpanded=',$scope.tableRowExpanded)
+						console.log('$scope.tableRowIndexCurrExpanded=',$scope.tableRowIndexCurrExpanded)
+						console.log('$scope.storeIdExpanded=',$scope.storeIdExpanded);
+						if ($scope.tableRowExpanded === false && $scope.tableRowIndexCurrExpanded === "" && $scope.storeIdExpanded === "") {
+							console.log('masuk if 1');
+							$scope.tableRowIndexPrevExpanded = "";
+							$scope.tableRowExpanded = true;
+							$scope.tableRowIndexCurrExpanded = index;
+							$scope.storeIdExpanded = storeId;
+							$scope.DataCollapse[index] = false;
+						} else if ($scope.tableRowExpanded === true) {
+							if ($scope.tableRowIndexCurrExpanded === index && $scope.storeIdExpanded === storeId) {
+								console.log('masuk if 2');
+								$scope.tableRowExpanded = true;
+								$scope.tableRowIndexCurrExpanded = "";
+								$scope.storeIdExpanded = "";
+								$scope.DataCollapse[index] = false;
+							} else {
+								console.log('masuk if 3');
+								$scope.tableRowIndexPrevExpanded = $scope.tableRowIndexCurrExpanded;
+								$scope.tableRowIndexCurrExpanded = index;
+								$scope.storeIdExpanded = storeId;
+								$scope.DataCollapse[$scope.tableRowIndexPrevExpanded] = false;
+								$scope.DataCollapse[$scope.tableRowIndexCurrExpanded] = true;
+							}
+						}
+					}
+				};
+				/*FZL end*/
             }
         });
     };
@@ -6380,7 +6497,7 @@ App.controller('surveyCtrl',function($stateParams,$http,apiBase,$scope,$rootScop
     
     apiData.get_DS();
     
-    $scope.SURVEY_SUBMIT_PERSENTASE = 99;
+    $scope.SURVEY_SUBMIT_PERSENTASE = 99.99;
     
     $rootScope.$watchGroup(['KELENGKAPAN_DATA','SURVEY_SUBMIT_PERSENTASE','DATA_STATUS_FOR_SUBMIT','DATA_SUB_STATUS_FOR_SUBMIT'],function(newValues, oldValues, scope){
         
@@ -6562,7 +6679,7 @@ App.controller('listSurveyCtrl',function($rootScope,$scope,apiData,apiBase,$stat
 //    $scope.getlistSL();
     
     $scope.$watchGroup(['fdPL.MS_WILAYAH_ID','fdPL.MS_KODE_CABANG','fdPL.MS_KODE_UNIT','fdPL.PAGE','fdPL.LIMIT','fdPL.SEARCH'], function(newValues, oldValues, scope) {
-        if (newValues) {
+        if (newValues) {		
             $scope.getlistSL({
                 'MS_WILAYAH_ID'     : typeof ($scope.fdPL.MS_WILAYAH_ID)!='undefined' ? $scope.fdPL.MS_WILAYAH_ID : '',
                 'MS_KODE_CABANG'    : typeof ($scope.fdPL.MS_KODE_CABANG)!='undefined' ? $scope.fdPL.MS_KODE_CABANG : '',
@@ -7761,6 +7878,17 @@ App.controller('keuanganSurveyCtrl', function($scope,$rootScope,globalFunction,a
 //            if ($scope.fdKS.MS_PROGRAM_ID)
 //                apiData.getProgramDetail({id : $scope.fdKS.MS_PROGRAM_ID, scope : $scope, sn : 'fdKS'});
 
+            if ($rootScope.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'KV')
+                $scope.fdKS.MS_JENIS_PRODUK_ID = 475;
+            else if ($rootScope.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY')
+                $scope.fdKS.MS_JENIS_PRODUK_ID = 474;
+			else if ($rootScope.$storage.SESSION_LOGIN.POSISI_NAMA == 'SUPERADMIN')
+				$scope.fdKS.MS_JENIS_PRODUK_ID = $scope.fdKS.MS_JENIS_PRODUK_ID;						            
+            else
+                $scope.fdKS.MS_JENIS_PRODUK_ID = null;						            			
+			
+            console.log('i am fdKS',$scope.fdKS);
+
             apiData.getCalculateProdukProgram({id_produk : $scope.fdKS.MS_PRODUK_ID, id_program : $scope.fdKS.MS_PROGRAM_ID, scope : $scope, sn : 'fdKS', id_pembiayaan : $scope.fdKS.MS_JENIS_PEMBIAYAAN_ID});
             
         }
@@ -7857,7 +7985,12 @@ App.controller('keuanganSurveyCtrl', function($scope,$rootScope,globalFunction,a
                 data    : d,
                 scope   : $scope,
                 type    : 'tolist',
-                reload  : 'getlistKSRP'
+                reload  : 'getlistKSRP',
+				callbacksuccess : function (){
+				    $rootScope.getlistKSRP($stateParams.id,'DEBITUR');
+					$rootScope.getlistKSRP($stateParams.id,'KELUARGA');
+					$rootScope.getlistKSRP($stateParams.id,'PENJAMIN');
+				}				
             });
         });
     };
@@ -7934,12 +8067,14 @@ App.controller('keuanganSurveyCtrl', function($scope,$rootScope,globalFunction,a
 
 /* Angsuran */
 
-App.controller('rincianAngsuranCtrl',function($scope,globalFunction,$state,apiData){
+App.controller('rincianAngsuranCtrl',function($scope,globalFunction,$state,apiData,$rootScope){
     
     $scope.$watch('DS', function(dataLoaded) {
         if (dataLoaded){
             if ($scope.JPem.MS_JENIS_PEMBIAYAAN_ID == 111){
                 $state.go('survey.keuangan.angsuran.3r');
+            } else if ($scope.JPem.MS_JENIS_PEMBIAYAAN_ID == 110 && $rootScope.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY') {
+                $state.go('survey.keuangan.angsuran.topupsyariah');
             } else {
                 $state.go('survey.keuangan.angsuran.baru');
             }
@@ -8000,6 +8135,66 @@ App.controller('rincianAngsuranBaruCtrl', function($scope,$http,$state,$rootScop
     $scope.PokokBunga = function(A,B){
         return parseInt(A) + parseInt(B);
     };
+    
+})
+
+.controller('rincianAngsuranTopUpSyariahCtrl', function($scope,$http,$state,$rootScope,globalFunction,apiData,apiBase,postJadwal,globalFunction,$stateParams){
+    
+    $scope.fdASTS = {};
+    var dt = new Date();
+    $scope.fdASTS.sdateTA = dt.toISOString();
+    $scope.fdASTS.sdateTR = dt.toISOString();
+    $scope.dtSDateTA = dt;
+    $scope.dtSDateTR = dt;
+    
+    $scope.$watch('fdKS', function(dataLoaded) {
+        if (dataLoaded){
+            $scope.fdASTS.MS_PLAFOND = $scope.fdKS.MS_PLAFOND;
+            $scope.fdASTS.MS_TENOR = $scope.fdKS.MS_TENOR;
+            $scope.fdASTS.MS_BUNGA_PERBULAN = $scope.fdKS.MS_BUNGA_PERBULAN;
+        }
+    });
+	
+    $scope.buatjadwal = function(){
+        $scope.fdASTS.DB_PROSPEK_ID = $stateParams.id;
+        apiData.post({
+            gl      : true,
+            api     : apiBase+'survey/post_createjadwalangsurantopupsyariah',
+            data    : $scope.fdASTS,
+            scope   : $scope,
+            type    : 'tolist',
+            reload  : 'getlJadwalAngsuran'
+        });
+    };
+	
+    $scope.getlJadwalAngsuran = function(id){
+        apiData.get({
+            gl      : false,
+            api     : apiBase+'survey/get_jadwalangsurantopupsyariah/?id='+id,
+            scope   : $scope,
+            sn      : 'listJATS',
+            type    : 'tolist',
+            callbacksuccess : function(R){
+                $scope.fdASTS.NO_REKENING = R.data.HEADER.NO_REKENING;
+                $scope.dtSDateTA = new Date(R.data.HEADER.sdateTA);
+                $scope.dtSDateTR = new Date(R.data.HEADER.sdateTR);
+                $scope.fdASTS.sdateTA = $scope.dtSDateTA.toISOString();
+                $scope.fdASTS.sdateTR = $scope.dtSDateTR.toISOString();
+            }
+        });
+    };
+    $scope.getlJadwalAngsuran($stateParams.id);
+    
+    $scope.getlistRek = function(id){
+        apiData.get({
+            gl      : false,
+            api     : apiBase+'survey/get_rekeningdebiturdw/?id='+id,
+            scope   : $scope,
+            sn      : 'getlistRek',
+            type    : 'tolist'
+        });
+    };
+    $scope.getlistRek($stateParams.id);
     
 })
 
@@ -9286,17 +9481,17 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                         var penilaian = 0;
 						var penyusutan = 0;
                         for(var i = 0; i < R.data.length; i++){
-								if (R.data[i].MS_JENIS_PENILAIAN==1135){
-									penyusutan = (R.data[i].DB_NILAI_PASAR * R.data[i].DB_NILAI_PENYUSUTAN) / 100;																	
-								}else{
-									penyusutan = 0;
-								}								
+								// if (R.data[i].MS_JENIS_PENILAIAN==1135){
+									// penyusutan = (R.data[i].DB_NILAI_PASAR * R.data[i].DB_NILAI_PENYUSUTAN) / 100;																	
+								// }else{
+									// penyusutan = 0;
+								// }								
                                 penilaian = parseInt(R.data[i].DB_NILAI_PASAR);
                                 total = total+penilaian;
                         }
 						// console.log('total',total);
 						// console.log('penyusutan',penyusutan);
-						total = total - penyusutan;
+						// total = total - penyusutan;
                         return total;
                 };
 					
@@ -9320,7 +9515,9 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 $scope.fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_1 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
                 $scope.fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_2 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
                 $scope.fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_3 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
-                $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
+				$scope.fdPNL.DB_NILAI_PASAR = parseFloat($scope.fdPNL.DB_NILAI_PASAR * 100) / parseFloat(100 - $scope.fdPNL.DB_NILAI_PENYUSUTAN);
+                $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );									
+				$scope.fdPNL.DB_NILAI_PASAR = $scope.fdPNL.DB_NILAI_PASAR - ($scope.fdPNL.DB_NILAI_PASAR * ($scope.fdPNL.DB_NILAI_PENYUSUTAN /100));
                 $scope.modalPNL();
             }
         });
@@ -9386,12 +9583,20 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
     
     $scope.$watchGroup(['fdPNL.DB_NILAI_PASAR','fdPNL.DB_PERSENTASE_LIKUIDASI','fdPNL.DB_NILAI_PENYUSUTAN'],function(dataLoaded){
         if (dataLoaded){
-			if (typeof $scope.fdPNL.DB_NILAI_PENYUSUTAN == 'undefined') {
-				$scope.fdPNL.DB_NILAI_LIKUIDASI = ($scope.fdPNL.DB_NILAI_PASAR * $scope.fdPNL.DB_PERSENTASE_LIKUIDASI) / 100;
-			}else{
-				$scope.fdPNL.DB_NILAI_LIKUIDASI = ($scope.fdPNL.DB_NILAI_PASAR * $scope.fdPNL.DB_PERSENTASE_LIKUIDASI) / 100;
-				$scope.fdPNL.DB_NILAI_LIKUIDASI = $scope.fdPNL.DB_NILAI_LIKUIDASI - (($scope.fdPNL.DB_NILAI_LIKUIDASI * $scope.fdPNL.DB_NILAI_PENYUSUTAN) / 100);
-			}            
+			// if (typeof $scope.fdPNL.DB_NILAI_PENYUSUTAN == 'undefined') {
+				// $scope.fdPNL.DB_NILAI_LIKUIDASI = ($scope.fdPNL.DB_NILAI_PASAR * $scope.fdPNL.DB_PERSENTASE_LIKUIDASI) / 100;
+			// }else{
+				// $scope.fdPNL.DB_NILAI_LIKUIDASI = ($scope.fdPNL.DB_NILAI_PASAR * $scope.fdPNL.DB_PERSENTASE_LIKUIDASI) / 100;
+				// $scope.fdPNL.DB_NILAI_LIKUIDASI = $scope.fdPNL.DB_NILAI_LIKUIDASI - (($scope.fdPNL.DB_NILAI_LIKUIDASI * $scope.fdPNL.DB_NILAI_PENYUSUTAN) / 100);
+			// }
+			
+			$scope.fdPNL.DB_NILAI_PASAR  = ($scope.fdPNL.DB_LUAS_PER_PENILAIAN * $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI);
+			
+			if (typeof $scope.fdPNL.DB_NILAI_PENYUSUTAN != 'undefined') {
+				$scope.fdPNL.DB_NILAI_PASAR = $scope.fdPNL.DB_NILAI_PASAR - ($scope.fdPNL.DB_NILAI_PASAR * ($scope.fdPNL.DB_NILAI_PENYUSUTAN /100));
+			}
+			
+			$scope.fdPNL.DB_NILAI_LIKUIDASI = ($scope.fdPNL.DB_NILAI_PASAR * $scope.fdPNL.DB_PERSENTASE_LIKUIDASI) / 100;				
         }
     });
         
@@ -9458,47 +9663,52 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
         }
         return e;
     };
-    /*
+    
     $scope.cekNilaiPasar = function() {
-        if ($scope.fdPNL.MS_JENIS_PENILAIAN == 1134 && $scope.fdPNL.NILAI_PASAR_OVERWRITE == 0){
+        if ($scope.fdPNL.MS_JENIS_PENILAIAN == 1134){
+			
+			console.log('masuk');
             if ($scope.fdPNL.DB_NILAI_PASAR > $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2) {
-                globalFunction.ag('danger',['Nilai Pasar tidak boleh kecil dari DNPT']);
-                $scope.fdPNL.DB_NILAI_PASAR = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;
-               
+				if ($scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2>0)
+					globalFunction.ag('danger',['Silahkan periksa nilai acuan pasar tanah di dnpt']);
+				else
+					globalFunction.ag('danger',['Nilai pasar tanah belum ada di dnpt']);
+				
+                $scope.fdPNL.DB_NILAI_PASAR = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;               
                 $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
             }
         }
     };
-    $scope.cekNilaiPasar1 = function() {
-        if ($scope.fdPNL.MS_JENIS_PENILAIAN == 1134 && $scope.fdPNL.NILAI_PASAR_OVERWRITE == 0){
-            if ($scope.fdPNL.DB_NILAI_PASAR_1 > $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2) {
-                globalFunction.ag('danger',['Nilai Pasar 1 tidak boleh kecil dari DNPT']);
-                $scope.fdPNL.DB_NILAI_PASAR_1 = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;
-                $scope.fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_1 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
+    // $scope.cekNilaiPasar1 = function() {
+        // if ($scope.fdPNL.MS_JENIS_PENILAIAN == 1134){
+            // if ($scope.fdPNL.DB_NILAI_PASAR_1 > $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2) {
+                // globalFunction.ag('danger',['Nilai Pasar 1 tidak boleh kecil dari DNPT']);
+                // $scope.fdPNL.DB_NILAI_PASAR_1 = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;
+                // $scope.fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_1 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
                 
-            }
-        }
-    };
-    $scope.cekNilaiPasar2 = function() {
-        if ($scope.fdPNL.MS_JENIS_PENILAIAN == 1134 && $scope.fdPNL.NILAI_PASAR_OVERWRITE == 0){
-            if ($scope.fdPNL.DB_NILAI_PASAR_2 > $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2) {
-                globalFunction.ag('danger',['Nilai Pasar 2 tidak boleh kecil dari DNPT']);
-                $scope.fdPNL.DB_NILAI_PASAR_2 = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;
-                $scope.fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_2 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
+            // }
+        // }
+    // };
+    // $scope.cekNilaiPasar2 = function() {
+        // if ($scope.fdPNL.MS_JENIS_PENILAIAN == 1134){
+            // if ($scope.fdPNL.DB_NILAI_PASAR_2 > $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2) {
+                // globalFunction.ag('danger',['Nilai Pasar 2 tidak boleh kecil dari DNPT']);
+                // $scope.fdPNL.DB_NILAI_PASAR_2 = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;
+                // $scope.fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_2 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
                 
-            }
-        }
-    };
-    $scope.cekNilaiPasar3 = function() {
-        if ($scope.fdPNL.MS_JENIS_PENILAIAN == 1134 && $scope.fdPNL.NILAI_PASAR_OVERWRITE == 0){
-            if ($scope.fdPNL.DB_NILAI_PASAR_3 > $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2) {
-                globalFunction.ag('danger',['Nilai Pasar 3 tidak boleh kecil dari DNPT']);
-                $scope.fdPNL.DB_NILAI_PASAR_3 = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;
-                $scope.fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_3 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
-            }
-        }
-    };
-    */
+            // }
+        // }
+    // };
+    // $scope.cekNilaiPasar3 = function() {
+        // if ($scope.fdPNL.MS_JENIS_PENILAIAN == 1134){
+            // if ($scope.fdPNL.DB_NILAI_PASAR_3 > $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2) {
+                // globalFunction.ag('danger',['Nilai Pasar 3 tidak boleh kecil dari DNPT']);
+                // $scope.fdPNL.DB_NILAI_PASAR_3 = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;
+                // $scope.fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_3 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
+            // }
+        // }
+    // };
+    		
     $scope.$watchGroup(['fdPNL.DB_LUAS_PER_PENILAIAN'],function(dataLoaded){
         if (dataLoaded){
            $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2  = ($scope.fdPNL.DB_LUAS_PER_PENILAIAN * $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER);
@@ -11391,7 +11601,7 @@ App.controller('reviewAnalisaSensitivitasCtrl',function(){
                 $scope.SK1_SKENARIO_PERCENTAGE = 100;
                 $scope.SK1_HPP = $scope.fdRCR.HPP;
                 $scope.SK1_LABA_KOTOR = $scope.SK1_PENJUALAN_PER_BULAN - $scope.SK1_HPP;
-                $scope.SK1_TOTAL_BIAYA_OPERASIONAL_USAHA = parseInt($scope.fdRCR.TOTAL_BIAYA_OPERASIONAL_USAHA);
+                $scope.SK1_TOTAL_BIAYA_OPERASIONAL_USAHA = parseFloat($scope.fdRCR.TOTAL_BIAYA_OPERASIONAL_USAHA);
                 $scope.SK1_LABA_OPERASI = $scope.SK1_LABA_KOTOR - $scope.SK1_TOTAL_BIAYA_OPERASIONAL_USAHA;
                 $scope.SK1_USAHA_LAINNYA_1 = $scope.fdRCR.USAHA_LAINNYA_1;
                 $scope.SK1_USAHA_LAINNYA_2 = $scope.fdRCR.USAHA_LAINNYA_2;
@@ -12446,6 +12656,232 @@ App.controller('userManagementSettingCtrl',function($scope,globalFunction,$filte
     };
     
 });
+
+
+App.controller('userAlternateSettingCtrl',function($scope,$rootScope,globalFunction,$filter,$stateParams,apiData,apiBase){
+    
+    $scope.fdUAS = {};	
+    $scope.userList = [];
+    $scope.fdUAS.PAGE = 1;
+    $scope.fdUAS.MAX_SIZE = 5;
+    $scope.fdUAS.LIMIT = 10;
+
+    if ($rootScope.$storage.SESSION_LOGIN.WILAYAH)
+        $scope.fdUAS.MS_WILAYAH_ID = $rootScope.$storage.SESSION_LOGIN.WILAYAH;
+    if ($rootScope.$storage.SESSION_LOGIN.CABANG_KODE)
+        $scope.fdUAS.MS_KODE_CABANG = $rootScope.$storage.SESSION_LOGIN.CABANG_KODE;
+    if ($rootScope.$storage.SESSION_LOGIN.UNIT_KODE)
+        $scope.fdUAS.MS_KODE_UNIT = $rootScope.$storage.SESSION_LOGIN.UNIT_KODE;
+    
+    apiData.kantorSet({
+        scope   : $scope,
+        fd      : 'fdUAS'
+    });
+    
+    apiData.kantorExe($scope);
+    
+    $rootScope.getlistUAS = function(d){
+		
+        var p = '';
+        if (d['MS_KODE_CABANG'])
+            p +=   'MS_KODE_CABANG='+d['MS_KODE_CABANG'];
+        if (d['MS_KODE_UNIT'])
+            p +=   '&MS_KODE_UNIT='+d['MS_KODE_UNIT'];
+        if (d['PAGE'])
+            p +=   '&PAGE='+d['PAGE'];
+        if (d['LIMIT'])
+            p +=   '&LIMIT='+d['LIMIT'];
+        if (d['SEARCH'])
+            p +=   '&SEARCH='+d['SEARCH'];
+        apiData.get({
+            gl      : true,
+            api     : apiBase + 'usermanagement/get_alternate_list/?'+p,
+            scope   : $scope,
+            sn      : 'userList',
+            type    : 'tolist',
+            callbacksuccess : function(R){
+                $scope.userList = R.data.data;
+                $scope.fdUAS.TOTAL_ITEMS = R.data.len;
+            }
+        });
+    };		
+	
+	$scope.$watchGroup(['fdUAS.MS_KODE_CABANG','fdUAS.MS_KODE_UNIT','fdUAS.PAGE','fdUAS.LIMIT','fdUAS.SEARCH'], function(newValues, oldValues, scope) {
+        if (newValues) {
+            $rootScope.getlistUAS({
+                'MS_KODE_CABANG'    : typeof ($scope.fdUAS.MS_KODE_CABANG)!='undefined' ? $scope.fdUAS.MS_KODE_CABANG : '',
+                'MS_KODE_UNIT'      : typeof ($scope.fdUAS.MS_KODE_UNIT)!='undefined' ? $scope.fdUAS.MS_KODE_UNIT : '',
+                'PAGE'              : typeof ($scope.fdUAS.PAGE)!='undefined' ? $scope.fdUAS.PAGE : '',
+                'LIMIT'             : typeof ($scope.fdUAS.LIMIT)!='undefined' ? $scope.fdUAS.LIMIT : '',
+                'SEARCH'            : typeof ($scope.fdUAS.SEARCH)!='undefined' ? $scope.fdUAS.SEARCH : ''
+            });
+        }
+    });
+    
+    $scope.pageChanged = function(p){
+        $scope.fdUAS.PAGE = p;
+    };	
+	
+	$rootScope.modalMAC = function (d) {
+		
+		$rootScope.editUserSSO = d;
+		var m = globalFunction.openModal('partials/modals/modal-user-alternate.html', 'modal-form', 'modalAlternateCtrl');           
+		
+		$rootScope.closemodalMAC = function () {
+				m.close();
+		};
+        
+	}
+	
+	$scope.hapusUserAlternate = function(d){
+		console.log(d);
+		apiData.post({
+			gl      : true,
+			api     : apiBase+'usermanagement/delete_user_alternate',
+			data    : d,
+			callbacksuccess : function(){											
+				$rootScope.getlistUAS({
+					'MS_KODE_CABANG'    : typeof ($rootScope.$storage.SESSION_LOGIN.CABANG_KODE)!='undefined' ? $rootScope.$storage.SESSION_LOGIN.CABANG_KODE : '',
+					'MS_KODE_UNIT'      : typeof ($rootScope.$storage.SESSION_LOGIN.UNIT_KODE)!='undefined' ? $rootScope.$storage.SESSION_LOGIN.UNIT_KODE : ''
+				});	
+			}
+        });
+	};
+    
+});
+
+App.controller('modalAlternateCtrl', function ($sce, $rootScope, globalFunction, $scope, $stateParams, apiData, apiBase, $sessionStorage) {   
+
+	$scope.fdMAC = {};	
+		
+	if ($rootScope.editUserSSO){	
+			
+		$scope.fdMAC.MS_USERNAME    = $rootScope.editUserSSO.MS_USERNAME;
+		$scope.fdMAC.MS_KODE_CABANG = $rootScope.editUserSSO.MS_KODE_CABANG;
+		$scope.fdMAC.MS_KODE_UNIT   = $rootScope.editUserSSO.MS_KODE_UNIT;
+		$scope.fdMAC.MS_POSISI      = $rootScope.editUserSSO.MS_POSISI;
+		
+		if ($rootScope.editUserSSO.ROLE !== null) {
+			if ($rootScope.editUserSSO.ROLE.search('AOM')>=0)
+				$scope.fdMAC.AOM = true;
+			if ($rootScope.editUserSSO.ROLE.search('KAM')>=0)
+				$scope.fdMAC.KAM = true;
+			if ($rootScope.editUserSSO.ROLE.search('KKU')>=0)
+				$scope.fdMAC.KKU = true;
+			if ($rootScope.editUserSSO.ROLE.search('REVIEWER')>=0)
+				$scope.fdMAC.REVIEWER = true;
+		}
+	}
+
+    $rootScope.modalSSO = function (id) {
+
+		var m = globalFunction.openModal('partials/modals/modal-user-sso.html', 'modal-form', 'modalSSOCtrl');           
+		
+		$rootScope.closemodalSSO = function () {
+				m.close();
+		};
+        
+	}	
+		
+	$rootScope.selectUserSSO = function(d){     			
+		$scope.fdMAC.MS_USERNAME    = d.Username;
+		$scope.fdMAC.MS_KODE_CABANG = d.kode_cabang;
+		$scope.fdMAC.MS_KODE_UNIT   = d.kode_unit;
+		$scope.fdMAC.MS_POSISI      = d.posisi;
+    };
+	
+	$scope.postfdMAC = function(){
+		// console.log('fdMAC',$scope.fdMAC);
+		$scope.fdMAC.ROLE = '';
+		$scope.fdMAC.ROLE = ($scope.fdMAC.AOM) ? $scope.fdMAC.ROLE+',AOM':$scope.fdMAC.ROLE+'';
+		$scope.fdMAC.ROLE = ($scope.fdMAC.KAM) ? $scope.fdMAC.ROLE+',KAM':$scope.fdMAC.ROLE+'';
+		$scope.fdMAC.ROLE = ($scope.fdMAC.KKU) ? $scope.fdMAC.ROLE+',KKU':$scope.fdMAC.ROLE+'';
+		$scope.fdMAC.ROLE = ($scope.fdMAC.REVIEWER) ? $scope.fdMAC.ROLE+',REVIEWER':$scope.fdMAC.ROLE+'';
+		$scope.fdMAC.ROLE = $scope.fdMAC.ROLE.substring(1);
+		
+		$scope.fdMAC.CREATED_BY_NAME = $rootScope.$storage.SESSION_LOGIN.NAMA;
+		console.log('$scope.fdMAC.ROLE',$scope.fdMAC.ROLE);
+		
+		apiData.post({
+			gl      : true,
+			api     : apiBase+'usermanagement/set_user_alternate',
+			data    : $scope.fdMAC,
+			callbacksuccess : function(){											
+				$rootScope.getlistUAS({
+					'MS_KODE_CABANG'    : typeof ($rootScope.$storage.SESSION_LOGIN.CABANG_KODE)!='undefined' ? $rootScope.$storage.SESSION_LOGIN.CABANG_KODE : '',
+					'MS_KODE_UNIT'      : typeof ($rootScope.$storage.SESSION_LOGIN.UNIT_KODE)!='undefined' ? $rootScope.$storage.SESSION_LOGIN.UNIT_KODE : ''
+				});	
+			}
+        });
+	};
+	
+});	
+	
+App.controller('modalSSOCtrl', function ($sce, $rootScope, globalFunction, $scope, $stateParams, apiData, apiBase, $sessionStorage) {   	
+	
+	$scope.fdSSO = {};	
+    $scope.userssoList = [];
+    $scope.fdSSO.PAGE = 1;
+    $scope.fdSSO.MAX_SIZE = 5;
+    $scope.fdSSO.LIMIT = 10;
+
+    if ($rootScope.$storage.SESSION_LOGIN.WILAYAH)
+        $scope.fdSSO.MS_WILAYAH_ID = $rootScope.$storage.SESSION_LOGIN.WILAYAH;
+    if ($rootScope.$storage.SESSION_LOGIN.CABANG_KODE)
+        $scope.fdSSO.MS_KODE_CABANG = $rootScope.$storage.SESSION_LOGIN.CABANG_KODE;
+    if ($rootScope.$storage.SESSION_LOGIN.UNIT_KODE)
+        $scope.fdSSO.MS_KODE_UNIT = $rootScope.$storage.SESSION_LOGIN.UNIT_KODE;
+    
+    apiData.kantorSet({
+        scope   : $scope,
+        fd      : 'fdSSO'
+    });
+    
+    apiData.kantorExe($scope);
+    
+    $scope.getlistSSO = function(d){				
+        var p = '';
+        if (d['MS_KODE_CABANG'])
+            p +=   'MS_KODE_CABANG='+d['MS_KODE_CABANG'];
+        if (d['MS_KODE_UNIT'])
+            p +=   '&MS_KODE_UNIT='+d['MS_KODE_UNIT'];
+        if (d['PAGE'])
+            p +=   '&PAGE='+d['PAGE'];
+        if (d['LIMIT'])
+            p +=   '&LIMIT='+d['LIMIT'];
+        if (d['SEARCH'])
+            p +=   '&SEARCH='+d['SEARCH'];
+        apiData.get({
+            gl      : true,
+            api     : apiBase + 'usermanagement/get_sso_list/?'+p,
+            scope   : $scope,
+            sn      : 'userssoList',
+            type    : 'tolist',
+            callbacksuccess : function(R){
+                $scope.userssoList = R.data.content;
+                $scope.fdSSO.TOTAL_ITEMS = R.data.len;				
+            }
+        });
+    };		
+	
+	$scope.$watchGroup(['fdSSO.MS_KODE_CABANG','fdSSO.MS_KODE_UNIT','fdSSO.PAGE','fdSSO.LIMIT','fdSSO.SEARCH'], function(newValues, oldValues, scope) {
+        if (newValues) {
+            $scope.getlistSSO({
+                'MS_KODE_CABANG'    : typeof ($scope.fdSSO.MS_KODE_CABANG)!='undefined' ? $scope.fdSSO.MS_KODE_CABANG : '',
+                'MS_KODE_UNIT'      : typeof ($scope.fdSSO.MS_KODE_UNIT)!='undefined' ? $scope.fdSSO.MS_KODE_UNIT : '',
+                'PAGE'              : typeof ($scope.fdSSO.PAGE)!='undefined' ? $scope.fdSSO.PAGE : '',
+                'LIMIT'             : typeof ($scope.fdSSO.LIMIT)!='undefined' ? $scope.fdSSO.LIMIT : '',
+                'SEARCH'            : typeof ($scope.fdSSO.SEARCH)!='undefined' ? $scope.fdSSO.SEARCH : ''
+            });
+        }
+    });
+    
+    $scope.pageChanged = function(p){
+        $scope.fdSSO.PAGE = p;
+    };	
+	
+});
+
 
 /* ==================================================================================
  * ########################### PROPOSAL CONTOLLER ############################

@@ -34,6 +34,8 @@ $config['baseSSOApi'] = 'http://182.23.52.249/WebService/';
 
 $config['baseBWMPApi'] = 'http://10.61.3.49:82/api/';
 
+$config['ftpDoc'] = 'ftp://10.61.3.16/';
+
 /*
 |--------------------------------------------------------------------------
 | Alfresco

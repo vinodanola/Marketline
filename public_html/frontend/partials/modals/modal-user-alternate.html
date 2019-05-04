@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h4 class="no-margin text-center">User Alternate</h4>
+</div>
+<hr class="awesome no-margin"/>
+<div class="modal-body">
+	<div class="col-md-6 col-padding-110 col-has-border-right">		
+		<label>Username</label>
+        <div class="input-group">
+            <input type="text" class="form-control ng-untouched ng-not-empty ng-dirty ng-invalid ng-invalid-mask ng-valid-parse" ng-model="fdMAC.MS_USERNAME">															
+			<span class="input-group-btn">
+			<button class="btn btn-search" type="button" ng-click="$root.modalSSO()"><i class="fa fa-search fa-fw"></i> SSO</button>
+			</span>
+        </div>		
+		<label>Kode Cabang</label>
+		<div class="form-group">			
+            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="fdMAC.MS_KODE_CABANG">
+        </div>        				
+		<label>Kode Unit</label>
+		<div class="form-group">			
+            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="fdMAC.MS_KODE_UNIT">
+        </div> 		
+    </div>   			
+    <div class="col-md-6 col-padding-110">
+		<label>Posisi</label>
+        <div class="form-group">
+            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="fdMAC.MS_POSISI">
+        </div>
+		<label>Rangkap Role</label>
+		<div class="btn-group">
+        <label class="btn btn-default" ng-model="fdMAC.AOM" uib-btn-checkbox>AOM</label>
+        <label class="btn btn-default" ng-model="fdMAC.KAM" uib-btn-checkbox>KAM</label>
+        <label class="btn btn-default" ng-model="fdMAC.KKU" uib-btn-checkbox>KKU</label>
+        <label class="btn btn-default" ng-model="fdMAC.REVIEWER" uib-btn-checkbox>REVIEWER</label>
+		</div>      				
+    </div>    
+</div>
+<div class="modal-footer">
+    <a class="btn btn-success btn-sm" ng-click="postfdMAC();$root.closemodalMAC();">Simpan</a>
+    <a class="btn btn-default btn-sm" ng-click="$root.closemodalMAC()">Tutup</a>
+</div>

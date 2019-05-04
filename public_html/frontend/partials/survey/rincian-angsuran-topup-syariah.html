@@ -1,0 +1,50 @@
+<ng-include src="'partials/survey/rincian-angsuran-step.html'"></ng-include>
+
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Rekening Yang Di-TopUp *</label>
+        <select class="form-control" ng-model="fdASTS.NO_REKENING"  ng-options="x.NO_REKENING as (x.NO_REKENING) for x in getlistRek">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Tanggal Awal</label>
+        <md-datepicker md-placeholder="Tanggal awal"  md-open-on-focus ng-model="dtSDateTA" ng-change="fdASTS.sdateTA = dtSDateTA.toISOString()"></md-datepicker>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">     
+    <div class="form-group">
+        <label>Tanggal Realisasi</label>
+        <md-datepicker md-placeholder="Tanggal realisasi"  md-open-on-focus ng-model="dtSDateTR" ng-change="fdASTS.sdateTR = dtSDateTR.toISOString()"></md-datepicker>
+    </div>
+</div>
+<div class="col-md-12 col-padding-110">
+    <div class="form-group" ng-if="SURVEY_LOCK != 'YES'">
+        <a class="btn btn-success btn-sm" ng-click="buatjadwal()">Buat Jadwal</a>
+    </div>
+</div>
+<div class="col-md-12">
+    <table wt-responsive-table class="table table-hidden-overflow small">
+        <tr class="thead">
+            <th class="text-center">Angsuran Ke</th>
+            <th class="text-center">Angsuran Lama</th>
+            <th class="text-center">Angsuran Tahap 1</th>
+            <th class="text-center">Angsuran Tahap 2</th>
+            <th class="text-center">Total Angsuran</th>
+        </tr>
+        <tr ng-repeat="x in listJATS.DETAIL">
+            <td class="text-center">{{x.ANGSURAN_KE}}</td>
+            <td class="text-center">{{x.ANGSURAN_LAMA | number:2}}</td>
+            <td class="text-center">{{x.ANGSURAN_TAHAP_1 | number:2}}</td>
+            <td class="text-center">{{x.ANGSURAN_TAHAP_2 | number:2}}</td>
+            <td class="text-center">{{x.ANGSURAN_FINAL | number:2}}</td>
+        </tr>
+        <tr class="text-success" ng-if="listJATS.DETAIL.length > 0">
+            <td >Total</td>
+            <td class="text-center">{{ listJATS.DETAIL | sumByColumn: 'ANGSURAN_LAMA' | number:2}}</td>
+            <td class="text-center">{{ listJATS.DETAIL | sumByColumn: 'ANGSURAN_TAHAP_1' | number:2}}</td>
+            <td class="text-center">{{ listJATS.DETAIL | sumByColumn: 'ANGSURAN_TAHAP_2' | number:2}}</td>
+            <td class="text-center">{{ listJATS.DETAIL | sumByColumn: 'ANGSURAN_FINAL' | number:2}}</td>
+        </tr>
+    </table>
+</div>

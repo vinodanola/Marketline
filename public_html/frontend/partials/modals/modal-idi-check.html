@@ -28,7 +28,9 @@
     </div>
     <div class="col-md-6 col-mic-right">
         <div class="cidi-list-item" ng-repeat="x in cekidiresult">
-            <span class="cli-t">{{x.PR_NAMA_LENGKAP}} <ng-if ng-if="x.IS_3R>=1" class="text-danger">3R</ng-if></span>
+            <span class="cli-t">{{x.PR_NAMA_LENGKAP}} 
+                <ng-if ng-if="x.IS_3R>=1" class="text-danger">3R</ng-if>
+            </span>
             <!--<span class="cli-p" ng-class="{x.Percentage >= 80 : 'green', x.Percentage < 80 || x.Percentage >= 60 : 'yellow', x.Percentage < 60 : 'red'}">{{x.Percentage}}</span>-->
             <span class="cli-p" ng-class="x.Percentage >= 80 ? 'blue' : (x.Percentage < 80 && x.Percentage >= 60 ? 'green' : 'red')">{{x.Percentage}} %</span>
             <ul class="list-inline">
@@ -37,8 +39,18 @@
                 </li>
                 <li>
                     <!--<a ui-sref="calondebiturprofile.prospek({id:x.PR_INDIVIDU_ID})" ng-click="$root.closemcIDI()">Gunakan data ini</a>-->
-                    <a ng-if="x.IS_3R<1 || $root.btnGunakanhave3R" ng-click="$root.submitFormDataProspekCreate(x.PR_INDIVIDU_ID); $root.closemcIDI()">Gunakan</a>
-                    <span class="text-danger" ng-if="x.IS_3R>=1 && !$root.btnGunakanhave3R">Data ini tidak bisa digunakan karena berstatus 3R</span>
+                    <ng-if ng-if="x.IS_3R<1 || $root.btnGunakanhave3R">
+                        <a ng-click="$root.submitFormDataProspekCreate(x.PR_INDIVIDU_ID); $root.closemcIDI()">Gunakan</a>
+                    </ng-if>
+                    <span class="text-danger" ng-if="x.IS_3R>=1 && !$root.btnGunakanhave3R">
+                        <ng-if ng-if="x.KOL == 'L'" >
+                            <a ng-click="$root.submitFormDataProspekCreate(x.PR_INDIVIDU_ID); $root.closemcIDI()">Gunakan</a>
+                            <span class="text-success">(Status 3R kol lancar)</span>
+                        </ng-if>
+                        <ng-if ng-if="x.KOL != 'L'" class="text-danger">
+                            Data ini tidak bisa digunakan karena berstatus 3R kol tidak lancar
+                        </ng-if>
+                    </span>
                 </li>
             </ul>
         </div>

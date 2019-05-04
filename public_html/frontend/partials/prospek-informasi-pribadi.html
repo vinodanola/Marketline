@@ -30,19 +30,19 @@
     </div>
     <div class="form-group">
         <label>Jenis Identitas *</label>
-        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_JENIS_IDENTITAS_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_identitas">
+        <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_JENIS_IDENTITAS_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_identitas">		
             <option></option>
             <!--<option ng-repeat="x in $root.jns_identitas" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}">{{x.MS_DESKRIPSI}}</option>-->
-        </select>
+        </select>				
     </div>
     <div class="form-group">
         <label>No Identitas *</label>
-        <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="formDataIdentitasIndividu.PR_NO_IDENTITAS" restrict="reject" mask="9999999999999999"/>
+        <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="text" class="form-control" ng-model="formDataIdentitasIndividu.PR_NO_IDENTITAS" restrict="reject" mask="9999999999999999"/>		
     </div>
 	<div class="form-group">
         <label>Masa Berlaku</label>
         <div class="pull-right">
-            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formDataIdentitasIndividu.masa_berlaku_identitas_seumur_hidup"> Seumur hidup
+            <input ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formDataIdentitasIndividu.masa_berlaku_identitas_seumur_hidup">
         </div>
         <div ng-hide="formDataIdentitasIndividu.masa_berlaku_identitas_seumur_hidup==1">
             <md-datepicker md-placeholder="Tanggal masa berlaku"  md-open-on-focus ng-model="dtMB" ng-change="formDataIdentitasIndividu.PR_MASA_BERLAKU_IDENTITAS = dtMB.toISOString()"></md-datepicker>

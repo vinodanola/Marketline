@@ -139,6 +139,7 @@
                                     <td>
                                         <a ng-click="viewCSRP(x.SV_INDIVIDU_PINJAMAN_LAIN_ID)">View</a>
                                         <a ng-click="editKSRP(x.SV_INDIVIDU_PINJAMAN_LAIN_ID)" menu-alias="M-52" ng-if="SURVEY_LOCK!='YES'">Edit</a>
+                                        <a ng-click="deleteKSRP(x)" menu-alias="M-53">Delete</a>
                                     </td>
                                 </tr>
                                 <tr ng-repeat="x in listCSRPKELUARGA">
@@ -155,6 +156,7 @@
                                     <td>
                                         <a ng-click="viewCSRP(x.SV_INDIVIDU_PINJAMAN_LAIN_ID)">View</a>
                                         <a ng-click="editKSRP(x.SV_INDIVIDU_PINJAMAN_LAIN_ID)" menu-alias="M-52" ng-if="SURVEY_LOCK!='YES'">Edit</a>
+                                        <a ng-click="deleteKSRP(x)" menu-alias="M-53">Delete</a>
                                     </td>
                                 </tr>
                                 <tr ng-repeat="x in listCSRPPENJAMIN">
@@ -171,6 +173,8 @@
                                     <td>
                                         <a ng-click="viewCSRP(x.SV_INDIVIDU_PINJAMAN_LAIN_ID)">View</a>
                                         <a ng-click="editKSRP(x.SV_INDIVIDU_PINJAMAN_LAIN_ID)" menu-alias="M-52" ng-if="SURVEY_LOCK!='YES'">Edit</a>
+                                        <a ng-click="deleteKSRP(x)" menu-alias="M-53">Delete</a>
+
                                     </td>
                                 </tr>
                             </table>
@@ -189,7 +193,7 @@
                                 <tr ng-repeat="x in listCSRPDOC">
                                     <td>{{x.FLAG}}</td>
                                     <td>{{x.NAMA_PEMILIK_DOKUMEN}}</td>
-                                    <td><a href="{{$root.FILE_BASE}}{{x.PATH}}" download target="_blank"> Download </a></td>
+                                    <td><a href="{{$root.FILE_BASE}}{{x.NODE_ID}}&dok={{x.PATH}}" download target="_blank"> Download </a></td>
                                 </tr>
                             </table>
 							

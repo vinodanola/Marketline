@@ -50,14 +50,19 @@ class Survey extends CI_Controller {
 //            $MS_KODE_CABANG = $this->session->login['CABANG_KODE'];
 //            $MS_KODE_UNIT   = $this->session->login['UNIT_KODE'];
 //        }
-        
-        $MS_WILAYAH_ID  = $this->session->login['WILAYAH'] ? $this->session->login['WILAYAH'] : $g['MS_WILAYAH_ID'];
-        $MS_KODE_CABANG = $this->session->login['CABANG_KODE'] ? $this->session->login['CABANG_KODE'] : $g['MS_KODE_CABANG'];
-        $MS_KODE_UNIT   = $this->session->login['UNIT_KODE'] ? $this->session->login['UNIT_KODE'] : $g['MS_KODE_UNIT'];
+ 
+		$MS_WILAYAH_ID  = $this->session->login['WILAYAH'] ? $this->session->login['WILAYAH'] : $g['MS_WILAYAH_ID'];
+		$MS_KODE_CABANG = $this->session->login['CABANG_KODE'] ? $this->session->login['CABANG_KODE'] : $g['MS_KODE_CABANG'];
+		$MS_KODE_UNIT   = $this->session->login['UNIT_KODE'] ? $this->session->login['UNIT_KODE'] : $g['MS_KODE_UNIT'];		
         
         $search = $g['SEARCH'] ? base64_encode($g['SEARCH']) : '';
+		
+		$cluster_cabang = $this->session->login['CLUSTER']['CABANG'] ? implode(',',$this->session->login['CLUSTER']['CABANG']) : '';						
+		if ($this->session->login['POSISI_NAMA'] == 'REVIEWER') {
+           $MS_KODE_CABANG = $g['MS_KODE_CABANG'];
+	    }
         
-        get_api($this->config->item('baseAPI').'survey/get_list_all/?DB_ID_SDM_AOM='.$ID_SDM.'&MS_WILAYAH_ID='.$MS_WILAYAH_ID.'&MS_KODE_CABANG='.$MS_KODE_CABANG.'&MS_KODE_UNIT='.$MS_KODE_UNIT.'&PAGE='.$g['PAGE'].'&LIMIT='.$g['LIMIT'].'&SEARCH='.$search);
+        get_api($this->config->item('baseAPI').'survey/get_list_all/?DB_ID_SDM_AOM='.$ID_SDM.'&MS_WILAYAH_ID='.$MS_WILAYAH_ID.'&MS_KODE_CABANG='.$MS_KODE_CABANG.'&MS_KODE_UNIT='.$MS_KODE_UNIT.'&PAGE='.$g['PAGE'].'&LIMIT='.$g['LIMIT'].'&SEARCH='.$search.'&CLUSTER_CABANG='.$cluster_cabang);
         
     }
     
@@ -361,12 +366,32 @@ class Survey extends CI_Controller {
         get_api($this->config->item('baseAPI').'mms/get_rekening_debitur/'.$this->input->get('id'));
         
     }
+    
+    public function get_rekeningdebiturdw(){
+        
+        get_api($this->config->item('baseAPI').'globalclass/get_rekening_debitur_dw/'.$this->input->get('id'));
+        
+    }
 	
     public function post_createjadwalangsuran(){
         
         $p = $this->input->post();
 		
         post_api($this->config->item('baseAPI').'survey/create_jadwal_angsuran', $p);
+        
+    }
+    
+    public function get_jadwalangsurantopupsyariah(){
+        
+        get_api($this->config->item('baseAPI').'survey/get_angsuran_topup_syariah/?DB_PROSPEK_ID='.$this->input->get('id'));
+	
+    }
+    
+    public function post_createjadwalangsurantopupsyariah(){
+        
+        $p = $this->input->post();
+		
+        post_api($this->config->item('baseAPI').'survey/set_angsuran_topup_syariah', $p);
         
     }
     
@@ -585,7 +610,7 @@ class Survey extends CI_Controller {
         
         $Qd = '{"unit":"'.$Q1->MS_KODE_UNIT.'","plafon":'.($Q1->PLAFOND + $Q1->PLAFOND_ONE_OBLIGOR).',"deviasi":"0","tipe_pembiayaan":"'.$Q1->JENIS_PEMBIAYAAN.'","program":"'.$Q1->PROGRAM.'"}';
         
-        $Q = json_decode(file_get_contents($this->config->item('baseBWMPApi').'bwmp/?data='.$Qd));			
+        $Q = json_decode(file_get_contents($this->config->item('baseBWMPApi').'bwmp/?data='.$Qd));
         
         if (isset($Q->inisialbwmp)){
             
