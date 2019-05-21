@@ -32,8 +32,8 @@
         </select>-->
         <input type="text" class="form-control" ng-model="fdPNL.DB_JABATAN"/>
     </div>
-    <div class="form-group" >
-        <label ng-show="fdPNL.MS_JENIS_PENILAIAN==1134">Luas Tanah * {{$root.fdPNL.DB_LUAS_PER_PENILAIAN}}</label>
+    <div class="form-group" ng-init="$root.jenis_agunan_id==58 ? fdPNL.DB_LUAS_PER_PENILAIAN = fdPNL.DB_LUAS_TANAH : '';" >
+        <label ng-show="fdPNL.MS_JENIS_PENILAIAN==1134">Luas Tanah *</label>
         <label ng-show="fdPNL.MS_JENIS_PENILAIAN==1135">Luas Bangunan *</label>
         <div class="input-group" ng-show="fdPNL.MS_JENIS_PENILAIAN==1134 || fdPNL.MS_JENIS_PENILAIAN==1135" >
             <!--input type="text" class="form-control" ng-model="fdPNL.DB_LUAS_TANAH_PER_METER_PERSEGI" ui-number-mask="0" ng-disabled="fdPNL.MS_JENIS_PENILAIAN==1134" /-->

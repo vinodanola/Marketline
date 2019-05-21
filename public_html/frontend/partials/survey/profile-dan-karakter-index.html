@@ -58,7 +58,7 @@
 -->
    
     <div class="form-group">
-        <label>Bagaimana calon debitur mengenal ULAMM *</label>
+        <label>Bagaimana calon nasabah mengenal ULAMM *</label>
         <ul class="list-unstyled small">
             <li ng-repeat="x in $root.MS_MENGENAL_ULAMM_ID" class="text-lowercase">
                 <input ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" type="checkbox" value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-true-value="{{x.MS_PARA_GLOBAL_DETAIL_ID}}" ng-false-value="" ng-model="fdPDK.MS_MENGENAL_ULAMM_ID[$index]"/>

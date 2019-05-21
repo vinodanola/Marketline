@@ -4,7 +4,7 @@
 </div>
 <div class="modal-body" ng-controller="modalIDIDetailCtrl as m">
     <div class="col-md-6">
-        <h4>Informasi Debitur</h4>
+        <h4>Informasi Nasabah</h4>
         <dl class="dl-horizontal dl-aw">
             <dt>Nama Panggilan</dt><dd>{{indvDtl.PR_NAMA_PANGGILAN}}</dd>
             <dt>Jenis Identitas</dt><dd>{{indvDtl.MS_JENIS_IDENTITAS_DESKRIPSI}}</dd>
@@ -22,7 +22,7 @@
             <dt>Kode Unit</dt><dd>{{indvDtl.INFORMASI_PEMBIAYAAN.data[0].INISIAL_UNIT}}</dd>
             <dt>Nama Unit</dt><dd>{{indvDtl.INFORMASI_PEMBIAYAAN.data[0].NAMA_UNIT}}</dd>
             <dt>Cabang</dt><dd>{{indvDtl.INFORMASI_PEMBIAYAAN.data[0].NAMA_CABANG}}</dd>
-            <dt>Status Proses Debitur</dt><dd>...</dd>
+            <dt>Status Proses Nasabah</dt><dd>...</dd>
             <dt>Keterangan Status</dt><dd>...</dd>
         </dl>
 		<h4>Informasi Restruktur</h4>
@@ -41,14 +41,14 @@
                 <th>No Scoring</th>
                 <th>Tanggal Registrasi</th>
                 <th>Tanggal Approval</th>
-                <th>Jumlah Pengajuan</th>
+                <th class="text-center">Jumlah Pengajuan</th>
                 <th>Hasil Scoring</th>
             </tr>
             <tr ng-repeat="x in indvDtl.INFORMASI_SCORING">
                 <td>{{x.NO_SCORING}}</td>
                 <td>{{x.TANGGAL_REGISTRASI}}</td>
                 <td>{{x.TANGGAL_APPROVAL}}</td>
-                <td class="text-right">{{x.JUMLAH_PENGAJUAN | number:2}}</td>
+                <td class="text-center">{{x.JUMLAH_PENGAJUAN | number:2}}</td>
                 <td>{{x.HASIL_SCORING}}</td>
             </tr>
         </table>

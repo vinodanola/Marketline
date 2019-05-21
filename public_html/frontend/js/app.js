@@ -111,10 +111,11 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             controller: 'userManagementSettingCtrl',
             data: {
                 pageTitle: 'Group - Setting'
-            }
+            },
+            permission : 'M-97'
         })
 		
-		.state('usermanagement.group.alternate', {
+        .state('usermanagement.group.alternate', {
             url: '/alternate',
             templateUrl: 'partials/user_management/user-management-alternate.html?UNIQID='+Math.random(),
             controller: 'userAlternateSettingCtrl',
@@ -153,7 +154,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
         
         .state('prospek.identitasindividu', {
             url: '/identitas-individu',
-            templateUrl: 'partials/prospek.html',
+            templateUrl: 'partials/prospek.html?UNIQID='+Math.random(),
             controller: 'identitasIndividuCtrl',
             data: {
                 pageTitle: 'Identitas Individu'
@@ -447,7 +448,8 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             controller: 'prospekListCtrl',
             data: {
                 pageTitle: 'Daftar Prospek'
-            }
+            },
+            permission : 'M-99'
         })
         
         /* =========== CALON DEBITUR PROFILE =========== */
@@ -456,7 +458,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             templateUrl: 'partials/calon-debitur-profile_.html?UNIQID='+Math.random(),
             controller: 'calonDebiturProfileCtrl',
             data: {
-                pageTitle: 'Calon Debitur Profile'
+                pageTitle: 'Calon Nasabah Profile'
             }
         })
         
@@ -465,7 +467,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             templateUrl: 'partials/calon-debitur-prospek_.html?UNIQID='+Math.random(),
             controller: '',
             data: {
-                pageTitle: 'Calon Debitur Profile - Prospek'
+                pageTitle: 'Calon Nasabah Profile - Prospek'
             }
         })
         
@@ -474,7 +476,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             templateUrl: 'partials/calon-debitur-survey_.html?UNIQID='+Math.random(),
             controller: '',
             data: {
-                pageTitle: 'Calon Debitur Profile - Survey'
+                pageTitle: 'Calon Nasabah Profile - Survey'
             }
         })
         
@@ -511,7 +513,8 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             controller: 'listSurveyCtrl',
             data: {
                 pageTitle: 'Daftar Survey'
-            }
+            },
+			permission: 'M-102'
         })
         
         /* INFORMASI SURVEY */
@@ -960,6 +963,15 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             }
         })
         
+        .state('survey.keuangan.angsuran.3rsyariah',{
+            url: '/3r-syariah',
+            templateUrl: 'partials/survey/rincian-angsuran-3r-syariah.html?UNIQID='+Math.random(),
+            controller: 'rincianAngsuran3RSyariahCtrl',
+            data: {
+                pageTitle: 'Rincian Angusuran 3R Syariah'
+            }
+        })
+        
         /* PENJAMIN */
         
         .state('survey.penjamin',{
@@ -1013,14 +1025,15 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             controller: 'fdeListCtrl',
             data: {
                 pageTitle: 'Daftar Full Data Entry'
-              }
+              },
+			  permission: 'M-106'
         })
         
         .state('fde.calondebiturinfo',{
             url: '/calon-debitur-info',
             templateUrl: 'partials/fde/calon-debitur-info.html?UNIQID='+Math.random(),
             data: {
-                pageTitle: 'Data Calon Debitur'
+                pageTitle: 'Data Calon Nasabah'
               }
         })
         
@@ -1095,7 +1108,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             url: '/sistem-informasi-debitur',
             templateUrl: 'partials/fde/sistem-informasi-debitur.html?UNIQID='+Math.random(),
             data: {
-                pageTitle: 'Sistem Informasi Debitur'
+                pageTitle: 'Sistem Informasi Nasabah'
               }
         })
         
@@ -1160,7 +1173,8 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             controller: 'reviewListCtrl',
             data: {
                 pageTitle: 'Daftar Review'
-            }
+            },
+			permission: 'M-104'
         })
         
         .state('review',{
@@ -1201,7 +1215,7 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             templateUrl: 'partials/review/sistem-informasi-debitur.html?UNIQID='+Math.random(),
             controller: 'reviewAsDnSidCtrl',
             data: {
-                pageTitle: 'Sistem Informasi Debitur'
+                pageTitle: 'Sistem Informasi Nasabah'
             }
         })
         
@@ -1458,12 +1472,15 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
 App.run(['$sessionStorage','$location', '$rootScope', '$stateParams', 'apiData', 'globalFunction', 'fileBase', 'postProspekStatus', 'postSurveyStatus', '$interval', 'ngProgressFactory', 'getDataStatusSubmit','getDataStatusCekSlik', '$state', 'postDbIndividuStatus', '$window','postLKKUulang',
     function($sessionStorage, $location, $rootScope, $stateParams, apiData, globalFunction, fileBase, postProspekStatus, postSurveyStatus, $interval, ngProgressFactory, getDataStatusSubmit,getDataStatusCekSlik, $state, postDbIndividuStatus, $window, postLKKUulang) {
         
-        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-            
+        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){            				
+			
             /* Check auth */			
-            apiData.checkauth();
-            
+            apiData.checkauth();	
+				            
             $rootScope.$storage = $sessionStorage;
+			
+			// console.log('toState',toState);
+			// globalFunction.permissions(toState.permission);	
             
             $rootScope.MY_MATH = window.Math;
             
@@ -1471,12 +1488,14 @@ App.run(['$sessionStorage','$location', '$rootScope', '$stateParams', 'apiData',
             
 //            $rootScope.DateToday = $rootScope.DateToday.toLocaleString(myDateConfig);
 
-            $rootScope.dropdownUnitChoice = $sessionStorage.dropdownUnitChoice;
-            
+            $rootScope.dropdownUnitChoice = $sessionStorage.dropdownUnitChoice;			           
         });		
             
-        $rootScope.$on('$stateChangeSuccess', function (event, current, previous) {
-             
+        $rootScope.$on('$stateChangeSuccess', function (event, current, previous) {  
+
+			console.log('current',current);
+			globalFunction.permissions(current.permission);			
+			 
             //if (current.hasOwnProperty('$$route')) {
                 //$rootScope.title = current.$$route.title;
             //}
@@ -1514,9 +1533,14 @@ App.run(['$sessionStorage','$location', '$rootScope', '$stateParams', 'apiData',
                 
             };
             
-            $rootScope.thisState = $state.current.name;						
-            
-            console.log('this state', $rootScope.thisState);			
+            $rootScope.thisState = $state.current.name;						            
+			
+            console.log('this state', $rootScope.thisState);	
+
+			if ($rootScope.thisState == 'prospek.identitasindividu.lainnya'){ /*FZL 2019/10/05 pembeda kode bidang usaha syariah/konve*/
+				apiData.get_masterData('lov_bidang_usaha_sid_mis');
+			}
+			
             
             if (    
                 $rootScope.thisState == 'survey.keuangan.rincianpinjaman' 
@@ -1619,7 +1643,7 @@ App.run(['$sessionStorage','$location', '$rootScope', '$stateParams', 'apiData',
             $rootScope.progressbar.complete();
         });        
         
-        $rootScope.bulan = apiData.bulan();
+        $rootScope.bulan = apiData.bulan();		
 		
         apiData.get_masterData('data_master');
 		
@@ -1975,11 +1999,14 @@ App.factory("apiData", function ($sessionStorage, $http, globalFunction, $rootSc
         
         get_masterData : function(k,p){
             
-            var api;
+            var api;			
+            var syariah;
+            syariah = ($sessionStorage.SESSION_LOGIN != undefined && $sessionStorage.SESSION_LOGIN.BUSINESS_TYPE=='SY') ? 1 : 0 ;
             
             switch (k) {
                 case 'data_master' :
-                    api = webServiceBase + 'master/lov_data_master';
+                    // api = webServiceBase + 'master/lov_data_master';
+					api = webServiceBase + 'master/lov_data_master/'+syariah;
                     break;				
                 case 'provinsi' :
                     api = webServiceBase + 'master/lov_provinsi';
@@ -2096,7 +2123,8 @@ App.factory("apiData", function ($sessionStorage, $http, globalFunction, $rootSc
                     api = webServiceBase + 'master/lov_jns_foto';
                     break;
                 case 'lov_bidang_usaha_sid_mis' :
-                    api = webServiceBase + 'master/lov_bidang_usaha_sid_mis';
+                    // api = webServiceBase + 'master/lov_bidang_usaha_sid_mis';
+                    api = webServiceBase + 'master/lov_bidang_usaha_sid_mis/'+syariah;
                     break;
                 case 'btb' :
                     api = webServiceBase + 'btb/master/'+p;
@@ -2504,26 +2532,24 @@ App.factory("apiData", function ($sessionStorage, $http, globalFunction, $rootSc
                     $state.go('home_');
                 }
                 
-                var homestate = $state.current.name.split('.')[0];
-                
-                console.log('homestate',homestate);
+                var homestate = $state.current.name.split('.')[0];                
 
                 if (R.data.POSISI_NAMA == 'AOM' && (homestate == 'prospek' || homestate == 'survey')){
-                    if (R.data.MY_PEMBIAYAAN.indexOf($stateParams.id) < 0){
+                    // if (R.data.MY_PEMBIAYAAN.indexOf($stateParams.id) < 0){
                         
                         // $state.go('home_');
                         // console.log('Working direct');
                         
-                    }
+                    // }
 
-                } 
+                } 				
                 
                 if (R.data.STATUS == true){
                     $rootScope.$storage = $sessionStorage.$default({
                         SESSION_LOGIN : R.data
                     });
                     $rootScope.$storage.SESSION_LOGIN = R.data;
-                    console.log('storage', $rootScope.$storage);
+                    console.log('storage', $rootScope.$storage);										
                     
                     $rootScope.myFilterWilayah = function(e) {
                         if (typeof $rootScope.$storage.SESSION_LOGIN.CLUSTER.WILAYAH !== 'undefined')
@@ -2758,7 +2784,7 @@ App.factory("apiData", function ($sessionStorage, $http, globalFunction, $rootSc
     
 });
 
-App.factory('globalFunction',function($rootScope,$uibModal){
+App.factory('globalFunction',function($rootScope,$uibModal,$state,Excel){
     
     return {
         serializeObj : function(obj) {
@@ -2911,9 +2937,14 @@ App.factory('globalFunction',function($rootScope,$uibModal){
             
             var t = this;
             d['scope'].formValidMsg = [];
+            console.log(d['scope'][d['form']]);
             
             for (var i=0; i < d['field'].length; i++){				
-                if (!d['scope'][d['form']][d['field'][i]['fn']] && d['scope'][d['form']][d['field'][i]['fn']]!=0) { /*FZL penambahan && !=0 */	
+                if (d['scope'][d['form']][d['field'][i]['fn']] === null) {
+                    d['scope'].formValidMsg.push(d['field'][i]['fk'] + ' harus diisi');
+                } else if (d['scope'][d['form']][d['field'][i]['fn']] === "") {
+                    d['scope'].formValidMsg.push(d['field'][i]['fk'] + ' harus diisi');
+                } else if (d['scope'][d['form']][d['field'][i]['fn']] === undefined) {
                     d['scope'].formValidMsg.push(d['field'][i]['fk'] + ' harus diisi');
                 }
             }            			
@@ -3038,6 +3069,28 @@ App.factory('globalFunction',function($rootScope,$uibModal){
             var year = date.getFullYear();
 
             return day + ' ' + monthNames[monthIndex] + ' ' + year;
+        },
+		
+        permissions : function(d){					
+            var ok=false;
+            console.log('factory permissions',d);
+            if(typeof d !== 'undefined'){
+                angular.forEach($rootScope.$storage.SESSION_LOGIN.ROLE_MENU, function (value) {
+                        if(value===d) ok=true;
+                });						
+                if (!ok){$state.go('home_');}			
+            };
+        },
+        
+        exportToExcel : function(tableId,filename){ 	
+            var exportHref=Excel.tableToExcel(tableId,filename);	
+            // $timeout(function(){location.href=exportHref;},100);
+            var a = document.createElement('a');
+            a.href = exportHref; 
+            a.target = '_blank';
+            a.download = filename+'.xls';
+            document.body.appendChild(a);
+            a.click();
         }
 
     };
@@ -3080,6 +3133,7 @@ App.factory('Excel',function($window){//FZL
 		}
 	};
 })
+
 /*======================== DIRECTIVE =========================*/
 
 App.directive("fileread", [function () {
@@ -3993,12 +4047,7 @@ App.service('getNilaiPasarValidator',function($http,apiBase,globalFunction){
             
             scope[sn]['DB_LUAS_TANAH'] = R.data[0].DB_LUAS_TANAH;
             scope[sn]['DB_LUAS_BANGUNAN'] = R.data[0].DB_LUAS_BANGUNAN;
-			
-			if (scope.jenis_agunan_id==58){
-				scope[sn]['DB_LUAS_PER_PENILAIAN'] = R.data[0].DB_LUAS_TANAH;
-			}else{
-				scope[sn]['DB_LUAS_PER_PENILAIAN'] = R.data[0].DB_LUAS_BANGUNAN;
-			}
+			// scope[sn]['DB_LUAS_PER_PENILAIAN'] = R.data[0].DB_LUAS_TANAH;
 			
         }, function myError(R) {  
             console.log(R.statusText); 
@@ -4689,6 +4738,7 @@ App.controller('identitasIndividuCtrl', function($scope, apiData, $rootScope, ap
                 };
                 
                 for (var i=0; i<$rootScope.lov_bidang_usaha_sid_mis.length; i++){
+					
                     if ($rootScope.lov_bidang_usaha_sid_mis[i].MS_SANDI_SEKTOR_LIMA == $scope.formDataIdentitasIndividu.MS_KODE_BIDANG_USAHA){
                         $scope.formDataIdentitasIndividu.MS_KODE_BIDANG_USAHA_SELECT.MS_NAMA_SEKTOR_LIMA = $rootScope.lov_bidang_usaha_sid_mis[i].MS_NAMA_SEKTOR_LIMA;
                         console.log('WORKING ... ',$rootScope.lov_bidang_usaha_sid_mis[i].MS_NAMA_SEKTOR_LIMA);
@@ -4922,15 +4972,15 @@ App.controller('identitasIndividuCtrl', function($scope, apiData, $rootScope, ap
                 }
 
                 if (!$scope.formDataIdentitasIndividu.MS_KODE_GOLONGAN_DEBITUR_SID_ID) {
-                    $scope.formValidMsg.push('Kode Golongan Debitur (SID) tidak boleh kosong');
+                    $scope.formValidMsg.push('Kode Golongan Nasabah (SID) tidak boleh kosong');
                 }
 
                 if (!$scope.formDataIdentitasIndividu.MS_HUB_DEB_PNM_ID) {
-                    $scope.formValidMsg.push('Hub Debitur Dengan Bank (SID) tidak boleh kosong');
+                    $scope.formValidMsg.push('Hub Nasabah Dengan Bank (SID) tidak boleh kosong');
                 }
 
                 if (!$scope.formDataIdentitasIndividu.MS_HUB_DEB_BANK_ID) {
-                    $scope.formValidMsg.push('Hub Debitur Dengan Bank tidak boleh kosong');
+                    $scope.formValidMsg.push('Hub Nasabah Dengan Bank tidak boleh kosong');
                 }
             }
                       
@@ -5680,6 +5730,8 @@ App.controller('aplikasiCtrl', function($scope,globalFunction,$http,apiBase,$sta
         });
         
     })
+
+
     
     .controller('aplikasiInformasiUsahaCtrl',function(modalService,getKelengkapanDataById,$scope,globalFunction,$http,apiBase,$stateParams,apiData,$rootScope){
         
@@ -7548,7 +7600,7 @@ App.controller('jenisUsahaSurveyCtrl',function(modalService, $scope, $rootScope,
                     { k : 'Persaingan Usaha', v : $scope.fdJUS.MS_PERSAINGAN_USAHA_ID_DESKRIPSI },
                     { k : 'Daftar Negatif List Industri', v : $scope.fdJUS.SV_DAFTAR_NEGATIF, t : 'yesorno', tv : 1 },
                     { k : 'Daftar Negatif List Industri Keterangan', v : $scope.fdJUS.SV_DAFTAR_NEGATIF_DESKRIPSI },
-                    { k : 'Gambaran kondisi sektor usaha calon debitur saat ini di wilayah tersebut', v : $scope.fdJUS.MS_KONDISI_SEKTOR_USAHA_ID_DESKRIPSI },
+                    { k : 'Gambaran kondisi sektor usaha calon nasabah saat ini di wilayah tersebut', v : $scope.fdJUS.MS_KONDISI_SEKTOR_USAHA_ID_DESKRIPSI },
                     { k : 'Pangsa Pasar', v : $scope.fdJUS.SV_PANGSA_PASAR },
                     { k : 'Lokasi Usaha', v : $scope.fdJUS.MS_LOKASI_USAHA_ID_DESKRIPSI },
                     { k : 'Periode Penjualan', v : $scope.fdJUS.MS_PERIODE_PENJUALAN_ID_DESKRIPSI },
@@ -7842,7 +7894,7 @@ App.controller('keuanganSurveyCtrl', function($scope,$rootScope,globalFunction,a
                 { fn : 'MS_BIAYA_LAINNYA_PERBULAN',  fk : 'Biaya lainnya untuk usaha tsb' },
                 { fn : 'MS_PENGHASILAN_USAHA_LAIN_1',  fk : 'Penghasilan bersih usaha lain 1' },
                 { fn : 'MS_PENGHASILAN_USAHA_LAIN_2',  fk : 'Penghasilan bersih usaha lain 2' },
-                { fn : 'MS_GAJI_DEBITUR_PERBULAN',  fk : 'Gaji debitur' },
+                { fn : 'MS_GAJI_DEBITUR_PERBULAN',  fk : 'Gaji nasabah' },
                 { fn : 'MS_GAJI_PASANGAN_PERBULAN',  fk : 'Gaji pasangan' },
                 { fn : 'MS_BIAYA_RUMAH_TANGGA_PASANGAN_PERBULAN',  fk : 'Biaya Rumah Tangga Pasangan' },
                 { fn : 'MS_BIAYA_RUMAH_TANGGA_ANAK_PERBULAN',  fk : 'Biaya Rumah Tangga Anak' },
@@ -8071,7 +8123,9 @@ App.controller('rincianAngsuranCtrl',function($scope,globalFunction,$state,apiDa
     
     $scope.$watch('DS', function(dataLoaded) {
         if (dataLoaded){
-            if ($scope.JPem.MS_JENIS_PEMBIAYAAN_ID == 111){
+            if ($scope.JPem.MS_JENIS_PEMBIAYAAN_ID == 111 && $rootScope.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY') {
+                $state.go('survey.keuangan.angsuran.3rsyariah');
+            } else if ($scope.JPem.MS_JENIS_PEMBIAYAAN_ID == 111){
                 $state.go('survey.keuangan.angsuran.3r');
             } else if ($scope.JPem.MS_JENIS_PEMBIAYAAN_ID == 110 && $rootScope.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY') {
                 $state.go('survey.keuangan.angsuran.topupsyariah');
@@ -8136,6 +8190,10 @@ App.controller('rincianAngsuranBaruCtrl', function($scope,$http,$state,$rootScop
         return parseInt(A) + parseInt(B);
     };
     
+    $scope.exportToExcel=function(tableId,filename){			
+        globalFunction.exportToExcel(tableId,filename);
+    };
+    
 })
 
 .controller('rincianAngsuranTopUpSyariahCtrl', function($scope,$http,$state,$rootScope,globalFunction,apiData,apiBase,postJadwal,globalFunction,$stateParams){
@@ -8196,9 +8254,13 @@ App.controller('rincianAngsuranBaruCtrl', function($scope,$http,$state,$rootScop
     };
     $scope.getlistRek($stateParams.id);
     
+    $scope.exportToExcel=function(tableId,filename){			
+        globalFunction.exportToExcel(tableId,filename);
+    };
+    
 })
 
-.controller('rincianAngsuran3RCtrl', function($scope,$rootScope,globalFunction,apiData,apiBase,postJadwal,globalFunction,$stateParams,Excel,$timeout){
+.controller('rincianAngsuran3RCtrl', function($scope,$rootScope,globalFunction,apiData,apiBase,postJadwal,globalFunction,$stateParams,$timeout){
     			
     $scope.fdAS3R = {};
     
@@ -8262,17 +8324,74 @@ App.controller('rincianAngsuranBaruCtrl', function($scope,$http,$state,$rootScop
         return parseInt(A) + parseInt(B);
     };    
 
-	$scope.exportToExcel=function(tableId,filename){ // FZL			
-		var exportHref=Excel.tableToExcel(tableId,'JadwalAngsuran3r');		
-		// $timeout(function(){location.href=exportHref;},100);
-		var a = document.createElement('a');
-		a.href = exportHref; 
-		a.target = '_blank';
-		a.download = filename+'.xls';
-		document.body.appendChild(a);
-		a.click();
-    }					
-});
+    $scope.exportToExcel=function(tableId,filename){			
+        globalFunction.exportToExcel(tableId,filename);
+    };
+    
+})
+
+.controller('rincianAngsuran3RSyariahCtrl', function($scope,$rootScope,globalFunction,apiData,apiBase,postJadwal,globalFunction,$stateParams,$timeout){
+    			
+    $scope.fdAS3RS = {};
+    var dt = new Date();
+    $scope.fdAS3RS.sdateTA = dt.toISOString();
+    $scope.fdAS3RS.sdateTR = dt.toISOString();
+    $scope.dtSDateTA = dt;
+    $scope.dtSDateTR = dt;
+    
+    $scope.$watch('fdKS', function(dataLoaded) {
+        if (dataLoaded){
+            $scope.fdAS3RS.MS_PLAFOND = $scope.fdKS.MS_PLAFOND;
+            $scope.fdAS3RS.MS_TENOR = $scope.fdKS.MS_TENOR;
+            $scope.fdAS3RS.MS_BUNGA_PERBULAN = $scope.fdKS.MS_BUNGA_PERBULAN;
+        }
+    });
+	
+    $scope.buatjadwal = function(){
+        $scope.fdAS3RS.DB_PROSPEK_ID = $stateParams.id;
+        apiData.post({
+            gl      : true,
+            api     : apiBase+'survey/post_createjadwalangsuran3rsyariah',
+            data    : $scope.fdAS3RS,
+            scope   : $scope,
+            type    : 'tolist',
+            reload  : 'getlJadwalAngsuran'
+        });
+    };
+	
+    $scope.getlJadwalAngsuran = function(id){
+        apiData.get({
+            gl      : false,
+            api     : apiBase+'survey/get_jadwalangsuran3rsyariah/?id='+id,
+            scope   : $scope,
+            sn      : 'listJA3RS',
+            type    : 'tolist',
+            callbacksuccess : function(R){
+                $scope.fdAS3RS.NO_REKENING = R.data.HEADER.NO_REKENING;
+                $scope.dtSDateTR = new Date(R.data.HEADER.sdateTR);
+                $scope.fdAS3RS.sdateTR = $scope.dtSDateTR.toISOString();
+            }
+        });
+    };
+    $scope.getlJadwalAngsuran($stateParams.id);
+    
+    $scope.getlistRek = function(id){
+        apiData.get({
+            gl      : false,
+            api     : apiBase+'survey/get_rekeningdebiturdw/?id='+id,
+            scope   : $scope,
+            sn      : 'getlistRek',
+            type    : 'tolist'
+        });
+    };
+    $scope.getlistRek($stateParams.id);
+    
+    $scope.exportToExcel=function(tableId,filename){			
+        globalFunction.exportToExcel(tableId,filename);
+    };
+    
+});;
+
 
 /* Kebutuhan Modal Kerja */
 
@@ -8873,7 +8992,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
         if ($scope.fdAS.NUM_NAMA_PEMILIK.length > 1){
             var array = $scope.fdAS.NUM_NAMA_PEMILIK;
 
-            var index = array.indexOf(d.id);
+            var index = array.indexOf(d);
             if (index > -1) {
               array.splice(index, 1);
             }
@@ -9229,7 +9348,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
 	
 	/*FZL agunan 10/4/2018*/
     $scope.formValid = function(){	
-        /*console.log($scope.jnsagunan);*/
+        console.log($scope.jnsagunan);
         if ($scope.jnsagunan==='TANAH'){
             var e = globalFunction.formValidation({				
                 scope : $scope,
@@ -9515,10 +9634,19 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 $scope.fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_1 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
                 $scope.fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_2 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
                 $scope.fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_3 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
-				$scope.fdPNL.DB_NILAI_PASAR = parseFloat($scope.fdPNL.DB_NILAI_PASAR * 100) / parseFloat(100 - $scope.fdPNL.DB_NILAI_PENYUSUTAN);
+                $scope.fdPNL.DB_NILAI_PASAR = parseFloat($scope.fdPNL.DB_NILAI_PASAR * 100) / parseFloat(100 - $scope.fdPNL.DB_NILAI_PENYUSUTAN);
                 $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );									
-				$scope.fdPNL.DB_NILAI_PASAR = $scope.fdPNL.DB_NILAI_PASAR - ($scope.fdPNL.DB_NILAI_PASAR * ($scope.fdPNL.DB_NILAI_PENYUSUTAN /100));
+                $scope.fdPNL.DB_NILAI_PASAR = $scope.fdPNL.DB_NILAI_PASAR - ($scope.fdPNL.DB_NILAI_PASAR * ($scope.fdPNL.DB_NILAI_PENYUSUTAN /100));
+                
+                if ($scope.fdPNL.MS_JENIS_PENILAIAN==1134){
+                    $scope.fdPNL.DB_LUAS_PER_PENILAIAN = $scope.fdPNL.DB_LUAS_TANAH;
+                }else if ($scope.fdPNL.MS_JENIS_PENILAIAN==1135){
+                    $scope.fdPNL.DB_LUAS_PER_PENILAIAN = $scope.fdPNL.DB_LUAS_BANGUNAN;
+                } else {
+                    $scope.fdPNL.DB_LUAS_PER_PENILAIAN = 0;
+                }
                 $scope.modalPNL();
+                
             }
         });
         
@@ -9567,7 +9695,8 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 { k : 'Nilai Pasar 3', v : $scope.fdPNL.DB_NILAI_PASAR_3, t : 'number' },
                 { k : 'Nilai Pasar', v : $scope.fdPNL.DB_NILAI_PASAR, t : 'number' },
                 { k : 'Presentase Likuidasi', v : $scope.fdPNL.DB_PERSENTASE_LIKUIDASI, t : 'percent' },
-                { k : 'Nilai Likuidasi', v : $scope.fdPNL.DB_NILAI_LIKUIDASI, t : 'number' }
+                { k : 'Nilai Likuidasi', v : $scope.fdPNL.DB_NILAI_LIKUIDASI, t : 'number' },
+                { k : 'Penyusutan', v : $scope.fdPNL.DB_NILAI_PENYUSUTAN, t : 'percent' }
             ];
         });
     };
@@ -9637,6 +9766,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 form  : 'fdPNL',			
                 field : [
                         { fn : 'MS_JENIS_PENILAIAN',  fk : 'Jenis Penilaian' },
+                        { fn : 'DB_TGL_PENILAIAN',  fk : 'Tgl Penilaian' },
                         { fn : 'DB_NILAI_PASAR_1',  fk : 'Nilai Pasar 1' },
                         { fn : 'DB_NILAI_PASAR_2',  fk : 'Nilai Pasar 2' },
                         { fn : 'DB_NILAI_PASAR_3',  fk : 'Nilai Pasar 3' },
@@ -9652,6 +9782,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 scope : $scope,
                 form  : 'fdPNL',			
                 field : [
+                		{ fn : 'DB_TGL_PENILAIAN',  fk : 'Tgl Penilaian' },
                         { fn : 'DB_NILAI_PASAR_1',  fk : 'Nilai Pasar 1' },
                         { fn : 'DB_NILAI_PASAR_2',  fk : 'Nilai Pasar 2' },
                         { fn : 'DB_NILAI_PASAR_3',  fk : 'Nilai Pasar 3' },
@@ -9667,12 +9798,12 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
     $scope.cekNilaiPasar = function() {
         if ($scope.fdPNL.MS_JENIS_PENILAIAN == 1134){
 			
-			console.log('masuk');
+            console.log('masuk');
             if ($scope.fdPNL.DB_NILAI_PASAR > $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2) {
-				if ($scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2>0)
-					globalFunction.ag('danger',['Silahkan periksa nilai acuan pasar tanah di dnpt']);
-				else
-					globalFunction.ag('danger',['Nilai pasar tanah belum ada di dnpt']);
+                if ($scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2>0)
+                    globalFunction.ag('danger',['Silahkan periksa nilai acuan pasar tanah di dnpt']);
+                else
+                    globalFunction.ag('danger',['Nilai pasar tanah belum ada di dnpt']);
 				
                 $scope.fdPNL.DB_NILAI_PASAR = $scope.fdPNL.NILAI_PASAR_VALIDATOR_MASTER_PER_METER_2;               
                 $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
@@ -12665,6 +12796,7 @@ App.controller('userAlternateSettingCtrl',function($scope,$rootScope,globalFunct
     $scope.fdUAS.PAGE = 1;
     $scope.fdUAS.MAX_SIZE = 5;
     $scope.fdUAS.LIMIT = 10;
+	$rootScope.editUserSSO = {};
 
     if ($rootScope.$storage.SESSION_LOGIN.WILAYAH)
         $scope.fdUAS.MS_WILAYAH_ID = $rootScope.$storage.SESSION_LOGIN.WILAYAH;
@@ -12704,6 +12836,9 @@ App.controller('userAlternateSettingCtrl',function($scope,$rootScope,globalFunct
                 $scope.fdUAS.TOTAL_ITEMS = R.data.len;
             }
         });
+		
+		if (d['PAGE'])
+		$scope.fdUAS.PAGE = d['PAGE'];
     };		
 	
 	$scope.$watchGroup(['fdUAS.MS_KODE_CABANG','fdUAS.MS_KODE_UNIT','fdUAS.PAGE','fdUAS.LIMIT','fdUAS.SEARCH'], function(newValues, oldValues, scope) {
@@ -12723,8 +12858,12 @@ App.controller('userAlternateSettingCtrl',function($scope,$rootScope,globalFunct
     };	
 	
 	$rootScope.modalMAC = function (d) {
-		
-		$rootScope.editUserSSO = d;
+			
+		if (d != undefined)
+			$rootScope.editUserSSO = d;
+		else
+			$rootScope.editUserSSO = '';
+	
 		var m = globalFunction.openModal('partials/modals/modal-user-alternate.html', 'modal-form', 'modalAlternateCtrl');           
 		
 		$rootScope.closemodalMAC = function () {
@@ -12742,7 +12881,7 @@ App.controller('userAlternateSettingCtrl',function($scope,$rootScope,globalFunct
 			callbacksuccess : function(){											
 				$rootScope.getlistUAS({
 					'MS_KODE_CABANG'    : typeof ($rootScope.$storage.SESSION_LOGIN.CABANG_KODE)!='undefined' ? $rootScope.$storage.SESSION_LOGIN.CABANG_KODE : '',
-					'MS_KODE_UNIT'      : typeof ($rootScope.$storage.SESSION_LOGIN.UNIT_KODE)!='undefined' ? $rootScope.$storage.SESSION_LOGIN.UNIT_KODE : ''
+					'MS_KODE_UNIT'      : typeof ($rootScope.$storage.SESSION_LOGIN.UNIT_KODE)!='undefined' ? $rootScope.$storage.SESSION_LOGIN.UNIT_KODE : ''					
 				});	
 			}
         });
@@ -12753,24 +12892,48 @@ App.controller('userAlternateSettingCtrl',function($scope,$rootScope,globalFunct
 App.controller('modalAlternateCtrl', function ($sce, $rootScope, globalFunction, $scope, $stateParams, apiData, apiBase, $sessionStorage) {   
 
 	$scope.fdMAC = {};	
+	$scope.fdMAC.AOM = {};
+	$scope.fdMAC.KAM = {};
+	$scope.fdMAC.KKU = {};
+	$scope.fdMAC.REVIEWER = {};
+	$scope.fdMAC.MS_KODE_UNIT_ARR = {};
+	$rootScope.editUserSSO.ROLE_ARR = {};
+	$scope.fdMAC.NUM_USER = [0];	
 		
 	if ($rootScope.editUserSSO){	
-			
+	
+	    if ($rootScope.editUserSSO.MS_KODE_UNIT != undefined)			
+		$scope.fdMAC.MS_KODE_UNIT_ARR = $rootScope.editUserSSO.MS_KODE_UNIT.split("-");
+		else
+		$scope.fdMAC.MS_KODE_UNIT_ARR[0] = null;
+	
+		if ($rootScope.editUserSSO.ROLE != undefined)
+		$rootScope.editUserSSO.ROLE_ARR = $rootScope.editUserSSO.ROLE.split("-");
+		else
+		$rootScope.editUserSSO.ROLE_ARR[0] = null;
+	
+		
+		
 		$scope.fdMAC.MS_USERNAME    = $rootScope.editUserSSO.MS_USERNAME;
-		$scope.fdMAC.MS_KODE_CABANG = $rootScope.editUserSSO.MS_KODE_CABANG;
-		$scope.fdMAC.MS_KODE_UNIT   = $rootScope.editUserSSO.MS_KODE_UNIT;
+		$scope.fdMAC.MS_KODE_CABANG = $rootScope.editUserSSO.MS_KODE_CABANG;		
 		$scope.fdMAC.MS_POSISI      = $rootScope.editUserSSO.MS_POSISI;
 		
-		if ($rootScope.editUserSSO.ROLE !== null) {
-			if ($rootScope.editUserSSO.ROLE.search('AOM')>=0)
-				$scope.fdMAC.AOM = true;
-			if ($rootScope.editUserSSO.ROLE.search('KAM')>=0)
-				$scope.fdMAC.KAM = true;
-			if ($rootScope.editUserSSO.ROLE.search('KKU')>=0)
-				$scope.fdMAC.KKU = true;
-			if ($rootScope.editUserSSO.ROLE.search('REVIEWER')>=0)
-				$scope.fdMAC.REVIEWER = true;
+		for (x = 0; x < $scope.fdMAC.MS_KODE_UNIT_ARR.length; ++x) {
+			
+			if ($rootScope.editUserSSO.ROLE_ARR[x] !== null) {
+				if ($rootScope.editUserSSO.ROLE_ARR[x].search('AOM')>=0)
+					$scope.fdMAC.AOM[x] = true;
+				if ($rootScope.editUserSSO.ROLE_ARR[x].search('KAM')>=0)
+					$scope.fdMAC.KAM[x] = true;
+				if ($rootScope.editUserSSO.ROLE_ARR[x].search('KKU')>=0)
+					$scope.fdMAC.KKU[x] = true;
+				if ($rootScope.editUserSSO.ROLE_ARR[x].search('REVIEWER')>=0)
+					$scope.fdMAC.REVIEWER[x] = true;
+			}
+			
+			$scope.fdMAC.NUM_USER[x]=x;
 		}
+			
 	}
 
     $rootScope.modalSSO = function (id) {
@@ -12785,22 +12948,33 @@ App.controller('modalAlternateCtrl', function ($sce, $rootScope, globalFunction,
 		
 	$rootScope.selectUserSSO = function(d){     			
 		$scope.fdMAC.MS_USERNAME    = d.Username;
-		$scope.fdMAC.MS_KODE_CABANG = d.kode_cabang;
-		$scope.fdMAC.MS_KODE_UNIT   = d.kode_unit;
 		$scope.fdMAC.MS_POSISI      = d.posisi;
+		$scope.fdMAC.MS_KODE_CABANG = d.kode_cabang;		
+		$scope.fdMAC.MS_KODE_UNIT   = d.kode_unit;
+		$scope.fdMAC.MS_KODE_UNIT_ARR[0] = d.kode_unit;
     };
 	
 	$scope.postfdMAC = function(){
-		// console.log('fdMAC',$scope.fdMAC);
+
 		$scope.fdMAC.ROLE = '';
-		$scope.fdMAC.ROLE = ($scope.fdMAC.AOM) ? $scope.fdMAC.ROLE+',AOM':$scope.fdMAC.ROLE+'';
-		$scope.fdMAC.ROLE = ($scope.fdMAC.KAM) ? $scope.fdMAC.ROLE+',KAM':$scope.fdMAC.ROLE+'';
-		$scope.fdMAC.ROLE = ($scope.fdMAC.KKU) ? $scope.fdMAC.ROLE+',KKU':$scope.fdMAC.ROLE+'';
-		$scope.fdMAC.ROLE = ($scope.fdMAC.REVIEWER) ? $scope.fdMAC.ROLE+',REVIEWER':$scope.fdMAC.ROLE+'';
-		$scope.fdMAC.ROLE = $scope.fdMAC.ROLE.substring(1);
+		$scope.fdMAC.MS_KODE_UNIT = '';
+		for (x = 0; x < $scope.fdMAC.MS_KODE_UNIT_ARR.length; ++x) {
+			$scope.fdMAC.ROLE = ($scope.fdMAC.AOM[x]) ? $scope.fdMAC.ROLE+'AOM,':$scope.fdMAC.ROLE+'';
+			$scope.fdMAC.ROLE = ($scope.fdMAC.KAM[x]) ? $scope.fdMAC.ROLE+'KAM,':$scope.fdMAC.ROLE+'';
+			$scope.fdMAC.ROLE = ($scope.fdMAC.KKU[x]) ? $scope.fdMAC.ROLE+'KKU,':$scope.fdMAC.ROLE+'';
+			$scope.fdMAC.ROLE = ($scope.fdMAC.REVIEWER[x]) ? $scope.fdMAC.ROLE+'REVIEWER,':$scope.fdMAC.ROLE+'';			
+			$scope.fdMAC.ROLE = $scope.fdMAC.ROLE.substring(0,$scope.fdMAC.ROLE.length-1);			
+			$scope.fdMAC.ROLE = $scope.fdMAC.ROLE+'-';			
+		}
+		$scope.fdMAC.ROLE = $scope.fdMAC.ROLE.substring(0,$scope.fdMAC.ROLE.length-1);
+		
+		for (x = 0; x < $scope.fdMAC.MS_KODE_UNIT_ARR.length; ++x) {
+			$scope.fdMAC.MS_KODE_UNIT = ($scope.fdMAC.MS_KODE_UNIT_ARR[x]) ? $scope.fdMAC.MS_KODE_UNIT+$scope.fdMAC.MS_KODE_UNIT_ARR[x]:'';
+			$scope.fdMAC.MS_KODE_UNIT = $scope.fdMAC.MS_KODE_UNIT+'-';			
+		}
+		$scope.fdMAC.MS_KODE_UNIT = $scope.fdMAC.MS_KODE_UNIT.substring(0,$scope.fdMAC.MS_KODE_UNIT.length-1);				
 		
 		$scope.fdMAC.CREATED_BY_NAME = $rootScope.$storage.SESSION_LOGIN.NAMA;
-		console.log('$scope.fdMAC.ROLE',$scope.fdMAC.ROLE);
 		
 		apiData.post({
 			gl      : true,
@@ -12809,11 +12983,16 @@ App.controller('modalAlternateCtrl', function ($sce, $rootScope, globalFunction,
 			callbacksuccess : function(){											
 				$rootScope.getlistUAS({
 					'MS_KODE_CABANG'    : typeof ($rootScope.$storage.SESSION_LOGIN.CABANG_KODE)!='undefined' ? $rootScope.$storage.SESSION_LOGIN.CABANG_KODE : '',
-					'MS_KODE_UNIT'      : typeof ($rootScope.$storage.SESSION_LOGIN.UNIT_KODE)!='undefined' ? $rootScope.$storage.SESSION_LOGIN.UNIT_KODE : ''
+					'MS_KODE_UNIT'      : typeof ($rootScope.$storage.SESSION_LOGIN.UNIT_KODE)!='undefined' ? $rootScope.$storage.SESSION_LOGIN.UNIT_KODE : '',
+					'PAGE'				: 1
 				});	
 			}
         });
-	};
+	};		
+	
+	$scope.ADD_NUM_USER = function(){
+        $scope.fdMAC.NUM_USER.push(window.Math.max.apply(null, $scope.fdMAC.NUM_USER) + 1);
+    };		
 	
 });	
 	

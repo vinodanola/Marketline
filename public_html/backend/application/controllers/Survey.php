@@ -395,6 +395,20 @@ class Survey extends CI_Controller {
         
     }
     
+    public function get_jadwalangsuran3rsyariah(){
+        
+        get_api($this->config->item('baseAPI').'survey/get_angsuran_3r_syariah/?DB_PROSPEK_ID='.$this->input->get('id'));
+	
+    }
+    
+    public function post_createjadwalangsuran3rsyariah(){
+        
+        $p = $this->input->post();
+		
+        post_api($this->config->item('baseAPI').'survey/set_angsuran_3r_syariah', $p);
+        
+    }
+    
     /* Kebutuhan Modal Kerja */
     
     /* Aset */

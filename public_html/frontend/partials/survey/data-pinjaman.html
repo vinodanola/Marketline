@@ -1,7 +1,7 @@
 <div class="col-md-6 col-padding-110 col-has-border-right">
     <div class="form-group">
         <label>Business Type *</label>
-        <select class="form-control" ng-disabled="$root.$storage.SESSION_LOGIN.POSISI_NAMA!='SUPERADMIN'" ng-model="fdKS.MS_JENIS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PRODUK_ID">
+        <select class="form-control" ng-disabled="($root.$storage.SESSION_LOGIN.POSISI_NAMA=='SUPERADMIN' && SURVEY_LOCK != 'YES') ? false : true" ng-model="fdKS.MS_JENIS_PRODUK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PRODUK_ID">
             <option></option>
         </select>
     </div>

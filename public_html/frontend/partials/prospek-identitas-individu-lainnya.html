@@ -25,19 +25,19 @@
         </ui-select>
     </div>
     <div class="form-group">
-        <label>Kode Golongan Debitur (SID) *</label>
+        <label>Kode Golongan Nasabah (SID) *</label>
         <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_KODE_GOLONGAN_DEBITUR_SID_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.kode_golongan_sid">
             <option></option>
         </select>
     </div>
     <div class="form-group">
-        <label>Hub Debitur Dengan Bank (SID) *</label>
+        <label>Hub Nasabah Dengan Bank (SID) *</label>
         <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_HUB_DEB_PNM_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_RELASI_DEB_PNM_SID_ID">
             <option></option>
         </select>
     </div>
     <div class="form-group">
-        <label>Hub Debitur Dengan Bank *</label>
+        <label>Hub Nasabah Dengan Bank *</label>
         <select ng-disabled="(PROSPEK_LOCK!='YES') ? false : true" class="form-control" ng-model="formDataIdentitasIndividu.MS_HUB_DEB_BANK_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_RELASI_DEB_BANK_ID">
             <option></option>
         </select>

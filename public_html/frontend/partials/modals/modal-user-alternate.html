@@ -3,7 +3,7 @@
 </div>
 <hr class="awesome no-margin"/>
 <div class="modal-body">
-	<div class="col-md-6 col-padding-110 col-has-border-right">		
+	<div class="col-md-6 col-md-offset-3 col-padding-110">		
 		<label>Username</label>
         <div class="input-group">
             <input type="text" class="form-control ng-untouched ng-not-empty ng-dirty ng-invalid ng-invalid-mask ng-valid-parse" ng-model="fdMAC.MS_USERNAME">															
@@ -11,27 +11,35 @@
 			<button class="btn btn-search" type="button" ng-click="$root.modalSSO()"><i class="fa fa-search fa-fw"></i> SSO</button>
 			</span>
         </div>		
-		<label>Kode Cabang</label>
-		<div class="form-group">			
-            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="fdMAC.MS_KODE_CABANG">
-        </div>        				
-		<label>Kode Unit</label>
-		<div class="form-group">			
-            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="fdMAC.MS_KODE_UNIT">
-        </div> 		
-    </div>   			
-    <div class="col-md-6 col-padding-110">
 		<label>Posisi</label>
         <div class="form-group">
             <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="fdMAC.MS_POSISI">
-        </div>
-		<label>Rangkap Role</label>
-		<div class="btn-group">
-        <label class="btn btn-default" ng-model="fdMAC.AOM" uib-btn-checkbox>AOM</label>
-        <label class="btn btn-default" ng-model="fdMAC.KAM" uib-btn-checkbox>KAM</label>
-        <label class="btn btn-default" ng-model="fdMAC.KKU" uib-btn-checkbox>KKU</label>
-        <label class="btn btn-default" ng-model="fdMAC.REVIEWER" uib-btn-checkbox>REVIEWER</label>
-		</div>      				
+        </div>		
+    </div>   			
+	<div class="col-md-12 col-padding-110">	
+	<span class="pull-right">
+			<small class="label label-info ng-binding" ng-click="ADD_NUM_USER()"><span class="glyphicon glyphicon-plus"></span> Tambah Cabang</small> 
+	</span>
+	</div>
+	<div ng-repeat="x in fdMAC.NUM_USER">
+		<div  ng-class="fdMAC.NUM_USER[$index] % 2 == 0 ? 'col-has-border-right' : '';" class="col-md-6 col-padding-110" style="margin-bottom:60px">		
+			<label>Kode Cabang</label>
+			<div class="form-group">			
+				<input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="fdMAC.MS_KODE_CABANG">
+			</div>        				
+			<label>Kode Unit</label>
+			<div class="form-group">			
+				<input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="fdMAC.MS_KODE_UNIT_ARR[$index]">
+			</div> 		
+			<label>Rangkap Role</label><br/>
+			<div class="btn-group">
+			<label class="btn btn-default" ng-model="fdMAC.AOM[$index]" uib-btn-checkbox>AOM</label>
+			<label class="btn btn-default" ng-model="fdMAC.KAM[$index]" uib-btn-checkbox>KAM</label>
+			<label class="btn btn-default" ng-model="fdMAC.KKU[$index]" uib-btn-checkbox>KKU</label>
+			</div>
+			<br/>
+			<small class="label label-warning ng-binding" ><span class="glyphicon glyphicon-minus"></span> Hapus Cabang</small> 
+		</div>		
     </div>    
 </div>
 <div class="modal-footer">

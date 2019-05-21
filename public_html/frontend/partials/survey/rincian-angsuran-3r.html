@@ -33,14 +33,14 @@
         <label>Upload Jadwal Angsuran *</label>
         <input type="file" class="form-control" file-model="fdAS3R.fileToUpload" />
     </div>
-	<div class="form-group">
-		<!--button class="btn btn-link" ng-click="exportToExcel('#table3r')">
-			<span class="glyphicon glyphicon-share"></span> Export to Excel
-		</button-->
-		<label>Download Jadwal Angsuran *</label>
-		<div class="input-group">
-			<a class="btn btn-success btn-sm" ng-click="exportToExcel('#table3r','JadwalAngsuran3r')"><span class="glyphicon glyphicon-share"></span> Excel </a>
-		</div>
+    <div class="form-group">
+        <!--button class="btn btn-link" ng-click="exportToExcel('#table3r')">
+                <span class="glyphicon glyphicon-share"></span> Export to Excel
+        </button-->
+        <br/>
+        <div class="input-group">
+            <a class="btn btn-success btn-sm" ng-click="exportToExcel('#table3r','JadwalAngsuran3r')"><span class="glyphicon glyphicon-download"></span> Unduh Excel</a>
+        </div>
     </div>
 </div>
 <div class="col-md-12">
@@ -68,30 +68,30 @@
             ></ul>
         </li>
     </ul>-->
-	<div id="table3r">
-    <table wt-responsive-table class="table table-hidden-overflow small">
-        <tr class="thead">
-            <th>Rekening Lama</th>
-            <th>Tanggal</th>
-            <th>Angsuran Ke</th>
-            <th>Pokok</th>
-            <th>Bunga</th>
-            <th>Total</th>
-        </tr>
-        <tr ng-repeat="x in listJA">
-            <td>{{x.NO_REKENING_DIPERBAIKI}}</td>
-            <td>{{x.TANGGAL}}</td>
-            <td>{{x.ANGSURAN}}</td>
-            <td class="text-right">{{x.POKOK | number:2}}</td>
-            <td class="text-right">{{x.BUNGA | number:2}}</td>
-            <td class="text-right">{{PokokBunga(x.POKOK,x.BUNGA)}}</td>
-        </tr>
-        <tr class="text-success">
-            <td colspan="3">Total</td>
-            <td class="text-right">{{ listJA | sumByColumn: 'POKOK' | number:2}}</td>
-            <td class="text-right">{{ listJA | sumByColumn: 'BUNGA' | number:2}}</td>
-            <td class="text-right">{{PokokBunga(listJA | sumByColumn: 'POKOK',listJA | sumByColumn: 'BUNGA') | number:2}}</td>
-        </tr>
-    </table>
-	</div>	
+    <div id="table3r">
+        <table wt-responsive-table class="table table-hidden-overflow small">
+            <tr class="thead">
+                <th class="text-center">Rekening Lama</th>
+                <th class="text-center">Tanggal</th>
+                <th class="text-center">Angsuran Ke</th>
+                <th class="text-center">Pokok</th>
+                <th class="text-center">Bunga</th>
+                <th class="text-center">Total</th>
+            </tr>
+            <tr ng-repeat="x in listJA">
+                <td class="text-center">{{x.NO_REKENING_DIPERBAIKI}}</td>
+                <td class="text-center">{{x.TANGGAL}}</td>
+                <td class="text-center">{{x.ANGSURAN}}</td>
+                <td class="text-center">{{x.POKOK | number:2}}</td>
+                <td class="text-center">{{x.BUNGA | number:2}}</td>
+                <td class="text-center">{{PokokBunga(x.POKOK,x.BUNGA) | number:2}}</td>
+            </tr>
+            <tr class="text-success">
+                <td colspan="3">Total</td>
+                <td class="text-center">{{ listJA | sumByColumn: 'POKOK' | number:2}}</td>
+                <td class="text-center">{{ listJA | sumByColumn: 'BUNGA' | number:2}}</td>
+                <td class="text-center">{{PokokBunga(listJA | sumByColumn: 'POKOK',listJA | sumByColumn: 'BUNGA') | number:2}}</td>
+            </tr>
+        </table>
+    </div>	
 </div>
