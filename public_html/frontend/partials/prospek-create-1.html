@@ -10,7 +10,13 @@
         <select class="form-control" ng-model="formDataProspekCreate.MS_JENIS_PEMBIAYAAN_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.jns_pembiayaan | filter:filterJenisPembiayaan" ng-change="detectJP(formDataProspekCreate.MS_JENIS_PEMBIAYAAN_ID)">
             <option></option>
         </select>
-    </div>
+    </div>	
+	<div class="form-group" ng-show="$root.$storage.SESSION_LOGIN.BUSINESS_TYPE=='SY' && formDataProspekCreate.MS_JENIS_PEMBIAYAAN_ID==110">
+        <label>Jenis Top Up</label>
+        <select class="form-control" ng-model="formDataProspekCreate.MS_JENIS_TOP_UP_ID" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_TOP_UP_ID" >
+            <option></option>
+        </select>
+    </div>		
     <div class="form-group">
         <label>Nama Panggilan *</label>
         <input type="text" class="form-control" ng-model="formDataProspekCreate.PR_NAMA_PANGGILAN"/>

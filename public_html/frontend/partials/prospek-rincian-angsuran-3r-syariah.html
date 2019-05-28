@@ -1,0 +1,48 @@
+<ng-include src="'partials/prospek-rincian-angsuran-step.html'"></ng-include>
+
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Rekening Yang Di-Restruktur *</label>
+        <select class="form-control" ng-model="fdAS3RS.NO_REKENING"  ng-options="x.NO_REKENING as (x.NO_REKENING) for x in getlistRek">
+            <option></option>
+        </select>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">     
+    <div class="form-group">
+        <label>Tanggal Realisasi</label>
+        <md-datepicker md-placeholder="Tanggal realisasi"  md-open-on-focus ng-model="dtSDateTR" ng-change="fdAS3RS.sdateTR = dtSDateTR.toISOString()"></md-datepicker>
+    </div>
+    <div class="form-group" ng-if="PROSPEK_LOCK != 'YES'">
+        <br/>
+        <a class="btn btn-success btn-sm" ng-click="buatjadwal()">Buat Jadwal</a>
+        <a class="btn btn-success btn-sm" ng-click="exportToExcel('#table3rsyariah','JadwalAngsuran3RSyariah')"><span class="glyphicon glyphicon-download"></span> Unduh Excel </a>
+    </div>
+</div>
+<div class="col-md-12">
+    <div id="table3rsyariah">
+        <table wt-responsive-table class="table table-hidden-overflow small">
+            <tr class="thead">
+                <th class="text-center">Angsuran Ke</th>
+                <th class="text-center">Angsuran</th>
+                <th class="text-center">Pokok</th>
+                <th class="text-center">Bunga</th>
+                <th class="text-center">Baki Debet</th>
+            </tr>
+            <tr ng-repeat="x in listJA3RS.DETAIL">
+                <td class="text-center">{{x.ANGSURAN_KE}}</td>
+                <td class="text-center">{{x.ANGSURAN}}</td>
+                <td class="text-center">{{x.POKOK | number:2}}</td>
+                <td class="text-center">{{x.BUNGA | number:2}}</td>
+                <td class="text-center">{{x.BAKIDEBET | number:2}}</td>
+            </tr>
+            <tr class="text-success" ng-if="listJA3RS.DETAIL.length > 0">
+                <td >Total</td>
+                <td class="text-center">{{ listJA3RS.DETAIL | sumByColumn: 'ANGSURAN' | number:2}}</td>
+                <td class="text-center">{{ listJA3RS.DETAIL | sumByColumn: 'POKOK' | number:2}}</td>
+                <td class="text-center">{{ listJA3RS.DETAIL | sumByColumn: 'BUNGA' | number:2}}</td>
+                <td class="text-center">{{ listJA3RS.DETAIL | sumByColumn: 'BAKIDEBET' | number:2}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

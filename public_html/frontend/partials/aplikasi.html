@@ -21,7 +21,8 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <div class="col-md-12 col-no-padding" ui-view></div>
+                        <!--<div class="col-md-12 col-no-padding" ui-view></div>-->
+                        <ui-view ng-init="initGetFormDataAplikasi();"></ui-view>
                     </div>
                     <div class="panel-footer text-center" ng-if="$root.DATA_STATUS_FOR_SUBMIT < 1" menu-alias="M-8">
                         <button type="submit" class="btn btn-primary">

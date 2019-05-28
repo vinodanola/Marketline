@@ -1,0 +1,97 @@
+<ng-include src="'partials/prospek-rincian-angsuran-step.html'"></ng-include>
+<div class="col-md-6 col-padding-110 col-has-border-right">
+    <div class="form-group">
+        <label>Plafond*</label>
+        <div class="input-group">
+            <span class="input-group-addon">Rp</span>
+            <input type="text" class="form-control" ng-model="fdAS3R.MS_PLAFOND" ui-number-mask="0" disabled/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Tenor*</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdAS3R.MS_TENOR" ui-number-mask="0" disabled/>
+            <span class="input-group-addon"> Bulan</span>
+        </div>
+    </div>
+	<div class="form-group">
+        <label>{{$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY' ? 'Margin' : 'Bunga'}}*</label>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="fdAS3R.MS_BUNGA_PERBULAN" ui-number-mask="2" disabled/>
+            <span class="input-group-addon">% / Bulan</span>
+        </div>
+    </div>
+</div>
+<div class="col-md-6 col-padding-110">
+    <div class="form-group">
+        <label>Rekening Yang Di-TopUp / 3R *</label>
+        <select class="form-control" ng-model="fdAS3R.NO_REKENING_DIPERBAIKI"  ng-options="x.NO_REKENING as (x.NO_REKENING) for x in getlistRek.data">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Upload Jadwal Angsuran *</label>
+        <input type="file" class="form-control" file-model="fdAS3R.fileToUpload" />
+    </div>
+    <div class="form-group">
+        <!--button class="btn btn-link" ng-click="exportToExcel('#table3r')">
+                <span class="glyphicon glyphicon-share"></span> Export to Excel
+        </button-->
+        <br/>
+        <div class="input-group">
+            <a class="btn btn-success btn-sm" ng-click="exportToExcel('#table3r','JadwalAngsuran3r')"><span class="glyphicon glyphicon-download"></span> Unduh Excel</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
+<!--    <ul class="thead thead-action list-inline">
+        <li>
+            <input type="text" placeholder="Cari"/>
+        </li>
+        <li>
+            <select>
+                    <option></option>
+            </select>
+        </li>
+        <li>
+            Page: {{currentPage}} / {{numPages}}
+        </li>
+        <li class="right">
+            <ul uib-pagination total-items="totalItems"
+                ng-model="currentPage"
+                ng-change="pageChanged(currentPage)"
+                max-size="maxSize" 
+                class="pagination-sm" 
+                boundary-links="true" 
+                num-pages="numPages"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+            ></ul>
+        </li>
+    </ul>-->
+    <div id="table3r">
+        <table wt-responsive-table class="table table-hidden-overflow small">
+            <tr class="thead">
+                <th class="text-center">Rekening Lama</th>
+                <th class="text-center">Tanggal</th>
+                <th class="text-center">Angsuran Ke</th>
+                <th class="text-center">Pokok</th>
+                <th class="text-center">Bunga</th>
+                <th class="text-center">Total</th>
+            </tr>
+            <tr ng-repeat="x in listJA">
+                <td class="text-center">{{x.NO_REKENING_DIPERBAIKI}}</td>
+                <td class="text-center">{{x.TANGGAL}}</td>
+                <td class="text-center">{{x.ANGSURAN}}</td>
+                <td class="text-center">{{x.POKOK | number:2}}</td>
+                <td class="text-center">{{x.BUNGA | number:2}}</td>
+                <td class="text-center">{{PokokBunga(x.POKOK,x.BUNGA) | number:2}}</td>
+            </tr>
+            <tr class="text-success">
+                <td colspan="3">Total</td>
+                <td class="text-center">{{ listJA | sumByColumn: 'POKOK' | number:2}}</td>
+                <td class="text-center">{{ listJA | sumByColumn: 'BUNGA' | number:2}}</td>
+                <td class="text-center">{{PokokBunga(listJA | sumByColumn: 'POKOK',listJA | sumByColumn: 'BUNGA') | number:2}}</td>
+            </tr>
+        </table>
+    </div>	
+</div>

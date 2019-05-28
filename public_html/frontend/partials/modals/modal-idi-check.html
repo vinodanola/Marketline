@@ -28,11 +28,16 @@
     </div>
     <div class="col-md-6 col-mic-right">
         <div class="cidi-list-item" ng-repeat="x in cekidiresult">
-            <span class="cli-t">{{x.PR_NAMA_LENGKAP}} 
+            <span class="cli-t">{{x.PR_NAMA_LENGKAP}}
                 <ng-if ng-if="x.IS_3R>=1" class="text-danger">3R</ng-if>
             </span>
+			<ul class="list-inline">			
+				<li>
+					<span class="text-success">( NASABAH {{x.NASABAH_TYPE}} - {{x.PR_INDIVIDU_MIS_ID}} )</span>
+				</li>
+			</ul>
             <!--<span class="cli-p" ng-class="{x.Percentage >= 80 : 'green', x.Percentage < 80 || x.Percentage >= 60 : 'yellow', x.Percentage < 60 : 'red'}">{{x.Percentage}}</span>-->
-            <span class="cli-p" ng-class="x.Percentage >= 80 ? 'blue' : (x.Percentage < 80 && x.Percentage >= 60 ? 'green' : 'red')">{{x.Percentage}} %</span>
+            <span class="cli-p" ng-class="x.Percentage >= 80 ? 'blue' : (x.Percentage < 80 && x.Percentage >= 60 ? 'green' : 'red')">{{x.Percentage}} %</span>			
             <ul class="list-inline">
                 <li>
                     <a ng-click="IDIDetail(x.PR_INDIVIDU_ID)">Detail</a>
@@ -40,7 +45,12 @@
                 <li>
                     <!--<a ui-sref="calondebiturprofile.prospek({id:x.PR_INDIVIDU_ID})" ng-click="$root.closemcIDI()">Gunakan data ini</a>-->
                     <ng-if ng-if="x.IS_3R<1 || $root.btnGunakanhave3R">
-                        <a ng-click="$root.submitFormDataProspekCreate(x.PR_INDIVIDU_ID); $root.closemcIDI()">Gunakan</a>
+                        <ng-if ng-show="x.NASABAH_TYPE == 'SYARIAH' && $root.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY' || ">
+                            <a ng-click="$root.submitFormDataProspekCreate(x.PR_INDIVIDU_ID); $root.closemcIDI()">Gunakan</a>
+                        </ng-if>
+                        <ng-if ng-show="(x.NASABAH_TYPE == 'KONVESIONAL' && $root.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'KV')">
+                            <a ng-click="$root.submitFormDataProspekCreate(x.PR_INDIVIDU_ID); $root.closemcIDI()">Gunakan</a>
+                        </ng-if>
                     </ng-if>
                     <span class="text-danger" ng-if="x.IS_3R>=1 && !$root.btnGunakanhave3R">
                         <ng-if ng-if="x.KOL == 'L'" >
@@ -51,8 +61,8 @@
                             Data ini tidak bisa digunakan karena berstatus 3R kol tidak lancar
                         </ng-if>
                     </span>
-                </li>
-            </ul>
+                </li>	
+            </ul>						
         </div>
     </div>
 </div>        

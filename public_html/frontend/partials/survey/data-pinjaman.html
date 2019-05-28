@@ -11,7 +11,7 @@
             <option></option>
         </select>-->
         <!--<select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list" ng-change="getDetailProduk(fdKS.MS_PRODUK_ID); fdKS.MS_ANGSURAN_PERBULAN = null" convert-to-number>-->
-        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list | filter : { tipe : fdKS.MS_JENIS_PRODUK_ID }" ng-change="getCalculateProdukProgram({'id_produk' : fdKS.MS_PRODUK_ID, 'id_program' : fdKS.MS_PROGRAM_ID, 'id_pembiayaan' : fdKS.MS_JENIS_PEMBIAYAAN_ID })" convert-to-number>
+        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PRODUK_ID" ng-options="x.id as (x.nama_produk) for x in $root.produk_list | filter : { tipe : fdKS.MS_JENIS_PRODUK_ID }" ng-change="$root.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY' ? getCalculateProdukProgram({'id_produk' : fdKS.MS_PRODUK_ID, 'id_program' : 316, 'id_pembiayaan' : fdKS.MS_JENIS_PEMBIAYAAN_ID }) : getCalculateProdukProgram({'id_produk' : fdKS.MS_PRODUK_ID, 'id_program' : fdKS.MS_PROGRAM_ID, 'id_pembiayaan' : fdKS.MS_JENIS_PEMBIAYAAN_ID })" convert-to-number>
             <option></option>
         </select>
     </div>
@@ -21,7 +21,7 @@
             <option></option>
         </select>-->
         <!--<select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PROGRAM_ID" ng-options="x.id as (x.nama_program + ' ' +x.id) for x in $root.program_list" ng-change="getDetailProgram(fdKS.MS_PROGRAM_ID); fdKS.MS_ANGSURAN_PERBULAN = null" convert-to-number>-->
-        <select ng-disabled="(SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PROGRAM_ID" ng-options="x.id as (x.nama_program) for x in $root.program_list" ng-change="getCalculateProdukProgram({'id_produk' : fdKS.MS_PRODUK_ID, 'id_program' : fdKS.MS_PROGRAM_ID, 'id_pembiayaan' : fdKS.MS_JENIS_PEMBIAYAAN_ID })" convert-to-number>
+        <select ng-disabled="$root.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY' ? true : (SURVEY_LOCK != 'YES') ? false : true" class="form-control" ng-model="fdKS.MS_PROGRAM_ID" ng-options="x.id as (x.nama_program) for x in $root.program_list" ng-change="getCalculateProdukProgram({'id_produk' : fdKS.MS_PRODUK_ID, 'id_program' : fdKS.MS_PROGRAM_ID, 'id_pembiayaan' : fdKS.MS_JENIS_PEMBIAYAAN_ID })" convert-to-number>
             <option></option>
         </select>
     </div>

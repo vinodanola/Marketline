@@ -349,7 +349,7 @@ class Survey extends CI_Controller {
     
     public function get_jadwalangsuran(){
         
-        get_api($this->config->item('baseAPI').'3r/get_jadwal_angsuran/'.$this->input->get('id'));
+        get_api($this->config->item('baseAPI').'3r/get_jadwal_angsuran/'.$this->input->get('id').'/?FOR='.$this->input->get('for'));
 	
     }
 	
@@ -383,7 +383,7 @@ class Survey extends CI_Controller {
     
     public function get_jadwalangsurantopupsyariah(){
         
-        get_api($this->config->item('baseAPI').'survey/get_angsuran_topup_syariah/?DB_PROSPEK_ID='.$this->input->get('id'));
+        get_api($this->config->item('baseAPI').'survey/get_angsuran_topup_syariah/?DB_PROSPEK_ID='.$this->input->get('id').'&FOR='.$this->input->get('for'));
 	
     }
     
@@ -397,7 +397,7 @@ class Survey extends CI_Controller {
     
     public function get_jadwalangsuran3rsyariah(){
         
-        get_api($this->config->item('baseAPI').'survey/get_angsuran_3r_syariah/?DB_PROSPEK_ID='.$this->input->get('id'));
+        get_api($this->config->item('baseAPI').'survey/get_angsuran_3r_syariah/?DB_PROSPEK_ID='.$this->input->get('id').'&FOR='.$this->input->get('for'));
 	
     }
     

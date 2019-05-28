@@ -322,6 +322,54 @@ App.config( function($stateProvider, $urlRouterProvider, $httpProvider, $provide
             }
         })
         
+        /* PROSPEK ANGSURAN */
+        
+        .state('prospek.aplikasi.angsuran', {
+            url: '/aplikasi-rincian-angsuran',
+            templateUrl: 'partials/prospek-rincian-angsuran.html?UNIQID='+Math.random(),
+            controller: 'prospekRincianAngsuranCtrl',
+            data: {
+                pageTitle: 'Rincian Angsuran'
+            }
+        })
+        .state('prospek.aplikasi.angsuran.baru',{
+            url: '/baru',
+            templateUrl: 'partials/prospek-rincian-angsuran-baru.html?UNIQID='+Math.random(),
+            controller: 'prospekRincianAngsuranBaruCtrl',
+            data: {
+                pageTitle: 'Rincian Angsuran Baru'
+            }
+        })
+
+        .state('prospek.aplikasi.angsuran.topupsyariah',{
+            url: '/topup-syariah',
+            templateUrl: 'partials/prospek-rincian-angsuran-topup-syariah.html?UNIQID='+Math.random(),
+            controller: 'prospekRincianAngsuranTopUpSyariahCtrl',
+            data: {
+                pageTitle: 'Rincian Angsuran Top Up Syariah'
+            }
+        })
+
+        .state('prospek.aplikasi.angsuran.3r',{
+            url: '/3r',
+            templateUrl: 'partials/prospek-rincian-angsuran-3r.html?UNIQID='+Math.random(),
+            controller: 'prospekRincianAngsuran3RCtrl',
+            data: {
+                pageTitle: 'Rincian Angusuran 3R'
+            }
+        })
+
+        .state('prospek.aplikasi.angsuran.3rsyariah',{
+            url: '/3r-syariah',
+            templateUrl: 'partials/prospek-rincian-angsuran-3r-syariah.html?UNIQID='+Math.random(),
+            controller: 'prospekRincianAngsuran3RSyariahCtrl',
+            data: {
+                pageTitle: 'Rincian Angusuran 3R Syariah'
+            }
+        })
+        
+        
+        
         /* AGUNAN */
         
         .state('prospek.agunan', {
@@ -4047,7 +4095,7 @@ App.service('getNilaiPasarValidator',function($http,apiBase,globalFunction){
             
             scope[sn]['DB_LUAS_TANAH'] = R.data[0].DB_LUAS_TANAH;
             scope[sn]['DB_LUAS_BANGUNAN'] = R.data[0].DB_LUAS_BANGUNAN;
-			// scope[sn]['DB_LUAS_PER_PENILAIAN'] = R.data[0].DB_LUAS_TANAH;
+            scope[sn]['DB_LUAS_PER_PENILAIAN'] = R.data[0].DB_LUAS_TANAH; /*hanya untuk tipe jaminan tanah, karena tipe jaminan tanah langsung disable namun ng-init tidak mentrigger ng-change*/
 			
         }, function myError(R) {  
             console.log(R.statusText); 
@@ -5699,7 +5747,10 @@ App.controller('aplikasiCtrl', function($scope,globalFunction,$http,apiBase,$sta
                 }
             });
         };
-        $scope.getFormDataAplikasi($stateParams.id);
+//        $scope.getFormDataAplikasi($stateParams.id);
+        $scope.initGetFormDataAplikasi = function(){
+            $scope.getFormDataAplikasi($stateParams.id);
+        };
         
 //        $scope.getDetailProduk = function(id){
 //            apiData.getProdukDetail({id : id, scope : $scope, sn : 'formDataAplikasi', t : 'onchange'});
@@ -5898,6 +5949,287 @@ App.controller('aplikasiCtrl', function($scope,globalFunction,$http,apiBase,$sta
             }
         });
 		
+    })
+
+    .controller('prospekRincianAngsuranCtrl',function($scope,globalFunction,$state,apiData,$rootScope,$stateParams){
+        
+//        if ($scope.formDataAplikasi.MS_JENIS_PEMBIAYAAN_ID === undefined) {
+//            $scope.getFormDataAplikasi($stateParams.id);
+            console.log('MS_JENIS_PEMBIAYAAN_ID',$scope.formDataAplikasi.MS_JENIS_PEMBIAYAAN_ID);
+//        }
+        $scope.$watchGroup(['formDataAplikasi.MS_JENIS_PEMBIAYAAN_ID'], function(newValues, oldValues, scope) {
+            if (newValues) {
+                if ($scope.formDataAplikasi.MS_JENIS_PEMBIAYAAN_ID == 111 && $rootScope.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY') {
+                    $state.go('prospek.aplikasi.angsuran.3rsyariah');
+                } else if ($scope.formDataAplikasi.MS_JENIS_PEMBIAYAAN_ID == 111){
+                    $state.go('prospek.aplikasi.angsuran.3r');
+                } else if ($scope.formDataAplikasi.MS_JENIS_PEMBIAYAAN_ID == 110 && $rootScope.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY') {
+                    $state.go('prospek.aplikasi.angsuran.topupsyariah');
+                } else {
+                    $state.go('prospek.aplikasi.angsuran.baru');
+                }
+            }
+        });
+
+    })
+
+    .controller('prospekRincianAngsuranBaruCtrl', function($scope,$http,$state,$rootScope,globalFunction,apiData,apiBase,postJadwal,globalFunction,$stateParams){
+
+        $scope.fdASBR = {};
+        var dt = new Date();
+        $scope.fdASBR.sdate = dt.toISOString();
+        $scope.dtSDate = dt;
+
+        $scope.$watch('formDataAplikasi', function(dataLoaded) {
+            if (dataLoaded){
+                $scope.fdASBR.MS_PLAFOND = $scope.formDataAplikasi.PR_RENCANA_PLAFOND;
+                $scope.fdASBR.MS_TENOR = $scope.formDataAplikasi.PR_JANGKA_WAKTU;
+                $scope.fdASBR.MS_BUNGA_PERBULAN = 1.09;
+            }
+        });
+
+    //    $scope.postKSBR = function(){
+    //        $scope.fdKSBR.DB_PROSPEK_ID = $stateParams.id;
+    //        apiData.post({
+    //            gl      : true,
+    //            api     : apiBase+'survey/post_alldata',
+    //            data    : $scope.fdKSBR,
+    //            scope   : $scope,
+    //            type    : 'tolist'
+    //        });
+    //    };
+
+        $scope.buatjadwal = function(){
+            $scope.fdASBR.DB_PROSPEK_ID = $stateParams.id;
+            $scope.fdASBR.FOR = 'PR';
+            apiData.post({
+                gl      : true,
+                api     : apiBase+'survey/post_createjadwalangsuran',
+                data    : $scope.fdASBR,
+                scope   : $scope,
+                type    : 'tolist',
+                reload  : 'getlJadwalAngsuran'
+            });
+        };
+
+        $scope.getlJadwalAngsuran = function(id){
+            apiData.get({
+                gl      : false,
+                api     : apiBase+'survey/get_jadwalangsuran/?id='+id+'&for=PR',
+                scope   : $scope,
+                sn      : 'listJA',
+                type    : 'tolist'
+            });
+        };
+        $scope.getlJadwalAngsuran($stateParams.id);
+
+        $scope.PokokBunga = function(A,B){
+            return parseInt(A) + parseInt(B);
+        };
+
+        $scope.exportToExcel=function(tableId,filename){			
+            globalFunction.exportToExcel(tableId,filename);
+        };
+
+    })
+
+    .controller('prospekRincianAngsuranTopUpSyariahCtrl', function($scope,$http,$state,$rootScope,globalFunction,apiData,apiBase,postJadwal,globalFunction,$stateParams){
+
+        $scope.fdASTS = {};
+        var dt = new Date();
+        $scope.fdASTS.sdateTA = dt.toISOString();
+        $scope.fdASTS.sdateTR = dt.toISOString();
+        $scope.dtSDateTA = dt;
+        $scope.dtSDateTR = dt;
+
+        $scope.$watch('formDataAplikasi', function(dataLoaded) {
+            if (dataLoaded){
+                $scope.fdASTS.MS_PLAFOND = $scope.formDataAplikasi.MS_PLAFOND;
+                $scope.fdASTS.MS_TENOR = $scope.formDataAplikasi.MS_TENOR;
+                $scope.fdASTS.MS_BUNGA_PERBULAN = $scope.formDataAplikasi.MS_BUNGA_PERBULAN;
+            }
+        });
+
+        $scope.buatjadwal = function(){
+            $scope.fdASTS.DB_PROSPEK_ID = $stateParams.id;
+            $scope.fdASTS.FOR = 'PR';
+            apiData.post({
+                gl      : true,
+                api     : apiBase+'survey/post_createjadwalangsurantopupsyariah',
+                data    : $scope.fdASTS,
+                scope   : $scope,
+                type    : 'tolist',
+                reload  : 'getlJadwalAngsuran'
+            });
+        };
+
+        $scope.getlJadwalAngsuran = function(id){
+            apiData.get({
+                gl      : false,
+                api     : apiBase+'survey/get_jadwalangsurantopupsyariah/?id='+id+'&for=PR',
+                scope   : $scope,
+                sn      : 'listJATS',
+                type    : 'tolist',
+                callbacksuccess : function(R){
+                    $scope.fdASTS.NO_REKENING = R.data.HEADER.NO_REKENING;
+                    $scope.dtSDateTA = new Date(R.data.HEADER.sdateTA);
+                    $scope.dtSDateTR = new Date(R.data.HEADER.sdateTR);
+                    $scope.fdASTS.sdateTA = $scope.dtSDateTA.toISOString();
+                    $scope.fdASTS.sdateTR = $scope.dtSDateTR.toISOString();
+                }
+            });
+        };
+        $scope.getlJadwalAngsuran($stateParams.id);
+
+        $scope.getlistRek = function(id){
+            apiData.get({
+                gl      : false,
+                api     : apiBase+'survey/get_rekeningdebiturdw/?id='+id,
+                scope   : $scope,
+                sn      : 'getlistRek',
+                type    : 'tolist'
+            });
+        };
+        $scope.getlistRek($stateParams.id);
+
+        $scope.exportToExcel=function(tableId,filename){			
+            globalFunction.exportToExcel(tableId,filename);
+        };
+
+    })
+
+    .controller('prospekRincianAngsuran3RCtrl', function($scope,$rootScope,globalFunction,apiData,apiBase,postJadwal,globalFunction,$stateParams,$timeout){
+
+        $scope.fdAS3R = {};
+
+        $scope.$watch('fdKS', function(dataLoaded) {
+            if (dataLoaded){
+                $scope.fdAS3R.MS_PLAFOND = $scope.fdKS.MS_PLAFOND;
+                $scope.fdAS3R.MS_TENOR = $scope.fdKS.MS_TENOR;
+                $scope.fdAS3R.MS_BUNGA_PERBULAN = $scope.fdKS.MS_BUNGA_PERBULAN;
+            }
+        });
+
+    //    $scope.postKS = function(){
+    //        $scope.fdKS.DB_PROSPEK_ID = $stateParams.id;
+    //        apiData.post({
+    //            gl      : true,
+    //            api     : apiBase+'survey/post_alldata',
+    //            data    : $scope.fdKS,
+    //            scope   : $scope,
+    //            type    : 'tolist'
+    //        });
+    //    };
+
+        $scope.getlistRek = function(id){
+            apiData.get({
+                gl      : false,
+                api     : apiBase+'survey/get_rekeningdebitur/?id='+id,
+                scope   : $scope,
+                sn      : 'getlistRek',
+                type    : 'tolist'
+            });
+        };
+        $scope.getlistRek($stateParams.id);
+
+        $scope.postJA = function(){
+            // console.log('working');
+            $scope.fdAS3R.DB_PROSPEK_ID = $stateParams.id;
+            $scope.fdAS3R.FOR = 'PR';
+            var data = $scope.fdAS3R;    
+            console.log(data);
+            postJadwal.uploadFileToUrl(data,$scope);
+            $scope.fdAS3R.fileToUpload = '';
+        };
+
+        $scope.$watch('fdAS3R.fileToUpload',function(newValue){
+            if(newValue){
+                $scope.postJA();
+            }
+        });
+
+        $scope.getlJadwalAngsuran = function(id){
+            apiData.get({
+                gl      : false,
+                api     : apiBase+'survey/get_jadwalangsuran/?id='+id+'&for=PR',
+                scope   : $scope,
+                sn      : 'listJA',
+                type    : 'tolist'			
+            });
+        };
+        $scope.getlJadwalAngsuran($stateParams.id);
+
+        $scope.PokokBunga = function(A,B){
+            return parseInt(A) + parseInt(B);
+        };    
+
+        $scope.exportToExcel=function(tableId,filename){			
+            globalFunction.exportToExcel(tableId,filename);
+        };
+
+    })
+
+    .controller('prospekRincianAngsuran3RSyariahCtrl', function($scope,$rootScope,globalFunction,apiData,apiBase,postJadwal,globalFunction,$stateParams,$timeout){
+
+        $scope.fdAS3RS = {};
+        var dt = new Date();
+        $scope.fdAS3RS.sdateTA = dt.toISOString();
+        $scope.fdAS3RS.sdateTR = dt.toISOString();
+        $scope.dtSDateTA = dt;
+        $scope.dtSDateTR = dt;
+
+        $scope.$watch('fdKS', function(dataLoaded) {
+            if (dataLoaded){
+                $scope.fdAS3RS.MS_PLAFOND = $scope.fdKS.MS_PLAFOND;
+                $scope.fdAS3RS.MS_TENOR = $scope.fdKS.MS_TENOR;
+                $scope.fdAS3RS.MS_BUNGA_PERBULAN = $scope.fdKS.MS_BUNGA_PERBULAN;
+            }
+        });
+
+        $scope.buatjadwal = function(){
+            $scope.fdAS3RS.DB_PROSPEK_ID = $stateParams.id;
+            $scope.fdAS3RS.FOR = 'PR';
+            apiData.post({
+                gl      : true,
+                api     : apiBase+'survey/post_createjadwalangsuran3rsyariah',
+                data    : $scope.fdAS3RS,
+                scope   : $scope,
+                type    : 'tolist',
+                reload  : 'getlJadwalAngsuran'
+            });
+        };
+
+        $scope.getlJadwalAngsuran = function(id){
+            apiData.get({
+                gl      : false,
+                api     : apiBase+'survey/get_jadwalangsuran3rsyariah/?id='+id+'&for=PR',
+                scope   : $scope,
+                sn      : 'listJA3RS',
+                type    : 'tolist',
+                callbacksuccess : function(R){
+                    $scope.fdAS3RS.NO_REKENING = R.data.HEADER.NO_REKENING;
+                    $scope.dtSDateTR = new Date(R.data.HEADER.sdateTR);
+                    $scope.fdAS3RS.sdateTR = $scope.dtSDateTR.toISOString();
+                }
+            });
+        };
+        $scope.getlJadwalAngsuran($stateParams.id);
+
+        $scope.getlistRek = function(id){
+            apiData.get({
+                gl      : false,
+                api     : apiBase+'survey/get_rekeningdebiturdw/?id='+id,
+                scope   : $scope,
+                sn      : 'getlistRek',
+                type    : 'tolist'
+            });
+        };
+        $scope.getlistRek($stateParams.id);
+
+        $scope.exportToExcel=function(tableId,filename){			
+            globalFunction.exportToExcel(tableId,filename);
+        };
+
     });
 
 /* Prospek Agunan */
@@ -7076,7 +7408,7 @@ App.controller('profileDanKarakterSurveyCtrl',function($scope, apiData,apiBase,$
 	
 		console.log($rootScope.thisState);
     
-		if ($rootScope.thisState == 'survey.profilekarakter.index'){
+		if ($rootScope.thisState ==='survey.profilekarakter.index'){
 			e = globalFunction.formValidation({
 					scope : $scope,
 					form  : 'fdPDK',
@@ -7090,7 +7422,7 @@ App.controller('profileDanKarakterSurveyCtrl',function($scope, apiData,apiBase,$
 			});		
 		}	
 		
-		// if ($rootScope.thisState == 'survey.profilekarakter.sumberinformasireputasi'){
+		if ($rootScope.thisState === 'survey.profilekarakter.sumberinformasireputasi'){
 			
 			console.log('TOTAL ITEM',$scope.fdPDK.TOTAL_ITEMS);		
 			if ($scope.fdPDK.TOTAL_ITEMS >= 3 ){
@@ -7107,7 +7439,7 @@ App.controller('profileDanKarakterSurveyCtrl',function($scope, apiData,apiBase,$
 						{ fn : 'TOTAL_ITEMS_SIR',  fk : 'Sumber Informasi Reputasi Kurang dari 3 ' }					
                 ]
 			});	
-		// }
+		}
 
 		
         return e;
@@ -9636,8 +9968,9 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
                 $scope.fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR_3 / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );
                 $scope.fdPNL.DB_NILAI_PASAR = parseFloat($scope.fdPNL.DB_NILAI_PASAR * 100) / parseFloat(100 - $scope.fdPNL.DB_NILAI_PENYUSUTAN);
                 $scope.fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ( $scope.fdPNL.DB_NILAI_PASAR / $scope.fdPNL.DB_LUAS_PER_PENILAIAN );									
-                $scope.fdPNL.DB_NILAI_PASAR = $scope.fdPNL.DB_NILAI_PASAR - ($scope.fdPNL.DB_NILAI_PASAR * ($scope.fdPNL.DB_NILAI_PENYUSUTAN /100));
-                
+                $scope.fdPNL.DB_NILAI_PASAR = $scope.fdPNL.DB_NILAI_PASAR - ($scope.fdPNL.DB_NILAI_PASAR * ($scope.fdPNL.DB_NILAI_PENYUSUTAN /100));                
+				console.log('$scope.fdPNL',$scope.fdPNL);
+				
                 if ($scope.fdPNL.MS_JENIS_PENILAIAN==1134){
                     $scope.fdPNL.DB_LUAS_PER_PENILAIAN = $scope.fdPNL.DB_LUAS_TANAH;
                 }else if ($scope.fdPNL.MS_JENIS_PENILAIAN==1135){
@@ -9700,7 +10033,7 @@ App.controller('agunanSurveyCtrl',function(modalService, $scope, apiData, $rootS
             ];
         });
     };
-    
+
 })
 .controller('asPenilaianModalCtrl',function($scope,$rootScope,apiData,apiBase,globalFunction,$http){
 	

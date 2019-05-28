@@ -1,7 +1,7 @@
 <div class="col-md-6 col-padding-110 col-has-border-right">
 	<div class="form-group"  >
         <label>Jenis Penilaian * </label>
-        <select class="form-control" ng-disabled="$root.jenis_agunan_id==58" ng-init="$root.jenis_agunan_id==58 ? fdPNL.MS_JENIS_PENILAIAN = 1134 : '';" ng-model="fdPNL.MS_JENIS_PENILAIAN" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PENILAIAN" ng-change="fdPNL.DB_NILAI_PASAR_1 = ''; fdPNL.DB_NILAI_PASAR_2 = ''; fdPNL.DB_NILAI_PASAR_3 = ''; fdPNL.DB_NILAI_PASAR = ''; fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ''; fdPNL.DB_LUAS_PER_PENILAIAN = fdPNL.MS_JENIS_PENILAIAN==1134 ? fdPNL.DB_LUAS_TANAH : fdPNL.MS_JENIS_PENILAIAN==1135 ? fdPNL.DB_LUAS_BANGUNAN : 'undefined'">
+        <select class="form-control" ng-disabled="$root.jenis_agunan_id==58" ng-init="$root.jenis_agunan_id==58 ? fdPNL.MS_JENIS_PENILAIAN = 1134 : '';" ng-model="fdPNL.MS_JENIS_PENILAIAN" ng-options="x.MS_PARA_GLOBAL_DETAIL_ID as (x.MS_DESKRIPSI) for x in $root.MS_JENIS_PENILAIAN" ng-change="fdPNL.DB_NILAI_PASAR_1 = ''; fdPNL.DB_NILAI_PASAR_2 = ''; fdPNL.DB_NILAI_PASAR_3 = ''; fdPNL.DB_NILAI_PASAR = ''; fdPNL.DB_NILAI_PASAR_1_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_2_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_3_PER_METER_PERSEGI = ''; fdPNL.DB_NILAI_PASAR_PER_METER_PERSEGI = ''; fdPNL.DB_LUAS_PER_PENILAIAN = fdPNL.MS_JENIS_PENILAIAN==1134 ? fdPNL.DB_LUAS_TANAH : fdPNL.MS_JENIS_PENILAIAN==1135 ? fdPNL.DB_LUAS_BANGUNAN : 'undefined';" >
             <option></option>
         </select>
     </div>	
@@ -32,7 +32,7 @@
         </select>-->
         <input type="text" class="form-control" ng-model="fdPNL.DB_JABATAN"/>
     </div>
-    <div class="form-group" ng-init="$root.jenis_agunan_id==58 ? fdPNL.DB_LUAS_PER_PENILAIAN = fdPNL.DB_LUAS_TANAH : '';" >
+    <div class="form-group" >
         <label ng-show="fdPNL.MS_JENIS_PENILAIAN==1134">Luas Tanah *</label>
         <label ng-show="fdPNL.MS_JENIS_PENILAIAN==1135">Luas Bangunan *</label>
         <div class="input-group" ng-show="fdPNL.MS_JENIS_PENILAIAN==1134 || fdPNL.MS_JENIS_PENILAIAN==1135" >

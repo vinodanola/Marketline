@@ -1,6 +1,6 @@
 <div class="list-group list-group-out-of-panel left">
-    <a class="list-group-item" ui-sref-active="active" ui-sref="survey.keuangan.angsuran.baru({id : $root.PR_PROSPEK_ID})">Baru / Top Up</a>
-    <a class="list-group-item" ui-sref-active="active" ui-sref="survey.keuangan.angsuran.topupsyariah({id : $root.PR_PROSPEK_ID})">Top Up Syariah</a>
-    <a class="list-group-item" ui-sref-active="active" ui-sref="survey.keuangan.angsuran.3r({id : $root.PR_PROSPEK_ID})">Restruktur</a>
-    <a class="list-group-item" ui-sref-active="active" ui-sref="survey.keuangan.angsuran.3rsyariah({id : $root.PR_PROSPEK_ID})">Restruktur Syariah</a>
+    <a ng-show="JPem.MS_JENIS_PEMBIAYAAN_ID == 109" class="list-group-item" ui-sref-active="active" ui-sref="survey.keuangan.angsuran.baru({id : $root.PR_PROSPEK_ID})">Baru / Top Up</a>
+    <a ng-show="JPem.MS_JENIS_PEMBIAYAAN_ID == 110 && $root.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY'" class="list-group-item" ui-sref-active="active" ui-sref="survey.keuangan.angsuran.topupsyariah({id : $root.PR_PROSPEK_ID})">Top Up Syariah</a>
+    <a ng-show="JPem.MS_JENIS_PEMBIAYAAN_ID == 111 && $root.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'KV'" class="list-group-item" ui-sref-active="active" ui-sref="survey.keuangan.angsuran.3r({id : $root.PR_PROSPEK_ID})">Restruktur</a>
+    <a ng-show="JPem.MS_JENIS_PEMBIAYAAN_ID == 111 && $root.$storage.SESSION_LOGIN.BUSINESS_TYPE == 'SY'" class="list-group-item" ui-sref-active="active" ui-sref="survey.keuangan.angsuran.3rsyariah({id : $root.PR_PROSPEK_ID})">Restruktur Syariah</a>
 </div>
